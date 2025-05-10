@@ -6,8 +6,8 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { fetchProductData } from '@/lib/utils';
-import { ProductsData } from '@/types/product';
+import { useProductStore } from '@/lib/state';
+import { Category, ProductsData } from '@/types/product';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ChevronDown, ChevronUp, Heart, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -22,16 +22,12 @@ import {
 } from '../ui/sheet';
 
 const MobileMenu = () => {
-  const [productData, setProductData] = useState<ProductsData[]>([]);
+  const { productData, fetchProductDataIfNeeded } = useProductStore();
   const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchProductData();
-      setProductData(data);
-    };
-    fetchData();
-  }, []);
+    fetchProductDataIfNeeded();
+  }, [fetchProductDataIfNeeded]);
 
   return (
     <Sheet>
@@ -69,7 +65,7 @@ const MobileMenu = () => {
             className="scrollbar scrollbar-thumb-stone-400 scrollbar-thumb-rounded-full scrollbar-w-[5px] h-full overflow-y-auto"
           >
             <TabsList className="dlex w-full items-center justify-center space-x-10 rounded-none bg-gradient-to-b from-neutral-200 via-neutral-100 to-white pt-2">
-              {productData.map((product) => (
+              {productData.map((product: ProductsData) => (
                 <TabsTrigger
                   key={product.id}
                   value={String(product.id)}
@@ -80,13 +76,13 @@ const MobileMenu = () => {
               ))}
             </TabsList>
 
-            {productData.map((product) => (
+            {productData.map((product: ProductsData) => (
               <TabsContent
                 key={product.id}
                 value={String(product.id)}
                 className="h-full w-full px-4"
               >
-                {product.categories.map((category) => (
+                {product.categories.map((category: Category) => (
                   <Collapsible
                     key={category.id}
                     open={open === category.id}

@@ -1,8 +1,7 @@
 'use client';
 
-import { fetchProductData } from '@/lib/utils';
+import { useProductStore } from '@/lib/state';
 import { Category, ProductsData, Subcategory } from '@/types/product';
-import { useEffect, useState } from 'react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,23 +9,20 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '../ui/navigation-menu';
+import { useEffect } from 'react';
 
 const NavMenu = () => {
-  const [productData, setProductData] = useState<ProductsData[]>([]);
+  const { productData, fetchProductDataIfNeeded } = useProductStore();
 
   useEffect(() => {
-      const fetchData = async () => {
-        const data = await fetchProductData();
-        setProductData(data);
-      };
-      fetchData();
-    }, []);
+    fetchProductDataIfNeeded();
+  }, [fetchProductDataIfNeeded]);
 
   return (
     <div className="flex w-full items-center">
       <NavigationMenu>
         <NavigationMenuList>
-          {productData.map((product) => (
+          {productData.map((product: ProductsData) => (
             <NavigationMenuItem key={product.id}>
               <NavigationMenuTrigger className="cursor-pointer font-bold">
                 {product.name}
