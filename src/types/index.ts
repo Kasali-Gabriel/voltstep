@@ -1,5 +1,3 @@
-import { ProductsData } from './product';
-
 export interface AuthHeaderProps {
   title: string;
   description?: string;
@@ -24,8 +22,16 @@ export interface EmailState {
   setEmail: (value: string) => void;
 }
 
-export interface ProductState {
-  productData: ProductsData[];
-  setProductData: (data: ProductsData[]) => void;
-  fetchProductDataIfNeeded: () => Promise<void>;
+export interface SizeSelectorProps {
+  sizes: string[];
+  selectedSize: string | null;
+  setSelectedSize: (size: string) => void;
+}
+
+
+export interface ColorSelectorProps {
+  colors: string[];
+  selectedColor: string | null;
+  setSelectedColor: (color: string) => void;
+  isMobile: boolean;
 }

@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const fetchProductData = async () => {
-  const response = await axios.get<ProductCatalog[]>('/api/products');
+  const response = await axios.get<ProductCatalog[]>('/api/categories');
   const catalogs = response.data;
 
   const allProducts = catalogs.flatMap((catalog) => catalog.products_data);

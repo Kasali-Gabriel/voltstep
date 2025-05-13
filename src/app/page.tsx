@@ -1,5 +1,5 @@
-import FlashNews from '@/components/FlashNews';
-import Footer from '@/components/Footer/Footer';
+import FlashNews from '@/components/Navigation/FlashNews';
+import Footer from '@/components/Navigation/Footer';
 import Navbar from '@/components/Navigation/Navbar';
 
 export default async function Home() {

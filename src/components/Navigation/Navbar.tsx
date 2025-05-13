@@ -1,4 +1,7 @@
+'use client';
+
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useEffect, useState } from 'react';
 
 import {
   GoogleOneTap,
@@ -10,22 +13,30 @@ import {
 import { Heart, ShoppingBag, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SearchBar, SearchView } from '../Search';
+import { SearchBar, SearchView } from '../Search/Search';
 import MobileMenu from './MobileMenu';
 import NavMenu from './NavMenu';
 
 const Navbar = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <nav className="flex flex-col items-center justify-center p-2 sm:p-4 md:h-32 xl:h-16">
-      <>
-        <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
-        <div
-          id="clerk-captcha"
-          data-cl-theme="dark"
-          data-cl-size="flexible"
-          className="mt-2"
-        />
-      </>
+      {isClient && (
+        <>
+          <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
+          <div
+            id="clerk-captcha"
+            data-cl-theme="dark"
+            data-cl-size="flexible"
+            className="mt-2"
+          />
+        </>
+      )}
 
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center justify-center space-x-5 md:hidden">
@@ -73,21 +84,25 @@ const Navbar = () => {
             <Heart size={20} strokeWidth={1.25} className="h-6 w-6" />
           </button>
 
-          <SignedOut>
-            <SignInButton>
-              <Avatar className="cursor-pointer md:h-8 md:w-8">
-                <AvatarFallback>
-                  <User size={20} strokeWidth={1.25} />
-                </AvatarFallback>
-              </Avatar>
-            </SignInButton>
-          </SignedOut>
+          {isClient && (
+            <>
+              <SignedOut>
+                <SignInButton>
+                  <Avatar className="cursor-pointer md:h-8 md:w-8">
+                    <AvatarFallback>
+                      <User size={20} strokeWidth={1.25} />
+                    </AvatarFallback>
+                  </Avatar>
+                </SignInButton>
+              </SignedOut>
 
-          <SignedIn>
-            <div className="mt-1 cursor-pointer md:h-8 md:w-8">
-              <UserButton />
-            </div>
-          </SignedIn>
+              <SignedIn>
+                <div className="mt-1 cursor-pointer md:h-8 md:w-8">
+                  <UserButton />
+                </div>
+              </SignedIn>
+            </>
+          )}
         </div>
       </div>
 

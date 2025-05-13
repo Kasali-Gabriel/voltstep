@@ -23,7 +23,7 @@ export interface Subcategory {
   id: number;
   name: string;
   slug: string;
-  parent_category: number; // ID reference to Category
+  parent_category: number;
   products: Product[];
 }
 
@@ -34,5 +34,16 @@ export interface Product {
   slug: string;
   price: number;
   quantity: number;
-  src: string[]; // array of image URLs
+  src: string[];
+  sizes?: string[];
+  colors?: string[];
+  tags?: ('new arrival' | 'bestseller' | 'flash sale' | 'back in stock')[];
+  reviews?: Review[];
+}
+
+export interface Review {
+  reviewer: string;
+  rating: number;
+  comment?: string;
+  date?: Date;
 }
