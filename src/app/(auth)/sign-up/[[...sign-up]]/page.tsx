@@ -103,6 +103,50 @@ const Page = () => {
                   href="/sign-in"
                 />
               </SignUp.Step>
+
+              {/* Names step */}
+              <SignUp.Step name="continue" className={authLayoutClassName}>
+                <Logo />
+
+                <Header
+                  title="Add your name"
+                  description="Enter the name you'd like to use for your account. You can change this later."
+                  isSemibold
+                />
+
+                <Clerk.Field name="firstName" className={authFieldClassName}>
+                  <Clerk.Label asChild>
+                    <Label>First name</Label>
+                  </Clerk.Label>
+
+                  <Clerk.Input type="text" required autoFocus asChild>
+                    <Input
+                      className={authInputClassName}
+                      disabled={isGlobalLoading}
+                    />
+                  </Clerk.Input>
+
+                  <Clerk.FieldError className={errorClassName} />
+                </Clerk.Field>
+
+                <Clerk.Field name="lastName" className={authFieldClassName}>
+                  <Clerk.Label asChild>
+                    <Label>Last name</Label>
+                  </Clerk.Label>
+
+                  <Clerk.Input type="text" required asChild>
+                    <Input
+                      className={authInputClassName}
+                      disabled={isGlobalLoading}
+                    />
+                  </Clerk.Input>
+
+                  <Clerk.FieldError className={errorClassName} />
+                </Clerk.Field>
+
+                <ContinueBtn isSignUp isGlobalLoading={isGlobalLoading} />
+              </SignUp.Step>
+
               {/* email verification step */}
               <SignUp.Step name="verifications" className={authLayoutClassName}>
                 <SignUp.Strategy name="email_code">

@@ -1,15 +1,14 @@
 'use client';
 
-import { Ratings } from '@/components/ProductComponents/reviews';
-import {
-  ColorSelector,
-  SizeSelector,
-} from '@/components/ProductComponents/selectors';
+import { ColorSelector, SizeSelector } from '@/components/Product/selectors';
 import {
   DeliverySwiper,
   LargeScreenSwiper,
   SmallScreenSwiper,
-} from '@/components/ProductComponents/swipers';
+} from '@/components/Product/swipers';
+import { Ratings } from '@/components/Reviews/ratings';
+import { RatingsPreview } from '@/components/Reviews/ratingsPreview';
+import { Reviews } from '@/components/Reviews/reviews';
 import {
   Tooltip,
   TooltipContent,
@@ -18,6 +17,7 @@ import {
 } from '@/components/ui/tooltip';
 import { images } from '@/constants/images';
 import { Product } from '@/types/product';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import axios from 'axios';
 import { Heart } from 'lucide-react';
 import { use, useEffect, useRef, useState } from 'react';
@@ -93,17 +93,13 @@ const Page = ({
           <h1 className="text-xl font-bold sm:text-2xl">{product.name}</h1>
 
           <div className="flex w-full">
-            {(product?.reviews ?? []).length > 0 && (
-              <div className="flex w-full items-center justify-between">
-                <p className="text-lg font-semibold sm:text-xl">
-                  ${product.price}
-                </p>
+            <div className="flex w-full items-center justify-between">
+              <p className="text-lg font-semibold sm:text-xl">
+                ${product.price}
+              </p>
 
-                {(product?.reviews ?? []).length > 0 && (
-                  <Ratings reviews={product.reviews ?? []} />
-                )}
-              </div>
-            )}
+              <Ratings reviews={product.reviews ?? []} />
+            </div>
           </div>
         </div>
 
@@ -120,9 +116,7 @@ const Page = ({
           <div className="hidden w-full items-start justify-between gap-5 lg:flex">
             <h1 className="text-xl font-bold">{product.name}</h1>
 
-            {(product?.reviews ?? []).length > 0 && (
-              <Ratings reviews={product.reviews ?? []} />
-            )}
+            <Ratings reviews={product.reviews ?? []} />
           </div>
 
           <p className="mb-2 hidden text-lg font-semibold lg:block">
@@ -151,6 +145,8 @@ const Page = ({
           </div>
 
           <div className="mt-10 flex w-full flex-col gap-4 px-5 sm:flex-row sm:px-10 lg:px-0">
+            {/* TODO  crete the add to bag and add to wishlist functions, as well as the wishlist and cart Page, also create a compoent that id displayed when a user tries to add to wishlist, view wishlist or add review without being signed. clerk signedin component to be used  */}
+
             <button
               ref={mainBtnRef}
               className="w-full cursor-pointer rounded-4xl bg-black py-3 text-white hover:bg-stone-900 sm:rounded-xl md:py-4 lg:w-full"
@@ -169,7 +165,8 @@ const Page = ({
                 <TooltipContent>
                   <p className="px-4 py-1 text-base font-semibold">
                     Add to Wishlist
-                  </p>
+                  </p>{' '}
+                  <TooltipPrimitive.Arrow className="bg-primary fill-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -188,6 +185,39 @@ const Page = ({
         </div>
       </section>
 
+      {/* TODO You Might also like section */}
+
+      <section
+        id="reviews"
+        className="mt-10 flex w-full flex-col space-y-4 px-5 py-10 sm:px-10 md:flex-row md:space-x-5 lg:px-0 xl:space-x-10"
+      >
+        <div className="flex flex-col">
+          <h2 className="pb-1 text-lg font-semibold md:pb-0 lg:text-2xl">
+            Customer reviews
+          </h2>
+
+          <RatingsPreview reviews={product.reviews ?? []} />
+
+          <div className="mt-10 hidden flex-col gap-3 border-y py-7 md:flex">
+            <h2 className="-mt-2 text-xl font-semibold text-neutral-800">
+              Review this product
+            </h2>
+
+            <p className="text-neutral-800">
+              Share your thoughts with other customers
+            </p>
+
+            {/* TODO create a dialog component that renders a form for adding customer reviews, customer with a review on the product cant adda new review but can update thier reviews  */}
+            <button className="w-full cursor-pointer rounded-4xl border border-black bg-white py-2 hover:bg-neutral-100">
+              Write a customer review
+            </button>
+          </div>
+        </div>
+
+        <Reviews reviews={product.reviews ?? []} />
+      </section>
+
+      {/* TODO RECENTLY VIEWED section */}
       <div
         className={`fixed right-0 bottom-0 left-0 z-50 bg-black p-4 text-white transition-transform duration-300 lg:hidden ${
           showSticky ? 'translate-y-0' : 'translate-y-full'

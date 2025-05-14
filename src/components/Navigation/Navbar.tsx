@@ -33,7 +33,7 @@ const Navbar = () => {
             id="clerk-captcha"
             data-cl-theme="dark"
             data-cl-size="flexible"
-            className="mt-2"
+            className="absolute top-52"
           />
         </>
       )}

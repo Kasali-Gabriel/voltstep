@@ -28,10 +28,18 @@ export interface SizeSelectorProps {
   setSelectedSize: (size: string) => void;
 }
 
-
 export interface ColorSelectorProps {
   colors: string[];
   selectedColor: string | null;
   setSelectedColor: (color: string) => void;
   isMobile: boolean;
+}
+
+export interface ReviewFiltersProps {
+  rating: string;
+  setRating: (r: string) => void;
+  verifiedOnly: boolean;
+  setVerifiedOnly: (v: boolean) => void;
+  sortOrder: string;
+  setSortOrder: (s: string) => void;
 }

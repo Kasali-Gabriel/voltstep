@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "mongodb"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model User {
+  id           String   @id @map("_id") @default(auto()) @db.ObjectId
+  email        String   @unique
+  firstName    String
+  lastName     String
+  imageUrl     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  clerkUserId  String?  
+  reviews      Review[] @relation("UserReviews")
+  orders       Order[]
+}
+
+model Catalog {
+  id         String     @id @map("_id") @default(auto()) @db.ObjectId 
+  name       String
+  slug       String
+  categories Category[]  @relation("CatalogCategories")
+  @@map("catalog")
+}
+
+model Category {
+  id             String         @id @map("_id") @default(auto()) @db.ObjectId
+  name           String
+  slug           String
+  parentCategory String?        
+  subcategories  Subcategory[]  @relation("CategorySubcategories")
+  catalogId      String         @db.ObjectId
+  catalog        Catalog        @relation("CatalogCategories", fields: [catalogId], references: [id])
+}
+
+model Subcategory {
+  id             String       @id @map("_id") @default(auto()) @db.ObjectId
+  name           String
+  slug           String
+  parentCategory String?
+  categoryId     String       @db.ObjectId
+  category       Category     @relation("CategorySubcategories", fields: [categoryId], references: [id])
+  products       Product[]
+}
+
+model Product {
+  id          String     @id  @map("_id") @default(auto()) @db.ObjectId
+  name        String
+  slug        String     @unique
+  description String
+  price       Float
+  quantity    Int
+  images      String[]
+  sizes       String[]
+  colors      String[]
+  tags        Tag[]
+  reviews     Review[]
+  subcategoryId String @db.ObjectId
+  subcategory  Subcategory @relation(fields: [subcategoryId], references: [id])
+  orderItems   OrderItem[]
+}
+
+model Review {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  reviewerId String   @db.ObjectId
+  reviewer   User     @relation("UserReviews", fields: [reviewerId], references: [id])
+  rating    Int
+  title     String
+  details   String
+  date      DateTime
+  productId String     @db.ObjectId
+  product   Product    @relation(fields: [productId], references: [id])
+  verified  Boolean    @default(false)
+}
+
+model Order {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  items     OrderItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrderItem {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  orderId   String   @db.ObjectId
+  order     Order    @relation(fields: [orderId], references: [id])
+  productId String   @db.ObjectId
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+}
+
+enum Tag {
+  NEW_ARRIVAL
+  BESTSELLER
+  FLASH_SALE
+  BACK_IN_STOCK
+}

@@ -1,21 +1,21 @@
 {
-  "products_data": [
+  "catalog": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Men",
       "slug": "men",
       "categories": [
         {
-          "id": 101,
+          "id": "101",
           "name": "Tops",
           "slug": "tops",
-          "parent_category": 1,
+          "parent_category": "1",
           "subcategories": [
             {
-              "id": 10101,
+              "id": "10101",
               "name": "T-Shirts",
               "slug": "t-shirts",
-              "parent_category": 101,
+              "parent_category": "101",
               "products": [
                 {
                   "id": "1010101",
@@ -24,7 +24,7 @@
                   "slug": "urban-legacy-graphic-tee",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Red",
@@ -72,7 +72,7 @@
                   "slug": "classic-fit-crew-neck-tee",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Cobalt Blue",
@@ -144,7 +144,7 @@
                   "slug": "techblend-performance-t-shirt",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Red", "Black"],
                   "reviews": [
@@ -223,7 +223,7 @@
                   "slug": "eco-smart-cotton-tee",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "White",
@@ -275,7 +275,7 @@
                   "slug": "luxury-pima-cotton-t-shirt",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Burgundy",
@@ -370,7 +370,7 @@
                   "slug": "supersoft-v-neck-tee",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Charcoal"],
                   "reviews": [
@@ -419,7 +419,7 @@
                   "slug": "athletes-motion-stretch-tee",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Silver",
@@ -500,7 +500,7 @@
                   "slug": "distressed-vintage-wash-tee",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Black",
@@ -535,7 +535,7 @@
                   "slug": "all-weather-performance-t-shirt",
                   "price": 31.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Beige",
@@ -612,7 +612,7 @@
                   "slug": "monochrome-essential-tee",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Navy"],
                   "reviews": [
@@ -651,10 +651,10 @@
               ]
             },
             {
-              "id": 10102,
+              "id": "10102",
               "name": "Tank Tops",
               "slug": "tank-tops",
-              "parent_category": 101,
+              "parent_category": "101",
               "products": [
                 {
                   "id": "1010201",
@@ -663,7 +663,7 @@
                   "slug": "freedom-flow-racerback-tank",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Navy",
@@ -723,7 +723,7 @@
                   "slug": "vibefit-performance-tank",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Olive",
@@ -771,7 +771,7 @@
                   "slug": "urban-muscle-tank",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Black",
@@ -840,7 +840,7 @@
                   "slug": "ecofit-organic-tank",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Blue",
@@ -888,7 +888,7 @@
                   "slug": "classic-comfort-sleeveless-tee",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Black",
@@ -926,7 +926,7 @@
                   "slug": "peak-performance-compression-tank",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Grey", "Charcoal", "Olive", "Tan", "Cobalt Blue"],
                   "reviews": [
@@ -963,7 +963,7 @@
                   "slug": "breatheasy-mesh-tank",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Silver", "Brown", "Slate"],
                   "reviews": [
@@ -982,7 +982,7 @@
                   "slug": "sporty-muscle-fit-tank",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Red",
@@ -1074,7 +1074,7 @@
                   "slug": "breezeluxe-soft-touch-tank",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Slate"],
                   "reviews": [
@@ -1171,7 +1171,7 @@
                   "slug": "athletic-edge-sleeveless-tank",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Dark Grey"],
                   "reviews": [
@@ -1234,10 +1234,10 @@
               ]
             },
             {
-              "id": 10103,
+              "id": "10103",
               "name": "Long Sleeve Shirts",
               "slug": "long-sleeve-shirts",
-              "parent_category": 101,
+              "parent_category": "101",
               "products": [
                 {
                   "id": "1010301",
@@ -1246,7 +1246,7 @@
                   "slug": "explorers-adventure-long-sleeve",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Black",
@@ -1297,7 +1297,7 @@
                   "slug": "essential-crew-long-sleeve",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Tan",
@@ -1330,7 +1330,7 @@
                   "slug": "techstretch-performance-shirt",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Red",
@@ -1366,7 +1366,7 @@
                   "slug": "cotton-luxe-long-sleeve-tee",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Maroon", "Black", "Dark Grey", "White", "Silver"],
                   "reviews": [
@@ -1403,7 +1403,7 @@
                   "slug": "ultimate-base-layer-long-sleeve",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Olive",
@@ -1455,7 +1455,7 @@
                   "slug": "button-up-slim-fit-long-sleeve",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Grey",
@@ -1499,7 +1499,7 @@
                   "slug": "athletic-flex-long-sleeve",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Maroon",
@@ -1529,7 +1529,7 @@
                   "slug": "thermoflex-insulated-shirt",
                   "price": 36.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Tan"],
                   "reviews": [
@@ -1572,7 +1572,7 @@
                   "slug": "relaxfit-long-sleeve-henley",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Grey", "White"],
                   "reviews": [
@@ -1633,7 +1633,7 @@
                   "slug": "urban-chic-long-sleeve-t-shirt",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Navy",
@@ -1677,10 +1677,10 @@
               ]
             },
             {
-              "id": 10104,
+              "id": "10104",
               "name": "Compression Tops",
               "slug": "compression-tops",
-              "parent_category": 101,
+              "parent_category": "101",
               "products": [
                 {
                   "id": "1010401",
@@ -1689,7 +1689,7 @@
                   "slug": "flexfit-compression-shirt",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Maroon", "Grey", "Silver"],
                   "reviews": [
@@ -1744,7 +1744,7 @@
                   "slug": "ultraflex-active-compression-top",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Red", "Black", "Charcoal"],
                   "reviews": [
@@ -1781,7 +1781,7 @@
                   "slug": "powercore-recovery-compression-shirt",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -1882,7 +1882,7 @@
                   "slug": "endurance-compression-top",
                   "price": 31.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -1945,7 +1945,7 @@
                   "slug": "swiftmove-compression-shirt",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Black", "Red", "Dark Grey", "Beige", "Burgundy"],
                   "reviews": [
@@ -2036,7 +2036,7 @@
                   "slug": "x-tight-performance-compression-top",
                   "price": 35.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Beige"],
                   "reviews": [
@@ -2085,7 +2085,7 @@
                   "slug": "coolfit-compression-top",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Blue", "Beige"],
                   "reviews": [
@@ -2176,7 +2176,7 @@
                   "slug": "speedforce-compression-top",
                   "price": 33.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Brown",
@@ -2250,7 +2250,7 @@
                   "slug": "techcompress-long-sleeve-compression-top",
                   "price": 36.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Tan", "Olive"],
                   "reviews": [
@@ -2323,7 +2323,7 @@
                   "slug": "sportelite-recovery-compression-top",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Dark Grey", "Navy", "Blue"],
                   "reviews": [
@@ -2400,16 +2400,16 @@
           ]
         },
         {
-          "id": 102,
+          "id": "102",
           "name": "Bottoms",
           "slug": "bottoms",
-          "parent_category": 1,
+          "parent_category": "1",
           "subcategories": [
             {
-              "id": 10201,
+              "id": "10201",
               "name": "Shorts",
               "slug": "shorts",
-              "parent_category": 102,
+              "parent_category": "102",
               "products": [
                 {
                   "id": "1020101",
@@ -2418,7 +2418,7 @@
                   "slug": "breezeflex-performance-shorts",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver", "Dark Grey", "Red"],
                   "reviews": [
@@ -2467,7 +2467,7 @@
                   "slug": "urbanexplorer-cargo-shorts",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -2543,7 +2543,7 @@
                   "slug": "beachrunner-quick-dry-shorts",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -2607,7 +2607,7 @@
                   "slug": "coretech-training-shorts",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Navy", "Brown", "Silver", "Tan"],
                   "reviews": [
@@ -2632,7 +2632,7 @@
                   "slug": "citycruiser-chino-shorts",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Black"],
                   "reviews": [
@@ -2717,7 +2717,7 @@
                   "slug": "trackpro-running-shorts",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Brown",
@@ -2751,7 +2751,7 @@
                   "slug": "chillwave-lounge-shorts",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "White",
@@ -2808,7 +2808,7 @@
                   "slug": "flexfit-athletic-shorts",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -2855,7 +2855,7 @@
                   "slug": "techstretch-5-pocket-shorts",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Blue",
@@ -2943,7 +2943,7 @@
                   "slug": "allsport-pro-mesh-shorts",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -3045,10 +3045,10 @@
               ]
             },
             {
-              "id": 10202,
+              "id": "10202",
               "name": "Joggers",
               "slug": "joggers",
-              "parent_category": 102,
+              "parent_category": "102",
               "products": [
                 {
                   "id": "1020201",
@@ -3057,7 +3057,7 @@
                   "slug": "streetflex-jogger-pants",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy"],
                   "reviews": [
@@ -3148,7 +3148,7 @@
                   "slug": "techfit-reflective-joggers",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Blue",
@@ -3218,7 +3218,7 @@
                   "slug": "ultramove-performance-joggers",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -3281,7 +3281,7 @@
                   "slug": "nightshift-slim-fit-joggers",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Cobalt Blue",
@@ -3395,7 +3395,7 @@
                   "slug": "essentialflex-all-day-joggers",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -3476,7 +3476,7 @@
                   "slug": "powerflex-running-joggers",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -3586,7 +3586,7 @@
                   "slug": "luxefit-joggers",
                   "price": 35.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -3646,7 +3646,7 @@
                   "slug": "flexmove-sports-joggers",
                   "price": 31.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Tan",
@@ -3740,7 +3740,7 @@
                   "slug": "cozytech-fleece-joggers",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["White", "Grey", "Red", "Olive"],
                   "reviews": [
@@ -3819,7 +3819,7 @@
                   "slug": "urbanedge-joggers",
                   "price": 33.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal"],
                   "reviews": [
@@ -3840,10 +3840,10 @@
               ]
             },
             {
-              "id": 10203,
+              "id": "10203",
               "name": "Tights / Leggings",
               "slug": "tights-leggings",
-              "parent_category": 102,
+              "parent_category": "102",
               "products": [
                 {
                   "id": "1020301",
@@ -3852,7 +3852,6 @@
                   "slug": "flexpro-compression-tights",
                   "price": 29.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Dark Grey"],
                   "reviews": [
@@ -3913,7 +3912,6 @@
                   "slug": "allsport-running-leggings",
                   "price": 32.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Red",
@@ -3971,7 +3969,6 @@
                   "slug": "techflow-motion-leggings",
                   "price": 27.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Silver",
@@ -4010,7 +4007,6 @@
                   "slug": "flexfit-performance-leggings",
                   "price": 30.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Grey", "Olive", "Charcoal", "Slate", "Tan"],
                   "reviews": [
@@ -4065,7 +4061,6 @@
                   "slug": "rundry-compression-leggings",
                   "price": 28.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -4177,7 +4172,6 @@
                   "slug": "enduranceflex-leggings",
                   "price": 31.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Charcoal",
@@ -4211,7 +4205,6 @@
                   "slug": "citycore-urban-leggings",
                   "price": 33.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -4250,7 +4243,6 @@
                   "slug": "prostretch-flex-leggings",
                   "price": 29.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Maroon", "Beige", "Brown", "Charcoal", "Red"],
                   "reviews": [
@@ -4299,7 +4291,6 @@
                   "slug": "powerrun-compression-tights",
                   "price": 34.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Beige",
@@ -4399,7 +4390,6 @@
                   "slug": "corefit-performance-tights",
                   "price": 35.99,
                   "quantity": 100,
-                  "parent_category": 10203,
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver", "Burgundy", "Navy", "Red", "Blue"],
                   "reviews": [
@@ -4438,10 +4428,10 @@
               ]
             },
             {
-              "id": 10204,
+              "id": "10204",
               "name": "Sweatpants",
               "slug": "sweatpants",
-              "parent_category": 102,
+              "parent_category": "102",
               "products": [
                 {
                   "id": "1020401",
@@ -4450,7 +4440,7 @@
                   "slug": "comfyflex-lounge-sweatpants",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Dark Grey"],
                   "reviews": [
@@ -4487,7 +4477,7 @@
                   "slug": "sporttech-jogger-sweatpants",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -4589,7 +4579,7 @@
                   "slug": "fleececomfort-sweatpants",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Brown",
@@ -4673,7 +4663,7 @@
                   "slug": "activefit-sweatpants",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Burgundy",
@@ -4743,7 +4733,7 @@
                   "slug": "streetedge-slim-fit-sweatpants",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Olive", "Cobalt Blue", "Blue"],
                   "reviews": [
@@ -4816,7 +4806,7 @@
                   "slug": "chillzone-fleece-sweatpants",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -4929,7 +4919,7 @@
                   "slug": "promotion-training-sweatpants",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -5036,7 +5026,7 @@
                   "slug": "urbanvibe-cuffed-sweatpants",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Blue",
@@ -5134,7 +5124,7 @@
                   "slug": "corefit-all-purpose-sweatpants",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -5218,7 +5208,7 @@
                   "slug": "nightshift-relax-sweatpants",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -5303,16 +5293,16 @@
           ]
         },
         {
-          "id": 103,
+          "id": "103",
           "name": "Outerwear",
           "slug": "outerwear",
-          "parent_category": 1,
+          "parent_category": "1",
           "subcategories": [
             {
-              "id": 10301,
+              "id": "10301",
               "name": "Hoodies & Sweatshirts",
               "slug": "hoodies-sweatshirts",
-              "parent_category": 103,
+              "parent_category": "103",
               "products": [
                 {
                   "id": "1030101",
@@ -5321,7 +5311,7 @@
                   "slug": "urban-pulse-hoodie",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Black",
@@ -5426,7 +5416,7 @@
                   "slug": "vibetech-fleece-hoodie",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Silver"],
                   "reviews": [
@@ -5523,7 +5513,7 @@
                   "slug": "classic-crest-pullover",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Cobalt Blue",
@@ -5577,7 +5567,7 @@
                   "slug": "essentials-jogger-hoodie",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Red",
@@ -5665,7 +5655,7 @@
                   "slug": "tech-support-zip-hoodie",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Navy", "Brown"],
                   "reviews": [
@@ -5720,7 +5710,7 @@
                   "slug": "rebel-logo-hoodie",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Charcoal"],
                   "reviews": [
@@ -5799,7 +5789,7 @@
                   "slug": "eco-knit-oversized-hoodie",
                   "price": 45.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Slate",
@@ -5912,7 +5902,7 @@
                   "slug": "streetwise-pullover-sweatshirt",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Tan", "Slate"],
                   "reviews": [
@@ -5949,7 +5939,7 @@
                   "slug": "techlux-performance-hoodie",
                   "price": 47.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Olive",
@@ -5975,7 +5965,7 @@
                   "slug": "shadowfit-hoodie",
                   "price": 41.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Dark Grey"],
                   "reviews": [
@@ -6050,10 +6040,10 @@
               ]
             },
             {
-              "id": 10302,
+              "id": "10302",
               "name": "Jackets",
               "slug": "jackets",
-              "parent_category": 103,
+              "parent_category": "103",
               "products": [
                 {
                   "id": "1030201",
@@ -6062,7 +6052,7 @@
                   "slug": "apex-expedition-jacket",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Brown",
@@ -6176,7 +6166,7 @@
                   "slug": "classic-varsity-bomber",
                   "price": 74.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Brown", "Charcoal", "Red", "Silver"],
                   "reviews": [
@@ -6225,7 +6215,7 @@
                   "slug": "cityscape-windbreaker",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Black", "Slate", "Red", "Olive"],
                   "reviews": [
@@ -6322,7 +6312,7 @@
                   "slug": "titanium-utility-jacket",
                   "price": 84.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -6375,7 +6365,7 @@
                   "slug": "outlander-insulated-jacket",
                   "price": 99.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -6414,7 +6404,7 @@
                   "slug": "protech-tactical-jacket",
                   "price": 94.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -6449,7 +6439,7 @@
                   "slug": "vintage-leather-motorcycle-jacket",
                   "price": 129.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Blue", "Navy", "Brown"],
                   "reviews": [
@@ -6474,7 +6464,7 @@
                   "slug": "explorer-trail-jacket",
                   "price": 79.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Slate",
@@ -6573,7 +6563,7 @@
                   "slug": "urban-puffer-jacket",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver", "Grey", "Navy", "Slate"],
                   "reviews": [
@@ -6676,7 +6666,7 @@
                   "slug": "maverick-field-jacket",
                   "price": 84.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "White",
@@ -6705,10 +6695,10 @@
               ]
             },
             {
-              "id": 10303,
+              "id": "10303",
               "name": "Windbreakers",
               "slug": "windbreakers",
-              "parent_category": 103,
+              "parent_category": "103",
               "products": [
                 {
                   "id": "1030301",
@@ -6717,7 +6707,7 @@
                   "slug": "zephyr-windbreaker",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Blue", "Navy", "Olive"],
                   "reviews": [
@@ -6766,7 +6756,7 @@
                   "slug": "rogue-storm-windbreaker",
                   "price": 54.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Black", "White", "Slate"],
                   "reviews": [
@@ -6797,7 +6787,7 @@
                   "slug": "racertech-windbreaker",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -6857,7 +6847,7 @@
                   "slug": "vanguard-outdoor-windbreaker",
                   "price": 64.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Slate", "Tan", "Black", "Silver"],
                   "reviews": [
@@ -6882,7 +6872,7 @@
                   "slug": "stealth-x-windbreaker",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Red",
@@ -6973,7 +6963,7 @@
                   "slug": "momentum-sport-windbreaker",
                   "price": 52.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Silver",
@@ -7007,7 +6997,7 @@
                   "slug": "stormforce-windbreaker",
                   "price": 58.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -7087,7 +7077,7 @@
                   "slug": "flashtech-windbreaker",
                   "price": 47.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy", "Blue", "Grey", "Burgundy", "Brown"],
                   "reviews": [
@@ -7172,7 +7162,7 @@
                   "slug": "aeroguard-windbreaker",
                   "price": 53.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -7226,7 +7216,7 @@
                   "slug": "purevent-windbreaker",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Olive"],
                   "reviews": [
@@ -7303,16 +7293,16 @@
           ]
         },
         {
-          "id": 104,
+          "id": "104",
           "name": "Footwear",
           "slug": "footwear",
-          "parent_category": 1,
+          "parent_category": "1",
           "subcategories": [
             {
-              "id": 10401,
+              "id": "10401",
               "name": "Running Shoes",
               "slug": "running-shoes",
-              "parent_category": 104,
+              "parent_category": "104",
               "products": [
                 {
                   "id": "1040101",
@@ -7321,7 +7311,7 @@
                   "slug": "speedmaster-ultrarunner",
                   "price": 129.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7368,7 +7358,7 @@
                   "slug": "velocitypro-runners",
                   "price": 119.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7459,7 +7449,7 @@
                   "slug": "swifttrail-x-runner",
                   "price": 139.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7571,7 +7561,7 @@
                   "slug": "enduraflex-marathoner",
                   "price": 149.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7650,7 +7640,7 @@
                   "slug": "tempostride-performance",
                   "price": 109.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7723,10 +7713,10 @@
               ]
             },
             {
-              "id": 10402,
+              "id": "10402",
               "name": "Training Shoes",
               "slug": "training-shoes",
-              "parent_category": 104,
+              "parent_category": "104",
               "products": [
                 {
                   "id": "1040201",
@@ -7735,7 +7725,7 @@
                   "slug": "powerflex-trainer",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7848,7 +7838,7 @@
                   "slug": "coregrip-training-shoes",
                   "price": 94.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -7949,7 +7939,7 @@
                   "slug": "flexforce-strength-trainer",
                   "price": 99.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8019,7 +8009,7 @@
                   "slug": "maxmotion-cross-training-shoes",
                   "price": 79.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8068,7 +8058,7 @@
                   "slug": "endurafit-all-purpose-trainer",
                   "price": 84.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8155,9 +8145,10 @@
               ]
             },
             {
-              "id": 10403,
+              "id": "10403",
               "name": "Casual Sneakers",
               "slug": "casual-sneakers",
+              "parent_category": "104",
               "products": [
                 {
                   "id": "1040301",
@@ -8166,7 +8157,7 @@
                   "slug": "chillwalk-urban",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8289,7 +8280,7 @@
                   "slug": "streetpulse-sneakers",
                   "price": 64.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8407,7 +8398,7 @@
                   "slug": "driftwalk-classic",
                   "price": 54.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8456,7 +8447,7 @@
                   "slug": "flexistep-neo",
                   "price": 69.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8571,7 +8562,7 @@
                   "slug": "urbanloom-2-0",
                   "price": 74.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8652,7 +8643,7 @@
                   "slug": "cloudease-slip-on",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8703,7 +8694,7 @@
                   "slug": "corevibe-canvas",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8736,7 +8727,7 @@
                   "slug": "streetzen-alpha",
                   "price": 69.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8841,7 +8832,7 @@
                   "slug": "vibeflex-lux",
                   "price": 84.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -8932,7 +8923,7 @@
                   "slug": "chillaxis-101",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -9001,16 +8992,16 @@
           ]
         },
         {
-          "id": 105,
+          "id": "105",
           "name": "Accessories",
           "slug": "accessories",
-          "parent_category": 1,
+          "parent_category": "1",
           "subcategories": [
             {
-              "id": 10501,
+              "id": "10501",
               "name": "Caps",
               "slug": "caps",
-              "parent_category": 105,
+              "parent_category": " 105",
               "products": [
                 {
                   "id": "1050101",
@@ -9019,7 +9010,7 @@
                   "slug": "aerofit-performance-cap",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Dark Grey", "Grey", "Olive"],
                   "reviews": [
@@ -9122,7 +9113,7 @@
                   "slug": "flexvent-sports-cap",
                   "price": 17.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Beige",
@@ -9225,7 +9216,7 @@
                   "slug": "rapiddry-training-cap",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Burgundy", "Silver", "Black", "Dark Grey"],
                   "reviews": [
@@ -9328,7 +9319,7 @@
                   "slug": "summitshield-outdoor-cap",
                   "price": 20.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Tan", "Navy"],
                   "reviews": [
@@ -9407,7 +9398,7 @@
                   "slug": "cityflex-urban-cap",
                   "price": 16.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Blue",
@@ -9492,10 +9483,10 @@
               ]
             },
             {
-              "id": 10502,
+              "id": "10502",
               "name": "Socks",
               "slug": "socks",
-              "parent_category": 105,
+              "parent_category": "105",
               "products": [
                 {
                   "id": "1050201",
@@ -9504,7 +9495,7 @@
                   "slug": "comfystride-performance-socks",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Red"],
                   "reviews": [
@@ -9607,7 +9598,7 @@
                   "slug": "gripfit-training-socks",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Silver",
@@ -9718,7 +9709,7 @@
                   "slug": "endurotech-running-socks",
                   "price": 16.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Black",
@@ -9831,7 +9822,7 @@
                   "slug": "coolmax-everyday-socks",
                   "price": 9.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "White",
@@ -9945,7 +9936,7 @@
                   "slug": "activeflex-compression-socks",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Charcoal",
@@ -10025,10 +10016,10 @@
               ]
             },
             {
-              "id": 10503,
+              "id": "10503",
               "name": "Gym Bags",
               "slug": "gym-bags",
-              "parent_category": 105,
+              "parent_category": "105",
               "products": [
                 {
                   "id": "1050301",
@@ -10037,7 +10028,7 @@
                   "slug": "flexfit-gym-duffel",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Charcoal",
@@ -10126,7 +10117,7 @@
                   "slug": "maxload-workout-backpack",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Olive",
@@ -10180,7 +10171,7 @@
                   "slug": "progear-sports-tote",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Olive", "Grey", "White", "Red"],
                   "reviews": [
@@ -10205,7 +10196,7 @@
                   "slug": "urbanedge-fitness-bag",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Maroon",
@@ -10298,7 +10289,7 @@
                   "slug": "endurapro-travel-gym-bag",
                   "price": 54.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Burgundy", "Blue"],
                   "reviews": [
@@ -10313,10 +10304,10 @@
               ]
             },
             {
-              "id": 10504,
+              "id": "10504",
               "name": "Gloves",
               "slug": "gloves",
-              "parent_category": 105,
+              "parent_category": "105",
               "products": [
                 {
                   "id": "1050401",
@@ -10325,7 +10316,7 @@
                   "slug": "powergrip-training-gloves",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Blue",
@@ -10433,7 +10424,7 @@
                   "slug": "flexfit-boxing-gloves",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Dark Grey"],
                   "reviews": [
@@ -10482,7 +10473,7 @@
                   "slug": "endurafit-gym-gloves",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Blue",
@@ -10532,7 +10523,7 @@
                   "slug": "sporttech-workout-gloves",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Charcoal", "Red", "Tan"],
                   "reviews": [
@@ -10611,7 +10602,7 @@
                   "slug": "veloglove-cycling-gloves",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Olive", "Brown"],
                   "reviews": [
@@ -10690,21 +10681,21 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Women",
       "slug": "women",
       "categories": [
         {
-          "id": 201,
+          "id": "201",
           "name": "Tops",
           "slug": "tops",
-          "parent_category": 2,
+          "parent_category": "2",
           "subcategories": [
             {
-              "id": 20101,
+              "id": "20101",
               "name": "Sports Bras",
               "slug": "sports-bras",
-              "parent_category": 201,
+              "parent_category": "201",
               "products": [
                 {
                   "id": "2010101",
@@ -10713,7 +10704,7 @@
                   "slug": "energize-seamless-sports-bra",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -10767,7 +10758,7 @@
                   "slug": "powerfit-mesh-sports-bra",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -10860,7 +10851,7 @@
                   "slug": "flex-support-sports-bra",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -10898,7 +10889,7 @@
                   "slug": "zen-straps-sports-bra",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11000,7 +10991,7 @@
                   "slug": "vibrant-energy-racerback-bra",
                   "price": 36.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11059,7 +11050,7 @@
                   "slug": "peak-performance-sports-bra",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11089,7 +11080,7 @@
                   "slug": "elevate-bralette-bra",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11212,7 +11203,7 @@
                   "slug": "ultimate-comfort-sports-bra",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11274,7 +11265,7 @@
                   "slug": "ignite-sculpt-sports-bra",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11322,7 +11313,7 @@
                   "slug": "fusion-flex-sports-bra",
                   "price": 33.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "XS",
                     "S",
@@ -11360,10 +11351,10 @@
               ]
             },
             {
-              "id": 20102,
+              "id": "20102",
               "name": "Crop Tops",
               "slug": "crop-tops",
-              "parent_category": 201,
+              "parent_category": "201",
               "products": [
                 {
                   "id": "2010201",
@@ -11372,7 +11363,7 @@
                   "slug": "luxe-lace-up-crop-top",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Navy",
@@ -11477,7 +11468,7 @@
                   "slug": "rise-and-shine-crop-top",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Navy",
@@ -11581,7 +11572,7 @@
                   "slug": "breeze-flow-crop-top",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Dark Grey",
@@ -11674,7 +11665,7 @@
                   "slug": "sunset-glow-racerback-crop",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Burgundy", "Blue"],
                   "reviews": [
@@ -11753,7 +11744,7 @@
                   "slug": "active-edge-crop-top",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "White",
@@ -11798,7 +11789,7 @@
                   "slug": "techflex-sports-crop",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Slate",
@@ -11906,7 +11897,7 @@
                   "slug": "zen-vibes-crop-top",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Charcoal",
@@ -11990,7 +11981,7 @@
                   "slug": "ultimate-comfort-knit-crop",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Tan", "Slate", "Red"],
                   "reviews": [
@@ -12075,7 +12066,7 @@
                   "slug": "elevate-cutout-crop-top",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Black", "Beige"],
                   "reviews": [
@@ -12112,7 +12103,7 @@
                   "slug": "midnight-racer-crop",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Dark Grey",
@@ -12211,10 +12202,10 @@
               ]
             },
             {
-              "id": 20103,
+              "id": "20103",
               "name": "Tanks & Tees",
               "slug": "tanks-tees",
-              "parent_category": 201,
+              "parent_category": "201",
               "products": [
                 {
                   "id": "2010301",
@@ -12223,7 +12214,7 @@
                   "slug": "quickdry-athletic-tank",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -12316,7 +12307,7 @@
                   "slug": "city-hustle-performance-tank",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Maroon"],
                   "reviews": [
@@ -12383,7 +12374,7 @@
                   "slug": "essential-fit-tank",
                   "price": 17.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Burgundy", "Charcoal", "Blue"],
                   "reviews": [
@@ -12444,7 +12435,7 @@
                   "slug": "bold-stripe-athletic-tank",
                   "price": 20.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -12534,7 +12525,7 @@
                   "slug": "power-pulse-v-neck-tank",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Dark Grey", "Black", "Olive", "Tan"],
                   "reviews": [
@@ -12619,7 +12610,7 @@
                   "slug": "sunshine-flow-tee",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Blue",
@@ -12682,7 +12673,7 @@
                   "slug": "speedfit-mesh-tank",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Cobalt Blue",
@@ -12772,7 +12763,7 @@
                   "slug": "zen-balance-performance-tee",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Black", "White", "Red", "Grey"],
                   "reviews": [
@@ -12809,7 +12800,7 @@
                   "slug": "chillmode-relaxed-tee",
                   "price": 16.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Blue",
@@ -12843,7 +12834,7 @@
                   "slug": "powerhike-outdoor-tank",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Cobalt Blue",
@@ -12915,10 +12906,10 @@
               ]
             },
             {
-              "id": 20104,
+              "id": "20104",
               "name": "Long Sleeve Shirts",
               "slug": "long-sleeve-shirts",
-              "parent_category": 201,
+              "parent_category": "201",
               "products": [
                 {
                   "id": "2010401",
@@ -12927,7 +12918,7 @@
                   "slug": "luxe-stretch-long-sleeve",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "White",
@@ -12955,7 +12946,7 @@
                   "slug": "outdoor-adventure-long-sleeve",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Black", "Silver", "White", "Slate"],
                   "reviews": [
@@ -13034,7 +13025,7 @@
                   "slug": "corefit-performance-long-sleeve",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Grey",
@@ -13148,7 +13139,7 @@
                   "slug": "pureflow-yoga-long-sleeve",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Dark Grey"],
                   "reviews": [
@@ -13179,7 +13170,7 @@
                   "slug": "runfree-performance-long-sleeve",
                   "price": 36.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Black", "Tan", "Olive", "White"],
                   "reviews": [
@@ -13222,7 +13213,7 @@
                   "slug": "chillout-oversized-long-sleeve",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Navy",
@@ -13323,7 +13314,7 @@
                   "slug": "powerhug-compression-long-sleeve",
                   "price": 33.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": [
                     "Blue",
@@ -13397,7 +13388,7 @@
                   "slug": "adventurepro-fleece-long-sleeve",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Charcoal"],
                   "reviews": [
@@ -13446,7 +13437,7 @@
                   "slug": "vivid-vibe-long-sleeve",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Navy", "Slate", "Grey"],
                   "reviews": [
@@ -13513,7 +13504,7 @@
                   "slug": "elevate-performance-tee",
                   "price": 31.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
                   "colors": ["Blue", "Silver", "Charcoal", "Slate", "Burgundy"],
                   "reviews": [
@@ -13530,16 +13521,16 @@
           ]
         },
         {
-          "id": 202,
+          "id": "202",
           "name": "Bottoms",
           "slug": "bottoms",
-          "parent_category": 2,
+          "parent_category": "2",
           "subcategories": [
             {
-              "id": 20201,
+              "id": "20201",
               "name": "Leggings",
               "slug": "leggings",
-              "parent_category": 202,
+              "parent_category": "202",
               "products": [
                 {
                   "id": "2020101",
@@ -13548,7 +13539,7 @@
                   "slug": "flexform-ultra-leggings",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -13619,7 +13610,7 @@
                   "slug": "sculpt-luxe-compression-leggings",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Silver",
@@ -13676,7 +13667,7 @@
                   "slug": "ecobalance-bamboo-leggings",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -13705,7 +13696,7 @@
                   "slug": "coreglide-seamless-leggings",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -13818,7 +13809,7 @@
                   "slug": "glowmotion-reflective-leggings",
                   "price": 45.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -13914,7 +13905,7 @@
                   "slug": "powerfit-mesh-panel-leggings",
                   "price": 40.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Burgundy", "Black", "Grey"],
                   "reviews": [
@@ -13999,7 +13990,7 @@
                   "slug": "vitasoft-lounge-leggings",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Brown",
@@ -14088,7 +14079,7 @@
                   "slug": "trailbliss-thermal-leggings",
                   "price": 46.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Black", "White", "Burgundy"],
                   "reviews": [
@@ -14161,7 +14152,7 @@
                   "slug": "printpulse-statement-leggings",
                   "price": 38.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Black"],
                   "reviews": [
@@ -14228,7 +14219,7 @@
                   "slug": "hydracool-performance-leggings",
                   "price": 41.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Red", "Olive", "Tan"],
                   "reviews": [
@@ -14297,10 +14288,10 @@
               ]
             },
             {
-              "id": 20202,
+              "id": "20202",
               "name": "Shorts",
               "slug": "shorts",
-              "parent_category": 202,
+              "parent_category": "202",
               "products": [
                 {
                   "id": "2020201",
@@ -14309,7 +14300,7 @@
                   "slug": "breathelite-active-shorts",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Slate", "Charcoal", "Beige", "Red", "Brown"],
                   "reviews": [
@@ -14364,7 +14355,7 @@
                   "slug": "everyday-ribbed-biker-shorts",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Blue",
@@ -14391,7 +14382,7 @@
                   "slug": "swiftdry-running-shorts",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Red"],
                   "reviews": [
@@ -14476,7 +14467,7 @@
                   "slug": "lushlounge-terry-shorts",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Navy", "Cobalt Blue", "Brown"],
                   "reviews": [
@@ -14507,7 +14498,7 @@
                   "slug": "powercore-gym-shorts",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy", "Beige", "Dark Grey", "Maroon", "Grey"],
                   "reviews": [
@@ -14610,7 +14601,7 @@
                   "slug": "skystretch-travel-shorts",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -14679,7 +14670,7 @@
                   "slug": "urbanedge-pleated-shorts",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Black", "Red", "Grey", "Navy"],
                   "reviews": [
@@ -14776,7 +14767,7 @@
                   "slug": "waveflex-swim-shorts",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy", "Beige", "Maroon"],
                   "reviews": [
@@ -14795,7 +14786,7 @@
                   "slug": "sculptfit-shaping-shorts",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver", "Blue", "Navy"],
                   "reviews": [
@@ -14874,7 +14865,7 @@
                   "slug": "boldprint-summer-shorts",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -14971,10 +14962,10 @@
               ]
             },
             {
-              "id": 20203,
+              "id": "20203",
               "name": "Joggers",
               "slug": "joggers",
-              "parent_category": 202,
+              "parent_category": "202",
               "products": [
                 {
                   "id": "2020301",
@@ -14983,7 +14974,7 @@
                   "slug": "airflow-tapered-joggers",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Burgundy",
@@ -15020,7 +15011,7 @@
                   "slug": "cozycore-fleece-joggers",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Slate", "Maroon"],
                   "reviews": [
@@ -15111,7 +15102,7 @@
                   "slug": "zenstretch-modal-joggers",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -15206,7 +15197,7 @@
                   "slug": "streetstride-cargo-joggers",
                   "price": 36.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Grey",
@@ -15244,7 +15235,7 @@
                   "slug": "stormshield-weather-joggers",
                   "price": 38.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Slate",
@@ -15304,7 +15295,7 @@
                   "slug": "sculptseam-active-joggers",
                   "price": 33.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy", "Grey", "Beige"],
                   "reviews": [
@@ -15353,7 +15344,7 @@
                   "slug": "luxetrek-travel-joggers",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Beige", "White"],
                   "reviews": [
@@ -15444,7 +15435,7 @@
                   "slug": "dayglow-reflective-joggers",
                   "price": 35.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -15544,7 +15535,7 @@
                   "slug": "chillweave-lounge-joggers",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Beige", "Navy"],
                   "reviews": [
@@ -15581,7 +15572,7 @@
                   "slug": "formfit-studio-joggers",
                   "price": 31.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Grey", "Navy", "Charcoal"],
                   "reviews": [
@@ -15628,16 +15619,16 @@
           ]
         },
         {
-          "id": 203,
+          "id": "203",
           "name": "Outerwear",
           "slug": "outerwear",
-          "parent_category": 2,
+          "parent_category": "2",
           "subcategories": [
             {
-              "id": 20301,
+              "id": "20301",
               "name": "Hoodies",
               "slug": "hoodies",
-              "parent_category": 203,
+              "parent_category": "203",
               "products": [
                 {
                   "id": "2030101",
@@ -15646,7 +15637,7 @@
                   "slug": "urban-drift-luxe-hoodie",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver"],
                   "reviews": [
@@ -15695,7 +15686,7 @@
                   "slug": "moonrise-zip-up-hoodie",
                   "price": 54.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -15736,7 +15727,7 @@
                   "slug": "cloud-soft-oversized-hoodie",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Dark Grey",
@@ -15833,7 +15824,7 @@
                   "slug": "velvet-heat-pullover-hoodie",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -15908,7 +15899,7 @@
                   "slug": "studio-core-hoodie",
                   "price": 47.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Red",
@@ -15965,7 +15956,7 @@
                   "slug": "graffiti-muse-hoodie",
                   "price": 52.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Brown", "Slate", "Black", "White"],
                   "reviews": [
@@ -16050,7 +16041,7 @@
                   "slug": "everglow-thermal-hoodie",
                   "price": 56.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal"],
                   "reviews": [
@@ -16099,7 +16090,7 @@
                   "slug": "chroma-dip-dye-hoodie",
                   "price": 48.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Tan", "White", "Beige"],
                   "reviews": [
@@ -16178,7 +16169,7 @@
                   "slug": "trailblaze-hoodie-jacket",
                   "price": 64.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Brown"],
                   "reviews": [
@@ -16251,7 +16242,7 @@
                   "slug": "minimal-edge-cropped-hoodie",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver", "Charcoal", "Red"],
                   "reviews": [
@@ -16320,10 +16311,10 @@
               ]
             },
             {
-              "id": 20302,
+              "id": "20302",
               "name": "Jackets",
               "slug": "jackets",
-              "parent_category": 203,
+              "parent_category": "203",
               "products": [
                 {
                   "id": "2030201",
@@ -16332,7 +16323,7 @@
                   "slug": "skyline-quilted-puffer",
                   "price": 69.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Red"],
                   "reviews": [
@@ -16381,7 +16372,7 @@
                   "slug": "metro-moto-leather-jacket",
                   "price": 129.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Silver", "Brown", "Maroon", "Grey", "White"],
                   "reviews": [
@@ -16448,7 +16439,7 @@
                   "slug": "rainlit-shell-jacket",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy", "Burgundy", "Blue", "Olive"],
                   "reviews": [
@@ -16491,7 +16482,7 @@
                   "slug": "eclipse-parka-coat",
                   "price": 149.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Burgundy", "Black"],
                   "reviews": [
@@ -16552,7 +16543,7 @@
                   "slug": "aero-stretch-windbreaker",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Silver",
@@ -16580,7 +16571,7 @@
                   "slug": "denim-revival-trucker-jacket",
                   "price": 74.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Blue", "Maroon", "Silver"],
                   "reviews": [
@@ -16617,7 +16608,7 @@
                   "slug": "wanderlust-utility-jacket",
                   "price": 84.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Slate", "Dark Grey", "Red", "Silver", "Navy"],
                   "reviews": [
@@ -16648,7 +16639,7 @@
                   "slug": "vapor-active-hybrid-jacket",
                   "price": 99.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["White"],
                   "reviews": [
@@ -16667,7 +16658,7 @@
                   "slug": "nightshade-blazer-jacket",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Slate", "Red", "Silver"],
                   "reviews": [
@@ -16746,7 +16737,7 @@
                   "slug": "boucle-charm-coat",
                   "price": 119.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Tan",
@@ -16819,10 +16810,10 @@
               ]
             },
             {
-              "id": 20303,
+              "id": "20303",
               "name": "Sweatshirts",
               "slug": "sweatshirts",
-              "parent_category": 203,
+              "parent_category": "203",
               "products": [
                 {
                   "id": "2030301",
@@ -16831,7 +16822,7 @@
                   "slug": "cozy-terrain-crewneck",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Burgundy",
@@ -16918,7 +16909,7 @@
                   "slug": "sundown-french-terry-sweatshirt",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Charcoal",
@@ -16966,7 +16957,7 @@
                   "slug": "midnight-bloom-sweatshirt",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Olive", "Beige", "White", "Burgundy"],
                   "reviews": [
@@ -16991,7 +16982,7 @@
                   "slug": "varsity-luxe-sweatshirt",
                   "price": 46.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -17080,7 +17071,7 @@
                   "slug": "knitwave-waffle-sweatshirt",
                   "price": 38.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Olive",
@@ -17124,7 +17115,7 @@
                   "slug": "contour-seam-sweatshirt",
                   "price": 40.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Burgundy", "Black", "Cobalt Blue"],
                   "reviews": [
@@ -17149,7 +17140,7 @@
                   "slug": "snowfall-cable-sweatshirt",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Burgundy", "Slate", "Red", "Beige", "Grey"],
                   "reviews": [
@@ -17234,7 +17225,7 @@
                   "slug": "ink-fade-dip-dye-crew",
                   "price": 41.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Red",
@@ -17309,7 +17300,7 @@
                   "slug": "retro-ridge-half-zip",
                   "price": 45.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "White",
@@ -17423,7 +17414,7 @@
                   "slug": "lush-loopback-sweatshirt",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy"],
                   "reviews": [
@@ -17440,16 +17431,16 @@
           ]
         },
         {
-          "id": 204,
+          "id": "204",
           "name": "Footwear",
           "slug": "footwear",
-          "parent_category": 2,
+          "parent_category": "2",
           "subcategories": [
             {
-              "id": 20401,
+              "id": "20401",
               "name": "Running Shoes",
               "slug": "running-shoes",
-              "parent_category": 204,
+              "parent_category": "204",
               "products": [
                 {
                   "id": "2040101",
@@ -17458,7 +17449,7 @@
                   "slug": "aether-swiftrun-pro",
                   "price": 129.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -17545,7 +17536,7 @@
                   "slug": "zephyr-pulse-xt",
                   "price": 139.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -17675,7 +17666,7 @@
                   "slug": "nova-glide-9",
                   "price": 119.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -17758,7 +17749,7 @@
                   "slug": "lunastorm-velocity",
                   "price": 149.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -17847,7 +17838,7 @@
                   "slug": "terraflux-echo",
                   "price": 159.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -17895,10 +17886,10 @@
               ]
             },
             {
-              "id": 20402,
+              "id": "20402",
               "name": "Training Shoes",
               "slug": "training-shoes",
-              "parent_category": 204,
+              "parent_category": "204",
               "products": [
                 {
                   "id": "2040201",
@@ -17907,7 +17898,7 @@
                   "slug": "coreflex-motion",
                   "price": 99.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -18006,7 +17997,7 @@
                   "slug": "titan-shift-v2",
                   "price": 109.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -18103,7 +18094,7 @@
                   "slug": "elevate-grid-lx",
                   "price": 94.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -18219,7 +18210,7 @@
                   "slug": "ignite-flow-prime",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -18270,7 +18261,7 @@
                   "slug": "deltaform-trx",
                   "price": 119.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "7",
                     "7.5",
@@ -18339,10 +18330,10 @@
               ]
             },
             {
-              "id": 20403,
+              "id": "20403",
               "name": "Lifestyle Sneakers",
               "slug": "lifestyle-sneakers",
-              "parent_category": 204,
+              "parent_category": "204",
               "products": [
                 {
                   "id": "2040301",
@@ -18351,7 +18342,7 @@
                   "slug": "halo-drift-luxe",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "5",
                     "5.5",
@@ -18452,7 +18443,7 @@
                   "slug": "viberise-retro",
                   "price": 94.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "5",
                     "5.5",
@@ -18514,7 +18505,7 @@
                   "slug": "bloomstep-aura",
                   "price": 79.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "5",
                     "5.5",
@@ -18644,7 +18635,7 @@
                   "slug": "cloudnova-mini",
                   "price": 84.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "5",
                     "5.5",
@@ -18739,7 +18730,7 @@
                   "slug": "echoslate-fusion",
                   "price": 89.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [
                     "5",
                     "5.5",
@@ -18822,16 +18813,16 @@
           ]
         },
         {
-          "id": 205,
+          "id": "205",
           "name": "Accessories",
           "slug": "accessories",
-          "parent_category": 2,
+          "parent_category": "2",
           "subcategories": [
             {
-              "id": 20501,
+              "id": "20501",
               "name": "Hairbands & Scrunchies",
               "slug": "hairbands-scrunchies",
-              "parent_category": 205,
+              "parent_category": "205",
               "products": [
                 {
                   "id": "2050101",
@@ -18840,7 +18831,7 @@
                   "slug": "velvet-luxe-scrunch-set",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Olive",
@@ -18890,7 +18881,7 @@
                   "slug": "gripfit-headbands-3-pack",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Black",
@@ -18940,7 +18931,7 @@
                   "slug": "activebraid-hair-cords",
                   "price": 9.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Olive",
@@ -19047,7 +19038,7 @@
                   "slug": "flexweave-scrunchie-duo",
                   "price": 11.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Burgundy",
@@ -19099,7 +19090,7 @@
                   "slug": "glowline-reflective-band",
                   "price": 13.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Red", "Brown", "Burgundy"],
                   "reviews": [
@@ -19174,10 +19165,10 @@
               ]
             },
             {
-              "id": 20502,
+              "id": "20502",
               "name": "Water Bottles",
               "slug": "water-bottles",
-              "parent_category": 205,
+              "parent_category": "205",
               "products": [
                 {
                   "id": "2050201",
@@ -19186,7 +19177,7 @@
                   "slug": "hydropulse-750ml",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Tan",
@@ -19251,7 +19242,7 @@
                   "slug": "zenflow-glass-hydrator",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Black",
@@ -19359,7 +19350,7 @@
                   "slug": "sprintspout-sports-bottle",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Grey", "White"],
                   "reviews": [
@@ -19426,7 +19417,7 @@
                   "slug": "glowtrack-led-bottle",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Slate",
@@ -19515,7 +19506,7 @@
                   "slug": "ecosculpt-foldable-flask",
                   "price": 17.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Charcoal",
@@ -19609,10 +19600,10 @@
               ]
             },
             {
-              "id": 20503,
+              "id": "20503",
               "name": "Gym Bags",
               "slug": "gym-bags",
-              "parent_category": 205,
+              "parent_category": "205",
               "products": [
                 {
                   "id": "2050301",
@@ -19621,7 +19612,7 @@
                   "slug": "coretote-pro",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Brown",
@@ -19696,7 +19687,7 @@
                   "slug": "flexsling-mini-duffel",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Red", "Black"],
                   "reviews": [
@@ -19739,7 +19730,7 @@
                   "slug": "athleisure-vault-bag",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["White", "Red", "Maroon", "Dark Grey"],
                   "reviews": [
@@ -19776,7 +19767,7 @@
                   "slug": "hydrapack-gym-sack",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Beige",
@@ -19821,7 +19812,7 @@
                   "slug": "strive-modular-backpack",
                   "price": 64.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Silver",
@@ -19859,10 +19850,10 @@
               ]
             },
             {
-              "id": 20504,
+              "id": "20504",
               "name": "Socks",
               "slug": "socks",
-              "parent_category": 205,
+              "parent_category": "205",
               "products": [
                 {
                   "id": "2050401",
@@ -19871,7 +19862,7 @@
                   "slug": "airweave-performance-socks-3-pack",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Burgundy", "Silver", "Maroon", "Brown"],
                   "reviews": [
@@ -19920,7 +19911,7 @@
                   "slug": "zensoft-no-show-cushions",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Black", "Burgundy", "White", "Tan"],
                   "reviews": [
@@ -19945,7 +19936,7 @@
                   "slug": "griplock-pilates-crew",
                   "price": 16.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Burgundy", "White", "Tan", "Blue", "Maroon"],
                   "reviews": [
@@ -19982,7 +19973,7 @@
                   "slug": "coolstep-compression-socks",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Black",
@@ -20048,7 +20039,7 @@
                   "slug": "bouncefit-ankle-socks",
                   "price": 13.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Silver",
@@ -20084,16 +20075,16 @@
           ]
         },
         {
-          "id": 206,
+          "id": "206",
           "name": "Collections",
           "slug": "collections",
-          "parent_category": 2,
+          "parent_category": "2",
           "subcategories": [
             {
-              "id": 20601,
+              "id": "20601",
               "name": "Matching Sets",
               "slug": "matching-sets",
-              "parent_category": 206,
+              "parent_category": "206",
               "products": [
                 {
                   "id": "2060101",
@@ -20102,7 +20093,7 @@
                   "slug": "evolve-seamless-set",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["White", "Blue", "Tan", "Black", "Grey", "Beige"],
                   "reviews": [
@@ -20157,7 +20148,7 @@
                   "slug": "solarstretch-ribbed-duo",
                   "price": 54.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal"],
                   "reviews": [
@@ -20176,7 +20167,7 @@
                   "slug": "lumenflex-mesh-panel-set",
                   "price": 62.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Brown"],
                   "reviews": [
@@ -20273,7 +20264,7 @@
                   "slug": "tonecore-contour-set",
                   "price": 64.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": ["Slate", "Brown"],
                   "reviews": [
@@ -20316,7 +20307,7 @@
                   "slug": "glowskin-summer-set",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Navy",
@@ -20416,10 +20407,10 @@
               ]
             },
             {
-              "id": 20602,
+              "id": "20602",
               "name": "Maternity Activewear",
               "slug": "maternity-activewear",
-              "parent_category": 206,
+              "parent_category": "206",
               "products": [
                 {
                   "id": "2060201",
@@ -20428,7 +20419,7 @@
                   "slug": "mamacore-support-leggings",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Black",
@@ -20498,7 +20489,7 @@
                   "slug": "breatheease-nursing-bra",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Blue", "Olive"],
                   "reviews": [
@@ -20529,7 +20520,7 @@
                   "slug": "nurtureflex-bump-tank",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL", "XXL"],
                   "colors": [
                     "Brown",
@@ -20568,7 +20559,7 @@
                   "slug": "glowmama-wrap-hoodie",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL", "XXL"],
                   "colors": ["Charcoal", "Beige", "White", "Grey"],
                   "reviews": [
@@ -20593,7 +20584,7 @@
                   "slug": "liftlite-maternity-shorts",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL", "XXL"],
                   "colors": ["Navy", "Black", "Maroon", "Dark Grey", "Tan"],
                   "reviews": [
@@ -20684,20 +20675,20 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Kids",
       "slug": "kids",
       "categories": [
         {
-          "id": 301,
+          "id": "301",
           "name": "All clothings",
           "slug": "all-clothings",
           "subcategories": [
             {
-              "id": 30101,
+              "id": "30101",
               "name": "Activewear Sets",
               "slug": "activewear-sets",
-              "parent_category": 301,
+              "parent_category": "301",
               "products": [
                 {
                   "id": "3010101",
@@ -20706,7 +20697,7 @@
                   "slug": "flexfit-duo-set",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Maroon", "Grey", "Brown"],
                   "reviews": [
@@ -20755,7 +20746,7 @@
                   "slug": "powerplay-kit",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Brown",
@@ -20869,7 +20860,7 @@
                   "slug": "coremotion-set",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Silver", "Tan", "Black"],
                   "reviews": [
@@ -20936,7 +20927,7 @@
                   "slug": "striker-speed-set",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Blue"],
                   "reviews": [
@@ -21003,7 +20994,7 @@
                   "slug": "sparksprint-combo",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Maroon", "Burgundy", "Black", "Blue", "Olive"],
                   "reviews": [
@@ -21094,7 +21085,7 @@
                   "slug": "daybreak-duo",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Grey", "Red", "Slate", "Tan", "White", "Black"],
                   "reviews": [
@@ -21131,7 +21122,7 @@
                   "slug": "alphaedge-set",
                   "price": 36.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["White", "Navy", "Brown", "Blue"],
                   "reviews": [
@@ -21168,7 +21159,7 @@
                   "slug": "bounceboost-kit",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Maroon",
@@ -21248,7 +21239,7 @@
                   "slug": "urbanpulse-set",
                   "price": 33.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Cobalt Blue", "Black"],
                   "reviews": [
@@ -21267,7 +21258,7 @@
                   "slug": "minimax-active-set",
                   "price": 31.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Navy",
@@ -21317,10 +21308,10 @@
               ]
             },
             {
-              "id": 30102,
+              "id": "30102",
               "name": "Sports-Specific Apparel",
               "slug": "sports-specific-apparel",
-              "parent_category": 302,
+              "parent_category": "302",
               "products": [
                 {
                   "id": "3010201",
@@ -21329,7 +21320,7 @@
                   "slug": "goalmaster-jersey",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Red",
@@ -21379,7 +21370,7 @@
                   "slug": "courtace-skort",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Black", "Charcoal", "Navy", "Maroon"],
                   "reviews": [
@@ -21458,7 +21449,7 @@
                   "slug": "swishzone-shorts",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Slate",
@@ -21557,7 +21548,7 @@
                   "slug": "serveflex-tank",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Navy", "Burgundy", "Grey", "Maroon"],
                   "reviews": [
@@ -21618,7 +21609,7 @@
                   "slug": "trackdash-set",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Brown",
@@ -21683,7 +21674,7 @@
                   "slug": "fieldhero-tee",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Black",
@@ -21746,7 +21737,7 @@
                   "slug": "cheercharge-set",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Dark Grey", "Grey", "White", "Blue"],
                   "reviews": [
@@ -21813,7 +21804,7 @@
                   "slug": "matmove-unitard",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Charcoal",
@@ -21889,7 +21880,7 @@
                   "slug": "gamepoint-polo",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["White", "Maroon"],
                   "reviews": [
@@ -21944,7 +21935,7 @@
                   "slug": "spinsprint-dress",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Black", "Olive", "Slate"],
                   "reviews": [
@@ -21977,10 +21968,10 @@
               ]
             },
             {
-              "id": 30103,
+              "id": "30103",
               "name": "Athleisure / Lifestyle Gymwear",
               "slug": "athleisure-lifestyle-gymwear",
-              "parent_category": 302,
+              "parent_category": "302",
               "products": [
                 {
                   "id": "3010301",
@@ -21989,7 +21980,7 @@
                   "slug": "comfycore-hoodie",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Cobalt Blue",
@@ -22031,7 +22022,7 @@
                   "slug": "flowflex-cropped-hoodie",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Navy",
@@ -22097,7 +22088,7 @@
                   "slug": "citystride-joggers",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Black"],
                   "reviews": [
@@ -22128,7 +22119,7 @@
                   "slug": "glowmode-leggings",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Maroon",
@@ -22212,7 +22203,7 @@
                   "slug": "activeease-tee",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Grey"],
                   "reviews": [
@@ -22315,7 +22306,7 @@
                   "slug": "studiosteps-flare-pants",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Maroon"],
                   "reviews": [
@@ -22370,7 +22361,7 @@
                   "slug": "zonelayer-sweatshirt",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Burgundy", "Olive", "Grey", "White", "Blue"],
                   "reviews": [
@@ -22395,7 +22386,7 @@
                   "slug": "skaterset-shorts",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Olive"],
                   "reviews": [
@@ -22414,7 +22405,7 @@
                   "slug": "kickstart-tank",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Blue",
@@ -22456,7 +22447,7 @@
                   "slug": "cloudzip-jacket",
                   "price": 28.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Blue", "Slate", "Black", "Red"],
                   "reviews": [
@@ -22507,10 +22498,10 @@
               ]
             },
             {
-              "id": 30104,
+              "id": "30104",
               "name": "Swimwear & Rash Guards",
               "slug": "swimwear-rash-guards",
-              "parent_category": 304,
+              "parent_category": "304",
               "products": [
                 {
                   "id": "3010401",
@@ -22519,7 +22510,7 @@
                   "slug": "wavebreaker-trunks",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Olive", "Slate", "Red", "Grey"],
                   "reviews": [
@@ -22616,7 +22607,7 @@
                   "slug": "sunsplash-one-piece",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Olive", "Charcoal", "Tan", "Maroon", "Burgundy"],
                   "reviews": [
@@ -22713,7 +22704,7 @@
                   "slug": "tideshield-rash-guard",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Blue"],
                   "reviews": [
@@ -22768,7 +22759,7 @@
                   "slug": "aquasprint-bikini-set",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Silver"],
                   "reviews": [
@@ -22793,7 +22784,7 @@
                   "slug": "reefrun-swim-set",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Olive",
@@ -22871,7 +22862,7 @@
                   "slug": "diveflex-swim-jammers",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Charcoal",
@@ -22925,7 +22916,7 @@
                   "slug": "flipfin-tankini",
                   "price": 23.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Beige",
@@ -23029,7 +23020,7 @@
                   "slug": "glowwave-swim-tee",
                   "price": 20.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "White",
@@ -23141,7 +23132,7 @@
                   "slug": "seashift-zip-suit",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": ["Charcoal", "Grey", "Brown", "Tan", "Olive"],
                   "reviews": [
@@ -23208,7 +23199,7 @@
                   "slug": "ripzone-swim-shorts",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["2T", "3T", "4T", "5T", "XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Maroon",
@@ -23237,10 +23228,10 @@
               ]
             },
             {
-              "id": 30105,
+              "id": "30105",
               "name": "Outerwear & Layering Essentials",
               "slug": "outerwear-layering-essentials",
-              "parent_category": 305,
+              "parent_category": "305",
               "products": [
                 {
                   "id": "3010501",
@@ -23249,7 +23240,7 @@
                   "slug": "trailblazer-windbreaker",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Dark Grey",
@@ -23302,7 +23293,7 @@
                   "slug": "gymcommute-puffer",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Silver", "Blue", "Brown"],
                   "reviews": [
@@ -23399,7 +23390,7 @@
                   "slug": "flashflow-zip-hoodie",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Olive",
@@ -23455,7 +23446,7 @@
                   "slug": "motionlayer-vest",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Black",
@@ -23509,7 +23500,7 @@
                   "slug": "stormsprint-rain-jacket",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Black", "Tan", "Beige"],
                   "reviews": [
@@ -23612,7 +23603,7 @@
                   "slug": "coreshield-bomber",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": ["Charcoal", "Grey", "Beige", "Cobalt Blue"],
                   "reviews": [
@@ -23637,7 +23628,7 @@
                   "slug": "heatpulse-training-jacket",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Red",
@@ -23750,7 +23741,7 @@
                   "slug": "activeshell-parka",
                   "price": 59.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Olive",
@@ -23785,7 +23776,7 @@
                   "slug": "teamtrek-zip-up",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Red",
@@ -23889,7 +23880,7 @@
                   "slug": "layerlite-tech-pullover",
                   "price": 35.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["XS", "S", "M", "L", "XL"],
                   "colors": [
                     "Burgundy",
@@ -23939,15 +23930,15 @@
           ]
         },
         {
-          "id": 302,
+          "id": "302",
           "name": "Footwears",
           "slug": "footwears",
           "subcategories": [
             {
-              "id": 30201,
+              "id": "30201",
               "name": "All-Terrain Trainers",
               "slug": "all-terrain-trainers",
-              "parent_category": 302,
+              "parent_category": "302",
               "products": [
                 {
                   "id": "3020101",
@@ -23956,7 +23947,7 @@
                   "slug": "zoomridge-flex",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Red", "Beige", "Blue", "Slate"],
                   "reviews": [
@@ -24023,7 +24014,7 @@
                   "slug": "stormrunner-x1",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Black"],
                   "reviews": [
@@ -24078,7 +24069,7 @@
                   "slug": "trailblitz-core",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Navy",
@@ -24156,7 +24147,7 @@
                   "slug": "stratodash-edge",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Navy", "Cobalt Blue", "Grey", "Olive", "Slate"],
                   "reviews": [
@@ -24229,7 +24220,7 @@
                   "slug": "rovershift-360",
                   "price": 40.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Black",
@@ -24276,10 +24267,10 @@
               ]
             },
             {
-              "id": 30202,
+              "id": "30202",
               "name": "ProCourt Kicks",
               "slug": "procourt-kicks",
-              "parent_category": 302,
+              "parent_category": "302",
               "products": [
                 {
                   "id": "3020201",
@@ -24288,7 +24279,7 @@
                   "slug": "aceclash-highs",
                   "price": 49.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Slate",
@@ -24375,7 +24366,7 @@
                   "slug": "pivotnova-mids",
                   "price": 44.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Olive",
@@ -24466,7 +24457,7 @@
                   "slug": "smashtrack-lites",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Black", "Brown", "Slate", "White"],
                   "reviews": [
@@ -24503,7 +24494,7 @@
                   "slug": "reboundx-bounce",
                   "price": 42.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Grey", "Navy", "Silver", "Olive"],
                   "reviews": [
@@ -24576,7 +24567,7 @@
                   "slug": "turboserve-lo",
                   "price": 37.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Navy", "Cobalt Blue"],
                   "reviews": [
@@ -24663,10 +24654,10 @@
               ]
             },
             {
-              "id": 30203,
+              "id": "30203",
               "name": "EasyGo Sneakers",
               "slug": "easygo-sneakers",
-              "parent_category": 302,
+              "parent_category": "302",
               "products": [
                 {
                   "id": "3020301",
@@ -24675,7 +24666,7 @@
                   "slug": "snapstride-mesh",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Beige", "Cobalt Blue", "Gold"],
                   "reviews": [
@@ -24748,7 +24739,7 @@
                   "slug": "loopkick-vibe",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Navy",
@@ -24775,7 +24766,7 @@
                   "slug": "zippyzoom-lows",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Tan",
@@ -24834,7 +24825,7 @@
                   "slug": "cloudease-slip",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Navy",
@@ -24909,7 +24900,7 @@
                   "slug": "chillstep-spark",
                   "price": 30.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Navy",
@@ -24999,10 +24990,10 @@
               ]
             },
             {
-              "id": 30204,
+              "id": "30204",
               "name": "CloudStep Slides",
               "slug": "cloudstep-slides",
-              "parent_category": 302,
+              "parent_category": "302",
               "products": [
                 {
                   "id": "3020401",
@@ -25011,7 +25002,7 @@
                   "slug": "floatfoam-glide",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Navy", "Olive", "Silver", "Burgundy"],
                   "reviews": [
@@ -25102,7 +25093,7 @@
                   "slug": "breezepop-duo",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Grey",
@@ -25215,7 +25206,7 @@
                   "slug": "zenstep-wrap",
                   "price": 26.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Navy",
@@ -25298,7 +25289,7 @@
                   "slug": "cooldip-flex",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": [
                     "Brown",
@@ -25388,7 +25379,7 @@
                   "slug": "lazylaunch-cradle",
                   "price": 21.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["5", "6", "7", "8", "9", "10", "11", "12"],
                   "colors": ["Silver", "Beige"],
                   "reviews": [
@@ -25417,15 +25408,15 @@
           ]
         },
         {
-          "id": 303,
+          "id": "303",
           "name": "Accessories",
           "slug": "accessories",
           "subcategories": [
             {
-              "id": 30301,
+              "id": "30301",
               "name": "Backpacks",
               "slug": "backpacks",
-              "parent_category": 303,
+              "parent_category": "303",
               "products": [
                 {
                   "id": "3030101",
@@ -25434,7 +25425,7 @@
                   "slug": "trailblazer-minipack",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Cobalt Blue", "White"],
                   "reviews": [
@@ -25507,7 +25498,7 @@
                   "slug": "powerplay-sportpack",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Navy",
@@ -25543,7 +25534,7 @@
                   "slug": "glowrush-urban-pack",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Charcoal",
@@ -25625,7 +25616,7 @@
                   "slug": "flexforce-carryall",
                   "price": 32.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Navy", "Burgundy"],
                   "reviews": [
@@ -25722,7 +25713,7 @@
                   "slug": "snapsprint-daybag",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Brown", "Black", "Charcoal", "Red", "White"],
                   "reviews": [
@@ -25779,10 +25770,10 @@
               ]
             },
             {
-              "id": 30302,
+              "id": "30302",
               "name": "Caps & Headbands",
               "slug": "cap-headbands",
-              "parent_category": 301,
+              "parent_category": "301",
               "products": [
                 {
                   "id": "3030201",
@@ -25791,7 +25782,7 @@
                   "slug": "sundash-performance-cap",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Grey",
@@ -25851,7 +25842,7 @@
                   "slug": "gamemode-snapback",
                   "price": 16.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Burgundy", "Black", "White", "Brown", "Olive"],
                   "reviews": [
@@ -25888,7 +25879,7 @@
                   "slug": "sweatshield-headband-duo",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Burgundy", "Olive", "Slate"],
                   "reviews": [
@@ -25967,7 +25958,7 @@
                   "slug": "coolwave-mesh-cap",
                   "price": 13.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Red",
@@ -26078,7 +26069,7 @@
                   "slug": "focusflex-wrap-band",
                   "price": 11.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Tan", "Blue"],
                   "reviews": [
@@ -26093,10 +26084,10 @@
               ]
             },
             {
-              "id": 30303,
+              "id": "30303",
               "name": "Water Bottles",
               "slug": "water-bottles",
-              "parent_category": 301,
+              "parent_category": "301",
               "products": [
                 {
                   "id": "3030301",
@@ -26105,7 +26096,7 @@
                   "slug": "hydrohero-flip-bottle",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Black", "Grey"],
                   "reviews": [
@@ -26172,7 +26163,7 @@
                   "slug": "thirstburst-sport-sipper",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Slate", "Beige", "Red", "Cobalt Blue"],
                   "reviews": [
@@ -26191,7 +26182,7 @@
                   "slug": "powerpulse-squeeze-bottle",
                   "price": 10.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Beige",
@@ -26253,7 +26244,7 @@
                   "slug": "glowsip-night-bottle",
                   "price": 15.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "White",
@@ -26363,7 +26354,7 @@
                   "slug": "refueldrop-straw-tumbler",
                   "price": 13.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Black",
@@ -26471,10 +26462,10 @@
               ]
             },
             {
-              "id": 30304,
+              "id": "30304",
               "name": "Socks & Compression Wear",
               "slug": "socks-compression-wear",
-              "parent_category": 301,
+              "parent_category": "301",
               "products": [
                 {
                   "id": "3030401",
@@ -26483,7 +26474,7 @@
                   "slug": "stridelite-ankle-socks",
                   "price": 9.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Charcoal",
@@ -26561,7 +26552,7 @@
                   "slug": "griprush-training-socks",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Navy", "Burgundy", "Charcoal"],
                   "reviews": [
@@ -26592,7 +26583,7 @@
                   "slug": "pulseline-compression-sleeves",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Slate", "Burgundy", "Black", "Blue"],
                   "reviews": [
@@ -26659,7 +26650,7 @@
                   "slug": "flexfit-quarter-socks",
                   "price": 10.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": ["Charcoal", "Brown"],
                   "reviews": [
@@ -26732,7 +26723,7 @@
                   "slug": "turbotwist-crew-socks",
                   "price": 11.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S/M", "L/XL"],
                   "colors": [
                     "Cobalt Blue",
@@ -26782,10 +26773,10 @@
               ]
             },
             {
-              "id": 30305,
+              "id": "30305",
               "name": "Wristbands & Sweatbands",
               "slug": "wristbands-sweatbands",
-              "parent_category": 301,
+              "parent_category": "301",
               "products": [
                 {
                   "id": "3030501",
@@ -26794,7 +26785,7 @@
                   "slug": "playhard-wrist-duo",
                   "price": 9.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": ["Black"],
                   "reviews": [
@@ -26879,7 +26870,7 @@
                   "slug": "sweatzone-proband",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Navy",
@@ -26963,7 +26954,7 @@
                   "slug": "champsclub-wrist-tag",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Brown",
@@ -26990,7 +26981,7 @@
                   "slug": "coolclash-dualband",
                   "price": 11.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "White",
@@ -27027,7 +27018,7 @@
                   "slug": "powerloop-sweat-set",
                   "price": 15.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": [],
                   "colors": [
                     "Cobalt Blue",
@@ -27096,10 +27087,10 @@
               ]
             },
             {
-              "id": 30306,
+              "id": "30306",
               "name": "Gloves & Protective Gear",
               "slug": "gloves-protective-gear",
-              "parent_category": 301,
+              "parent_category": "301",
               "products": [
                 {
                   "id": "3030601",
@@ -27108,7 +27099,7 @@
                   "slug": "guardpro-flex-gloves",
                   "price": 19.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Grey",
@@ -27194,7 +27185,7 @@
                   "slug": "swiftshield-knee-pads",
                   "price": 24.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Beige", "Charcoal", "Navy", "Grey", "White"],
                   "reviews": [
@@ -27231,7 +27222,7 @@
                   "slug": "playsafe-elbow-guards",
                   "price": 22.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Navy",
@@ -27337,12 +27328,12 @@
                 },
                 {
                   "id": "3030604",
-                  "name": "PowerGrip Training Gloves",
+                  "name": "Kids PowerGrip Training Gloves",
                   "description": "Strong grip. Safe play. Engineered for both safety and performance, these gloves are perfect for weight training, gymnastics, or any activity requiring extra hand support. The padded, non-slip palms ensure better traction, while the breathable mesh keeps hands cool.",
-                  "slug": "powergrip-training-gloves",
+                  "slug": "kids-powergrip-training-gloves",
                   "price": 18.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Brown", "Navy", "Grey"],
                   "reviews": [
@@ -27361,7 +27352,7 @@
                   "slug": "impactx-full-body-protective-set",
                   "price": 39.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Silver", "Slate", "Brown", "Blue", "Beige"],
                   "reviews": [
@@ -27410,7 +27401,7 @@
                   "slug": "flexguard-sport-gloves",
                   "price": 17.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Black",
@@ -27523,7 +27514,7 @@
                   "slug": "speedster-wrist-guards",
                   "price": 14.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Black"],
                   "reviews": [
@@ -27554,7 +27545,7 @@
                   "slug": "impactshield-shin-guards",
                   "price": 16.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Maroon",
@@ -27632,7 +27623,7 @@
                   "slug": "strikeforce-boxing-gloves",
                   "price": 25.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Maroon", "Grey", "Dark Grey"],
                   "reviews": [
@@ -27717,7 +27708,7 @@
                   "slug": "airflex-padded-vest",
                   "price": 29.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Black"],
                   "reviews": [
@@ -27784,7 +27775,7 @@
                   "slug": "turbokick-knee-shin-combo-set",
                   "price": 27.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Maroon",
@@ -27840,7 +27831,7 @@
                   "slug": "quickfit-fingerless-gloves",
                   "price": 15.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Navy",
@@ -27886,7 +27877,7 @@
                   "slug": "coreguard-chest-protector",
                   "price": 34.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": ["Silver", "Black", "Cobalt Blue", "Navy"],
                   "reviews": [
@@ -27923,7 +27914,7 @@
                   "slug": "securefit-ankle-protectors",
                   "price": 12.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Blue",
@@ -27991,7 +27982,7 @@
                   "slug": "rocketfit-finger-guards",
                   "price": 10.99,
                   "quantity": 100,
-                  "src": [],
+                  "images": [],
                   "sizes": ["S", "M", "L", "XL"],
                   "colors": [
                     "Olive",

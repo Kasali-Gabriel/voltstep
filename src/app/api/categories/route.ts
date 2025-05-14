@@ -1,18 +1,36 @@
-import dbConnect from '@/lib/dbConnect';
-import ProductsCatalog from '@/models/ProductCatalog';
+import prisma from '@/lib/prismaDb';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  await dbConnect();
+  try {
+    const productsCatalogs = await prisma.catalog.findMany({
+      include: {
+        categories: {
+          include: {
+            subcategories: true,
+          },
+        },
+      },
 
-  const productsCatalogs = await ProductsCatalog.find({});
+      cacheStrategy: {
+        ttl: 600,
+        swr: 3600,
+      },
+    });
 
-  if (!productsCatalogs || productsCatalogs.length === 0) {
+    if (!productsCatalogs || productsCatalogs.length === 0) {
+      return NextResponse.json(
+        { message: 'No product catalogs found' },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json(productsCatalogs);
+  } catch (error) {
+    console.error('Error fetching product catalogs:', error);
     return NextResponse.json(
-      { message: 'No product catalogs found' },
-      { status: 404 },
+      { message: 'Internal Server Error' },
+      { status: 500 },
     );
   }
-
-  return NextResponse.json(productsCatalogs);
 }

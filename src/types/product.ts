@@ -1,49 +1,74 @@
-export interface ProductCatalog {
-  _id: string;
-  products_data: ProductsData[];
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  imageUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  clerkUserId?: string;
+  reviews: Review[];
 }
 
-export interface ProductsData {
-  id: number;
+export interface Catalog {
+  id: string;
   name: string;
   slug: string;
   categories: Category[];
 }
 
 export interface Category {
-  id: number;
+  id: string;
   name: string;
   slug: string;
-  parent_category: number; // ID reference to ProductsData
-  subcategories?: Subcategory[];
-  products?: Product[]; // Some categories may have products directly
+  parentCategory?: string;
+  subcategories: Subcategory[];
+  catalogId: string;
+  catalog: Catalog;
 }
 
 export interface Subcategory {
-  id: number;
+  id: string;
   name: string;
   slug: string;
-  parent_category: number;
+  parentCategory?: string;
+  categoryId: string;
+  category: Category;
   products: Product[];
 }
 
 export interface Product {
   id: string;
   name: string;
-  description: string;
   slug: string;
+  description: string;
   price: number;
   quantity: number;
-  src: string[];
-  sizes?: string[];
-  colors?: string[];
-  tags?: ('new arrival' | 'bestseller' | 'flash sale' | 'back in stock')[];
-  reviews?: Review[];
+  images: string[];
+  sizes: string[];
+  colors: string[];
+  tags: Tag[];
+  reviews: Review[];
+  subcategoryId: string;
+  subcategory: Subcategory;
 }
 
 export interface Review {
-  reviewer: string;
+  id: string;
+  reviewerId: string;
+  reviewer: User;
   rating: number;
-  comment?: string;
-  date?: Date;
+  title: string;
+  details: string;
+  date: Date;
+  productId: string;
+  product: Product;
+  verified?: boolean;
+}
+
+export enum Tag {
+  NEW_ARRIVAL = 'NEW_ARRIVAL',
+  BESTSELLER = 'BESTSELLER',
+  FLASH_SALE = 'FLASH_SALE',
+  BACK_IN_STOCK = 'BACK_IN_STOCK',
 }

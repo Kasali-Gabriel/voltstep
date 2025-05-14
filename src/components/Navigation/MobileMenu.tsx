@@ -6,8 +6,7 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { fetchProductData } from '@/lib/utils';
-import { ProductsData } from '@/types/product';
+import { fetchCatalogData } from '@/lib/utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ChevronDown, ChevronUp, Heart, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -20,15 +19,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet';
+import { Catalog } from '@/types/product';
 
 const MobileMenu = () => {
-  const [productData, setProductData] = useState<ProductsData[]>([]);
+  const [catalogs, setCatalogs] = useState<Catalog[]>([]);
   const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchProductData();
-      setProductData(data);
+      const data = await fetchCatalogData();
+      setCatalogs(data);
     };
     fetchData();
   }, []);
@@ -65,11 +65,11 @@ const MobileMenu = () => {
           <h1 className="px-4 text-xl font-semibold">SHOP</h1>
 
           <Tabs
-            defaultValue={String(productData[0]?.id)}
+            defaultValue={String(catalogs[0]?.id)}
             className="scrollbar scrollbar-thumb-stone-400 scrollbar-thumb-rounded-full scrollbar-w-[5px] h-full overflow-y-auto"
           >
             <TabsList className="dlex w-full items-center justify-center space-x-10 rounded-none bg-gradient-to-b from-neutral-200 via-neutral-100 to-white pt-2">
-              {productData.map((product) => (
+              {catalogs.map((product) => (
                 <TabsTrigger
                   key={product.id}
                   value={String(product.id)}
@@ -80,7 +80,7 @@ const MobileMenu = () => {
               ))}
             </TabsList>
 
-            {productData.map((product) => (
+            {catalogs.map((product) => (
               <TabsContent
                 key={product.id}
                 value={String(product.id)}

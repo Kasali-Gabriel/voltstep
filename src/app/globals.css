@@ -124,15 +124,3 @@ html {
     @apply bg-background text-foreground;
   }
 }
-
-.swiper2 {
-  text-align: center !important;
-}
-
-.thumbs .swiper-slide {
-  opacity: 0.5;
-}
-
-.thumbs .swiper-slide-thumb-active {
-  opacity: 1;
-}
