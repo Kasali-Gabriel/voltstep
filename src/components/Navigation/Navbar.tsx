@@ -2,6 +2,8 @@
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useEffect, useState } from 'react';
+import bigLogo from '../../../public/logo.png';
+import smallLogo from '../../../public/logoIcon.png';
 
 import {
   GoogleOneTap,
@@ -10,10 +12,12 @@ import {
   SignInButton,
   UserButton,
 } from '@clerk/nextjs';
-import { Heart, ShoppingBag, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Bag } from '../Bag/Bag';
 import { SearchBar, SearchView } from '../Search/Search';
+import { Wishlist } from '../Wishlist/WishList';
 import MobileMenu from './MobileMenu';
 import NavMenu from './NavMenu';
 
@@ -25,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex flex-col items-center justify-center p-2 sm:p-4 md:h-32 xl:h-16">
+    <nav className="flex h-16 flex-col items-center justify-center p-2 sm:p-4 md:h-32 xl:h-16">
       {isClient && (
         <>
           <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
@@ -48,21 +52,17 @@ const Navbar = () => {
         <div className="flex items-center justify-center space-x-10">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/logo.png"
+              src={bigLogo}
+              height={40}
               alt="logo"
-              height={175}
-              width={175}
-              priority
-              className="ml-10 hidden object-contain sm:block"
+              className="hidden sm:block"
             />
 
             <Image
-              src="/logoIcon.png"
+              src={smallLogo}
+              height={55}
               alt="logo"
-              height={50}
-              width={50}
-              priority
-              className="ml-7 scale-105 object-contain sm:hidden"
+              className="ml-7 sm:hidden"
             />
           </Link>
 
@@ -76,13 +76,9 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center justify-center space-x-5 sm:space-x-7">
-          <button className="flex cursor-pointer flex-col items-center space-y-0.5">
-            <ShoppingBag size={20} strokeWidth={1.25} className="h-6 w-6" />
-          </button>
+          <Bag />
 
-          <button className="hidden cursor-pointer md:block">
-            <Heart size={20} strokeWidth={1.25} className="h-6 w-6" />
-          </button>
+          <Wishlist />
 
           {isClient && (
             <>
@@ -97,6 +93,7 @@ const Navbar = () => {
               </SignedOut>
 
               <SignedIn>
+                {/* TODO cutom drop down menu wit clerks accout profile signout, then manage orders */}
                 <div className="mt-1 cursor-pointer md:h-8 md:w-8">
                   <UserButton />
                 </div>

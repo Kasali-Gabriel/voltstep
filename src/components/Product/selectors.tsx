@@ -1,6 +1,6 @@
-import { colorHexCodes } from "@/constants/colorData";
-import { ColorSelectorProps, SizeSelectorProps } from "@/types";
-import { useEffect, useRef, useState } from "react";
+import { colorHexCodes } from '@/constants/colorData';
+import { ColorSelectorProps, SizeSelectorProps } from '@/types';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
 export const ColorSelector = ({
   colors,
@@ -92,27 +92,37 @@ export const ColorSelector = ({
   );
 };
 
-export const SizeSelector = ({
-  sizes,
-  selectedSize,
-  setSelectedSize,
-}: SizeSelectorProps) => (
-  <div className="mt-7 flex flex-col items-start justify-start">
-    <h2 className="text-lg font-semibold">Sizes</h2>
-    <div className="mt-2 flex flex-wrap gap-2">
-      {sizes.map((size) => (
-        <div key={size} className="flex flex-col items-center">
-          <button
-            onClick={() => setSelectedSize(size)}
-            className={`flex h-10 w-14 cursor-pointer items-center justify-center rounded-md text-center ${
-              selectedSize === size ? 'bg-primary' : 'border border-black'
-            }`}
-            aria-label={`Select size ${size}`}
-          >
-            {size}
-          </button>
-        </div>
-      ))}
+export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
+  ({ sizes, selectedSize, setSelectedSize, sizeError }, ref) => (
+    <div ref={ref} className="justify-star mt-7 flex flex-col items-start">
+      <h2 className="text-lg font-semibold">Sizes</h2>
+      <div
+        className={`mt-2 flex flex-wrap gap-2 rounded-md border ${
+          sizeError ? 'border-red-500 p-2' : 'border-white'
+        }`}
+      >
+        {sizes.map((size) => (
+          <div key={size} className="flex flex-col items-center">
+            <button
+              onClick={() => setSelectedSize(size)}
+              className={`flex h-10 w-14 cursor-pointer items-center justify-center rounded-md border text-center transition-colors duration-150 ${
+                selectedSize === size ? 'border-black' : 'border-stone-200'
+              }`}
+              aria-label={`Select size ${size}`}
+            >
+              {size}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {sizeError && (
+        <p className="mt-2 text-sm text-red-500">
+          Please select a size before adding to bag.
+        </p>
+      )}
     </div>
-  </div>
+  ),
 );
+
+SizeSelector.displayName = 'SizeSelector';

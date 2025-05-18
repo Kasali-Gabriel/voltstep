@@ -9,17 +9,13 @@ import {
 import { Ratings } from '@/components/Reviews/ratings';
 import { RatingsPreview } from '@/components/Reviews/ratingsPreview';
 import { Reviews } from '@/components/Reviews/reviews';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { AddToWishList } from '@/components/Wishlist/addToWishListBtn';
 import { images } from '@/constants/images';
+import { useCartStore } from '@/hooks/use-cart';
+import { useBagStore } from '@/lib/state';
+import type { CartItem } from '@/types/index';
 import { Product } from '@/types/product';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import axios from 'axios';
-import { Heart } from 'lucide-react';
 import { use, useEffect, useRef, useState } from 'react';
 import 'swiper/css';
 
@@ -33,10 +29,18 @@ const Page = ({
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [cartItem, setCartItem] = useState<CartItem | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  const [LgScreeen, setLgScreen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
 
   const mainBtnRef = useRef<HTMLButtonElement>(null);
+  const sizeSelectorRef = useRef<HTMLDivElement>(null);
+
+  const { addItem } = useCartStore();
+  const { setIsBagOpen } = useBagStore();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -51,6 +55,7 @@ const Page = ({
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
+      setLgScreen(window.innerHeight >= 1024);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -80,7 +85,60 @@ const Page = ({
     }, 200);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [LgScreeen]);
+
+  useEffect(() => {
+    if (product) {
+      const defaultColor = (product.colors && product.colors[0]) || null;
+      setSelectedColor(defaultColor);
+      setSelectedSize(null); // Do not select size by default
+      setCartItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        image: product.images?.[0] || '',
+        selectedSize: undefined,
+        selectedColor: defaultColor || undefined,
+      });
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (selectedColor !== null || selectedSize !== null) {
+      setCartItem((prev) =>
+        prev
+          ? {
+              ...prev,
+              selectedColor: selectedColor || undefined,
+              selectedSize: selectedSize || undefined,
+            }
+          : prev,
+      );
+    }
+  }, [selectedColor, selectedSize]);
+
+  const onAddToCart = () => {
+    // Only require size if sizes exist
+    if (product?.sizes && product.sizes.length > 0 && !selectedSize) {
+      setSizeError(true);
+      if (sizeSelectorRef.current) {
+        const rect = sizeSelectorRef.current.getBoundingClientRect();
+        const isInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+        if (!isInView) {
+          sizeSelectorRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }
+      }
+      return;
+    }
+    setSizeError(false);
+    if (!cartItem) return;
+    addItem({ ...cartItem, selectedSize: selectedSize ?? undefined });
+    setIsBagOpen(true);
+  };
 
   if (!product) {
     return <div>Loading...</div>;
@@ -124,7 +182,7 @@ const Page = ({
           </p>
 
           <div className="flex flex-col px-5 sm:px-10 lg:px-0">
-            <p className="font-medium text-gray-700">{product.description}</p>
+            <p className="text-gray-700">{product.description}</p>
 
             {(product.colors ?? []).length > 0 && (
               <ColorSelector
@@ -137,39 +195,30 @@ const Page = ({
 
             {(product.sizes ?? []).length > 0 && (
               <SizeSelector
+                ref={sizeSelectorRef}
                 sizes={product.sizes ?? []}
                 selectedSize={selectedSize}
-                setSelectedSize={setSelectedSize}
+                setSelectedSize={(size) => {
+                  setSelectedSize(size);
+                  setSizeError(false);
+                }}
+                sizeError={sizeError}
               />
             )}
           </div>
 
           <div className="mt-10 flex w-full flex-col gap-4 px-5 sm:flex-row sm:px-10 lg:px-0">
-            {/* TODO  crete the add to bag and add to wishlist functions, as well as the wishlist and cart Page, also create a compoent that id displayed when a user tries to add to wishlist, view wishlist or add review without being signed. clerk signedin component to be used  */}
+            {/* TODO  crete the add  to wishlist functions, as well as the wishlist , also create a compoent that is displayed when a user tries to add to wishlist, view wishlist or add review without being signed. clerk signedin component to be used  */}
 
             <button
               ref={mainBtnRef}
+              onClick={onAddToCart}
               className="w-full cursor-pointer rounded-4xl bg-black py-3 text-white hover:bg-stone-900 sm:rounded-xl md:py-4 lg:w-full"
             >
               ADD TO BAG
             </button>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button className="flex w-full cursor-pointer items-center justify-center gap-4 rounded-4xl border border-black py-3 text-black hover:bg-stone-200 sm:w-fit sm:rounded-xl sm:px-12 md:py-4 lg:px-8">
-                    <span className="sm:hidden">Add to Wishlist</span>
-                    <Heart />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="px-4 py-1 text-base font-semibold">
-                    Add to Wishlist
-                  </p>{' '}
-                  <TooltipPrimitive.Arrow className="bg-primary fill-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <AddToWishList />
           </div>
 
           <div className="w-full space-y-2 px-5 pt-10 sm:px-10 lg:px-0">
@@ -207,7 +256,7 @@ const Page = ({
               Share your thoughts with other customers
             </p>
 
-            {/* TODO create a dialog component that renders a form for adding customer reviews, customer with a review on the product cant adda new review but can update thier reviews  */}
+            {/* TODO   ui of search on md screens like that of nike, create a dialog component that renders a form for adding customer reviews, customer with a review on the product cant adda new review but can update thier reviews  */}
             <button className="w-full cursor-pointer rounded-4xl border border-black bg-white py-2 hover:bg-neutral-100">
               Write a customer review
             </button>
@@ -218,13 +267,17 @@ const Page = ({
       </section>
 
       {/* TODO RECENTLY VIEWED section */}
+
       <div
         className={`fixed right-0 bottom-0 left-0 z-50 bg-black p-4 text-white transition-transform duration-300 lg:hidden ${
           showSticky ? 'translate-y-0' : 'translate-y-full'
         }`}
       >
         <div className="mx-auto max-w-xl">
-          <button className="w-full rounded-lg bg-black py-3 text-lg text-white">
+          <button
+            onClick={onAddToCart}
+            className="w-full rounded-lg bg-black py-3 text-lg text-white"
+          >
             ADD TO BAG
           </button>
         </div>

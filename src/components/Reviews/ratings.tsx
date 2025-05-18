@@ -56,7 +56,7 @@ export const Ratings = ({
               avoidCollisions={true}
               className="flex w-fit flex-col items-center justify-center space-y-4 rounded-md border bg-white p-4 px-10 shadow-md"
             >
-              <div className="border-b-2">
+              <div className="border-b-2 pb-5">
                 <RatingsPreview reviews={reviews} />
               </div>
 

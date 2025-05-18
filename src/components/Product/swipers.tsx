@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -114,6 +114,19 @@ export const LargeScreenSwiper = ({
 }) => {
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobile]);
 
   return (
     <div className="sticky top-10 flex h-[32rem] gap-5 lg:max-w-[45vw] xl:h-[37.5rem]">
@@ -144,12 +157,13 @@ export const LargeScreenSwiper = ({
                 setActiveIndex(index);
               }}
             >
+              {/* FIXME images on swipers not optimized beacause of size  */}
               <Image
                 src={image.src}
                 alt={image.alt}
                 className="h-full w-full rounded object-cover"
-                width={100}
-                height={100}
+                width={600}
+                height={800}
               />
             </button>
           </SwiperSlide>
@@ -164,7 +178,7 @@ export const LargeScreenSwiper = ({
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.realIndex);
         }}
-        allowTouchMove={window.innerWidth <= 1024}
+        allowTouchMove={isMobile}
         modules={[Navigation, Thumbs]}
         className="relative h-full w-full"
       >

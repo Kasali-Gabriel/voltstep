@@ -12,12 +12,13 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
+import privacyChoicesIcon from '../../../public/privacy-choices-icon.png';
+import { footerData } from '../../constants/footerData';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '../ui/collapsible';
-import { footerData } from '../../constants/footerData';
 
 const socialIcons = [
   { Icon: () => <FontAwesomeIcon icon={faXTwitter} /> },
@@ -91,11 +92,9 @@ const Footer = () => {
           <div className="-mt-0.5 flex cursor-pointer items-center gap-1">
             <Image
               alt="Privacy choice"
-              aria-hidden="true"
-              src="/privacy-choices-icon.png"
+              src={privacyChoicesIcon}
               className="h-6 w-7 object-contain"
-              width={100}
-              height={75}
+              height={15}
             />
 
             <span className="hover:text-black">Your Privacy Choices</span>
@@ -133,10 +132,8 @@ const Footer = () => {
             <Image
               alt="Privacy choice"
               aria-hidden="true"
-              src="/privacy-choices-icon.png"
-              className="h-6 w-7 object-contain"
-              width={100}
-              height={75}
+              src={privacyChoicesIcon}
+              height={15}
             />
 
             <span className="hover:text-black">Your Privacy Choices</span>

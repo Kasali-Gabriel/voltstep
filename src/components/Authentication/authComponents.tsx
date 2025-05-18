@@ -12,21 +12,17 @@ import { CircleAlert, Eye, EyeOff, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Button } from './ui/button';
-import { Icons } from './ui/icons';
-import { Input } from './ui/input';
+import appleLogo from '../../../public/apple-logo.png';
+import googleLogo from '../../../public/google-logo.png';
+import logo from '../../../public/logoIcon.png';
+import { Button } from '../ui/button';
+import { Icons } from '../ui/icons';
+import { Input } from '../ui/input';
 
 export const Logo = () => {
   return (
     <Link href="/" className="flex items-center justify-center">
-      <Image
-        src="/logoIcon.png"
-        alt="logo"
-        height={100}
-        width={100}
-        priority
-        className="object-contain"
-      />
+      <Image src={logo} alt="logo" height={100} />
     </Link>
   );
 };
@@ -69,12 +65,10 @@ export const Socials = ({ isGlobalLoading }: { isGlobalLoading: boolean }) => {
                   <Icons.spinner className="size-4 animate-spin text-black" />
                 ) : (
                   <Image
-                    src="/google-logo.png"
+                    src={googleLogo}
                     alt="google-logo"
-                    height={100}
-                    width={100}
-                    priority
-                    className="h-5 w-5 object-contain"
+                    height={20}
+                    placeholder="blur"
                   />
                 )}
                 <span className="font-semibold text-neutral-500">Google</span>
@@ -97,12 +91,10 @@ export const Socials = ({ isGlobalLoading }: { isGlobalLoading: boolean }) => {
                   <Icons.spinner className="size-4 animate-spin text-black" />
                 ) : (
                   <Image
-                    src="/apple-logo.png"
+                    src={appleLogo}
                     alt="apple-logo"
-                    height={100}
-                    width={100}
-                    priority
-                    className="h-5 w-5 object-contain"
+                    height={25}
+                    placeholder="blur"
                   />
                 )}
                 <span className="font-semibold text-neutral-500">Apple</span>
@@ -219,7 +211,7 @@ export const PasswordInput = ({
   );
 };
 
-// TODO: fix the ui when otp is incorrect and the reset the otp input field
+// FIXME fix the ui when otp is incorrect and the reset the otp input field
 export const OtpInput = ({ isGlobalLoading }: { isGlobalLoading: boolean }) => {
   return (
     <Clerk.Field

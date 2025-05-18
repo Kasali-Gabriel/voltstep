@@ -61,9 +61,19 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
     return () => window.removeEventListener('resize', checkClamped);
   }, [paginatedReviews, expanded, clamped]);
 
+  const prevPage = useRef(page);
+
   useEffect(() => {
-    if (reviewsRef.current)
-      reviewsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (page !== prevPage.current) {
+      if (reviewsRef.current) {
+        console.log('Scrolling into view');
+        reviewsRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+    prevPage.current = page;
   }, [page]);
 
   // Compute empty message if no reviews after filtering
@@ -118,14 +128,25 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
               <div className="mb-3 flex items-center space-x-4">
                 <Avatar>
                   <AvatarImage src={review.reviewer?.imageUrl ?? ''} />
+
                   <AvatarFallback>
                     <User />
                   </AvatarFallback>
                 </Avatar>
+
                 <div className="flex flex-col">
-                  <span className="font-medium text-neutral-900">
-                    {review.reviewer.firstName} {review.reviewer.lastName}
-                  </span>
+                  <p className="flex items-center justify-between space-x-10 sm:justify-normal">
+                    <span className="font-medium text-neutral-900">
+                      {review.reviewer.firstName} {review.reviewer.lastName}
+                    </span>
+
+                    {review.verified && (
+                      <span className="text-sm font-medium text-green-700 sm:font-semibold">
+                        Verified Buyer
+                      </span>
+                    )}
+                  </p>
+
                   <span className="text-xs text-neutral-500">
                     Reviewed on{' '}
                     {dateObj.toLocaleDateString('en-US', {
@@ -134,19 +155,16 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
                       day: 'numeric',
                     })}
                   </span>
-                  {review.verified && (
-                    <span className="mt-1 inline-block rounded bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
-                      Verified Purchase
-                    </span>
-                  )}
                 </div>
               </div>
+
               <div className="mb-2 font-semibold text-neutral-800">
                 <span className="mr-3 inline-flex align-text-bottom">
                   <StarRating rating={review.rating} size={15} />
                 </span>
                 {review.title}
               </div>
+
               <p
                 ref={(el) => {
                   contentRefs.current[review.id] = el;
@@ -155,6 +173,7 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
               >
                 {review.details}
               </p>
+
               {(clamped[review.id] || expanded[review.id]) && (
                 <button
                   onClick={() =>
@@ -196,6 +215,7 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
               >
                 Load more
               </button>
+
               <span className="text-sm text-neutral-700">
                 {start + 1} - {end} of {totalReviews} reviews
               </span>
@@ -210,11 +230,13 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
               >
                 <ChevronLeft />
               </button>
+
               <span className="text-sm text-neutral-700">
                 {start + 1} - {end} of {totalReviews} reviews
               </span>
+
               <button
-                className="cursor-pointer rounded-full bg-black p-2 text-white hover:bg-neutral-900 disabled:opacity-50"
+                className="cursor-pointer rounded-full bg-black p-2 text-white hover:bg-neutral-900 disabled:cursor-default disabled:opacity-50 disabled:hover:bg-black"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
                 aria-label="Next page"
