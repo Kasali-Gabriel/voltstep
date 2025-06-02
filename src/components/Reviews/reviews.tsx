@@ -1,4 +1,4 @@
-import { Review } from '@/types/product';
+import { Review } from '@/types/review';
 import { isEqual } from 'lodash';
 import {
   ChevronDown,

@@ -4,14 +4,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface UserContextType {
   userId: string | null;
-  loading: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userId, setUserId] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
   const { isSignedIn } = useSession();
 
   useEffect(() => {
@@ -20,11 +18,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const fetchUser = async () => {
       if (!isSignedIn) {
         setUserId(null);
-        setLoading(false);
         return;
       }
-
-      setLoading(true);
 
       try {
         const { data } = await axios.get('/api/user');
@@ -32,8 +27,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         if (isMounted) setUserId(data?.user?.id ?? null);
       } catch {
         if (isMounted) setUserId(null);
-      } finally {
-        if (isMounted) setLoading(false);
       }
     };
 
@@ -44,7 +37,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, [isSignedIn]);
 
-  const value = React.useMemo(() => ({ userId, loading }), [userId, loading]);
+  const value = React.useMemo(() => ({ userId }), [userId]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

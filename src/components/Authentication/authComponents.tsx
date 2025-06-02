@@ -7,7 +7,7 @@ import {
   AuthContinueBtnProps,
   AuthHeaderProps,
   AuthOptionProps,
-} from '@/types';
+} from '@/types/auth';
 import { CircleAlert, Eye, EyeOff, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

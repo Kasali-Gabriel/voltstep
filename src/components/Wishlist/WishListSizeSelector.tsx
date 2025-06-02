@@ -16,6 +16,7 @@ import {
 import { images } from '@/constants/images';
 import { WishListSizeSelectorProps } from '@/types/wishlist';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -26,7 +27,6 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperNavBtn } from '../Product/swiperNavBtn';
-import { X } from 'lucide-react';
 
 const WishListSizeSelector = ({
   isPage,
@@ -136,9 +136,9 @@ const WishListSizeSelector = ({
           </VisuallyHidden>
 
           <div
-            className={`grid h-full w-full portrait:grid-rows-[1.2fr_1fr] sm:portrait:grid-rows-2 lg:portrait:grid-rows-[2fr_1fr] sm:landscape:grid-cols-2 md:portrait:grid-rows-[1.4fr_1fr]`}
+            className={`grid h-full w-full portrait:grid-rows-[1.2fr_1fr] sm:portrait:grid-rows-2 md:portrait:grid-rows-[1.4fr_1fr] lg:portrait:grid-rows-[2fr_1fr] sm:landscape:grid-cols-2`}
           >
-            <div className="flex h-full w-[90vw] rounded-3xl p-0 md:w-[80vw] xl:h-[80vh] sm:landscape:w-full relative">
+            <div className="relative flex h-full w-[90vw] rounded-3xl p-0 md:w-[80vw] xl:h-[80vh] sm:landscape:w-full">
               <Swiper
                 key={isPortrait ? 'portrait' : 'landscape'}
                 slidesPerView={1}
@@ -177,8 +177,8 @@ const WishListSizeSelector = ({
                 </div>
               </Swiper>
 
-              <DialogClose className="focus:ring-ring border z-50 absolute top-4 right-4 flex size-10 md:size-14 cursor-pointer items-center justify-center rounded-full bg-neutral-200 text-black transition hover:bg-neutral-400 focus:outline-none landscape:hidden">
-                <X strokeWidth={1.5} size={28} className='md:size-10'/>
+              <DialogClose className="focus:ring-ring absolute top-4 right-4 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full border bg-neutral-200 text-black transition hover:bg-neutral-400 focus:outline-none md:size-14 landscape:hidden">
+                <X strokeWidth={1.5} size={28} className="md:size-10" />
               </DialogClose>
             </div>
 
@@ -206,7 +206,7 @@ const WishListSizeSelector = ({
               <SizeSelector
                 sizes={sizes}
                 selectedSize={selectedSize}
-                setSelectedSize={(size) => {
+                setSelectedSize={(size: string) => {
                   setSelectedSize(size);
                   setSizeError(false);
                 }}

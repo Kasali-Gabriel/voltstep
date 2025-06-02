@@ -2,8 +2,6 @@ import { ViewWishlistProps } from '@/types/wishlist';
 import { Heart } from 'lucide-react';
 import Link from 'next/link';
 
-
-
 export const ViewWishlist = ({ isNavBar, setSheetOpen }: ViewWishlistProps) => {
   const handleClick = () => {
     if (setSheetOpen) {

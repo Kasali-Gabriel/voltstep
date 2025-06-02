@@ -7,6 +7,7 @@ import {
   LargeScreenSwiper,
   SmallScreenSwiper,
 } from '@/components/Product/swipers';
+import AddReviewBtn from '@/components/Reviews/AddReviewBtn';
 import { Ratings } from '@/components/Reviews/ratings';
 import { RatingsPreview } from '@/components/Reviews/ratingsPreview';
 import { Reviews } from '@/components/Reviews/reviews';
@@ -14,8 +15,9 @@ import { AddToWishList } from '@/components/Wishlist/AddToWishList';
 import { images } from '@/constants/images';
 import { useCartStore } from '@/hooks/use-cart';
 import { useBagStore } from '@/lib/state';
-import type { CartItem } from '@/types/index';
+import { CartItem } from '@/types/cart';
 import { Product } from '@/types/product';
+import { Review } from '@/types/review';
 import axios from 'axios';
 import { use, useEffect, useRef, useState } from 'react';
 import 'swiper/css';
@@ -28,6 +30,7 @@ const Page = ({
   const params = use(paramsPromise) as { slug: string };
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [cartItem, setCartItem] = useState<CartItem | null>(null);
@@ -45,8 +48,12 @@ const Page = ({
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await axios.get(`/api/products/${params.slug}`);
+
       const data = response.data;
+
       setProduct(data);
+
+      setReviews(data.reviews ?? []);
     };
 
     fetchProduct();
@@ -56,7 +63,9 @@ const Page = ({
     const handleResize = () => {
       setLgScreen(window.innerHeight >= 1024);
     };
+
     handleResize();
+
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -89,7 +98,9 @@ const Page = ({
   useEffect(() => {
     if (product) {
       const defaultColor = (product.colors && product.colors[0]) || null;
+
       setSelectedColor(defaultColor);
+
       setCartItem({
         id: product.id,
         name: product.name,
@@ -117,13 +128,24 @@ const Page = ({
     }
   }, [selectedColor, selectedSize]);
 
+  // function to refresh reviews after add/edit
+  const refreshReviews = async () => {
+    if (!product) return;
+
+    const response = await axios.get(`/api/review?productId=${product.id}`);
+
+    setReviews(response.data ?? []);
+  };
+
   const onAddToCart = () => {
     // Only require size if sizes exist
     if (product?.sizes && product.sizes.length > 0 && !selectedSize) {
       setSizeError(true);
       if (sizeSelectorRef.current) {
         const rect = sizeSelectorRef.current.getBoundingClientRect();
+
         const isInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
         if (!isInView) {
           sizeSelectorRef.current.scrollIntoView({
             behavior: 'smooth',
@@ -134,8 +156,11 @@ const Page = ({
       return;
     }
     setSizeError(false);
+
     if (!cartItem) return;
+
     addItem({ ...cartItem, selectedSize: selectedSize ?? undefined });
+
     setIsBagOpen(true);
   };
 
@@ -203,7 +228,7 @@ const Page = ({
                   ref={sizeSelectorRef}
                   sizes={product.sizes ?? []}
                   selectedSize={selectedSize}
-                  setSelectedSize={(size) => {
+                  setSelectedSize={(size: string) => {
                     setSelectedSize(size);
                     setSizeError(false);
                   }}
@@ -260,7 +285,15 @@ const Page = ({
               Customer reviews
             </h2>
 
-            <RatingsPreview reviews={product.reviews ?? []} />
+            <div className="py-4 md:hidden">
+              <AddReviewBtn
+                productId={product.id}
+                reviews={reviews}
+                onReviewChange={refreshReviews}
+              />
+            </div>
+
+            <RatingsPreview reviews={reviews} />
 
             <div className="mt-10 hidden flex-col gap-3 border-y py-7 md:flex">
               <h2 className="-mt-2 text-xl font-semibold text-neutral-800">
@@ -271,20 +304,21 @@ const Page = ({
                 Share your thoughts with other customers
               </p>
 
-              {/* TODO  update ui of search on md screens like that of nike, create a dialog component that renders a form for adding customer reviews, customer with a review on the product cant add a new review but can update thier reviews  */}
-              <button className="w-full cursor-pointer rounded-4xl border border-black bg-white py-2 hover:bg-neutral-100">
-                Write a customer review
-              </button>
+              <AddReviewBtn
+                productId={product.id}
+                reviews={reviews}
+                onReviewChange={refreshReviews}
+              />
             </div>
           </div>
 
-          <Reviews reviews={product.reviews ?? []} />
+          <Reviews reviews={reviews} />
         </section>
 
         {/* TODO RECENTLY VIEWED section */}
 
         <div
-          className={`fixed right-0 bottom-0 left-0 z-50 bg-black p-4 text-white transition-transform duration-300 lg:hidden ${
+          className={`fixed right-0 bottom-0 left-0 z-40 bg-black p-4 text-white transition-transform duration-300 lg:hidden ${
             showSticky ? 'translate-y-0' : 'translate-y-full'
           }`}
         >

@@ -1,14 +1,6 @@
-export interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  imageUrl?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  clerkUserId?: string;
-  reviews: Review[];
-}
+import { Review } from "./review";
+
+
 
 export interface Catalog {
   id: string;
@@ -53,22 +45,24 @@ export interface Product {
   subcategory: Subcategory;
 }
 
-export interface Review {
-  id: string;
-  reviewerId: string;
-  reviewer: User;
-  rating: number;
-  title: string;
-  details: string;
-  date: Date;
-  productId: string;
-  product: Product;
-  verified?: boolean;
-}
-
 export enum Tag {
   NEW_ARRIVAL = 'NEW_ARRIVAL',
   BESTSELLER = 'BESTSELLER',
   FLASH_SALE = 'FLASH_SALE',
   BACK_IN_STOCK = 'BACK_IN_STOCK',
+}
+
+export interface SizeSelectorProps {
+  sizes: string[];
+  selectedSize: string | null;
+  setSelectedSize: (size: string) => void;
+  sizeError?: boolean;
+  setSizeError?: (error: boolean) => void;
+  isTitle?: boolean;
+}
+
+export interface ColorSelectorProps {
+  colors: string[];
+  selectedColor: string | null;
+  setSelectedColor: (color: string) => void;
 }

@@ -1,4 +1,4 @@
-import { SizeSelectorProps } from '@/types';
+import { SizeSelectorProps } from '@/types/auth';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(

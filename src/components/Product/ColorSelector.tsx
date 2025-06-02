@@ -1,5 +1,5 @@
 import { colorHexCodes } from '@/constants/colorData';
-import { ColorSelectorProps } from '@/types';
+import { ColorSelectorProps } from '@/types/auth';
 import { useEffect, useRef, useState } from 'react';
 
 export const ColorSelector = ({
@@ -76,7 +76,6 @@ export const ColorSelector = ({
     };
   }, [isMobile]);
 
-
   const handleColorClick = (color: string) => {
     setSelectedColor(color);
 
@@ -98,7 +97,7 @@ export const ColorSelector = ({
     <div className="mt-5 flex max-w-[90vw] flex-col items-start justify-start">
       <div
         ref={containerRef}
-        className={`flex gap-4 overflow-x-auto px-3 py-2 pt-2 sm:flex-wrap ${isScrolledAwayFromStart ? 'w-screen -ml-4' : 'w-full'}`}
+        className={`flex gap-4 overflow-x-auto px-3 py-2 pt-2 sm:flex-wrap ${isScrolledAwayFromStart ? '-ml-4 w-screen' : 'w-full'}`}
       >
         {reorderedColors.map((color: string) => (
           <div key={color} className="flex flex-col items-center">

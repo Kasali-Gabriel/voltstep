@@ -1,11 +1,13 @@
 import { useUser } from '@/context/UserContext';
 import { useWishlistContext } from '@/context/WishlistContext';
+import { useWishlistSuccessDialogStore } from '@/lib/state';
 import { AddToWishListProps } from '@/types/wishlist';
 import { CircleCheck, Heart, X } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { NotSignedInDialog } from '../Authentication/NotSignedInDialog';
 import {
   Dialog,
   DialogClose,
@@ -13,7 +15,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import { NotSignedInDialog } from './NotSignedInDialog';
 
 export const AddToWishList = ({
   productName,
@@ -24,9 +25,8 @@ export const AddToWishList = ({
   selectedColor,
 }: AddToWishListProps) => {
   const [showDialog, setShowDialog] = useState(false);
-  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
-
-  const router = useRouter();
+  const { showSuccessDialog, setShowSuccessDialog } =
+    useWishlistSuccessDialogStore();
 
   const { userId } = useUser();
 
@@ -83,6 +83,8 @@ export const AddToWishList = ({
       </button>
 
       <NotSignedInDialog
+        title="💚 SAVE TO WISHLIST"
+        description="Found something you adore? 💫 Your wishlist is the perfect place to keep all your favorite finds — outfits, accessories, and little obsessions — safe and easy to revisit anytime."
         showDialog={showDialog}
         setShowDialog={setShowDialog}
       />
@@ -126,12 +128,13 @@ export const AddToWishList = ({
               </div>
             </div>
 
-            <button
-              onClick={() => router.push('/wishlist')}
+            <Link
+              href="/wishlist"
+              onClick={() => setShowSuccessDialog(false)}
               className="mt-5 cursor-pointer rounded-3xl bg-black py-4 text-center leading-tight font-medium text-white hover:bg-neutral-900"
             >
               View Wishlist
-            </button>
+            </Link>
           </DialogContent>
         </Dialog>
       )}

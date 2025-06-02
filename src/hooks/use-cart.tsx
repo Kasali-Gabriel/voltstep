@@ -1,4 +1,4 @@
-import { CartItem, CartState } from '@/types';
+import { CartItem, CartState } from '@/types/auth';
 import { toast } from 'sonner';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';

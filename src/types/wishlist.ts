@@ -29,10 +29,7 @@ export interface WishListItemCardProps {
   isPage?: boolean;
 }
 
-export interface AddToBagButtonProps {
-  onClick?: () => void;
-  className?: string;
-}
+
 
 export interface RemoveFromWishlistButtonProps {
   onClick: () => void;

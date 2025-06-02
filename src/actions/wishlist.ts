@@ -1,5 +1,5 @@
 import prisma from '@/lib/prismaDb';
-import { WishListItem } from '@/types';
+import { WishListItem } from '@/types/auth';
 
 // Add a product to the user's wishlist
 export async function addToWishlist(userId: string, item: WishListItem) {

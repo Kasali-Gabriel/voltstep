@@ -1,6 +1,6 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { ReviewFiltersProps } from '@/types';
+import { ReviewFiltersProps } from '@/types/auth';
 import { ArrowUpDown, FunnelIcon, Star, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
@@ -116,7 +116,7 @@ export function SelectedFilters({
         <span className="flex items-center rounded-full bg-neutral-200 px-3 py-1 text-sm">
           {rating === '1' ? '1 star' : `${rating} stars`}
           <button
-            className="mt-0.5 ml-2 text-neutral-600 cursor-pointer hover:text-red-500 focus:outline-none"
+            className="mt-0.5 ml-2 cursor-pointer text-neutral-600 hover:text-red-500 focus:outline-none"
             aria-label="Remove rating filter"
             onClick={() => setRating('')}
             type="button"
