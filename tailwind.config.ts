@@ -11,6 +11,8 @@ module.exports = {
       animation: {
         'caret-blink': 'caret-blink 1.25s ease-out infinite',
       },
+      gridTemplateColumns: ['landscape'],
+      gridTemplateRows: ['portrait'],
     },
   },
 };

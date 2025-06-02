@@ -1,13 +1,13 @@
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { ChevronRight } from 'lucide-react';
+import { MoveRight } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip';
-import StarRating from './star-rating';
 import { RatingsPreview } from './ratingsPreview';
+import StarRating from './star-rating';
 
 export const Ratings = ({
   reviews,
@@ -65,7 +65,7 @@ export const Ratings = ({
                 className="flex cursor-pointer items-center justify-center text-sm font-semibold text-neutral-700 underline-offset-2 hover:text-black hover:underline"
               >
                 <span>See customer reviews</span>
-                <ChevronRight size={15} />
+                <MoveRight size={15} className="ml-2" />
               </button>
 
               <TooltipPrimitive.Arrow className="z-50 size-4 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px] border-r border-b bg-white fill-white" />

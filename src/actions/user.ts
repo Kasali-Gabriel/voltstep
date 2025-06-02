@@ -1,5 +1,5 @@
 import { User } from '@/generated/prisma';
-import prisma from './prismaDb';
+import prisma from '../lib/prismaDb';
 
 export async function createUser(data: User) {
   try {
@@ -16,8 +16,8 @@ export async function getUserById({
   id,
   clerkUserId,
 }: {
-  id: string;
-  clerkUserId: string;
+  id?: string;
+  clerkUserId?: string;
 }) {
   try {
     if (!id && !clerkUserId) throw new Error('id or clearkUserId is required');

@@ -1,11 +1,13 @@
 import { useCartStore } from '@/hooks/use-cart';
 import { useBagStore } from '@/lib/state';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ShieldCheck, ShoppingBag, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import { forwardRef, useEffect, useRef, useState } from 'react';
+import SignedOutComponent from '../Authentication/signedOut';
 import {
   Drawer,
   DrawerContent,
@@ -23,6 +25,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet';
+import { WishList } from '../Wishlist/WishList';
 import { BagContent } from './BagContent';
 
 export const Bag = () => {
@@ -50,13 +53,16 @@ export const Bag = () => {
     <button
       ref={ref}
       {...props}
-      className={['relative flex cursor-pointer', props.className]
+      className={[
+        'relative flex cursor-pointer rounded-full p-2 hover:bg-neutral-200',
+        props.className,
+      ]
         .filter(Boolean)
         .join(' ')}
     >
       <ShoppingBag size={20} strokeWidth={1.25} className="h-6 w-6" />
       {items.length > 0 && (
-        <span className="absolute bottom-3 left-3 flex size-5 items-center justify-center rounded-full bg-slate-400 p-0.5 text-sm text-white">
+        <span className="absolute bottom-5 left-5 flex size-5 items-center justify-center rounded-full bg-slate-400 p-0.5 text-sm text-white">
           {items.length}
         </span>
       )}
@@ -143,15 +149,28 @@ export const Bag = () => {
           className={`flex-1 overflow-y-auto px-4 sm:px-10 ${isScrolled ? '' : 'my-6 lg:mt-3'}`}
           style={{ position: 'relative' }}
         >
-          {activeTab === 'bag' && <BagContent />}
+          {activeTab === 'bag' && <BagContent setActiveTab={setActiveTab} />}
 
-          {/* TODO add wishlist tab */}
-          {activeTab === 'wishlist' && <div></div>}
+          {activeTab === 'wishlist' && (
+            <>
+              <SignedIn>
+                <WishList isPage={false} />
+              </SignedIn>
+
+              <SignedOut>
+                <SignedOutComponent
+                  isSheet
+                  title="💚 SAVE TO WISHLIST"
+                  description="Found something you adore? 💫 Your wishlist is the perfect place to keep all your favorite finds — outfits, accessories, and little obsessions — safe and easy to revisit anytime."
+                />
+              </SignedOut>
+            </>
+          )}
         </div>
 
         {/* TODO checkout page and stripe */}
         <div
-          className={`px-4 z-20 sm:px-10 ${notAtBottom && isScrolled ? 'shadow-[0_-10px_10px_-3px_rgba(0,0,0,0.3)]' : ''}`}
+          className={`z-20 px-4 sm:px-10 ${notAtBottom && isScrolled ? 'shadow-[0_-10px_10px_-3px_rgba(0,0,0,0.3)]' : ''}`}
         >
           {items.length > 0 && activeTab === 'bag' && (
             <button className="mt-4 mb-6 flex w-full cursor-pointer justify-center space-x-3 rounded-4xl bg-black py-3 text-center font-bold text-white hover:bg-stone-900 md:py-4 xl:mb-2">
@@ -172,7 +191,7 @@ export const Bag = () => {
             <BagButton />
           </DrawerTrigger>
           <DrawerContent
-            className="h-full w-full"
+            className="z-60 h-full w-full"
             onPointerDownOutside={(e) => {
               if (
                 e.target instanceof Element &&
@@ -199,7 +218,7 @@ export const Bag = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="h-full w-[35rem] xl:w-[32rem]"
+            className="z-[60] h-full w-[35rem] xl:w-[32rem]"
             onPointerDownOutside={(e) => {
               if (
                 e.target instanceof Element &&

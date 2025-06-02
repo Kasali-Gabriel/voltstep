@@ -1,16 +1,30 @@
 import { colorHexCodes } from '@/constants/colorData';
-import { ColorSelectorProps, SizeSelectorProps } from '@/types';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { ColorSelectorProps } from '@/types';
+import { useEffect, useRef, useState } from 'react';
 
 export const ColorSelector = ({
   colors,
   selectedColor,
   setSelectedColor,
-  isMobile,
 }: ColorSelectorProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const selectedColorRef = useRef<HTMLButtonElement | null>(null);
   const [reorderedColors, setReorderedColors] = useState<string[]>(colors);
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [isScrolledAwayFromStart, setIsScrolledAwayFromStart] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     setReorderedColors(colors); // Reset when color list changes
@@ -43,6 +57,26 @@ export const ColorSelector = ({
     }
   }, [selectedColor, isMobile]);
 
+  // Track scroll position
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const onScroll = () => {
+      setIsScrolledAwayFromStart(container.scrollLeft > 10);
+    };
+
+    container.addEventListener('scroll', onScroll);
+
+    setIsScrolledAwayFromStart(container.scrollLeft > 10);
+
+    return () => {
+      container.removeEventListener('scroll', onScroll);
+    };
+  }, [isMobile]);
+
+
   const handleColorClick = (color: string) => {
     setSelectedColor(color);
 
@@ -61,11 +95,10 @@ export const ColorSelector = ({
   };
 
   return (
-    <div className="mt-7 flex flex-col items-start justify-start">
-      <h2 className="text-lg font-semibold">Colors</h2>
+    <div className="mt-5 flex max-w-[90vw] flex-col items-start justify-start">
       <div
         ref={containerRef}
-        className="flex w-full max-w-[90vw] gap-4 overflow-x-auto px-3 py-2 pt-2 sm:flex-wrap"
+        className={`flex gap-4 overflow-x-auto px-3 py-2 pt-2 sm:flex-wrap ${isScrolledAwayFromStart ? 'w-screen -ml-4' : 'w-full'}`}
       >
         {reorderedColors.map((color: string) => (
           <div key={color} className="flex flex-col items-center">
@@ -91,38 +124,3 @@ export const ColorSelector = ({
     </div>
   );
 };
-
-export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
-  ({ sizes, selectedSize, setSelectedSize, sizeError }, ref) => (
-    <div ref={ref} className="justify-star mt-7 flex flex-col items-start">
-      <h2 className="text-lg font-semibold">Sizes</h2>
-      <div
-        className={`mt-2 flex flex-wrap gap-2 rounded-md border ${
-          sizeError ? 'border-red-500 p-2' : 'border-white'
-        }`}
-      >
-        {sizes.map((size) => (
-          <div key={size} className="flex flex-col items-center">
-            <button
-              onClick={() => setSelectedSize(size)}
-              className={`flex h-10 w-14 cursor-pointer items-center justify-center rounded-md border text-center transition-colors duration-150 ${
-                selectedSize === size ? 'border-black' : 'border-stone-200'
-              }`}
-              aria-label={`Select size ${size}`}
-            >
-              {size}
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {sizeError && (
-        <p className="mt-2 text-sm text-red-500">
-          Please select a size before adding to bag.
-        </p>
-      )}
-    </div>
-  ),
-);
-
-SizeSelector.displayName = 'SizeSelector';

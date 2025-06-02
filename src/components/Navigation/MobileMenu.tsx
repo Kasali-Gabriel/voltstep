@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { fetchCatalogData } from '@/lib/utils';
 import { Catalog } from '@/types/product';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { ChevronDown, ChevronUp, Heart, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import {
   Sheet,
@@ -20,10 +20,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet';
+import { ViewWishlist } from '../Wishlist/ViewWishlist';
 
 const MobileMenu = () => {
   const [catalogs, setCatalogs] = useState<Catalog[]>([]);
   const [open, setOpen] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,7 @@ const MobileMenu = () => {
   }, []);
 
   return (
-    <Sheet>
+    <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger className="cursor-pointer">
         <Menu size={30} strokeWidth={1.25} />
       </SheetTrigger>
@@ -47,9 +49,7 @@ const MobileMenu = () => {
           </VisuallyHidden>
 
           <div className="flex w-full items-center justify-between px-4 pt-4">
-            <button className="cursor-pointer">
-              <Heart size={20} strokeWidth={1.5} className="h-7 w-7" />
-            </button>
+            <ViewWishlist setSheetOpen={setSheetOpen} />
 
             <SheetClose>
               <X

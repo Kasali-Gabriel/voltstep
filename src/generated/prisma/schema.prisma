@@ -10,15 +10,16 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  email       String   @unique
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  email       String     @unique
   firstName   String
   lastName    String
   imageUrl    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   clerkUserId String?
-  reviews     Review[] @relation("UserReviews")
+  wishList    WishList[] @relation("UserToWishList")
+  reviews     Review[]   @relation("UserReviews")
   orders      Order[]
 }
 
@@ -66,6 +67,7 @@ model Product {
   subcategoryId String      @db.ObjectId
   subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
   orderItems    OrderItem[]
+  wishLists     WishList[]  @relation("ProductToWishList")
 }
 
 model Review {
@@ -97,6 +99,19 @@ model OrderItem {
   productId String  @db.ObjectId
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int     @default(1)
+}
+
+model WishList {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  user          User     @relation("UserToWishList", fields: [userId], references: [id])
+  productId     String   @db.ObjectId
+  product       Product  @relation("ProductToWishList", fields: [productId], references: [id])
+  selectedSize  String?
+  selectedColor String?
+  createdAt     DateTime @default(now())
+
+  @@unique([userId, productId])
 }
 
 enum Tag {

@@ -22,13 +22,14 @@ export interface SizeSelectorProps {
   selectedSize: string | null;
   setSelectedSize: (size: string) => void;
   sizeError?: boolean;
+  setSizeError?: (error: boolean) => void;
+  isTitle?: boolean;
 }
 
 export interface ColorSelectorProps {
   colors: string[];
   selectedColor: string | null;
   setSelectedColor: (color: string) => void;
-  isMobile: boolean;
 }
 
 export interface ReviewFiltersProps {
@@ -40,7 +41,6 @@ export interface ReviewFiltersProps {
   setSortOrder: (s: string) => void;
 }
 
-// TODO add cart items to user database and create a model for CartItem
 export interface CartItem {
   id: string;
   name: string;
@@ -49,6 +49,7 @@ export interface CartItem {
   image?: string;
   selectedSize?: string;
   selectedColor?: string;
+  slug: string;
 }
 
 export interface CartState {
@@ -60,4 +61,10 @@ export interface CartState {
   getSubTotal: () => string;
   getShippingFee: () => number;
   getTotal: () => string;
+}
+
+export interface SignedOutProp {
+  title: string;
+  description: string;
+  isSheet?: boolean;
 }

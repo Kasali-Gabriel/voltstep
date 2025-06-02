@@ -17,9 +17,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Bag } from '../Bag/Bag';
 import { SearchBar, SearchView } from '../Search/Search';
-import { Wishlist } from '../Wishlist/WishList';
 import MobileMenu from './MobileMenu';
 import NavMenu from './NavMenu';
+import { ViewWishlist } from '../Wishlist/ViewWishlist';
 
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex h-16 flex-col items-center justify-center p-2 sm:p-4 md:h-32 xl:h-16">
+    <nav className="flex h-16 relative flex-col items-center justify-center">
       {isClient && (
         <>
           <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
@@ -43,42 +43,46 @@ const Navbar = () => {
       )}
 
       <div className="flex w-full items-center justify-between">
-        <div className="flex items-center justify-center space-x-5 md:hidden">
+        <div className="flex items-center justify-center space-x-4 md:hidden">
           <MobileMenu />
 
           <SearchView />
         </div>
 
-        <div className="flex items-center justify-center space-x-10">
-          <Link href="/" className="flex items-center space-x-2">
+        <div className="flex items-center space-x-10">
+          <Link href="/" className="flex items-center">
             <Image
               src={bigLogo}
-              height={40}
+              height={35}
               alt="logo"
-              className="hidden sm:block"
+              className="hidden lg:block"
             />
 
             <Image
               src={smallLogo}
               height={55}
               alt="logo"
-              className="ml-7 sm:hidden"
+              className="ml-8 md:ml-0 lg:hidden"
             />
           </Link>
 
-          <div className="hidden xl:flex">
+          <div className="hidden md:flex">
             <NavMenu />
           </div>
         </div>
 
-        <div className="hidden items-center justify-center md:flex">
+        <div className="hidden items-center justify-center xl:flex">
           <SearchBar />
         </div>
 
-        <div className="flex items-center justify-center space-x-5 sm:space-x-7">
+        <div className="flex items-center justify-center space-x-4">
+          <div className="mt-2 hidden md:block xl:hidden">
+            <SearchView />
+          </div>
+
           <Bag />
 
-          <Wishlist />
+          <ViewWishlist isNavBar />
 
           {isClient && (
             <>
@@ -94,17 +98,13 @@ const Navbar = () => {
 
               <SignedIn>
                 {/* TODO cutom drop down menu wit clerks accout profile signout, then manage orders */}
-                <div className="mt-1 cursor-pointer md:h-8 md:w-8">
+                <div className="mt-1 cursor-pointer md:size-8">
                   <UserButton />
                 </div>
               </SignedIn>
             </>
           )}
         </div>
-      </div>
-
-      <div className="mt-3 hidden w-full items-center justify-start md:flex xl:hidden">
-        <NavMenu />
       </div>
     </nav>
   );

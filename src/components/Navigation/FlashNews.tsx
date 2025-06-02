@@ -2,6 +2,7 @@
 
 import { Pause, Play } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const messages = [
@@ -13,6 +14,8 @@ const messages = [
 export default function FlashNews() {
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  const pathName = usePathname();
 
   useEffect(() => {
     if (isPaused) return;
@@ -31,7 +34,9 @@ export default function FlashNews() {
   };
 
   return (
-    <div className="relative flex h-12 w-full justify-end overflow-hidden bg-neutral-200 text-center text-sm font-semibold md:text-base">
+    <div
+      className={`relative -mx-5 flex h-12 w-screen justify-end overflow-hidden bg-neutral-200 text-center text-sm font-semibold sm:-mx-10 md:text-base xl:-mx-16 ${pathName === '/' ? 'hidden' : ''}`}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={messages[index]}
@@ -48,7 +53,7 @@ export default function FlashNews() {
 
       <button
         onClick={() => setIsPaused(!isPaused)}
-        className="z-20 mx-3 flex cursor-pointer items-center justify-end md:mx-10"
+        className="z-20 flex cursor-pointer items-center justify-end px-3 sm:px-10 xl:px-16"
       >
         {isPaused ? (
           <Play size={20} className="scale-90 fill-black sm:scale-100" />

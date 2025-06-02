@@ -6,32 +6,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Swiper as SwiperType } from 'swiper';
 import { FreeMode, Navigation, Pagination, Thumbs } from 'swiper/modules';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-
-const SwiperNavBtns = () => {
-  const swiper = useSwiper();
-
-  return (
-    <div className="absolute bottom-0 z-50 flex w-full -translate-y-1/2 items-center justify-end gap-2 pr-5">
-      <button
-        className="size-10 cursor-pointer justify-items-center rounded-full bg-white text-black hover:bg-neutral-100"
-        onClick={() => swiper.slidePrev()}
-      >
-        <ChevronLeft strokeWidth={2} size={30} />
-      </button>
-
-      <button
-        className="size-10 cursor-pointer justify-items-center rounded-full bg-white text-black hover:bg-neutral-100"
-        onClick={() => swiper.slideNext()}
-      >
-        <ChevronRight strokeWidth={2} size={30} />
-      </button>
-    </div>
-  );
-};
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperNavBtn } from './swiperNavBtn';
 
 export const DeliverySwiper = () => (
   <Swiper
@@ -95,9 +73,9 @@ export const SmallScreenSwiper = ({
               <Image
                 src={image.src}
                 alt={image.alt}
-                className="h-[80vh] w-screen border object-cover shadow-lg transition-transform duration-300"
-                width={100}
-                height={100}
+                className="h-[90vh] w-screen border object-cover shadow-lg transition-transform duration-300"
+                width={600}
+                height={800}
               />
             </div>
           </SwiperSlide>
@@ -129,7 +107,7 @@ export const LargeScreenSwiper = ({
   }, [isMobile]);
 
   return (
-    <div className="sticky top-10 flex h-[32rem] gap-5 lg:max-w-[45vw] xl:h-[37.5rem]">
+    <div className="sticky top-10 flex h-[32rem] gap-5 will-change-transform lg:max-w-[45vw] xl:h-[37.5rem]">
       {/* Thumbnail */}
       <Swiper
         onSwiper={setMainSwiper}
@@ -157,11 +135,10 @@ export const LargeScreenSwiper = ({
                 setActiveIndex(index);
               }}
             >
-              {/* FIXME images on swipers not optimized beacause of size  */}
               <Image
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full rounded object-cover"
+                className="h-full w-full rounded object-cover cursor-grab lg:cursor-default"
                 width={600}
                 height={800}
               />
@@ -171,7 +148,9 @@ export const LargeScreenSwiper = ({
       </Swiper>
 
       {/* Images */}
+      {/* FIXME images on swipers not optimized beacause of size  */}
       <Swiper
+        key={isMobile ? 'mobile' : 'desktop'}
         slidesPerView={1}
         onSwiper={setMainSwiper}
         loop={true}
@@ -180,7 +159,7 @@ export const LargeScreenSwiper = ({
         }}
         allowTouchMove={isMobile}
         modules={[Navigation, Thumbs]}
-        className="relative h-full w-full"
+        className="relative h-full w-full rounded-md"
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className="w-full">
@@ -188,15 +167,16 @@ export const LargeScreenSwiper = ({
               <Image
                 src={image.src}
                 alt={image.alt}
-                className="h-[65vh] w-auto border object-cover shadow-lg transition-transform duration-300 lg:h-[32rem] lg:w-full lg:rounded-lg xl:h-[37.5rem]"
-                width={100}
-                height={100}
+                priority
+                height={800}
+                width={600}
+                className="object-cover"
               />
             </div>
           </SwiperSlide>
         ))}
 
-        <SwiperNavBtns />
+        <SwiperNavBtn />
       </Swiper>
     </div>
   );

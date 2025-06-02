@@ -1,7 +1,7 @@
 import { Toaster } from '@/components/ui/sonner';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
-import { Outfit, Inter } from 'next/font/google';
+import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -32,11 +32,11 @@ export default function RootLayout({
         </head>
 
         <body>
-          <main>{children}</main>
-          <Toaster
-            toastOptions={{ style: { pointerEvents: 'auto' } }}
-            swipeDirections={['left', 'right']}
-          />
+              <main>{children}</main>
+              <Toaster
+                toastOptions={{ style: { pointerEvents: 'auto' } }}
+                swipeDirections={['left', 'right']}
+              />
         </body>
       </html>
     </ClerkProvider>

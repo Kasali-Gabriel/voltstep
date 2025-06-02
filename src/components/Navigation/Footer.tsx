@@ -32,7 +32,7 @@ const Footer = () => {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <div className="mt-14 flex w-full flex-col px-5 sm:px-10 md:px-16 xl:px-24">
+    <div className="mt-14 flex w-full flex-col">
       <div className="grid gap-2 border-t-2 border-neutral-200 pt-10 md:grid-cols-3 md:gap-14 xl:grid-cols-5">
         {footerData.map((data, index) => (
           <div key={index} className="hidden md:block">

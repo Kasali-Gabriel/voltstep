@@ -1,4 +1,9 @@
-import { createUser, deleteUser, getUserById, updateUser } from '@/lib/user';
+import {
+  createUser,
+  deleteUser,
+  getUserById,
+  updateUser,
+} from '@/actions/user';
 import { User } from '@/types/product';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
