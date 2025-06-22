@@ -1,6 +1,5 @@
-import { Review } from "./review";
-
-
+import { Review } from './review';
+import { SearchedProduct } from './search';
 
 export interface Catalog {
   id: string;
@@ -65,4 +64,26 @@ export interface ColorSelectorProps {
   colors: string[];
   selectedColor: string | null;
   setSelectedColor: (color: string) => void;
+}
+
+export interface ProductCardProps {
+  product: Product;
+  setQuery?: (q: string) => void;
+}
+
+export interface ProductCardFlexibleProps {
+  query?: boolean;
+  product?: ProductCardProps['product'];
+  SearchedProduct?: SearchedProduct;
+  loading: boolean;
+  setQuery?: (q: string) => void;
+  recordViewedProduct?: (product: SearchedProduct) => void;
+  isPage?: boolean;
+}
+
+export interface ProductListProps {
+  query?: string;
+  products?: Product[];
+  slug?: string[];
+  loading?: boolean;
 }

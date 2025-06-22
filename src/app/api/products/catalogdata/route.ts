@@ -1,22 +1,14 @@
-import prisma from '@/lib/prismaDb';
+import { fetchCatalogData } from '@/actions/products';
+import { Catalog } from '@/types/product';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
-  try {
-    const productsCatalogs = await prisma.catalog.findMany({
-      include: {
-        categories: {
-          include: {
-            subcategories: true,
-          },
-        },
-      },
+const cachedCatalogData: Catalog[] | undefined = undefined;
 
-      cacheStrategy: {
-        ttl: 600,
-        swr: 3600,
-      },
-    });
+export async function GET() {
+  if (cachedCatalogData) return NextResponse.json(cachedCatalogData);
+
+  try {
+    const productsCatalogs = await fetchCatalogData();
 
     if (!productsCatalogs || productsCatalogs.length === 0) {
       return NextResponse.json(

@@ -6,7 +6,7 @@ import { useWishlistContext } from '@/context/WishlistContext';
 const Page = () => {
   const { wishlist } = useWishlistContext();
   return (
-    <div className="flex w-full flex-col justify-center space-y-10 pt-4">
+    <div className="flex w-full flex-col justify-center space-y-10 px-5 pt-4 sm:px-10 xl:px-12">
       {wishlist.length > 0 && (
         <h2 className="text-xl font-medium lg:text-2xl">
           Your WishList

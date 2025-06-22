@@ -1,4 +1,5 @@
-import { SizeSelectorProps } from '@/types/auth';
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { SizeSelectorProps } from '@/types/product';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
@@ -16,21 +17,9 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
     const containerRef = useRef<HTMLDivElement | null>(null);
     const selectedSizeRef = useRef<HTMLButtonElement | null>(null);
     const [reorderedSizes, setReorderedSizes] = useState<string[]>(sizes);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile] = useIsMobile();
     const [isScrolledAwayFromStart, setIsScrolledAwayFromStart] =
       useState(false);
-
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth < 640);
-      };
-      handleResize();
-      window.addEventListener('resize', handleResize);
-
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
 
     useEffect(() => {
       setReorderedSizes(sizes); // Reset when size list changes
@@ -39,7 +28,6 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
     useEffect(() => {
       if (isMobile && selectedSizeRef.current) {
         const button = selectedSizeRef.current;
-
         const container = button.closest(
           '.overflow-x-auto',
         ) as HTMLElement | null;
@@ -92,9 +80,9 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
       setSelectedSize(size);
       if (isMobile && containerRef.current) {
         const scrollLeft = containerRef.current.scrollLeft;
-        const isScrolledAwayFromStart = scrollLeft > 10;
+        const scrolledAway = scrollLeft > 10;
 
-        if (isScrolledAwayFromStart) {
+        if (scrolledAway) {
           // Move selected size to front
           setReorderedSizes([size, ...sizes.filter((s) => s !== size)]);
 
@@ -104,6 +92,18 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
       }
     };
 
+    // Compose className only once to avoid duplicate attributes
+    const containerClassName = [
+      'mt-2 flex gap-2 rounded-md border py-1',
+      sizeError ? 'border-red-500 px-1' : 'border-transparent',
+      isMobile && !isTitle
+        ? 'overflow-x-auto border-transparent py-2'
+        : 'flex-wrap',
+      isScrolledAwayFromStart
+        ? '-ml-4 w-[90vw] pr-4 transition-all duration-20'
+        : 'w-fit max-w-full transition-all duration-20',
+    ].join(' ');
+
     return (
       <div
         ref={ref}
@@ -111,16 +111,7 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
       >
         {isTitle && <h2 className="text-lg font-semibold">Select Size</h2>}
 
-        <div
-          ref={containerRef}
-          className={`mt-2 flex gap-2 rounded-md border py-1 ${
-            sizeError ? 'border-red-500 px-1' : 'border-transparent'
-          } ${isMobile && !isTitle ? 'overflow-x-auto border-transparent py-2' : 'flex-wrap'} ${
-            isScrolledAwayFromStart
-              ? '-ml-4 w-[90vw] pr-4 transition-all duration-20'
-              : 'w-fit max-w-full transition-all duration-20'
-          } `}
-        >
+        <div ref={containerRef} className={containerClassName}>
           {reorderedSizes.map((size) => (
             <div key={size} className="flex flex-col items-center">
               <button

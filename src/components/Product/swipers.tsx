@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { Swiper as SwiperType } from 'swiper';
 import { FreeMode, Navigation, Pagination, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -92,19 +93,11 @@ export const LargeScreenSwiper = ({
 }) => {
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile] = useIsMobile(1024);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [isMobile]);
+    // No need for resize logic here, handled by useIsMobile
+  }, []);
 
   return (
     <div className="sticky top-10 flex h-[32rem] gap-5 will-change-transform lg:max-w-[45vw] xl:h-[37.5rem]">
@@ -138,7 +131,7 @@ export const LargeScreenSwiper = ({
               <Image
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full rounded object-cover cursor-grab lg:cursor-default"
+                className="h-full w-full cursor-grab rounded object-cover lg:cursor-default"
                 width={600}
                 height={800}
               />
@@ -148,7 +141,6 @@ export const LargeScreenSwiper = ({
       </Swiper>
 
       {/* Images */}
-      {/* FIXME images on swipers not optimized beacause of size  */}
       <Swiper
         key={isMobile ? 'mobile' : 'desktop'}
         slidesPerView={1}

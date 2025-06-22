@@ -1,8 +1,7 @@
 'use client';
 
-import { fetchCatalogData } from '@/lib/utils';
 import { Catalog, Category, Subcategory } from '@/types/product';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,43 +10,44 @@ import {
   NavigationMenuTrigger,
 } from '../ui/navigation-menu';
 
-const NavMenu = () => {
-  const [catalogs, setCatalogs] = useState<Catalog[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchCatalogData();
-      setCatalogs(data);
-    };
-    fetchData();
-  }, []);
-
+const NavMenu = ({ catalogs }: { catalogs: Catalog[] }) => {
   return (
     <div className="flex w-full items-center">
-      <NavigationMenu delayDuration={0}>
+      <NavigationMenu>
         <NavigationMenuList>
-          {catalogs.map((product) => (
-            <NavigationMenuItem key={product.id}>
-              <NavigationMenuTrigger className="cursor-pointer font-bold">
-                {product.name}
+          {catalogs.map((catalog: Catalog) => (
+            <NavigationMenuItem key={catalog.id}>
+              <NavigationMenuTrigger className="cursor-pointer font-bold hover:bg-neutral-200">
+                <Link key={catalog.id} href={`/products/${catalog.slug}`}>
+                  {catalog.name}
+                </Link>
               </NavigationMenuTrigger>
+
               <NavigationMenuContent>
                 <div className="grid w-[500px] grid-cols-3 gap-10 p-4 lg:w-[600px]">
-                  {product.categories.map((category: Category) => (
+                  {catalog.categories.map((category: Category) => (
                     <div key={category.id} className="space-y-4 text-sm">
                       <h4 className="font-semibold uppercase">
-                        {category.name}
+                        <Link
+                          key={category.id}
+                          href={`/products/${catalog.slug}/${category.slug}`}
+                        >
+                          {category.name}
+                        </Link>
                       </h4>
 
                       <div className="flex flex-col space-y-3">
-                        {category.subcategories?.map((sub: Subcategory) => (
-                          <div
-                            className="flex w-full cursor-pointer items-start justify-start font-semibold text-stone-500 hover:text-black"
-                            key={sub.id}
-                          >
-                            {sub.name}
-                          </div>
-                        ))}
+                        {category.subcategories?.map(
+                          (subcategory: Subcategory) => (
+                            <Link
+                              className="flex w-full cursor-pointer items-start justify-start font-semibold text-stone-500 hover:text-black"
+                              key={subcategory.id}
+                              href={`/products/${catalog.slug}/${category.slug}/${subcategory.slug}`}
+                            >
+                              {subcategory.name}
+                            </Link>
+                          ),
+                        )}
                       </div>
                     </div>
                   ))}

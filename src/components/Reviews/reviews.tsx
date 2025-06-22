@@ -93,8 +93,6 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
       ref={reviewsRef}
       className="flex w-full flex-col space-y-3 pt-2 text-sm sm:space-y-6"
     >
-      <div>{/* TODO AI summarize customer reviews */}</div>
-
       <ReviewFilters
         rating={rating}
         setRating={setRating}

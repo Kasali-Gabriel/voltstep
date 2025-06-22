@@ -1,4 +1,5 @@
 import { useCartStore } from '@/hooks/use-cart';
+import { useShadowOnScroll } from '@/hooks/useShadowOnscroll';
 import { useBagStore } from '@/lib/state';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ShieldCheck, ShoppingBag, X } from 'lucide-react';
 import { motion } from 'motion/react';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import SignedOutComponent from '../Authentication/signedOut';
 import {
   Drawer,
@@ -73,38 +74,20 @@ export const Bag = () => {
 
   const Tab = () => {
     const [activeTab, setActiveTab] = useState<'bag' | 'wishlist'>('bag');
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [notAtBottom, setNotAtBottom] = useState(false);
-    const scrollRef = useRef<HTMLDivElement>(null);
 
     const tabs = [
       { key: 'bag', icon: faBagShopping },
       { key: 'wishlist', icon: faHeart },
     ];
 
-    useEffect(() => {
-      const handleScroll = () => {
-        const el = scrollRef.current;
-        if (!el) return;
-        setIsScrolled(el.scrollTop > 0);
-        setNotAtBottom(el.scrollTop + el.clientHeight < el.scrollHeight - 1);
-      };
-      const el = scrollRef.current;
-      if (el) {
-        el.addEventListener('scroll', handleScroll);
-        // Initial check
-        handleScroll();
-      }
-      return () => {
-        if (el) el.removeEventListener('scroll', handleScroll);
-      };
-    }, [scrollRef]);
+    const { scrollRef, notAtBottom, isScrolled, setIsScrolled } =
+      useShadowOnScroll();
 
     return (
       <div className="relative flex h-full w-full flex-col pb-2">
         <div
           className={
-            'sticky top-0 z-20 flex w-full items-center justify-between bg-white p-2 px-4 transition-shadow sm:px-10 sm:py-3 md:py-5' +
+            'sticky top-0 z-20 flex w-full items-center justify-between bg-white px-4 py-2 transition-shadow duration-75 sm:px-10 sm:py-3 md:py-5' +
             (isScrolled ? ' shadow-[0_10px_10px_-3px_rgba(0,0,0,0.3)]' : '')
           }
         >
@@ -146,8 +129,11 @@ export const Bag = () => {
 
         <div
           ref={scrollRef}
-          className={`flex-1 overflow-y-auto px-4 sm:px-10 ${isScrolled ? '' : 'my-6 lg:mt-3'}`}
-          style={{ position: 'relative' }}
+          onScroll={(e) => {
+            const scrollTop = e.currentTarget.scrollTop;
+            setIsScrolled(scrollTop > 0);
+          }}
+          className={`relative flex-1 overflow-y-auto px-4 sm:px-10 ${isScrolled ? '' : 'my-6 lg:mt-3'}`}
         >
           {activeTab === 'bag' && <BagContent setActiveTab={setActiveTab} />}
 

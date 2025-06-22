@@ -58,6 +58,21 @@ export type OrderItem = $Result.DefaultSelection<Prisma.$OrderItemPayload>
  * 
  */
 export type WishList = $Result.DefaultSelection<Prisma.$WishListPayload>
+/**
+ * Model PopularSearch
+ * 
+ */
+export type PopularSearch = $Result.DefaultSelection<Prisma.$PopularSearchPayload>
+/**
+ * Model SearchHistory
+ * 
+ */
+export type SearchHistory = $Result.DefaultSelection<Prisma.$SearchHistoryPayload>
+/**
+ * Model ViewedProduct
+ * 
+ */
+export type ViewedProduct = $Result.DefaultSelection<Prisma.$ViewedProductPayload>
 
 /**
  * Enums
@@ -259,6 +274,36 @@ export class PrismaClient<
     * ```
     */
   get wishList(): Prisma.WishListDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.popularSearch`: Exposes CRUD operations for the **PopularSearch** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PopularSearches
+    * const popularSearches = await prisma.popularSearch.findMany()
+    * ```
+    */
+  get popularSearch(): Prisma.PopularSearchDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.searchHistory`: Exposes CRUD operations for the **SearchHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SearchHistories
+    * const searchHistories = await prisma.searchHistory.findMany()
+    * ```
+    */
+  get searchHistory(): Prisma.SearchHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.viewedProduct`: Exposes CRUD operations for the **ViewedProduct** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ViewedProducts
+    * const viewedProducts = await prisma.viewedProduct.findMany()
+    * ```
+    */
+  get viewedProduct(): Prisma.ViewedProductDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -317,8 +362,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.2
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.9.0
+   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
    */
   export type PrismaVersion = {
     client: string
@@ -707,7 +752,10 @@ export namespace Prisma {
     Review: 'Review',
     Order: 'Order',
     OrderItem: 'OrderItem',
-    WishList: 'WishList'
+    WishList: 'WishList',
+    PopularSearch: 'PopularSearch',
+    SearchHistory: 'SearchHistory',
+    ViewedProduct: 'ViewedProduct'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -726,7 +774,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "catalog" | "category" | "subcategory" | "product" | "review" | "order" | "orderItem" | "wishList"
+      modelProps: "user" | "catalog" | "category" | "subcategory" | "product" | "review" | "order" | "orderItem" | "wishList" | "popularSearch" | "searchHistory" | "viewedProduct"
       txIsolationLevel: never
     }
     model: {
@@ -1396,6 +1444,228 @@ export namespace Prisma {
           }
         }
       }
+      PopularSearch: {
+        payload: Prisma.$PopularSearchPayload<ExtArgs>
+        fields: Prisma.PopularSearchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PopularSearchFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PopularSearchFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>
+          }
+          findFirst: {
+            args: Prisma.PopularSearchFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PopularSearchFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>
+          }
+          findMany: {
+            args: Prisma.PopularSearchFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>[]
+          }
+          create: {
+            args: Prisma.PopularSearchCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>
+          }
+          createMany: {
+            args: Prisma.PopularSearchCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PopularSearchDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>
+          }
+          update: {
+            args: Prisma.PopularSearchUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>
+          }
+          deleteMany: {
+            args: Prisma.PopularSearchDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PopularSearchUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PopularSearchUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PopularSearchPayload>
+          }
+          aggregate: {
+            args: Prisma.PopularSearchAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePopularSearch>
+          }
+          groupBy: {
+            args: Prisma.PopularSearchGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PopularSearchGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.PopularSearchFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.PopularSearchAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.PopularSearchCountArgs<ExtArgs>
+            result: $Utils.Optional<PopularSearchCountAggregateOutputType> | number
+          }
+        }
+      }
+      SearchHistory: {
+        payload: Prisma.$SearchHistoryPayload<ExtArgs>
+        fields: Prisma.SearchHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SearchHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SearchHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.SearchHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SearchHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.SearchHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.SearchHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.SearchHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SearchHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>
+          }
+          update: {
+            args: Prisma.SearchHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.SearchHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SearchHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SearchHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.SearchHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSearchHistory>
+          }
+          groupBy: {
+            args: Prisma.SearchHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SearchHistoryGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.SearchHistoryFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.SearchHistoryAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.SearchHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<SearchHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      ViewedProduct: {
+        payload: Prisma.$ViewedProductPayload<ExtArgs>
+        fields: Prisma.ViewedProductFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ViewedProductFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ViewedProductFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>
+          }
+          findFirst: {
+            args: Prisma.ViewedProductFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ViewedProductFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>
+          }
+          findMany: {
+            args: Prisma.ViewedProductFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>[]
+          }
+          create: {
+            args: Prisma.ViewedProductCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>
+          }
+          createMany: {
+            args: Prisma.ViewedProductCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ViewedProductDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>
+          }
+          update: {
+            args: Prisma.ViewedProductUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>
+          }
+          deleteMany: {
+            args: Prisma.ViewedProductDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ViewedProductUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ViewedProductUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViewedProductPayload>
+          }
+          aggregate: {
+            args: Prisma.ViewedProductAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateViewedProduct>
+          }
+          groupBy: {
+            args: Prisma.ViewedProductGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ViewedProductGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ViewedProductFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ViewedProductAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ViewedProductCountArgs<ExtArgs>
+            result: $Utils.Optional<ViewedProductCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1476,6 +1746,9 @@ export namespace Prisma {
     order?: OrderOmit
     orderItem?: OrderItemOmit
     wishList?: WishListOmit
+    popularSearch?: PopularSearchOmit
+    searchHistory?: SearchHistoryOmit
+    viewedProduct?: ViewedProductOmit
   }
 
   /* Types for Logging */
@@ -1573,12 +1846,16 @@ export namespace Prisma {
     wishList: number
     reviews: number
     orders: number
+    viewedProducts: number
+    searchHistories: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     wishList?: boolean | UserCountOutputTypeCountWishListArgs
     reviews?: boolean | UserCountOutputTypeCountReviewsArgs
     orders?: boolean | UserCountOutputTypeCountOrdersArgs
+    viewedProducts?: boolean | UserCountOutputTypeCountViewedProductsArgs
+    searchHistories?: boolean | UserCountOutputTypeCountSearchHistoriesArgs
   }
 
   // Custom InputTypes
@@ -1611,6 +1888,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountViewedProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViewedProductWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSearchHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SearchHistoryWhereInput
   }
 
 
@@ -1982,6 +2273,8 @@ export namespace Prisma {
     wishList?: boolean | User$wishListArgs<ExtArgs>
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    viewedProducts?: boolean | User$viewedProductsArgs<ExtArgs>
+    searchHistories?: boolean | User$searchHistoriesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2003,6 +2296,8 @@ export namespace Prisma {
     wishList?: boolean | User$wishListArgs<ExtArgs>
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    viewedProducts?: boolean | User$viewedProductsArgs<ExtArgs>
+    searchHistories?: boolean | User$searchHistoriesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2012,6 +2307,8 @@ export namespace Prisma {
       wishList: Prisma.$WishListPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       orders: Prisma.$OrderPayload<ExtArgs>[]
+      viewedProducts: Prisma.$ViewedProductPayload<ExtArgs>[]
+      searchHistories: Prisma.$SearchHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2388,6 +2685,8 @@ export namespace Prisma {
     wishList<T extends User$wishListArgs<ExtArgs> = {}>(args?: Subset<T, User$wishListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WishListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    viewedProducts<T extends User$viewedProductsArgs<ExtArgs> = {}>(args?: Subset<T, User$viewedProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    searchHistories<T extends User$searchHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$searchHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2864,6 +3163,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
+   * User.viewedProducts
+   */
+  export type User$viewedProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    where?: ViewedProductWhereInput
+    orderBy?: ViewedProductOrderByWithRelationInput | ViewedProductOrderByWithRelationInput[]
+    cursor?: ViewedProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ViewedProductScalarFieldEnum | ViewedProductScalarFieldEnum[]
+  }
+
+  /**
+   * User.searchHistories
+   */
+  export type User$searchHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    where?: SearchHistoryWhereInput
+    orderBy?: SearchHistoryOrderByWithRelationInput | SearchHistoryOrderByWithRelationInput[]
+    cursor?: SearchHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SearchHistoryScalarFieldEnum | SearchHistoryScalarFieldEnum[]
   }
 
   /**
@@ -11088,6 +11435,2904 @@ export namespace Prisma {
 
 
   /**
+   * Model PopularSearch
+   */
+
+  export type AggregatePopularSearch = {
+    _count: PopularSearchCountAggregateOutputType | null
+    _avg: PopularSearchAvgAggregateOutputType | null
+    _sum: PopularSearchSumAggregateOutputType | null
+    _min: PopularSearchMinAggregateOutputType | null
+    _max: PopularSearchMaxAggregateOutputType | null
+  }
+
+  export type PopularSearchAvgAggregateOutputType = {
+    count: number | null
+  }
+
+  export type PopularSearchSumAggregateOutputType = {
+    count: number | null
+  }
+
+  export type PopularSearchMinAggregateOutputType = {
+    id: string | null
+    query: string | null
+    count: number | null
+    lastSearched: Date | null
+  }
+
+  export type PopularSearchMaxAggregateOutputType = {
+    id: string | null
+    query: string | null
+    count: number | null
+    lastSearched: Date | null
+  }
+
+  export type PopularSearchCountAggregateOutputType = {
+    id: number
+    query: number
+    count: number
+    lastSearched: number
+    _all: number
+  }
+
+
+  export type PopularSearchAvgAggregateInputType = {
+    count?: true
+  }
+
+  export type PopularSearchSumAggregateInputType = {
+    count?: true
+  }
+
+  export type PopularSearchMinAggregateInputType = {
+    id?: true
+    query?: true
+    count?: true
+    lastSearched?: true
+  }
+
+  export type PopularSearchMaxAggregateInputType = {
+    id?: true
+    query?: true
+    count?: true
+    lastSearched?: true
+  }
+
+  export type PopularSearchCountAggregateInputType = {
+    id?: true
+    query?: true
+    count?: true
+    lastSearched?: true
+    _all?: true
+  }
+
+  export type PopularSearchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PopularSearch to aggregate.
+     */
+    where?: PopularSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PopularSearches to fetch.
+     */
+    orderBy?: PopularSearchOrderByWithRelationInput | PopularSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PopularSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PopularSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PopularSearches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PopularSearches
+    **/
+    _count?: true | PopularSearchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PopularSearchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PopularSearchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PopularSearchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PopularSearchMaxAggregateInputType
+  }
+
+  export type GetPopularSearchAggregateType<T extends PopularSearchAggregateArgs> = {
+        [P in keyof T & keyof AggregatePopularSearch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePopularSearch[P]>
+      : GetScalarType<T[P], AggregatePopularSearch[P]>
+  }
+
+
+
+
+  export type PopularSearchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PopularSearchWhereInput
+    orderBy?: PopularSearchOrderByWithAggregationInput | PopularSearchOrderByWithAggregationInput[]
+    by: PopularSearchScalarFieldEnum[] | PopularSearchScalarFieldEnum
+    having?: PopularSearchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PopularSearchCountAggregateInputType | true
+    _avg?: PopularSearchAvgAggregateInputType
+    _sum?: PopularSearchSumAggregateInputType
+    _min?: PopularSearchMinAggregateInputType
+    _max?: PopularSearchMaxAggregateInputType
+  }
+
+  export type PopularSearchGroupByOutputType = {
+    id: string
+    query: string
+    count: number
+    lastSearched: Date
+    _count: PopularSearchCountAggregateOutputType | null
+    _avg: PopularSearchAvgAggregateOutputType | null
+    _sum: PopularSearchSumAggregateOutputType | null
+    _min: PopularSearchMinAggregateOutputType | null
+    _max: PopularSearchMaxAggregateOutputType | null
+  }
+
+  type GetPopularSearchGroupByPayload<T extends PopularSearchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PopularSearchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PopularSearchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PopularSearchGroupByOutputType[P]>
+            : GetScalarType<T[P], PopularSearchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PopularSearchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    query?: boolean
+    count?: boolean
+    lastSearched?: boolean
+  }, ExtArgs["result"]["popularSearch"]>
+
+
+
+  export type PopularSearchSelectScalar = {
+    id?: boolean
+    query?: boolean
+    count?: boolean
+    lastSearched?: boolean
+  }
+
+  export type PopularSearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "query" | "count" | "lastSearched", ExtArgs["result"]["popularSearch"]>
+
+  export type $PopularSearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PopularSearch"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      query: string
+      count: number
+      lastSearched: Date
+    }, ExtArgs["result"]["popularSearch"]>
+    composites: {}
+  }
+
+  type PopularSearchGetPayload<S extends boolean | null | undefined | PopularSearchDefaultArgs> = $Result.GetResult<Prisma.$PopularSearchPayload, S>
+
+  type PopularSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PopularSearchFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PopularSearchCountAggregateInputType | true
+    }
+
+  export interface PopularSearchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PopularSearch'], meta: { name: 'PopularSearch' } }
+    /**
+     * Find zero or one PopularSearch that matches the filter.
+     * @param {PopularSearchFindUniqueArgs} args - Arguments to find a PopularSearch
+     * @example
+     * // Get one PopularSearch
+     * const popularSearch = await prisma.popularSearch.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PopularSearchFindUniqueArgs>(args: SelectSubset<T, PopularSearchFindUniqueArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PopularSearch that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PopularSearchFindUniqueOrThrowArgs} args - Arguments to find a PopularSearch
+     * @example
+     * // Get one PopularSearch
+     * const popularSearch = await prisma.popularSearch.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PopularSearchFindUniqueOrThrowArgs>(args: SelectSubset<T, PopularSearchFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PopularSearch that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchFindFirstArgs} args - Arguments to find a PopularSearch
+     * @example
+     * // Get one PopularSearch
+     * const popularSearch = await prisma.popularSearch.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PopularSearchFindFirstArgs>(args?: SelectSubset<T, PopularSearchFindFirstArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PopularSearch that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchFindFirstOrThrowArgs} args - Arguments to find a PopularSearch
+     * @example
+     * // Get one PopularSearch
+     * const popularSearch = await prisma.popularSearch.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PopularSearchFindFirstOrThrowArgs>(args?: SelectSubset<T, PopularSearchFindFirstOrThrowArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PopularSearches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PopularSearches
+     * const popularSearches = await prisma.popularSearch.findMany()
+     * 
+     * // Get first 10 PopularSearches
+     * const popularSearches = await prisma.popularSearch.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const popularSearchWithIdOnly = await prisma.popularSearch.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PopularSearchFindManyArgs>(args?: SelectSubset<T, PopularSearchFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PopularSearch.
+     * @param {PopularSearchCreateArgs} args - Arguments to create a PopularSearch.
+     * @example
+     * // Create one PopularSearch
+     * const PopularSearch = await prisma.popularSearch.create({
+     *   data: {
+     *     // ... data to create a PopularSearch
+     *   }
+     * })
+     * 
+     */
+    create<T extends PopularSearchCreateArgs>(args: SelectSubset<T, PopularSearchCreateArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PopularSearches.
+     * @param {PopularSearchCreateManyArgs} args - Arguments to create many PopularSearches.
+     * @example
+     * // Create many PopularSearches
+     * const popularSearch = await prisma.popularSearch.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PopularSearchCreateManyArgs>(args?: SelectSubset<T, PopularSearchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PopularSearch.
+     * @param {PopularSearchDeleteArgs} args - Arguments to delete one PopularSearch.
+     * @example
+     * // Delete one PopularSearch
+     * const PopularSearch = await prisma.popularSearch.delete({
+     *   where: {
+     *     // ... filter to delete one PopularSearch
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PopularSearchDeleteArgs>(args: SelectSubset<T, PopularSearchDeleteArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PopularSearch.
+     * @param {PopularSearchUpdateArgs} args - Arguments to update one PopularSearch.
+     * @example
+     * // Update one PopularSearch
+     * const popularSearch = await prisma.popularSearch.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PopularSearchUpdateArgs>(args: SelectSubset<T, PopularSearchUpdateArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PopularSearches.
+     * @param {PopularSearchDeleteManyArgs} args - Arguments to filter PopularSearches to delete.
+     * @example
+     * // Delete a few PopularSearches
+     * const { count } = await prisma.popularSearch.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PopularSearchDeleteManyArgs>(args?: SelectSubset<T, PopularSearchDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PopularSearches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PopularSearches
+     * const popularSearch = await prisma.popularSearch.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PopularSearchUpdateManyArgs>(args: SelectSubset<T, PopularSearchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PopularSearch.
+     * @param {PopularSearchUpsertArgs} args - Arguments to update or create a PopularSearch.
+     * @example
+     * // Update or create a PopularSearch
+     * const popularSearch = await prisma.popularSearch.upsert({
+     *   create: {
+     *     // ... data to create a PopularSearch
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PopularSearch we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PopularSearchUpsertArgs>(args: SelectSubset<T, PopularSearchUpsertArgs<ExtArgs>>): Prisma__PopularSearchClient<$Result.GetResult<Prisma.$PopularSearchPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PopularSearches that matches the filter.
+     * @param {PopularSearchFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const popularSearch = await prisma.popularSearch.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: PopularSearchFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a PopularSearch.
+     * @param {PopularSearchAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const popularSearch = await prisma.popularSearch.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: PopularSearchAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of PopularSearches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchCountArgs} args - Arguments to filter PopularSearches to count.
+     * @example
+     * // Count the number of PopularSearches
+     * const count = await prisma.popularSearch.count({
+     *   where: {
+     *     // ... the filter for the PopularSearches we want to count
+     *   }
+     * })
+    **/
+    count<T extends PopularSearchCountArgs>(
+      args?: Subset<T, PopularSearchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PopularSearchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PopularSearch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PopularSearchAggregateArgs>(args: Subset<T, PopularSearchAggregateArgs>): Prisma.PrismaPromise<GetPopularSearchAggregateType<T>>
+
+    /**
+     * Group by PopularSearch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PopularSearchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PopularSearchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PopularSearchGroupByArgs['orderBy'] }
+        : { orderBy?: PopularSearchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PopularSearchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPopularSearchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PopularSearch model
+   */
+  readonly fields: PopularSearchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PopularSearch.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PopularSearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PopularSearch model
+   */
+  interface PopularSearchFieldRefs {
+    readonly id: FieldRef<"PopularSearch", 'String'>
+    readonly query: FieldRef<"PopularSearch", 'String'>
+    readonly count: FieldRef<"PopularSearch", 'Int'>
+    readonly lastSearched: FieldRef<"PopularSearch", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PopularSearch findUnique
+   */
+  export type PopularSearchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * Filter, which PopularSearch to fetch.
+     */
+    where: PopularSearchWhereUniqueInput
+  }
+
+  /**
+   * PopularSearch findUniqueOrThrow
+   */
+  export type PopularSearchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * Filter, which PopularSearch to fetch.
+     */
+    where: PopularSearchWhereUniqueInput
+  }
+
+  /**
+   * PopularSearch findFirst
+   */
+  export type PopularSearchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * Filter, which PopularSearch to fetch.
+     */
+    where?: PopularSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PopularSearches to fetch.
+     */
+    orderBy?: PopularSearchOrderByWithRelationInput | PopularSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PopularSearches.
+     */
+    cursor?: PopularSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PopularSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PopularSearches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PopularSearches.
+     */
+    distinct?: PopularSearchScalarFieldEnum | PopularSearchScalarFieldEnum[]
+  }
+
+  /**
+   * PopularSearch findFirstOrThrow
+   */
+  export type PopularSearchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * Filter, which PopularSearch to fetch.
+     */
+    where?: PopularSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PopularSearches to fetch.
+     */
+    orderBy?: PopularSearchOrderByWithRelationInput | PopularSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PopularSearches.
+     */
+    cursor?: PopularSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PopularSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PopularSearches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PopularSearches.
+     */
+    distinct?: PopularSearchScalarFieldEnum | PopularSearchScalarFieldEnum[]
+  }
+
+  /**
+   * PopularSearch findMany
+   */
+  export type PopularSearchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * Filter, which PopularSearches to fetch.
+     */
+    where?: PopularSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PopularSearches to fetch.
+     */
+    orderBy?: PopularSearchOrderByWithRelationInput | PopularSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PopularSearches.
+     */
+    cursor?: PopularSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PopularSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PopularSearches.
+     */
+    skip?: number
+    distinct?: PopularSearchScalarFieldEnum | PopularSearchScalarFieldEnum[]
+  }
+
+  /**
+   * PopularSearch create
+   */
+  export type PopularSearchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PopularSearch.
+     */
+    data: XOR<PopularSearchCreateInput, PopularSearchUncheckedCreateInput>
+  }
+
+  /**
+   * PopularSearch createMany
+   */
+  export type PopularSearchCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PopularSearches.
+     */
+    data: PopularSearchCreateManyInput | PopularSearchCreateManyInput[]
+  }
+
+  /**
+   * PopularSearch update
+   */
+  export type PopularSearchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PopularSearch.
+     */
+    data: XOR<PopularSearchUpdateInput, PopularSearchUncheckedUpdateInput>
+    /**
+     * Choose, which PopularSearch to update.
+     */
+    where: PopularSearchWhereUniqueInput
+  }
+
+  /**
+   * PopularSearch updateMany
+   */
+  export type PopularSearchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PopularSearches.
+     */
+    data: XOR<PopularSearchUpdateManyMutationInput, PopularSearchUncheckedUpdateManyInput>
+    /**
+     * Filter which PopularSearches to update
+     */
+    where?: PopularSearchWhereInput
+    /**
+     * Limit how many PopularSearches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PopularSearch upsert
+   */
+  export type PopularSearchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PopularSearch to update in case it exists.
+     */
+    where: PopularSearchWhereUniqueInput
+    /**
+     * In case the PopularSearch found by the `where` argument doesn't exist, create a new PopularSearch with this data.
+     */
+    create: XOR<PopularSearchCreateInput, PopularSearchUncheckedCreateInput>
+    /**
+     * In case the PopularSearch was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PopularSearchUpdateInput, PopularSearchUncheckedUpdateInput>
+  }
+
+  /**
+   * PopularSearch delete
+   */
+  export type PopularSearchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+    /**
+     * Filter which PopularSearch to delete.
+     */
+    where: PopularSearchWhereUniqueInput
+  }
+
+  /**
+   * PopularSearch deleteMany
+   */
+  export type PopularSearchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PopularSearches to delete
+     */
+    where?: PopularSearchWhereInput
+    /**
+     * Limit how many PopularSearches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PopularSearch findRaw
+   */
+  export type PopularSearchFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * PopularSearch aggregateRaw
+   */
+  export type PopularSearchAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * PopularSearch without action
+   */
+  export type PopularSearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PopularSearch
+     */
+    select?: PopularSearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PopularSearch
+     */
+    omit?: PopularSearchOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SearchHistory
+   */
+
+  export type AggregateSearchHistory = {
+    _count: SearchHistoryCountAggregateOutputType | null
+    _min: SearchHistoryMinAggregateOutputType | null
+    _max: SearchHistoryMaxAggregateOutputType | null
+  }
+
+  export type SearchHistoryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    query: string | null
+    searchedAt: Date | null
+  }
+
+  export type SearchHistoryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    query: string | null
+    searchedAt: Date | null
+  }
+
+  export type SearchHistoryCountAggregateOutputType = {
+    id: number
+    userId: number
+    query: number
+    searchedAt: number
+    _all: number
+  }
+
+
+  export type SearchHistoryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    query?: true
+    searchedAt?: true
+  }
+
+  export type SearchHistoryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    query?: true
+    searchedAt?: true
+  }
+
+  export type SearchHistoryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    query?: true
+    searchedAt?: true
+    _all?: true
+  }
+
+  export type SearchHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SearchHistory to aggregate.
+     */
+    where?: SearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SearchHistories to fetch.
+     */
+    orderBy?: SearchHistoryOrderByWithRelationInput | SearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SearchHistories
+    **/
+    _count?: true | SearchHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SearchHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SearchHistoryMaxAggregateInputType
+  }
+
+  export type GetSearchHistoryAggregateType<T extends SearchHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateSearchHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSearchHistory[P]>
+      : GetScalarType<T[P], AggregateSearchHistory[P]>
+  }
+
+
+
+
+  export type SearchHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SearchHistoryWhereInput
+    orderBy?: SearchHistoryOrderByWithAggregationInput | SearchHistoryOrderByWithAggregationInput[]
+    by: SearchHistoryScalarFieldEnum[] | SearchHistoryScalarFieldEnum
+    having?: SearchHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SearchHistoryCountAggregateInputType | true
+    _min?: SearchHistoryMinAggregateInputType
+    _max?: SearchHistoryMaxAggregateInputType
+  }
+
+  export type SearchHistoryGroupByOutputType = {
+    id: string
+    userId: string
+    query: string
+    searchedAt: Date
+    _count: SearchHistoryCountAggregateOutputType | null
+    _min: SearchHistoryMinAggregateOutputType | null
+    _max: SearchHistoryMaxAggregateOutputType | null
+  }
+
+  type GetSearchHistoryGroupByPayload<T extends SearchHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SearchHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SearchHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SearchHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], SearchHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SearchHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    query?: boolean
+    searchedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["searchHistory"]>
+
+
+
+  export type SearchHistorySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    query?: boolean
+    searchedAt?: boolean
+  }
+
+  export type SearchHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "query" | "searchedAt", ExtArgs["result"]["searchHistory"]>
+  export type SearchHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SearchHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SearchHistory"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      query: string
+      searchedAt: Date
+    }, ExtArgs["result"]["searchHistory"]>
+    composites: {}
+  }
+
+  type SearchHistoryGetPayload<S extends boolean | null | undefined | SearchHistoryDefaultArgs> = $Result.GetResult<Prisma.$SearchHistoryPayload, S>
+
+  type SearchHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SearchHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SearchHistoryCountAggregateInputType | true
+    }
+
+  export interface SearchHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SearchHistory'], meta: { name: 'SearchHistory' } }
+    /**
+     * Find zero or one SearchHistory that matches the filter.
+     * @param {SearchHistoryFindUniqueArgs} args - Arguments to find a SearchHistory
+     * @example
+     * // Get one SearchHistory
+     * const searchHistory = await prisma.searchHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SearchHistoryFindUniqueArgs>(args: SelectSubset<T, SearchHistoryFindUniqueArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SearchHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SearchHistoryFindUniqueOrThrowArgs} args - Arguments to find a SearchHistory
+     * @example
+     * // Get one SearchHistory
+     * const searchHistory = await prisma.searchHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SearchHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, SearchHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SearchHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryFindFirstArgs} args - Arguments to find a SearchHistory
+     * @example
+     * // Get one SearchHistory
+     * const searchHistory = await prisma.searchHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SearchHistoryFindFirstArgs>(args?: SelectSubset<T, SearchHistoryFindFirstArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SearchHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryFindFirstOrThrowArgs} args - Arguments to find a SearchHistory
+     * @example
+     * // Get one SearchHistory
+     * const searchHistory = await prisma.searchHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SearchHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, SearchHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SearchHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SearchHistories
+     * const searchHistories = await prisma.searchHistory.findMany()
+     * 
+     * // Get first 10 SearchHistories
+     * const searchHistories = await prisma.searchHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const searchHistoryWithIdOnly = await prisma.searchHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SearchHistoryFindManyArgs>(args?: SelectSubset<T, SearchHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SearchHistory.
+     * @param {SearchHistoryCreateArgs} args - Arguments to create a SearchHistory.
+     * @example
+     * // Create one SearchHistory
+     * const SearchHistory = await prisma.searchHistory.create({
+     *   data: {
+     *     // ... data to create a SearchHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends SearchHistoryCreateArgs>(args: SelectSubset<T, SearchHistoryCreateArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SearchHistories.
+     * @param {SearchHistoryCreateManyArgs} args - Arguments to create many SearchHistories.
+     * @example
+     * // Create many SearchHistories
+     * const searchHistory = await prisma.searchHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SearchHistoryCreateManyArgs>(args?: SelectSubset<T, SearchHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SearchHistory.
+     * @param {SearchHistoryDeleteArgs} args - Arguments to delete one SearchHistory.
+     * @example
+     * // Delete one SearchHistory
+     * const SearchHistory = await prisma.searchHistory.delete({
+     *   where: {
+     *     // ... filter to delete one SearchHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SearchHistoryDeleteArgs>(args: SelectSubset<T, SearchHistoryDeleteArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SearchHistory.
+     * @param {SearchHistoryUpdateArgs} args - Arguments to update one SearchHistory.
+     * @example
+     * // Update one SearchHistory
+     * const searchHistory = await prisma.searchHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SearchHistoryUpdateArgs>(args: SelectSubset<T, SearchHistoryUpdateArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SearchHistories.
+     * @param {SearchHistoryDeleteManyArgs} args - Arguments to filter SearchHistories to delete.
+     * @example
+     * // Delete a few SearchHistories
+     * const { count } = await prisma.searchHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SearchHistoryDeleteManyArgs>(args?: SelectSubset<T, SearchHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SearchHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SearchHistories
+     * const searchHistory = await prisma.searchHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SearchHistoryUpdateManyArgs>(args: SelectSubset<T, SearchHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SearchHistory.
+     * @param {SearchHistoryUpsertArgs} args - Arguments to update or create a SearchHistory.
+     * @example
+     * // Update or create a SearchHistory
+     * const searchHistory = await prisma.searchHistory.upsert({
+     *   create: {
+     *     // ... data to create a SearchHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SearchHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SearchHistoryUpsertArgs>(args: SelectSubset<T, SearchHistoryUpsertArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SearchHistories that matches the filter.
+     * @param {SearchHistoryFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const searchHistory = await prisma.searchHistory.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: SearchHistoryFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a SearchHistory.
+     * @param {SearchHistoryAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const searchHistory = await prisma.searchHistory.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: SearchHistoryAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of SearchHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryCountArgs} args - Arguments to filter SearchHistories to count.
+     * @example
+     * // Count the number of SearchHistories
+     * const count = await prisma.searchHistory.count({
+     *   where: {
+     *     // ... the filter for the SearchHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends SearchHistoryCountArgs>(
+      args?: Subset<T, SearchHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SearchHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SearchHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SearchHistoryAggregateArgs>(args: Subset<T, SearchHistoryAggregateArgs>): Prisma.PrismaPromise<GetSearchHistoryAggregateType<T>>
+
+    /**
+     * Group by SearchHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SearchHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SearchHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: SearchHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SearchHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSearchHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SearchHistory model
+   */
+  readonly fields: SearchHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SearchHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SearchHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SearchHistory model
+   */
+  interface SearchHistoryFieldRefs {
+    readonly id: FieldRef<"SearchHistory", 'String'>
+    readonly userId: FieldRef<"SearchHistory", 'String'>
+    readonly query: FieldRef<"SearchHistory", 'String'>
+    readonly searchedAt: FieldRef<"SearchHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SearchHistory findUnique
+   */
+  export type SearchHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which SearchHistory to fetch.
+     */
+    where: SearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * SearchHistory findUniqueOrThrow
+   */
+  export type SearchHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which SearchHistory to fetch.
+     */
+    where: SearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * SearchHistory findFirst
+   */
+  export type SearchHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which SearchHistory to fetch.
+     */
+    where?: SearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SearchHistories to fetch.
+     */
+    orderBy?: SearchHistoryOrderByWithRelationInput | SearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SearchHistories.
+     */
+    cursor?: SearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SearchHistories.
+     */
+    distinct?: SearchHistoryScalarFieldEnum | SearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * SearchHistory findFirstOrThrow
+   */
+  export type SearchHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which SearchHistory to fetch.
+     */
+    where?: SearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SearchHistories to fetch.
+     */
+    orderBy?: SearchHistoryOrderByWithRelationInput | SearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SearchHistories.
+     */
+    cursor?: SearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SearchHistories.
+     */
+    distinct?: SearchHistoryScalarFieldEnum | SearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * SearchHistory findMany
+   */
+  export type SearchHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which SearchHistories to fetch.
+     */
+    where?: SearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SearchHistories to fetch.
+     */
+    orderBy?: SearchHistoryOrderByWithRelationInput | SearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SearchHistories.
+     */
+    cursor?: SearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SearchHistories.
+     */
+    skip?: number
+    distinct?: SearchHistoryScalarFieldEnum | SearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * SearchHistory create
+   */
+  export type SearchHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SearchHistory.
+     */
+    data: XOR<SearchHistoryCreateInput, SearchHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * SearchHistory createMany
+   */
+  export type SearchHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SearchHistories.
+     */
+    data: SearchHistoryCreateManyInput | SearchHistoryCreateManyInput[]
+  }
+
+  /**
+   * SearchHistory update
+   */
+  export type SearchHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SearchHistory.
+     */
+    data: XOR<SearchHistoryUpdateInput, SearchHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which SearchHistory to update.
+     */
+    where: SearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * SearchHistory updateMany
+   */
+  export type SearchHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SearchHistories.
+     */
+    data: XOR<SearchHistoryUpdateManyMutationInput, SearchHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which SearchHistories to update
+     */
+    where?: SearchHistoryWhereInput
+    /**
+     * Limit how many SearchHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SearchHistory upsert
+   */
+  export type SearchHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SearchHistory to update in case it exists.
+     */
+    where: SearchHistoryWhereUniqueInput
+    /**
+     * In case the SearchHistory found by the `where` argument doesn't exist, create a new SearchHistory with this data.
+     */
+    create: XOR<SearchHistoryCreateInput, SearchHistoryUncheckedCreateInput>
+    /**
+     * In case the SearchHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SearchHistoryUpdateInput, SearchHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * SearchHistory delete
+   */
+  export type SearchHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which SearchHistory to delete.
+     */
+    where: SearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * SearchHistory deleteMany
+   */
+  export type SearchHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SearchHistories to delete
+     */
+    where?: SearchHistoryWhereInput
+    /**
+     * Limit how many SearchHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SearchHistory findRaw
+   */
+  export type SearchHistoryFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * SearchHistory aggregateRaw
+   */
+  export type SearchHistoryAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * SearchHistory without action
+   */
+  export type SearchHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SearchHistory
+     */
+    select?: SearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SearchHistory
+     */
+    omit?: SearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ViewedProduct
+   */
+
+  export type AggregateViewedProduct = {
+    _count: ViewedProductCountAggregateOutputType | null
+    _min: ViewedProductMinAggregateOutputType | null
+    _max: ViewedProductMaxAggregateOutputType | null
+  }
+
+  export type ViewedProductMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    viewedAt: Date | null
+    slug: string | null
+  }
+
+  export type ViewedProductMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    viewedAt: Date | null
+    slug: string | null
+  }
+
+  export type ViewedProductCountAggregateOutputType = {
+    id: number
+    userId: number
+    viewedAt: number
+    product: number
+    slug: number
+    _all: number
+  }
+
+
+  export type ViewedProductMinAggregateInputType = {
+    id?: true
+    userId?: true
+    viewedAt?: true
+    slug?: true
+  }
+
+  export type ViewedProductMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    viewedAt?: true
+    slug?: true
+  }
+
+  export type ViewedProductCountAggregateInputType = {
+    id?: true
+    userId?: true
+    viewedAt?: true
+    product?: true
+    slug?: true
+    _all?: true
+  }
+
+  export type ViewedProductAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ViewedProduct to aggregate.
+     */
+    where?: ViewedProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ViewedProducts to fetch.
+     */
+    orderBy?: ViewedProductOrderByWithRelationInput | ViewedProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ViewedProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ViewedProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ViewedProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ViewedProducts
+    **/
+    _count?: true | ViewedProductCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ViewedProductMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ViewedProductMaxAggregateInputType
+  }
+
+  export type GetViewedProductAggregateType<T extends ViewedProductAggregateArgs> = {
+        [P in keyof T & keyof AggregateViewedProduct]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateViewedProduct[P]>
+      : GetScalarType<T[P], AggregateViewedProduct[P]>
+  }
+
+
+
+
+  export type ViewedProductGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViewedProductWhereInput
+    orderBy?: ViewedProductOrderByWithAggregationInput | ViewedProductOrderByWithAggregationInput[]
+    by: ViewedProductScalarFieldEnum[] | ViewedProductScalarFieldEnum
+    having?: ViewedProductScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ViewedProductCountAggregateInputType | true
+    _min?: ViewedProductMinAggregateInputType
+    _max?: ViewedProductMaxAggregateInputType
+  }
+
+  export type ViewedProductGroupByOutputType = {
+    id: string
+    userId: string
+    viewedAt: Date
+    product: JsonValue
+    slug: string
+    _count: ViewedProductCountAggregateOutputType | null
+    _min: ViewedProductMinAggregateOutputType | null
+    _max: ViewedProductMaxAggregateOutputType | null
+  }
+
+  type GetViewedProductGroupByPayload<T extends ViewedProductGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ViewedProductGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ViewedProductGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ViewedProductGroupByOutputType[P]>
+            : GetScalarType<T[P], ViewedProductGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ViewedProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    viewedAt?: boolean
+    product?: boolean
+    slug?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["viewedProduct"]>
+
+
+
+  export type ViewedProductSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    viewedAt?: boolean
+    product?: boolean
+    slug?: boolean
+  }
+
+  export type ViewedProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "viewedAt" | "product" | "slug", ExtArgs["result"]["viewedProduct"]>
+  export type ViewedProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ViewedProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ViewedProduct"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      viewedAt: Date
+      product: Prisma.JsonValue
+      slug: string
+    }, ExtArgs["result"]["viewedProduct"]>
+    composites: {}
+  }
+
+  type ViewedProductGetPayload<S extends boolean | null | undefined | ViewedProductDefaultArgs> = $Result.GetResult<Prisma.$ViewedProductPayload, S>
+
+  type ViewedProductCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ViewedProductFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ViewedProductCountAggregateInputType | true
+    }
+
+  export interface ViewedProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ViewedProduct'], meta: { name: 'ViewedProduct' } }
+    /**
+     * Find zero or one ViewedProduct that matches the filter.
+     * @param {ViewedProductFindUniqueArgs} args - Arguments to find a ViewedProduct
+     * @example
+     * // Get one ViewedProduct
+     * const viewedProduct = await prisma.viewedProduct.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ViewedProductFindUniqueArgs>(args: SelectSubset<T, ViewedProductFindUniqueArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ViewedProduct that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ViewedProductFindUniqueOrThrowArgs} args - Arguments to find a ViewedProduct
+     * @example
+     * // Get one ViewedProduct
+     * const viewedProduct = await prisma.viewedProduct.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ViewedProductFindUniqueOrThrowArgs>(args: SelectSubset<T, ViewedProductFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ViewedProduct that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductFindFirstArgs} args - Arguments to find a ViewedProduct
+     * @example
+     * // Get one ViewedProduct
+     * const viewedProduct = await prisma.viewedProduct.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ViewedProductFindFirstArgs>(args?: SelectSubset<T, ViewedProductFindFirstArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ViewedProduct that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductFindFirstOrThrowArgs} args - Arguments to find a ViewedProduct
+     * @example
+     * // Get one ViewedProduct
+     * const viewedProduct = await prisma.viewedProduct.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ViewedProductFindFirstOrThrowArgs>(args?: SelectSubset<T, ViewedProductFindFirstOrThrowArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ViewedProducts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ViewedProducts
+     * const viewedProducts = await prisma.viewedProduct.findMany()
+     * 
+     * // Get first 10 ViewedProducts
+     * const viewedProducts = await prisma.viewedProduct.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const viewedProductWithIdOnly = await prisma.viewedProduct.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ViewedProductFindManyArgs>(args?: SelectSubset<T, ViewedProductFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ViewedProduct.
+     * @param {ViewedProductCreateArgs} args - Arguments to create a ViewedProduct.
+     * @example
+     * // Create one ViewedProduct
+     * const ViewedProduct = await prisma.viewedProduct.create({
+     *   data: {
+     *     // ... data to create a ViewedProduct
+     *   }
+     * })
+     * 
+     */
+    create<T extends ViewedProductCreateArgs>(args: SelectSubset<T, ViewedProductCreateArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ViewedProducts.
+     * @param {ViewedProductCreateManyArgs} args - Arguments to create many ViewedProducts.
+     * @example
+     * // Create many ViewedProducts
+     * const viewedProduct = await prisma.viewedProduct.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ViewedProductCreateManyArgs>(args?: SelectSubset<T, ViewedProductCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ViewedProduct.
+     * @param {ViewedProductDeleteArgs} args - Arguments to delete one ViewedProduct.
+     * @example
+     * // Delete one ViewedProduct
+     * const ViewedProduct = await prisma.viewedProduct.delete({
+     *   where: {
+     *     // ... filter to delete one ViewedProduct
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ViewedProductDeleteArgs>(args: SelectSubset<T, ViewedProductDeleteArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ViewedProduct.
+     * @param {ViewedProductUpdateArgs} args - Arguments to update one ViewedProduct.
+     * @example
+     * // Update one ViewedProduct
+     * const viewedProduct = await prisma.viewedProduct.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ViewedProductUpdateArgs>(args: SelectSubset<T, ViewedProductUpdateArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ViewedProducts.
+     * @param {ViewedProductDeleteManyArgs} args - Arguments to filter ViewedProducts to delete.
+     * @example
+     * // Delete a few ViewedProducts
+     * const { count } = await prisma.viewedProduct.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ViewedProductDeleteManyArgs>(args?: SelectSubset<T, ViewedProductDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ViewedProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ViewedProducts
+     * const viewedProduct = await prisma.viewedProduct.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ViewedProductUpdateManyArgs>(args: SelectSubset<T, ViewedProductUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ViewedProduct.
+     * @param {ViewedProductUpsertArgs} args - Arguments to update or create a ViewedProduct.
+     * @example
+     * // Update or create a ViewedProduct
+     * const viewedProduct = await prisma.viewedProduct.upsert({
+     *   create: {
+     *     // ... data to create a ViewedProduct
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ViewedProduct we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ViewedProductUpsertArgs>(args: SelectSubset<T, ViewedProductUpsertArgs<ExtArgs>>): Prisma__ViewedProductClient<$Result.GetResult<Prisma.$ViewedProductPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ViewedProducts that matches the filter.
+     * @param {ViewedProductFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const viewedProduct = await prisma.viewedProduct.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ViewedProductFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ViewedProduct.
+     * @param {ViewedProductAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const viewedProduct = await prisma.viewedProduct.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ViewedProductAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ViewedProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductCountArgs} args - Arguments to filter ViewedProducts to count.
+     * @example
+     * // Count the number of ViewedProducts
+     * const count = await prisma.viewedProduct.count({
+     *   where: {
+     *     // ... the filter for the ViewedProducts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ViewedProductCountArgs>(
+      args?: Subset<T, ViewedProductCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ViewedProductCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ViewedProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ViewedProductAggregateArgs>(args: Subset<T, ViewedProductAggregateArgs>): Prisma.PrismaPromise<GetViewedProductAggregateType<T>>
+
+    /**
+     * Group by ViewedProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViewedProductGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ViewedProductGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ViewedProductGroupByArgs['orderBy'] }
+        : { orderBy?: ViewedProductGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ViewedProductGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetViewedProductGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ViewedProduct model
+   */
+  readonly fields: ViewedProductFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ViewedProduct.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ViewedProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ViewedProduct model
+   */
+  interface ViewedProductFieldRefs {
+    readonly id: FieldRef<"ViewedProduct", 'String'>
+    readonly userId: FieldRef<"ViewedProduct", 'String'>
+    readonly viewedAt: FieldRef<"ViewedProduct", 'DateTime'>
+    readonly product: FieldRef<"ViewedProduct", 'Json'>
+    readonly slug: FieldRef<"ViewedProduct", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ViewedProduct findUnique
+   */
+  export type ViewedProductFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * Filter, which ViewedProduct to fetch.
+     */
+    where: ViewedProductWhereUniqueInput
+  }
+
+  /**
+   * ViewedProduct findUniqueOrThrow
+   */
+  export type ViewedProductFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * Filter, which ViewedProduct to fetch.
+     */
+    where: ViewedProductWhereUniqueInput
+  }
+
+  /**
+   * ViewedProduct findFirst
+   */
+  export type ViewedProductFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * Filter, which ViewedProduct to fetch.
+     */
+    where?: ViewedProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ViewedProducts to fetch.
+     */
+    orderBy?: ViewedProductOrderByWithRelationInput | ViewedProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ViewedProducts.
+     */
+    cursor?: ViewedProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ViewedProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ViewedProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ViewedProducts.
+     */
+    distinct?: ViewedProductScalarFieldEnum | ViewedProductScalarFieldEnum[]
+  }
+
+  /**
+   * ViewedProduct findFirstOrThrow
+   */
+  export type ViewedProductFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * Filter, which ViewedProduct to fetch.
+     */
+    where?: ViewedProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ViewedProducts to fetch.
+     */
+    orderBy?: ViewedProductOrderByWithRelationInput | ViewedProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ViewedProducts.
+     */
+    cursor?: ViewedProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ViewedProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ViewedProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ViewedProducts.
+     */
+    distinct?: ViewedProductScalarFieldEnum | ViewedProductScalarFieldEnum[]
+  }
+
+  /**
+   * ViewedProduct findMany
+   */
+  export type ViewedProductFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * Filter, which ViewedProducts to fetch.
+     */
+    where?: ViewedProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ViewedProducts to fetch.
+     */
+    orderBy?: ViewedProductOrderByWithRelationInput | ViewedProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ViewedProducts.
+     */
+    cursor?: ViewedProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ViewedProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ViewedProducts.
+     */
+    skip?: number
+    distinct?: ViewedProductScalarFieldEnum | ViewedProductScalarFieldEnum[]
+  }
+
+  /**
+   * ViewedProduct create
+   */
+  export type ViewedProductCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ViewedProduct.
+     */
+    data: XOR<ViewedProductCreateInput, ViewedProductUncheckedCreateInput>
+  }
+
+  /**
+   * ViewedProduct createMany
+   */
+  export type ViewedProductCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ViewedProducts.
+     */
+    data: ViewedProductCreateManyInput | ViewedProductCreateManyInput[]
+  }
+
+  /**
+   * ViewedProduct update
+   */
+  export type ViewedProductUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ViewedProduct.
+     */
+    data: XOR<ViewedProductUpdateInput, ViewedProductUncheckedUpdateInput>
+    /**
+     * Choose, which ViewedProduct to update.
+     */
+    where: ViewedProductWhereUniqueInput
+  }
+
+  /**
+   * ViewedProduct updateMany
+   */
+  export type ViewedProductUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ViewedProducts.
+     */
+    data: XOR<ViewedProductUpdateManyMutationInput, ViewedProductUncheckedUpdateManyInput>
+    /**
+     * Filter which ViewedProducts to update
+     */
+    where?: ViewedProductWhereInput
+    /**
+     * Limit how many ViewedProducts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ViewedProduct upsert
+   */
+  export type ViewedProductUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ViewedProduct to update in case it exists.
+     */
+    where: ViewedProductWhereUniqueInput
+    /**
+     * In case the ViewedProduct found by the `where` argument doesn't exist, create a new ViewedProduct with this data.
+     */
+    create: XOR<ViewedProductCreateInput, ViewedProductUncheckedCreateInput>
+    /**
+     * In case the ViewedProduct was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ViewedProductUpdateInput, ViewedProductUncheckedUpdateInput>
+  }
+
+  /**
+   * ViewedProduct delete
+   */
+  export type ViewedProductDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+    /**
+     * Filter which ViewedProduct to delete.
+     */
+    where: ViewedProductWhereUniqueInput
+  }
+
+  /**
+   * ViewedProduct deleteMany
+   */
+  export type ViewedProductDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ViewedProducts to delete
+     */
+    where?: ViewedProductWhereInput
+    /**
+     * Limit how many ViewedProducts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ViewedProduct findRaw
+   */
+  export type ViewedProductFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ViewedProduct aggregateRaw
+   */
+  export type ViewedProductAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ViewedProduct without action
+   */
+  export type ViewedProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViewedProduct
+     */
+    select?: ViewedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ViewedProduct
+     */
+    omit?: ViewedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViewedProductInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11199,6 +14444,37 @@ export namespace Prisma {
   export type WishListScalarFieldEnum = (typeof WishListScalarFieldEnum)[keyof typeof WishListScalarFieldEnum]
 
 
+  export const PopularSearchScalarFieldEnum: {
+    id: 'id',
+    query: 'query',
+    count: 'count',
+    lastSearched: 'lastSearched'
+  };
+
+  export type PopularSearchScalarFieldEnum = (typeof PopularSearchScalarFieldEnum)[keyof typeof PopularSearchScalarFieldEnum]
+
+
+  export const SearchHistoryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    query: 'query',
+    searchedAt: 'searchedAt'
+  };
+
+  export type SearchHistoryScalarFieldEnum = (typeof SearchHistoryScalarFieldEnum)[keyof typeof SearchHistoryScalarFieldEnum]
+
+
+  export const ViewedProductScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    viewedAt: 'viewedAt',
+    product: 'product',
+    slug: 'slug'
+  };
+
+  export type ViewedProductScalarFieldEnum = (typeof ViewedProductScalarFieldEnum)[keyof typeof ViewedProductScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -11295,6 +14571,13 @@ export namespace Prisma {
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
   /**
    * Deep Input Types
    */
@@ -11315,6 +14598,8 @@ export namespace Prisma {
     wishList?: WishListListRelationFilter
     reviews?: ReviewListRelationFilter
     orders?: OrderListRelationFilter
+    viewedProducts?: ViewedProductListRelationFilter
+    searchHistories?: SearchHistoryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11329,6 +14614,8 @@ export namespace Prisma {
     wishList?: WishListOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
     orders?: OrderOrderByRelationAggregateInput
+    viewedProducts?: ViewedProductOrderByRelationAggregateInput
+    searchHistories?: SearchHistoryOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11346,6 +14633,8 @@ export namespace Prisma {
     wishList?: WishListListRelationFilter
     reviews?: ReviewListRelationFilter
     orders?: OrderListRelationFilter
+    viewedProducts?: ViewedProductListRelationFilter
+    searchHistories?: SearchHistoryListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11880,6 +15169,162 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"WishList"> | Date | string
   }
 
+  export type PopularSearchWhereInput = {
+    AND?: PopularSearchWhereInput | PopularSearchWhereInput[]
+    OR?: PopularSearchWhereInput[]
+    NOT?: PopularSearchWhereInput | PopularSearchWhereInput[]
+    id?: StringFilter<"PopularSearch"> | string
+    query?: StringFilter<"PopularSearch"> | string
+    count?: IntFilter<"PopularSearch"> | number
+    lastSearched?: DateTimeFilter<"PopularSearch"> | Date | string
+  }
+
+  export type PopularSearchOrderByWithRelationInput = {
+    id?: SortOrder
+    query?: SortOrder
+    count?: SortOrder
+    lastSearched?: SortOrder
+  }
+
+  export type PopularSearchWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    query?: string
+    AND?: PopularSearchWhereInput | PopularSearchWhereInput[]
+    OR?: PopularSearchWhereInput[]
+    NOT?: PopularSearchWhereInput | PopularSearchWhereInput[]
+    count?: IntFilter<"PopularSearch"> | number
+    lastSearched?: DateTimeFilter<"PopularSearch"> | Date | string
+  }, "id" | "query">
+
+  export type PopularSearchOrderByWithAggregationInput = {
+    id?: SortOrder
+    query?: SortOrder
+    count?: SortOrder
+    lastSearched?: SortOrder
+    _count?: PopularSearchCountOrderByAggregateInput
+    _avg?: PopularSearchAvgOrderByAggregateInput
+    _max?: PopularSearchMaxOrderByAggregateInput
+    _min?: PopularSearchMinOrderByAggregateInput
+    _sum?: PopularSearchSumOrderByAggregateInput
+  }
+
+  export type PopularSearchScalarWhereWithAggregatesInput = {
+    AND?: PopularSearchScalarWhereWithAggregatesInput | PopularSearchScalarWhereWithAggregatesInput[]
+    OR?: PopularSearchScalarWhereWithAggregatesInput[]
+    NOT?: PopularSearchScalarWhereWithAggregatesInput | PopularSearchScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PopularSearch"> | string
+    query?: StringWithAggregatesFilter<"PopularSearch"> | string
+    count?: IntWithAggregatesFilter<"PopularSearch"> | number
+    lastSearched?: DateTimeWithAggregatesFilter<"PopularSearch"> | Date | string
+  }
+
+  export type SearchHistoryWhereInput = {
+    AND?: SearchHistoryWhereInput | SearchHistoryWhereInput[]
+    OR?: SearchHistoryWhereInput[]
+    NOT?: SearchHistoryWhereInput | SearchHistoryWhereInput[]
+    id?: StringFilter<"SearchHistory"> | string
+    userId?: StringFilter<"SearchHistory"> | string
+    query?: StringFilter<"SearchHistory"> | string
+    searchedAt?: DateTimeFilter<"SearchHistory"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type SearchHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    query?: SortOrder
+    searchedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SearchHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_query?: SearchHistoryUserIdQueryCompoundUniqueInput
+    AND?: SearchHistoryWhereInput | SearchHistoryWhereInput[]
+    OR?: SearchHistoryWhereInput[]
+    NOT?: SearchHistoryWhereInput | SearchHistoryWhereInput[]
+    userId?: StringFilter<"SearchHistory"> | string
+    query?: StringFilter<"SearchHistory"> | string
+    searchedAt?: DateTimeFilter<"SearchHistory"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_query">
+
+  export type SearchHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    query?: SortOrder
+    searchedAt?: SortOrder
+    _count?: SearchHistoryCountOrderByAggregateInput
+    _max?: SearchHistoryMaxOrderByAggregateInput
+    _min?: SearchHistoryMinOrderByAggregateInput
+  }
+
+  export type SearchHistoryScalarWhereWithAggregatesInput = {
+    AND?: SearchHistoryScalarWhereWithAggregatesInput | SearchHistoryScalarWhereWithAggregatesInput[]
+    OR?: SearchHistoryScalarWhereWithAggregatesInput[]
+    NOT?: SearchHistoryScalarWhereWithAggregatesInput | SearchHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SearchHistory"> | string
+    userId?: StringWithAggregatesFilter<"SearchHistory"> | string
+    query?: StringWithAggregatesFilter<"SearchHistory"> | string
+    searchedAt?: DateTimeWithAggregatesFilter<"SearchHistory"> | Date | string
+  }
+
+  export type ViewedProductWhereInput = {
+    AND?: ViewedProductWhereInput | ViewedProductWhereInput[]
+    OR?: ViewedProductWhereInput[]
+    NOT?: ViewedProductWhereInput | ViewedProductWhereInput[]
+    id?: StringFilter<"ViewedProduct"> | string
+    userId?: StringFilter<"ViewedProduct"> | string
+    viewedAt?: DateTimeFilter<"ViewedProduct"> | Date | string
+    product?: JsonFilter<"ViewedProduct">
+    slug?: StringFilter<"ViewedProduct"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ViewedProductOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    viewedAt?: SortOrder
+    product?: SortOrder
+    slug?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ViewedProductWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_slug?: ViewedProductUserIdSlugCompoundUniqueInput
+    AND?: ViewedProductWhereInput | ViewedProductWhereInput[]
+    OR?: ViewedProductWhereInput[]
+    NOT?: ViewedProductWhereInput | ViewedProductWhereInput[]
+    userId?: StringFilter<"ViewedProduct"> | string
+    viewedAt?: DateTimeFilter<"ViewedProduct"> | Date | string
+    product?: JsonFilter<"ViewedProduct">
+    slug?: StringFilter<"ViewedProduct"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_slug">
+
+  export type ViewedProductOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    viewedAt?: SortOrder
+    product?: SortOrder
+    slug?: SortOrder
+    _count?: ViewedProductCountOrderByAggregateInput
+    _max?: ViewedProductMaxOrderByAggregateInput
+    _min?: ViewedProductMinOrderByAggregateInput
+  }
+
+  export type ViewedProductScalarWhereWithAggregatesInput = {
+    AND?: ViewedProductScalarWhereWithAggregatesInput | ViewedProductScalarWhereWithAggregatesInput[]
+    OR?: ViewedProductScalarWhereWithAggregatesInput[]
+    NOT?: ViewedProductScalarWhereWithAggregatesInput | ViewedProductScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ViewedProduct"> | string
+    userId?: StringWithAggregatesFilter<"ViewedProduct"> | string
+    viewedAt?: DateTimeWithAggregatesFilter<"ViewedProduct"> | Date | string
+    product?: JsonWithAggregatesFilter<"ViewedProduct">
+    slug?: StringWithAggregatesFilter<"ViewedProduct"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -11892,6 +15337,8 @@ export namespace Prisma {
     wishList?: WishListCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11906,6 +15353,8 @@ export namespace Prisma {
     wishList?: WishListUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductUncheckedCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11919,6 +15368,8 @@ export namespace Prisma {
     wishList?: WishListUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11932,6 +15383,8 @@ export namespace Prisma {
     wishList?: WishListUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUncheckedUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12441,6 +15894,146 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PopularSearchCreateInput = {
+    id?: string
+    query: string
+    count?: number
+    lastSearched?: Date | string
+  }
+
+  export type PopularSearchUncheckedCreateInput = {
+    id?: string
+    query: string
+    count?: number
+    lastSearched?: Date | string
+  }
+
+  export type PopularSearchUpdateInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    lastSearched?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PopularSearchUncheckedUpdateInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    lastSearched?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PopularSearchCreateManyInput = {
+    id?: string
+    query: string
+    count?: number
+    lastSearched?: Date | string
+  }
+
+  export type PopularSearchUpdateManyMutationInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    lastSearched?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PopularSearchUncheckedUpdateManyInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    lastSearched?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchHistoryCreateInput = {
+    id?: string
+    query: string
+    searchedAt?: Date | string
+    user: UserCreateNestedOneWithoutSearchHistoriesInput
+  }
+
+  export type SearchHistoryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    query: string
+    searchedAt?: Date | string
+  }
+
+  export type SearchHistoryUpdateInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSearchHistoriesNestedInput
+  }
+
+  export type SearchHistoryUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchHistoryCreateManyInput = {
+    id?: string
+    userId: string
+    query: string
+    searchedAt?: Date | string
+  }
+
+  export type SearchHistoryUpdateManyMutationInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchHistoryUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ViewedProductCreateInput = {
+    id?: string
+    viewedAt?: Date | string
+    product: InputJsonValue
+    slug: string
+    user: UserCreateNestedOneWithoutViewedProductsInput
+  }
+
+  export type ViewedProductUncheckedCreateInput = {
+    id?: string
+    userId: string
+    viewedAt?: Date | string
+    product: InputJsonValue
+    slug: string
+  }
+
+  export type ViewedProductUpdateInput = {
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutViewedProductsNestedInput
+  }
+
+  export type ViewedProductUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ViewedProductCreateManyInput = {
+    id?: string
+    userId: string
+    viewedAt?: Date | string
+    product: InputJsonValue
+    slug: string
+  }
+
+  export type ViewedProductUpdateManyMutationInput = {
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ViewedProductUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -12501,6 +16094,18 @@ export namespace Prisma {
     none?: OrderWhereInput
   }
 
+  export type ViewedProductListRelationFilter = {
+    every?: ViewedProductWhereInput
+    some?: ViewedProductWhereInput
+    none?: ViewedProductWhereInput
+  }
+
+  export type SearchHistoryListRelationFilter = {
+    every?: SearchHistoryWhereInput
+    some?: SearchHistoryWhereInput
+    none?: SearchHistoryWhereInput
+  }
+
   export type WishListOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -12510,6 +16115,14 @@ export namespace Prisma {
   }
 
   export type OrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ViewedProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SearchHistoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12983,6 +16596,113 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type PopularSearchCountOrderByAggregateInput = {
+    id?: SortOrder
+    query?: SortOrder
+    count?: SortOrder
+    lastSearched?: SortOrder
+  }
+
+  export type PopularSearchAvgOrderByAggregateInput = {
+    count?: SortOrder
+  }
+
+  export type PopularSearchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    query?: SortOrder
+    count?: SortOrder
+    lastSearched?: SortOrder
+  }
+
+  export type PopularSearchMinOrderByAggregateInput = {
+    id?: SortOrder
+    query?: SortOrder
+    count?: SortOrder
+    lastSearched?: SortOrder
+  }
+
+  export type PopularSearchSumOrderByAggregateInput = {
+    count?: SortOrder
+  }
+
+  export type SearchHistoryUserIdQueryCompoundUniqueInput = {
+    userId: string
+    query: string
+  }
+
+  export type SearchHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    query?: SortOrder
+    searchedAt?: SortOrder
+  }
+
+  export type SearchHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    query?: SortOrder
+    searchedAt?: SortOrder
+  }
+
+  export type SearchHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    query?: SortOrder
+    searchedAt?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+  }
+
+  export type ViewedProductUserIdSlugCompoundUniqueInput = {
+    userId: string
+    slug: string
+  }
+
+  export type ViewedProductCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    viewedAt?: SortOrder
+    product?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type ViewedProductMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    viewedAt?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type ViewedProductMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    viewedAt?: SortOrder
+    slug?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
   export type WishListCreateNestedManyWithoutUserInput = {
     create?: XOR<WishListCreateWithoutUserInput, WishListUncheckedCreateWithoutUserInput> | WishListCreateWithoutUserInput[] | WishListUncheckedCreateWithoutUserInput[]
     connectOrCreate?: WishListCreateOrConnectWithoutUserInput | WishListCreateOrConnectWithoutUserInput[]
@@ -13004,6 +16724,20 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+  export type ViewedProductCreateNestedManyWithoutUserInput = {
+    create?: XOR<ViewedProductCreateWithoutUserInput, ViewedProductUncheckedCreateWithoutUserInput> | ViewedProductCreateWithoutUserInput[] | ViewedProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ViewedProductCreateOrConnectWithoutUserInput | ViewedProductCreateOrConnectWithoutUserInput[]
+    createMany?: ViewedProductCreateManyUserInputEnvelope
+    connect?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+  }
+
+  export type SearchHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput> | SearchHistoryCreateWithoutUserInput[] | SearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput | SearchHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: SearchHistoryCreateManyUserInputEnvelope
+    connect?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+  }
+
   export type WishListUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<WishListCreateWithoutUserInput, WishListUncheckedCreateWithoutUserInput> | WishListCreateWithoutUserInput[] | WishListUncheckedCreateWithoutUserInput[]
     connectOrCreate?: WishListCreateOrConnectWithoutUserInput | WishListCreateOrConnectWithoutUserInput[]
@@ -13023,6 +16757,20 @@ export namespace Prisma {
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
     createMany?: OrderCreateManyUserInputEnvelope
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type ViewedProductUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ViewedProductCreateWithoutUserInput, ViewedProductUncheckedCreateWithoutUserInput> | ViewedProductCreateWithoutUserInput[] | ViewedProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ViewedProductCreateOrConnectWithoutUserInput | ViewedProductCreateOrConnectWithoutUserInput[]
+    createMany?: ViewedProductCreateManyUserInputEnvelope
+    connect?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+  }
+
+  export type SearchHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput> | SearchHistoryCreateWithoutUserInput[] | SearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput | SearchHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: SearchHistoryCreateManyUserInputEnvelope
+    connect?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -13080,6 +16828,34 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+  export type ViewedProductUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ViewedProductCreateWithoutUserInput, ViewedProductUncheckedCreateWithoutUserInput> | ViewedProductCreateWithoutUserInput[] | ViewedProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ViewedProductCreateOrConnectWithoutUserInput | ViewedProductCreateOrConnectWithoutUserInput[]
+    upsert?: ViewedProductUpsertWithWhereUniqueWithoutUserInput | ViewedProductUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ViewedProductCreateManyUserInputEnvelope
+    set?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    disconnect?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    delete?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    connect?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    update?: ViewedProductUpdateWithWhereUniqueWithoutUserInput | ViewedProductUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ViewedProductUpdateManyWithWhereWithoutUserInput | ViewedProductUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ViewedProductScalarWhereInput | ViewedProductScalarWhereInput[]
+  }
+
+  export type SearchHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput> | SearchHistoryCreateWithoutUserInput[] | SearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput | SearchHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: SearchHistoryUpsertWithWhereUniqueWithoutUserInput | SearchHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SearchHistoryCreateManyUserInputEnvelope
+    set?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    disconnect?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    delete?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    connect?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    update?: SearchHistoryUpdateWithWhereUniqueWithoutUserInput | SearchHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SearchHistoryUpdateManyWithWhereWithoutUserInput | SearchHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SearchHistoryScalarWhereInput | SearchHistoryScalarWhereInput[]
+  }
+
   export type WishListUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<WishListCreateWithoutUserInput, WishListUncheckedCreateWithoutUserInput> | WishListCreateWithoutUserInput[] | WishListUncheckedCreateWithoutUserInput[]
     connectOrCreate?: WishListCreateOrConnectWithoutUserInput | WishListCreateOrConnectWithoutUserInput[]
@@ -13120,6 +16896,34 @@ export namespace Prisma {
     update?: OrderUpdateWithWhereUniqueWithoutUserInput | OrderUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: OrderUpdateManyWithWhereWithoutUserInput | OrderUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type ViewedProductUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ViewedProductCreateWithoutUserInput, ViewedProductUncheckedCreateWithoutUserInput> | ViewedProductCreateWithoutUserInput[] | ViewedProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ViewedProductCreateOrConnectWithoutUserInput | ViewedProductCreateOrConnectWithoutUserInput[]
+    upsert?: ViewedProductUpsertWithWhereUniqueWithoutUserInput | ViewedProductUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ViewedProductCreateManyUserInputEnvelope
+    set?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    disconnect?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    delete?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    connect?: ViewedProductWhereUniqueInput | ViewedProductWhereUniqueInput[]
+    update?: ViewedProductUpdateWithWhereUniqueWithoutUserInput | ViewedProductUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ViewedProductUpdateManyWithWhereWithoutUserInput | ViewedProductUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ViewedProductScalarWhereInput | ViewedProductScalarWhereInput[]
+  }
+
+  export type SearchHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput> | SearchHistoryCreateWithoutUserInput[] | SearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput | SearchHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: SearchHistoryUpsertWithWhereUniqueWithoutUserInput | SearchHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SearchHistoryCreateManyUserInputEnvelope
+    set?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    disconnect?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    delete?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    connect?: SearchHistoryWhereUniqueInput | SearchHistoryWhereUniqueInput[]
+    update?: SearchHistoryUpdateWithWhereUniqueWithoutUserInput | SearchHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SearchHistoryUpdateManyWithWhereWithoutUserInput | SearchHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SearchHistoryScalarWhereInput | SearchHistoryScalarWhereInput[]
   }
 
   export type CategoryCreateNestedManyWithoutCatalogInput = {
@@ -13612,6 +17416,34 @@ export namespace Prisma {
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutWishListsInput, ProductUpdateWithoutWishListsInput>, ProductUncheckedUpdateWithoutWishListsInput>
   }
 
+  export type UserCreateNestedOneWithoutSearchHistoriesInput = {
+    create?: XOR<UserCreateWithoutSearchHistoriesInput, UserUncheckedCreateWithoutSearchHistoriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSearchHistoriesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSearchHistoriesNestedInput = {
+    create?: XOR<UserCreateWithoutSearchHistoriesInput, UserUncheckedCreateWithoutSearchHistoriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSearchHistoriesInput
+    upsert?: UserUpsertWithoutSearchHistoriesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSearchHistoriesInput, UserUpdateWithoutSearchHistoriesInput>, UserUncheckedUpdateWithoutSearchHistoriesInput>
+  }
+
+  export type UserCreateNestedOneWithoutViewedProductsInput = {
+    create?: XOR<UserCreateWithoutViewedProductsInput, UserUncheckedCreateWithoutViewedProductsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutViewedProductsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutViewedProductsNestedInput = {
+    create?: XOR<UserCreateWithoutViewedProductsInput, UserUncheckedCreateWithoutViewedProductsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutViewedProductsInput
+    upsert?: UserUpsertWithoutViewedProductsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutViewedProductsInput, UserUpdateWithoutViewedProductsInput>, UserUncheckedUpdateWithoutViewedProductsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -13779,6 +17611,17 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+  }
 
   export type WishListCreateWithoutUserInput = {
     id?: string
@@ -13855,6 +17698,50 @@ export namespace Prisma {
 
   export type OrderCreateManyUserInputEnvelope = {
     data: OrderCreateManyUserInput | OrderCreateManyUserInput[]
+  }
+
+  export type ViewedProductCreateWithoutUserInput = {
+    id?: string
+    viewedAt?: Date | string
+    product: InputJsonValue
+    slug: string
+  }
+
+  export type ViewedProductUncheckedCreateWithoutUserInput = {
+    id?: string
+    viewedAt?: Date | string
+    product: InputJsonValue
+    slug: string
+  }
+
+  export type ViewedProductCreateOrConnectWithoutUserInput = {
+    where: ViewedProductWhereUniqueInput
+    create: XOR<ViewedProductCreateWithoutUserInput, ViewedProductUncheckedCreateWithoutUserInput>
+  }
+
+  export type ViewedProductCreateManyUserInputEnvelope = {
+    data: ViewedProductCreateManyUserInput | ViewedProductCreateManyUserInput[]
+  }
+
+  export type SearchHistoryCreateWithoutUserInput = {
+    id?: string
+    query: string
+    searchedAt?: Date | string
+  }
+
+  export type SearchHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    query: string
+    searchedAt?: Date | string
+  }
+
+  export type SearchHistoryCreateOrConnectWithoutUserInput = {
+    where: SearchHistoryWhereUniqueInput
+    create: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type SearchHistoryCreateManyUserInputEnvelope = {
+    data: SearchHistoryCreateManyUserInput | SearchHistoryCreateManyUserInput[]
   }
 
   export type WishListUpsertWithWhereUniqueWithoutUserInput = {
@@ -13939,6 +17826,59 @@ export namespace Prisma {
     userId?: StringFilter<"Order"> | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+  }
+
+  export type ViewedProductUpsertWithWhereUniqueWithoutUserInput = {
+    where: ViewedProductWhereUniqueInput
+    update: XOR<ViewedProductUpdateWithoutUserInput, ViewedProductUncheckedUpdateWithoutUserInput>
+    create: XOR<ViewedProductCreateWithoutUserInput, ViewedProductUncheckedCreateWithoutUserInput>
+  }
+
+  export type ViewedProductUpdateWithWhereUniqueWithoutUserInput = {
+    where: ViewedProductWhereUniqueInput
+    data: XOR<ViewedProductUpdateWithoutUserInput, ViewedProductUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ViewedProductUpdateManyWithWhereWithoutUserInput = {
+    where: ViewedProductScalarWhereInput
+    data: XOR<ViewedProductUpdateManyMutationInput, ViewedProductUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ViewedProductScalarWhereInput = {
+    AND?: ViewedProductScalarWhereInput | ViewedProductScalarWhereInput[]
+    OR?: ViewedProductScalarWhereInput[]
+    NOT?: ViewedProductScalarWhereInput | ViewedProductScalarWhereInput[]
+    id?: StringFilter<"ViewedProduct"> | string
+    userId?: StringFilter<"ViewedProduct"> | string
+    viewedAt?: DateTimeFilter<"ViewedProduct"> | Date | string
+    product?: JsonFilter<"ViewedProduct">
+    slug?: StringFilter<"ViewedProduct"> | string
+  }
+
+  export type SearchHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: SearchHistoryWhereUniqueInput
+    update: XOR<SearchHistoryUpdateWithoutUserInput, SearchHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type SearchHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: SearchHistoryWhereUniqueInput
+    data: XOR<SearchHistoryUpdateWithoutUserInput, SearchHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SearchHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: SearchHistoryScalarWhereInput
+    data: XOR<SearchHistoryUpdateManyMutationInput, SearchHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SearchHistoryScalarWhereInput = {
+    AND?: SearchHistoryScalarWhereInput | SearchHistoryScalarWhereInput[]
+    OR?: SearchHistoryScalarWhereInput[]
+    NOT?: SearchHistoryScalarWhereInput | SearchHistoryScalarWhereInput[]
+    id?: StringFilter<"SearchHistory"> | string
+    userId?: StringFilter<"SearchHistory"> | string
+    query?: StringFilter<"SearchHistory"> | string
+    searchedAt?: DateTimeFilter<"SearchHistory"> | Date | string
   }
 
   export type CategoryCreateWithoutCatalogInput = {
@@ -14393,6 +18333,8 @@ export namespace Prisma {
     clerkUserId?: string | null
     wishList?: WishListCreateNestedManyWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
@@ -14406,6 +18348,8 @@ export namespace Prisma {
     clerkUserId?: string | null
     wishList?: WishListUncheckedCreateNestedManyWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductUncheckedCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
@@ -14471,6 +18415,8 @@ export namespace Prisma {
     clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
     wishList?: WishListUpdateManyWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -14483,6 +18429,8 @@ export namespace Prisma {
     clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
     wishList?: WishListUncheckedUpdateManyWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUncheckedUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutReviewsInput = {
@@ -14537,6 +18485,8 @@ export namespace Prisma {
     clerkUserId?: string | null
     wishList?: WishListCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
+    viewedProducts?: ViewedProductCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -14550,6 +18500,8 @@ export namespace Prisma {
     clerkUserId?: string | null
     wishList?: WishListUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
+    viewedProducts?: ViewedProductUncheckedCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -14599,6 +18551,8 @@ export namespace Prisma {
     clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
     wishList?: WishListUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
+    viewedProducts?: ViewedProductUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -14611,6 +18565,8 @@ export namespace Prisma {
     clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
     wishList?: WishListUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    viewedProducts?: ViewedProductUncheckedUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
@@ -14760,6 +18716,8 @@ export namespace Prisma {
     clerkUserId?: string | null
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWishListInput = {
@@ -14773,6 +18731,8 @@ export namespace Prisma {
     clerkUserId?: string | null
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductUncheckedCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWishListInput = {
@@ -14838,6 +18798,8 @@ export namespace Prisma {
     clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWishListInput = {
@@ -14850,6 +18812,8 @@ export namespace Prisma {
     clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUncheckedUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutWishListsInput = {
@@ -14893,6 +18857,154 @@ export namespace Prisma {
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
   }
 
+  export type UserCreateWithoutSearchHistoriesInput = {
+    id?: string
+    email: string
+    firstName: string
+    lastName: string
+    imageUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clerkUserId?: string | null
+    wishList?: WishListCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutReviewerInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSearchHistoriesInput = {
+    id?: string
+    email: string
+    firstName: string
+    lastName: string
+    imageUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clerkUserId?: string | null
+    wishList?: WishListUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    viewedProducts?: ViewedProductUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSearchHistoriesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSearchHistoriesInput, UserUncheckedCreateWithoutSearchHistoriesInput>
+  }
+
+  export type UserUpsertWithoutSearchHistoriesInput = {
+    update: XOR<UserUpdateWithoutSearchHistoriesInput, UserUncheckedUpdateWithoutSearchHistoriesInput>
+    create: XOR<UserCreateWithoutSearchHistoriesInput, UserUncheckedCreateWithoutSearchHistoriesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSearchHistoriesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSearchHistoriesInput, UserUncheckedUpdateWithoutSearchHistoriesInput>
+  }
+
+  export type UserUpdateWithoutSearchHistoriesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    wishList?: WishListUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutReviewerNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSearchHistoriesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    wishList?: WishListUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    viewedProducts?: ViewedProductUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutViewedProductsInput = {
+    id?: string
+    email: string
+    firstName: string
+    lastName: string
+    imageUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clerkUserId?: string | null
+    wishList?: WishListCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutReviewerInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutViewedProductsInput = {
+    id?: string
+    email: string
+    firstName: string
+    lastName: string
+    imageUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    clerkUserId?: string | null
+    wishList?: WishListUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    searchHistories?: SearchHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutViewedProductsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutViewedProductsInput, UserUncheckedCreateWithoutViewedProductsInput>
+  }
+
+  export type UserUpsertWithoutViewedProductsInput = {
+    update: XOR<UserUpdateWithoutViewedProductsInput, UserUncheckedUpdateWithoutViewedProductsInput>
+    create: XOR<UserCreateWithoutViewedProductsInput, UserUncheckedCreateWithoutViewedProductsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutViewedProductsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutViewedProductsInput, UserUncheckedUpdateWithoutViewedProductsInput>
+  }
+
+  export type UserUpdateWithoutViewedProductsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    wishList?: WishListUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutReviewerNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutViewedProductsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    clerkUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    wishList?: WishListUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    searchHistories?: SearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type WishListCreateManyUserInput = {
     id?: string
     productId: string
@@ -14915,6 +19027,19 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ViewedProductCreateManyUserInput = {
+    id?: string
+    viewedAt?: Date | string
+    product: InputJsonValue
+    slug: string
+  }
+
+  export type SearchHistoryCreateManyUserInput = {
+    id?: string
+    query: string
+    searchedAt?: Date | string
   }
 
   export type WishListUpdateWithoutUserInput = {
@@ -14980,6 +19105,39 @@ export namespace Prisma {
   export type OrderUncheckedUpdateManyWithoutUserInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ViewedProductUpdateWithoutUserInput = {
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ViewedProductUncheckedUpdateWithoutUserInput = {
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ViewedProductUncheckedUpdateManyWithoutUserInput = {
+    viewedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: InputJsonValue | InputJsonValue
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SearchHistoryUpdateWithoutUserInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchHistoryUncheckedUpdateWithoutUserInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchHistoryUncheckedUpdateManyWithoutUserInput = {
+    query?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryCreateManyCatalogInput = {

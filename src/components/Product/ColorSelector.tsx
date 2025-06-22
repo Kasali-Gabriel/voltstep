@@ -1,5 +1,6 @@
-import { colorHexCodes } from '@/constants/colorData';
-import { ColorSelectorProps } from '@/types/auth';
+import { colorHexCodes } from '@/data/colorData';
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { ColorSelectorProps } from '@/types/product';
 import { useEffect, useRef, useState } from 'react';
 
 export const ColorSelector = ({
@@ -10,21 +11,8 @@ export const ColorSelector = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const selectedColorRef = useRef<HTMLButtonElement | null>(null);
   const [reorderedColors, setReorderedColors] = useState<string[]>(colors);
-
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useIsMobile();
   const [isScrolledAwayFromStart, setIsScrolledAwayFromStart] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     setReorderedColors(colors); // Reset when color list changes
@@ -60,17 +48,12 @@ export const ColorSelector = ({
   // Track scroll position
   useEffect(() => {
     const container = containerRef.current;
-
     if (!container) return;
-
     const onScroll = () => {
       setIsScrolledAwayFromStart(container.scrollLeft > 10);
     };
-
     container.addEventListener('scroll', onScroll);
-
     setIsScrolledAwayFromStart(container.scrollLeft > 10);
-
     return () => {
       container.removeEventListener('scroll', onScroll);
     };
@@ -78,15 +61,12 @@ export const ColorSelector = ({
 
   const handleColorClick = (color: string) => {
     setSelectedColor(color);
-
     if (isMobile && containerRef.current) {
       const scrollLeft = containerRef.current.scrollLeft;
-      const isScrolledAwayFromStart = scrollLeft > 10;
-
-      if (isScrolledAwayFromStart) {
+      const scrolledAway = scrollLeft > 10;
+      if (scrolledAway) {
         // Move selected color to front
         setReorderedColors([color, ...colors.filter((c) => c !== color)]);
-
         // Scroll back to start
         containerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
       }

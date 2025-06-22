@@ -104,10 +104,9 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
     <div
       className={`relative flex ${isPage ? 'flex-col' : 'flex-row space-x-3 sm:space-x-5'} ${isRemoving ? 'pointer-events-none opacity-50' : ''}`}
     >
-      {/* Product image as a link */}
       {isPage ? (
         <Link
-          href={item.product?.slug ? `/products/${item.product.slug}` : '#'}
+          href={item.product?.slug ? `/product/${item.product.slug}` : '#'}
           tabIndex={item.product?.slug ? 0 : -1}
           onClick={handleProductLinkClick}
         >
@@ -122,7 +121,7 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
       ) : (
         <div className="relative h-44 w-32 flex-shrink-0 sm:h-52 sm:w-44">
           <Link
-            href={item.product?.slug ? `/products/${item.product.slug}` : '#'}
+            href={item.product?.slug ? `/product/${item.product.slug}` : '#'}
             tabIndex={item.product?.slug ? 0 : -1}
             onClick={handleProductLinkClick}
           >
@@ -141,7 +140,7 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
       <div className="mt-2 flex w-full flex-col gap-1 md:flex-row md:justify-between">
         <div className="flex flex-col">
           <Link
-            href={item.product?.slug ? `/products/${item.product.slug}` : '#'}
+            href={item.product?.slug ? `/product/${item.product.slug}` : '#'}
             tabIndex={item.product?.slug ? 0 : -1}
             onClick={handleProductLinkClick}
           >

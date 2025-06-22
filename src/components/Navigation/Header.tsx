@@ -1,14 +1,42 @@
 'use client';
 
 import { useWishlistSuccessDialogStore } from '@/lib/state';
+import { Catalog } from '@/types/product';
+import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import Navbar from './Navbar';
+
+let catalogCache: Catalog[] | null = null;
 
 const Header = () => {
   const lastScrollY = useRef(0);
   const [showHeader, setShowHeader] = useState(true);
+  const [catalogs, setCatalogs] = useState<Catalog[]>([]);
 
   const { showSuccessDialog } = useWishlistSuccessDialogStore();
+
+  useEffect(() => {
+    const fetchCatalogData = async () => {
+      if (catalogCache) {
+        setCatalogs(catalogCache);
+        return;
+      }
+
+      try {
+        const res = await axios.get('/api/products/catalogdata');
+
+        catalogCache = res.data as Catalog[];
+
+        setCatalogs(catalogCache);
+      } catch (error) {
+        console.error('Error fetching catalog data:', error);
+
+        setCatalogs([]);
+      }
+    };
+
+    fetchCatalogData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +59,9 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full transform bg-white px-5 transition-transform duration-300 ease-in-out sm:px-10 xl:px-16 ${showSuccessDialog ? 'z-60' : 'z-50'} ${showHeader ? 'translate-y-0' : '-translate-y-full'}`}
+      className={`fixed top-0 left-0 w-full transform bg-white transition-transform duration-300 ease-in-out ${showSuccessDialog ? 'z-60' : 'z-50'} ${showHeader ? 'translate-y-0' : '-translate-y-full'}`}
     >
-      <Navbar />
+      {catalogs.length > 0 && <Navbar catalogs={catalogs} />}
     </header>
   );
 };

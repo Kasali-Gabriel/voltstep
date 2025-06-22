@@ -10,17 +10,19 @@ datasource db {
 }
 
 model User {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  email       String     @unique
-  firstName   String
-  lastName    String
-  imageUrl    String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  clerkUserId String?
-  wishList    WishList[] @relation("UserToWishList")
-  reviews     Review[]   @relation("UserReviews")
-  orders      Order[]
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  email           String          @unique
+  firstName       String
+  lastName        String
+  imageUrl        String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  clerkUserId     String?
+  wishList        WishList[]      @relation("UserToWishList")
+  reviews         Review[]        @relation("UserReviews")
+  orders          Order[]
+  viewedProducts  ViewedProduct[] @relation("UserViewedProducts")
+  searchHistories SearchHistory[] @relation("UserSearchHistories")
 }
 
 model Catalog {
@@ -114,9 +116,39 @@ model WishList {
   @@unique([userId, productId])
 }
 
+model PopularSearch {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  query        String   @unique
+  count        Int      @default(1)
+  lastSearched DateTime @default(now())
+}
+
 enum Tag {
   NEW_ARRIVAL
   BESTSELLER
   FLASH_SALE
   BACK_IN_STOCK
+}
+
+model SearchHistory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  user       User     @relation("UserSearchHistories", fields: [userId], references: [id])
+  query      String
+  searchedAt DateTime @default(now())
+
+  @@unique([userId, query])
+  @@index([userId, searchedAt])
+}
+
+model ViewedProduct {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String   @db.ObjectId
+  user     User     @relation("UserViewedProducts", fields: [userId], references: [id])
+  viewedAt DateTime @default(now())
+  product  Json
+  slug     String
+
+  @@unique([userId, slug])
+  @@index([userId, viewedAt])
 }

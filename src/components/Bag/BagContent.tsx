@@ -3,7 +3,7 @@ import { useBagStore } from '@/lib/state';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import shoppingBag from '../../../public/SVGs/shopping-bag-icon.svg';
+import shoppingBag from '@/assets/shopping-bag-icon.svg';
 import { MoveToWishList } from '../Wishlist/MovetowishList';
 import ShippingProgress from './ShippingProgress';
 
@@ -45,7 +45,7 @@ export const BagContent = ({
                 >
                   <div className="relative h-44 w-32 flex-shrink-0 sm:h-52 sm:w-44">
                     <Link
-                      href={`/products/${item.slug}` || '#'}
+                      href={`/product/${item.slug}` || '#'}
                       onClick={() => setIsBagOpen(false)}
                     >
                       <Image
@@ -60,7 +60,7 @@ export const BagContent = ({
 
                   <div className="flex h-full w-full flex-col space-y-1">
                     <Link
-                      href={`/products/${item.slug}` || '#'}
+                      href={`/product/${item.slug}` || '#'}
                       onClick={() => setIsBagOpen(false)}
                     >
                       <h3 className="cursor-pointer text-sm font-medium sm:text-base">

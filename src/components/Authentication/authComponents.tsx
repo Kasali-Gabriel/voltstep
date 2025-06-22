@@ -2,6 +2,9 @@ import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 import * as SignUp from '@clerk/elements/sign-up';
 
+import appleLogo from '@/assets/apple-logo.png';
+import googleLogo from '@/assets/google-logo.png';
+import logo from '@/assets/logoIcon.png';
 import { cn } from '@/lib/utils';
 import {
   AuthContinueBtnProps,
@@ -12,9 +15,6 @@ import { CircleAlert, Eye, EyeOff, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import appleLogo from '../../../public/apple-logo.png';
-import googleLogo from '../../../public/google-logo.png';
-import logo from '../../../public/logoIcon.png';
 import { Button } from '../ui/button';
 import { Icons } from '../ui/icons';
 import { Input } from '../ui/input';

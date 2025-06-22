@@ -6,11 +6,12 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { fetchCatalogData } from '@/lib/utils';
-import { Catalog } from '@/types/product';
+import { Catalog, Category, Subcategory } from '@/types/product';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 import {
   Sheet,
   SheetClose,
@@ -22,18 +23,9 @@ import {
 } from '../ui/sheet';
 import { ViewWishlist } from '../Wishlist/ViewWishlist';
 
-const MobileMenu = () => {
-  const [catalogs, setCatalogs] = useState<Catalog[]>([]);
+const MobileMenu = ({ catalogs }: { catalogs: Catalog[] }) => {
   const [open, setOpen] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchCatalogData();
-      setCatalogs(data);
-    };
-    fetchData();
-  }, []);
 
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -69,24 +61,38 @@ const MobileMenu = () => {
             className="scrollbar scrollbar-thumb-stone-400 scrollbar-thumb-rounded-full scrollbar-w-[5px] h-full overflow-y-auto"
           >
             <TabsList className="flex w-full items-center justify-center space-x-10 rounded-none bg-gradient-to-b from-neutral-200 via-neutral-100 to-white pt-2">
-              {catalogs.map((product) => (
+              {catalogs.map((catalog) => (
                 <TabsTrigger
-                  key={product.id}
-                  value={String(product.id)}
+                  key={catalog.id}
+                  value={String(catalog.id)}
                   className="cursor-pointer border-b-1 border-transparent px-1 pt-2 pb-1.5 font-semibold text-black uppercase data-[state=active]:border-b-[2.5px] data-[state=active]:border-black"
                 >
-                  {product.name}
+                  {catalog.name}
                 </TabsTrigger>
               ))}
             </TabsList>
 
-            {catalogs.map((product) => (
+            {catalogs.map((catalog: Catalog) => (
               <TabsContent
-                key={product.id}
-                value={String(product.id)}
-                className="h-full w-full px-4"
+                key={catalog.id}
+                value={String(catalog.id)}
+                className="flex h-full w-full flex-col space-y-4 px-4"
               >
-                {product.categories.map((category) => (
+                <Link
+                  href={`/products/${catalog.slug}`}
+                  key={catalog.id}
+                  onClick={() => setSheetOpen(false)}
+                >
+                  <Image
+                    key={catalog.id}
+                    alt={catalog.name}
+                    src={''}
+                    height={50}
+                    width={100}
+                  />
+                </Link>
+
+                {catalog.categories.map((category: Category) => (
                   <Collapsible
                     key={category.id}
                     open={open === category.id}
@@ -107,14 +113,18 @@ const MobileMenu = () => {
 
                     <CollapsibleContent className="pb-2">
                       <div className="flex cursor-pointer flex-col pl-2">
-                        {category.subcategories?.map((subcategory) => (
-                          <span
-                            className="border-b border-stone-300 py-5 text-sm font-semibold text-stone-500 last:border-none"
-                            key={subcategory.id}
-                          >
-                            {subcategory.name}
-                          </span>
-                        ))}
+                        {category.subcategories?.map(
+                          (subcategory: Subcategory) => (
+                            <Link
+                              className="cursor-pointer border-b border-stone-300 py-5 text-sm font-semibold text-stone-500 last:border-none hover:text-black"
+                              key={subcategory.id}
+                              onClick={() => setSheetOpen(false)}
+                              href={`/products/${catalog.slug}/${category.slug}/${subcategory.slug}`}
+                            >
+                              {subcategory.name}
+                            </Link>
+                          ),
+                        )}
                       </div>
                     </CollapsibleContent>
                   </Collapsible>

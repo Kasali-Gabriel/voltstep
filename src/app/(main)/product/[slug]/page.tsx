@@ -1,3 +1,4 @@
+// Product detail page moved from /products/[slug]/page.tsx
 'use client';
 
 import { ColorSelector } from '@/components/Product/ColorSelector';
@@ -12,7 +13,7 @@ import { Ratings } from '@/components/Reviews/ratings';
 import { RatingsPreview } from '@/components/Reviews/ratingsPreview';
 import { Reviews } from '@/components/Reviews/reviews';
 import { AddToWishList } from '@/components/Wishlist/AddToWishList';
-import { images } from '@/constants/images';
+import { images } from '@/data/images';
 import { useCartStore } from '@/hooks/use-cart';
 import { useBagStore } from '@/lib/state';
 import { CartItem } from '@/types/cart';
@@ -47,7 +48,7 @@ const Page = ({
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`/api/products/${params.slug}`);
+      const response = await axios.get(`/api/product/${params.slug}`);
 
       const data = response.data;
 
@@ -169,7 +170,7 @@ const Page = ({
   }
 
   return (
-    <div className="relative flex min-h-[150vh] w-full flex-col">
+    <div className="relative flex min-h-[100vh] w-full flex-col px-5 sm:px-10 xl:px-12">
       <div className="flex w-full flex-col items-center justify-center pt-4 md:pt-10">
         <section className="relative flex flex-col gap-6 xl:pl-14 lg:portrait:grid lg:portrait:grid-cols-2 md:landscape:grid md:landscape:grid-cols-2">
           <div className="flex flex-col gap-2 lg:portrait:hidden md:landscape:hidden">

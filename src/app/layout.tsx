@@ -32,11 +32,11 @@ export default function RootLayout({
         </head>
 
         <body>
-              <main>{children}</main>
-              <Toaster
-                toastOptions={{ style: { pointerEvents: 'auto' } }}
-                swipeDirections={['left', 'right']}
-              />
+          <main>{children}</main>
+          <Toaster
+            toastOptions={{ style: { pointerEvents: 'auto' } }}
+            swipeDirections={['left', 'right']}
+          />
         </body>
       </html>
     </ClerkProvider>

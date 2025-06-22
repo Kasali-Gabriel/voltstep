@@ -19,13 +19,11 @@ export default function FlashNews() {
 
   useEffect(() => {
     if (isPaused) return;
-
-    const timer = setInterval(() => {
+    const timeout = setTimeout(() => {
       setIndex((prev) => (prev + 1) % messages.length);
     }, 5000);
-
-    return () => clearInterval(timer);
-  }, [isPaused]);
+    return () => clearTimeout(timeout);
+  }, [isPaused, index]);
 
   const variants = {
     initial: { opacity: 0, y: 30 },
@@ -35,7 +33,7 @@ export default function FlashNews() {
 
   return (
     <div
-      className={`relative -mx-5 flex h-12 w-screen justify-end overflow-hidden bg-neutral-200 text-center text-sm font-semibold sm:-mx-10 md:text-base xl:-mx-16 ${pathName === '/' ? 'hidden' : ''}`}
+      className={`relative flex h-12 justify-end overflow-hidden bg-neutral-200 text-center text-sm font-semibold md:text-base ${pathName === '/' ? 'hidden' : ''}`}
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -53,7 +51,7 @@ export default function FlashNews() {
 
       <button
         onClick={() => setIsPaused(!isPaused)}
-        className="z-20 flex cursor-pointer items-center justify-end px-3 sm:px-10 xl:px-16"
+        className="z-20 flex cursor-pointer items-center justify-end px-3 sm:px-10 xl:px-12"
       >
         {isPaused ? (
           <Play size={20} className="scale-90 fill-black sm:scale-100" />

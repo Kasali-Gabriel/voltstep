@@ -13,7 +13,7 @@ import {
 import Image from 'next/image';
 import { useState } from 'react';
 import privacyChoicesIcon from '../../../public/privacy-choices-icon.png';
-import { footerData } from '../../constants/footerData';
+import { footerData } from '../../data/footerData';
 import {
   Collapsible,
   CollapsibleContent,
@@ -106,7 +106,7 @@ const Footer = () => {
             Follow Us
           </h3>
 
-          <div className="flex justify-center gap-5 py-5 md:mt-5 md:grid md:grid-cols-3 md:justify-normal md:py-0">
+          <div className="flex flex-wrap justify-center gap-5 py-5 md:mt-5 md:justify-start md:gap-4 md:py-0">
             {socialIcons.map(({ Icon }, index) => (
               <div
                 key={index}

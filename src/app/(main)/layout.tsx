@@ -14,10 +14,13 @@ export default function MainLayout({
   return (
     <UserProvider>
       <WishlistProvider>
-        <div className="g-full flex min-h-screen flex-col px-5 sm:px-10 xl:px-16">
+        <div className="flex min-h-screen w-full flex-col">
           <Header />
 
-          <main className="mt-16 grow md:mt-[72px] flex flex-col"><FlashNews />{children}</main>
+          <main className="mt-16 flex flex-col md:mt-[72px]">
+            <FlashNews />
+            {children}
+          </main>
 
           <div className="relative z-10 mt-auto pb-[80px] lg:pb-0">
             <Footer />

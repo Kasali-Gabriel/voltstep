@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <UserProvider>
       <WishlistProvider>
-        <div className="flex min-h-screen flex-col px-5 sm:px-10 xl:px-16">
+        <div className="flex min-h-screen flex-col px-5 sm:px-10 xl:px-12">
           <Header />
 
           <main className="mt-16 flex flex-1 flex-col md:mt-[72px]">

@@ -132,3 +132,24 @@ h6 {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    100deg,
+    #c2c2c2 30%,
+    /* darker base */ #d1d1d1 50%,
+    /* lighter shimmer */ #c2c2c2 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.8s infinite;
+  border-radius: 8px;
+}

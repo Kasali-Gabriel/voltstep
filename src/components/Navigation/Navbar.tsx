@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import bigLogo from '../../../public/logo.png';
 import smallLogo from '../../../public/logoIcon.png';
 
+import { Catalog } from '@/types/product';
 import {
   GoogleOneTap,
   SignedIn,
@@ -16,12 +17,13 @@ import { User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bag } from '../Bag/Bag';
-import { SearchBar, SearchView } from '../Search/Search';
+import SearchView from '../Search/Search';
+import SearchBar from '../Search/SearchBar';
+import { ViewWishlist } from '../Wishlist/ViewWishlist';
 import MobileMenu from './MobileMenu';
 import NavMenu from './NavMenu';
-import { ViewWishlist } from '../Wishlist/ViewWishlist';
 
-const Navbar = () => {
+const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex h-16 relative flex-col items-center justify-center">
+    <nav className="relative flex h-16 flex-col items-center justify-center px-5 sm:px-10 xl:px-12">
       {isClient && (
         <>
           <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
@@ -44,7 +46,7 @@ const Navbar = () => {
 
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center justify-center space-x-4 md:hidden">
-          <MobileMenu />
+          <MobileMenu catalogs={catalogs} />
 
           <SearchView />
         </div>
@@ -67,7 +69,7 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex">
-            <NavMenu />
+            <NavMenu catalogs={catalogs} />
           </div>
         </div>
 

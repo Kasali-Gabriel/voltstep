@@ -1,0 +1,550 @@
+[
+  {
+    "type": "catalog",
+    "key": "men",
+    "synonyms": ["man", "male", "mens", "men's", "guys"]
+  },
+  {
+    "type": "catalog",
+    "key": "women",
+    "synonyms": ["woman", "female", "womens", "women's", "ladies"]
+  },
+  {
+    "type": "catalog",
+    "key": "kids",
+    "synonyms": [
+      "kid",
+      "child",
+      "children",
+      "youth",
+      "youths",
+      "boys",
+      "girls",
+      "children's",
+      "childrens"
+    ]
+  },
+
+  {
+    "type": "category",
+    "key": "tops",
+    "synonyms": ["upperwear", "top", "tops", "shirts", "shirt"]
+  },
+  {
+    "type": "category",
+    "key": "bottoms",
+    "synonyms": ["lowerwear", "pants", "trousers"]
+  },
+  {
+    "type": "category",
+    "key": "footwears",
+    "synonyms": ["shoe", "shoes", "kicks", "sneakers"]
+  },
+  {
+    "type": "category",
+    "key": "outerwears",
+    "synonyms": ["jackets", "hoodies", "coats"]
+  },
+  {
+    "type": "category",
+    "key": "accessories",
+    "synonyms": ["add-ons", "gear", "extras"]
+  },
+  {
+    "type": "category",
+    "key": "collections",
+    "synonyms": ["sets", "grouped wear", "matching items"]
+  },
+
+  {
+    "catalog": "men",
+    "type": "subcategory",
+    "key": "tshirts",
+    "synonyms": [
+      "tshirt",
+      "t-shirts",
+      "tee",
+      "tees",
+      "crew neck",
+      "t shirt",
+      "t shirts",
+      "crewneck",
+      "crew necks"
+    ]
+  },
+  {
+    "catalog": "women",
+    "type": "subcategory",
+    "key": "tshirts & tops",
+    "synonyms": [
+      "tees",
+      "t-shirt",
+      "t-shirts",
+      "t shirt",
+      "t shirts",
+      "crew neck",
+      "crewneck",
+      "crew necks"
+    ]
+  },
+  {
+    "catalog": "men",
+    "type": "subcategory",
+    "key": "tank tops",
+    "synonyms": [
+      "tank top",
+      "tank",
+      "tanks",
+      "sleeveless",
+      "muscle top",
+      "muscle tops"
+    ]
+  },
+  {
+    "catalog": "men",
+    "type": "subcategory",
+    "key": "compression tops",
+    "synonyms": [
+      "compression top",
+      "tight top",
+      "tight tops",
+      "base layer",
+      "base layers"
+    ]
+  },
+  {
+    "catalog": "women",
+    "type": "subcategory",
+    "key": "sports bras",
+    "synonyms": [
+      "sports bra",
+      "bra top",
+      "bra tops",
+      "support top",
+      "support tops"
+    ]
+  },
+  {
+    "catalog": "women",
+    "type": "subcategory",
+    "key": "crop tops",
+    "synonyms": [
+      "crop top",
+      "cropped top",
+      "cropped tops",
+      "midriff top",
+      "midriff tops"
+    ]
+  },
+  {
+    "type": "subcategory",
+    "key": "long sleeve shirts",
+    "synonyms": [
+      "long sleeve shirt",
+      "long sleeves",
+      "long sleeve",
+      "full sleeve",
+      "full sleeves",
+      "ls top",
+      "ls tops"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "shorts",
+    "synonyms": [
+      "short",
+      "gym short",
+      "gym shorts",
+      "training short",
+      "training shorts",
+      "sport short",
+      "sport shorts"
+    ]
+  },
+  {
+    "type": "subcategory",
+    "key": "joggers",
+    "synonyms": [
+      "jogger",
+      "track pant",
+      "track pants",
+      "sweatpant",
+      "sweatpants",
+      "bottom",
+      "bottoms"
+    ]
+  },
+  {
+    "catalog": "women",
+    "type": "subcategory",
+    "key": "leggings",
+    "synonyms": [
+      "legging",
+      "yoga pant",
+      "yoga pants",
+      "stretch pant",
+      "stretch pants",
+      "tight",
+      "tights",
+      "compression legging",
+      "compression leggings"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "hoodies",
+    "synonyms": [
+      "hoodie",
+      "pullover",
+      "pullovers",
+      "zip up",
+      "zip ups",
+      "hoody",
+      "hooded top",
+      "hooded tops"
+    ]
+  },
+  {
+    "type": "subcategory",
+    "key": "sweatshirts",
+    "synonyms": ["sweatshirt", "crewneck", "crewnecks", "pullover", "pullovers"]
+  },
+  {
+    "type": "subcategory",
+    "key": "jackets",
+    "synonyms": [
+      "jacket",
+      "track jacket",
+      "track jackets",
+      "activewear jacket",
+      "activewear jackets"
+    ]
+  },
+  {
+    "catalog": "men",
+    "type": "subcategory",
+    "key": "windbreakers",
+    "synonyms": [
+      "windbreaker",
+      "light jacket",
+      "light jackets",
+      "rain jacket",
+      "rain jackets"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "running shoes",
+    "synonyms": [
+      "running shoe",
+      "runner",
+      "runners",
+      "running sneaker",
+      "running sneakers"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "training shoes",
+    "synonyms": [
+      "training shoe",
+      "gym shoe",
+      "gym shoes",
+      "workout shoe",
+      "workout shoes",
+      "trainer",
+      "trainers"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "casual sneakers",
+    "synonyms": [
+      "casual sneaker",
+      "lifestyle sneaker",
+      "lifestyle sneakers",
+      "everyday shoe",
+      "everyday shoes"
+    ]
+  },
+  {
+    "type": "subcategory",
+    "key": "slides",
+    "synonyms": ["slide", "slippers", "slipper", "sandal", "sandals"]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "caps",
+    "synonyms": ["cap", "caps", "hat", "hats", "headwear"]
+  },
+  {
+    "type": "subcategory",
+    "key": "socks",
+    "synonyms": [
+      "sock",
+      "socks",
+      "ankle sock",
+      "ankle socks",
+      "crew sock",
+      "crew socks",
+      "sport sock",
+      "sport socks"
+    ]
+  },
+  {
+    "type": "subcategory",
+    "key": "gloves",
+    "synonyms": [
+      "glove",
+      "gloves",
+      "lifting glove",
+      "lifting gloves",
+      "training glove",
+      "training gloves"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "gym bags",
+    "synonyms": [
+      "gym bag",
+      "gym bags",
+      "bag",
+      "bags",
+      "duffle",
+      "duffles",
+      "sports bag",
+      "sports bags"
+    ]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "backpacks",
+    "synonyms": [
+      "backpack",
+      "backpacks",
+      "rucksack",
+      "rucksacks",
+      "bag",
+      "bags"
+    ]
+  },
+
+  {
+    "catalog": "women",
+    "type": "subcategory",
+    "key": "hairbands & scrunchies",
+    "synonyms": [
+      "hairband",
+      "hairbands",
+      "hair tie",
+      "hair ties",
+      "scrunchie",
+      "scrunchies",
+      "band",
+      "bands"
+    ]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "wristbands & sweatbands",
+    "synonyms": [
+      "wristband",
+      "wristbands",
+      "wrist band",
+      "wrist bands",
+      "gym band",
+      "gym bands",
+      "sweatband",
+      "sweatbands"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "matching sets",
+    "synonyms": [
+      "matching set",
+      "gym set",
+      "gym sets",
+      "outfit set",
+      "outfit sets",
+      "co-ord",
+      "co-ords"
+    ]
+  },
+  {
+    "catalog": "women",
+    "type": "subcategory",
+    "key": "maternity activewear",
+    "synonyms": ["maternity activewear", "pregnancy wear", "maternity gymwear"]
+  },
+
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "activewear sets",
+    "synonyms": [
+      "activewear set",
+      "gym set",
+      "gym sets",
+      "outfit set",
+      "outfit sets"
+    ]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "sports apparel",
+    "synonyms": ["sport outfit", "sport outfits", "activity gear"]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "gymwear",
+    "synonyms": ["athleisure", "athleisure wear", "casual gymwear", "gymwears"]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "swimwear & rash guards",
+    "synonyms": [
+      "swimwear",
+      "swim gear",
+      "rash guard",
+      "rash guards",
+      "rashguard",
+      "rashguards",
+      "swimsuit",
+      "swimsuits"
+    ]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "outerwear & layering essentials",
+    "synonyms": [
+      "outerwear",
+      "layering essential",
+      "layering essentials",
+      "base layer",
+      "base layers",
+      "jacket",
+      "jackets",
+      "hoodie",
+      "hoodies"
+    ]
+  },
+
+  {
+    "type": "subcategory",
+    "key": "sneakers",
+    "synonyms": ["sneaker", "slip-on", "slip-ons", "slipon", "slipons"]
+  },
+
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "procourt kicks",
+    "synonyms": [
+      "procourt kick",
+      "pro court shoe",
+      "pro court shoes",
+      "basketball shoe",
+      "basketball shoes"
+    ]
+  },
+
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "trainers",
+    "synonyms": [
+      "trainer",
+      "rugged shoe",
+      "rugged shoes",
+      "multi-purpose trainer",
+      "multi-purpose trainers"
+    ]
+  },
+
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "caps & headbands",
+    "synonyms": [
+      "cap",
+      "caps",
+      "headband",
+      "headbands",
+      "hat",
+      "hats",
+      "hairwear"
+    ]
+  },
+  {
+    "type": "subcategory",
+    "key": "water bottles",
+    "synonyms": [
+      "water bottle",
+      "water bottles",
+      "bottle",
+      "bottles",
+      "hydration"
+    ]
+  },
+
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "socks & compression wear",
+    "synonyms": [
+      "sock",
+      "socks",
+      "compression wear",
+      "tightwear",
+      "tight wear",
+      "ankle sock",
+      "ankle socks",
+      "sport sock",
+      "sport socks"
+    ]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "wristbands & sweatbands",
+    "synonyms": [
+      "wristband",
+      "wristbands",
+      "band",
+      "bands",
+      "sweatband",
+      "sweatbands"
+    ]
+  },
+  {
+    "catalog": "kids",
+    "type": "subcategory",
+    "key": "gloves & protective gear",
+    "synonyms": [
+      "glove",
+      "gloves",
+      "protective gear",
+      "training glove",
+      "training gloves",
+      "guard",
+      "guards"
+    ]
+  }
+]

@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { images } from '@/constants/images';
+import { images } from '@/data/images';
 import { WishListSizeSelectorProps } from '@/types/wishlist';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
@@ -220,7 +220,7 @@ const WishListSizeSelector = ({
                   <Link
                     href={
                       item.product?.slug
-                        ? `/products/${item.product.slug}`
+                        ? `/product/${item.product.slug}`
                         : '#'
                     }
                     tabIndex={item.product?.slug ? 0 : -1}
