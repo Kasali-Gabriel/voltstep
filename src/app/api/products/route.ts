@@ -1,17 +1,21 @@
 import { fetchAllProducts } from '@/actions/products';
+import { parseCatalogFilters } from '@/utils/parseCatalogFilters';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
-  try {
-    const products = await fetchAllProducts();
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
 
-    return NextResponse.json(products);
-  } catch (error) {
-    console.error('Error fetching products:', error);
+  const filters = parseCatalogFilters(searchParams);
+  const offset = Number(searchParams.get('offset')) || 0;
+  const limit = Number(searchParams.get('limit')) || 18;
+  const sort = searchParams.get('sort') || undefined;
 
-    return NextResponse.json(
-      { message: 'Internal server error' },
-      { status: 500 },
-    );
-  }
+  const result = await fetchAllProducts(filters, limit, offset, sort);
+
+  return NextResponse.json({
+    products: result.products,
+    unfilteredProducts: result.unfilteredProducts,
+    totalCount: result.totalCount,
+    hasMore: result.hasMore,
+  });
 }

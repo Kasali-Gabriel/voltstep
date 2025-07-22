@@ -1,7 +1,9 @@
+import SliderIcon from '@/assets/sliders-simple-svgrepo-com.svg';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { ReviewFiltersProps } from '@/types/auth';
-import { ArrowUpDown, FunnelIcon, Star, X } from 'lucide-react';
+import { ReviewFiltersProps } from '@/types/review';
+import { ArrowUpDown, Star, X } from 'lucide-react';
+import Image from 'next/image';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import {
@@ -24,8 +26,13 @@ export function ReviewFilters({
     <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
       <Popover>
         <PopoverTrigger asChild>
-          <button className="flex cursor-pointer rounded-md border border-stone-300 bg-white px-4 py-2 leading-snug shadow-sm hover:bg-neutral-100">
-            <FunnelIcon className="mr-2 h-4 w-4" />
+          <button className="flex cursor-pointer rounded-md border border-stone-300 bg-white px-4 py-1 text-base leading-snug shadow-sm hover:bg-neutral-100">
+            <Image
+              src={SliderIcon}
+              alt="filter icon"
+              height={24}
+              className="mr-2"
+            />
             Filters
           </button>
         </PopoverTrigger>
@@ -50,12 +57,12 @@ export function ReviewFilters({
                     htmlFor={`rating-${r}`}
                     className="flex items-center gap-2"
                   >
-                    <span className="flex gap-0.5">
+                    <span className="flex gap-1 text-lg">
                       {r}
-                      <Star className="fill-black text-black" size={14} />
+                      <Star className="mt-1 fill-black text-black" size={18} />
                     </span>
 
-                    <span>only</span>
+                    <span className="text-lg">only</span>
                   </Label>
                 </div>
               ))}
@@ -84,7 +91,7 @@ export function ReviewFilters({
       </div>
 
       <Select value={sortOrder} onValueChange={setSortOrder}>
-        <SelectTrigger className="w-[10rem]">
+        <SelectTrigger className="w-[10rem] cursor-pointer">
           <ArrowUpDown className="h-4 w-4" />
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>

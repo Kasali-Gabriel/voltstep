@@ -19,6 +19,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '../ui/collapsible';
+import Link from 'next/link';
 
 const socialIcons = [
   { Icon: () => <FontAwesomeIcon icon={faXTwitter} /> },
@@ -32,20 +33,21 @@ const Footer = () => {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <div className="mt-14 flex w-full flex-col">
-      <div className="grid gap-2 border-t-2 border-neutral-200 pt-10 md:grid-cols-3 md:gap-14 xl:grid-cols-5">
+    <div className="mt-14 bg-white z-50 flex w-full flex-col px-5 sm:px-10 xl:px-12">
+      <div className="grid gap-2 border-neutral-200 pt-10 md:grid-cols-3 md:gap-14 md:border-t-2 xl:grid-cols-5">
         {footerData.map((data, index) => (
           <div key={index} className="hidden md:block">
             <h3 className="text-sm font-semibold uppercase">{data.title}</h3>
 
             <div className="mt-5 flex flex-col gap-3">
               {data.items.map((item, idx) => (
-                <span
-                  className="cursor-pointer text-sm font-semibold text-stone-500 hover:underline hover:underline-offset-4"
+                <Link
+                  href={item.link}
+                  className="cursor-pointer text-sm font-semibold text-stone-500 hover:text-stone-600 hover:underline hover:underline-offset-4"
                   key={idx}
                 >
-                  {item}
-                </span>
+                  {item.label}
+                </Link>
               ))}
             </div>
           </div>
@@ -72,12 +74,13 @@ const Footer = () => {
               <CollapsibleContent className="py-4">
                 <div className="flex flex-col gap-3">
                   {data.items.map((item, idx) => (
-                    <span
+                    <Link
+                      href={item.link}
                       className="text-sm font-semibold text-stone-500"
                       key={idx}
                     >
-                      {item}
-                    </span>
+                      {item.label}
+                    </Link>
                   ))}
                 </div>
               </CollapsibleContent>

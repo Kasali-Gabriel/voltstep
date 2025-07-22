@@ -84,19 +84,28 @@ const badDetails = [
 
 // Select title and details based on rating
 function getTitle(rating) {
-  if (rating >= 4) return goodTitles[Math.floor(Math.random() * goodTitles.length)];
-  if (rating === 3) return neutralTitles[Math.floor(Math.random() * neutralTitles.length)];
+  if (rating >= 4)
+    return goodTitles[Math.floor(Math.random() * goodTitles.length)];
+  if (rating === 3)
+    return neutralTitles[Math.floor(Math.random() * neutralTitles.length)];
   return badTitles[Math.floor(Math.random() * badTitles.length)];
 }
 
 function getDetails(rating) {
-  const pool = rating >= 4 ? goodDetails : rating === 3 ? neutralDetails : badDetails;
+  const pool =
+    rating >= 4 ? goodDetails : rating === 3 ? neutralDetails : badDetails;
   const count = 5 + Math.floor(Math.random() * 6); // Select 5–10 sentences
-  return [...pool].sort(() => 0.5 - Math.random()).slice(0, count).join(' ');
+  return [...pool]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, count)
+    .join(' ');
 }
 
-// Ensure review date is after user creation
-function getRandomDateAfter(start){
+// Ensure review date is after user creation AND product creation
+function getRandomDateAfter(userCreatedAt, productCreatedAt) {
+  const start = new Date(
+    Math.max(userCreatedAt.getTime(), productCreatedAt.getTime()),
+  );
   const end = new Date();
   const startTime = start.getTime();
   const endTime = end.getTime();
@@ -104,16 +113,115 @@ function getRandomDateAfter(start){
   return new Date(randomTime);
 }
 
+// Generate random date between min date and max date
+function getRandomDateBetween(minDate, maxDate) {
+  const minTime = minDate.getTime();
+  const maxTime = maxDate.getTime();
+  const randomTime = minTime + Math.random() * (maxTime - minTime);
+  return new Date(randomTime);
+}
+
+// Update all users with random createdAt dates starting from May 25, 2023
+async function updateUserDates() {
+  const minDate = new Date('2023-05-25');
+  const maxDate = new Date();
+
+  const users = await prisma.user.findMany({ select: { id: true } });
+
+  console.log(
+    `📅 Updating ${users.length} users with random createdAt dates...`,
+  );
+
+  // Process sequentially with smaller batches to avoid timeout
+  const batchSize = 10;
+  for (let i = 0; i < users.length; i += batchSize) {
+    const batch = users.slice(i, i + batchSize);
+
+    for (const user of batch) {
+      try {
+        const randomCreatedAt = getRandomDateBetween(minDate, maxDate);
+        await prisma.user.update({
+          where: { id: user.id },
+          data: {
+            createdAt: randomCreatedAt,
+            updatedAt: randomCreatedAt,
+          },
+        });
+      } catch (error) {
+        console.log(`⚠️  Failed to update user ${user.id}:`, error.message);
+      }
+    }
+
+    console.log(
+      `📅 Processed batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(users.length / batchSize)}`,
+    );
+
+    // Add a small delay between batches
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  console.log('✅ User dates updated successfully.');
+}
+
+// Update all products with random createdAt dates starting from May 25, 2023
+async function updateProductDates() {
+  const minDate = new Date('2023-05-25');
+  const maxDate = new Date();
+
+  const products = await prisma.product.findMany({ select: { id: true } });
+
+  console.log(
+    `📅 Updating ${products.length} products with random createdAt dates...`,
+  );
+
+  // Process sequentially with smaller batches to avoid timeout
+  const batchSize = 10;
+  for (let i = 0; i < products.length; i += batchSize) {
+    const batch = products.slice(i, i + batchSize);
+
+    for (const product of batch) {
+      try {
+        const randomCreatedAt = getRandomDateBetween(minDate, maxDate);
+        await prisma.product.update({
+          where: { id: product.id },
+          data: {
+            createdAt: randomCreatedAt,
+            updatedAt: randomCreatedAt,
+          },
+        });
+      } catch (error) {
+        console.log(
+          `⚠️  Failed to update product ${product.id}:`,
+          error.message,
+        );
+      }
+    }
+
+    console.log(
+      `📅 Processed batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(products.length / batchSize)}`,
+    );
+
+    // Add a small delay between batches
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  console.log('✅ Product dates updated successfully.');
+}
+
 // Random rating by type
 function getRandomRating(type) {
   if (type === 'good') return Math.floor(Math.random() * 2) + 4; // 4–5
-  if (type === 'ok') return Math.floor(Math.random() * 2) + 2;   // 2–3
-  return Math.floor(Math.random() * 2) + 1;                      // 1–2
+  if (type === 'ok') return Math.floor(Math.random() * 2) + 2; // 2–3
+  return Math.floor(Math.random() * 2) + 1; // 1–2
 }
 
 async function generateReviews() {
-  const products = await prisma.product.findMany({ select: { id: true } });
-  const users = await prisma.user.findMany({ select: { id: true, createdAt: true } });
+  const products = await prisma.product.findMany({
+    select: { id: true, createdAt: true },
+  });
+  const users = await prisma.user.findMany({
+    select: { id: true, createdAt: true },
+  });
 
   const shuffledProducts = [...products].sort(() => 0.5 - Math.random());
   const total = products.length;
@@ -122,9 +230,15 @@ async function generateReviews() {
   const neutralCount = Math.floor(total * 0.2);
 
   const groupings = [
-    ...shuffledProducts.slice(0, goodCount).map(p => ({ ...p, ratingType: 'good' })),
-    ...shuffledProducts.slice(goodCount, goodCount + neutralCount).map(p => ({ ...p, ratingType: 'ok' })),
-    ...shuffledProducts.slice(goodCount + neutralCount).map(p => ({ ...p, ratingType: 'bad' })),
+    ...shuffledProducts
+      .slice(0, goodCount)
+      .map((p) => ({ ...p, ratingType: 'good' })),
+    ...shuffledProducts
+      .slice(goodCount, goodCount + neutralCount)
+      .map((p) => ({ ...p, ratingType: 'ok' })),
+    ...shuffledProducts
+      .slice(goodCount + neutralCount)
+      .map((p) => ({ ...p, ratingType: 'bad' })),
   ];
 
   const sentimentMap = {
@@ -133,40 +247,83 @@ async function generateReviews() {
     bad: ['bad', 'ok', 'good'],
   };
 
-  for (const { id: productId, ratingType } of groupings) {
+  for (const {
+    id: productId,
+    createdAt: productCreatedAt,
+    ratingType,
+  } of groupings) {
     await prisma.review.deleteMany({ where: { productId } });
 
     const totalReviews = Math.floor(Math.random() * 16) + 5; // 5–20 reviews
     const primaryCount = Math.floor(totalReviews * 0.8);
 
-    const shuffledUsers = [...users].sort(() => 0.5 - Math.random());
-    const selectedUsers = shuffledUsers.slice(0, totalReviews);
+    // Filter users who can review this product (created after product creation)
+    const eligibleUsers = users.filter(
+      (user) => user.createdAt >= productCreatedAt,
+    );
+
+    if (eligibleUsers.length === 0) {
+      console.log(
+        `⚠️  No eligible users for product ${productId} (created ${productCreatedAt})`,
+      );
+      continue;
+    }
+
+    const shuffledUsers = [...eligibleUsers].sort(() => 0.5 - Math.random());
+    const selectedUsers = shuffledUsers.slice(
+      0,
+      Math.min(totalReviews, eligibleUsers.length),
+    );
 
     const reviews = selectedUsers.map((user, i) => {
-      const type = i < primaryCount
-        ? ratingType
-        : sentimentMap[ratingType][Math.floor(Math.random() * 2) + 1]; // Random from other 2 sentiments
+      const type =
+        i < primaryCount
+          ? ratingType
+          : sentimentMap[ratingType][Math.floor(Math.random() * 2) + 1]; // Random from other 2 sentiments
 
       const rating = getRandomRating(type);
       return {
         rating,
         title: getTitle(rating),
         details: getDetails(rating),
-        date: getRandomDateAfter(user.createdAt),
+        date: getRandomDateAfter(user.createdAt, productCreatedAt),
         productId,
         reviewerId: user.id,
       };
     });
 
     await prisma.review.createMany({ data: reviews });
-    console.log(`📝 Added ${totalReviews} reviews (${ratingType}) to product ${productId}`);
+    console.log(
+      `📝 Added ${reviews.length} reviews (${ratingType}) to product ${productId}`,
+    );
   }
 
   console.log('✅ Review generation complete.');
-  await prisma.$disconnect();
 }
 
-generateReviews().catch((e) => {
+async function main() {
+  try {
+    console.log('🚀 Starting seed script...');
+
+    // Step 1: Update user dates
+    await updateUserDates();
+
+    // Step 2: Update product dates
+    await updateProductDates();
+
+    // Step 3: Generate reviews with proper date constraints
+    await generateReviews();
+
+    console.log('✅ All seeding operations completed successfully!');
+  } catch (error) {
+    console.error('❌ Error during seeding:', error);
+    throw error;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+main().catch((e) => {
   console.error(e);
   process.exit(1);
 });

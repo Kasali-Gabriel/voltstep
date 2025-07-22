@@ -213,15 +213,14 @@ const WishListSizeSelector = ({
                 sizeError={sizeError}
                 setSizeError={setSizeError}
                 isTitle={false}
+                subcategoryName={item.product?.subcategory?.name}
               />
 
               <div className="flex w-full flex-1 items-end">
                 <div className="flex w-full items-center justify-between">
                   <Link
                     href={
-                      item.product?.slug
-                        ? `/product/${item.product.slug}`
-                        : '#'
+                      item.product?.slug ? `/product/${item.product.slug}` : '#'
                     }
                     tabIndex={item.product?.slug ? 0 : -1}
                     onClick={handleProductLinkClick}

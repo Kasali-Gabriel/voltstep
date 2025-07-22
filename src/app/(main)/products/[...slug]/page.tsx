@@ -1,60 +1,53 @@
 'use client';
 
-import ProductsList from '@/components/Product/ProductsList';
-import axios from '@/lib/axios';
-import { Product } from '@/types/product';
-import { use, useEffect, useState } from 'react';
+import ProductsList from '@/components/ProductList/ProductsList';
+import { useCatalogPagination } from '@/hooks/useCatalogPagination';
+import { useSortProducts } from '@/hooks/useSortProducts';
+import { parseFiltersFromURL } from '@/utils/productFilters';
+import { useSearchParams } from 'next/navigation';
+import { use, useMemo } from 'react';
 
 interface ProductsPageProps {
   params: Promise<{ slug?: string[] }>;
 }
 
-const fetchProductsBySlug = async (
-  slug?: string[],
-): Promise<Product[] | null> => {
-  let url = '/api/products';
-
-  if (Array.isArray(slug)) {
-    if (slug.length === 1) {
-      url = `/api/products/catalog?catalog=${slug[0]}`;
-    } else if (slug.length === 2) {
-      url = `/api/products/catalog/categories?catalog=${slug[0]}&category=${slug[1]}`;
-    } else if (slug.length === 3) {
-      url = `/api/products/catalog/categories/subcategories?catalog=${slug[0]}&category=${slug[1]}&subcategory=${slug[2]}`;
-    } else {
-      return null;
-    }
-  }
-
-  try {
-    const { data } = await axios.get(url);
-    return Array.isArray(data)
-      ? data.map((product: Product) => ({
-          ...product,
-          reviews: product.reviews ?? [],
-        }))
-      : [];
-  } catch {
-    return [];
-  }
-};
-
 const Page = (props: ProductsPageProps) => {
+  const searchParams = useSearchParams();
+
   const { slug } = use(props.params);
-  const [products, setProducts] = useState<Product[] | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
+  const { currentSort } = useSortProducts();
 
-    fetchProductsBySlug(slug).then((result) => {
-      setProducts(result);
-      setLoading(false);
-    });
-  }, [slug]);
+  const filters = useMemo(
+    () => parseFiltersFromURL(searchParams),
+    [searchParams],
+  );
+
+  const {
+    products,
+    loading,
+    hasMore,
+    loadMore,
+    totalCount,
+    unfilteredProducts,
+  } = useCatalogPagination({
+    slug,
+    sort: currentSort,
+    filters,
+  });
 
   return (
-    <ProductsList products={products || []} slug={slug} loading={loading} />
+    <div>
+      <ProductsList
+        products={products}
+        unfilteredProducts={unfilteredProducts}
+        slug={slug}
+        loading={loading}
+        hasMore={hasMore}
+        loadMore={loadMore}
+        totalCount={totalCount}
+      />
+    </div>
   );
 };
 

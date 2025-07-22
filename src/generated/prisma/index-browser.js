@@ -157,7 +157,11 @@ exports.Prisma.ProductScalarFieldEnum = {
   sizes: 'sizes',
   colors: 'colors',
   tags: 'tags',
-  subcategoryId: 'subcategoryId'
+  subcategoryId: 'subcategoryId',
+  popularityScore: 'popularityScore',
+  lastScoreUpdate: 'lastScoreUpdate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {

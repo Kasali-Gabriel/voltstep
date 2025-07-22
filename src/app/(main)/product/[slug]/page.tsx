@@ -1,4 +1,3 @@
-// Product detail page moved from /products/[slug]/page.tsx
 'use client';
 
 import { ColorSelector } from '@/components/Product/ColorSelector';
@@ -12,6 +11,7 @@ import AddReviewBtn from '@/components/Reviews/AddReviewBtn';
 import { Ratings } from '@/components/Reviews/ratings';
 import { RatingsPreview } from '@/components/Reviews/ratingsPreview';
 import { Reviews } from '@/components/Reviews/reviews';
+import ProductPageSkeleton from '@/components/Skeletons/ProductPageSkeleton';
 import { AddToWishList } from '@/components/Wishlist/AddToWishList';
 import { images } from '@/data/images';
 import { useCartStore } from '@/hooks/use-cart';
@@ -166,7 +166,7 @@ const Page = ({
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <ProductPageSkeleton />;
   }
 
   return (
@@ -194,7 +194,6 @@ const Page = ({
             <SmallScreenSwiper images={images} />
           </div>
 
-          {/*FIXME image scrolling with second column  */}
           <div className="relative col-span-1 hidden lg:portrait:block md:landscape:block">
             <LargeScreenSwiper images={images} />
           </div>
@@ -234,6 +233,7 @@ const Page = ({
                     setSizeError(false);
                   }}
                   sizeError={sizeError}
+                  subcategoryName={product.subcategory?.name}
                 />
               )}
             </div>

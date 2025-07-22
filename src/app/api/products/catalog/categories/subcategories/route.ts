@@ -1,25 +1,32 @@
 import { fetchSubCategoryProducts } from '@/actions/products';
+import { parseCatalogFilters } from '@/utils/parseCatalogFilters';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
-  const catalogSlug = searchParams.get('catalog');
-  const categorySlug = searchParams.get('category');
-  const subcategorySlug = searchParams.get('subcategory');
-
-  if (!catalogSlug || !categorySlug || !subcategorySlug) {
+  const filters = parseCatalogFilters(searchParams);
+  if (
+    !filters.catalogSlug ||
+    !filters.categorySlug ||
+    !filters.subcategorySlug
+  ) {
     return NextResponse.json(
       { error: 'Missing catalog, category, or subcategory slug' },
       { status: 400 },
     );
   }
 
-  const products = await fetchSubCategoryProducts(
-    catalogSlug,
-    categorySlug,
-    subcategorySlug,
-  );
+  const offset = Number(searchParams.get('offset')) || 0;
+  const limit = Number(searchParams.get('limit')) || 18;
+  const sort = searchParams.get('sort') || undefined;
 
-  return NextResponse.json(products);
+  const result = await fetchSubCategoryProducts(filters, limit, offset, sort);
+
+  return NextResponse.json({
+    products: result.products,
+    unfilteredProducts: result.unfilteredProducts,
+    totalCount: result.totalCount,
+    hasMore: result.hasMore,
+  });
 }

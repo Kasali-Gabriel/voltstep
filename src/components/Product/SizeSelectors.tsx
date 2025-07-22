@@ -1,5 +1,6 @@
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { SizeSelectorProps } from '@/types/product';
+import { getAllSizesForSubcategory, isSizeAvailable } from '@/data/sizeData';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
@@ -11,19 +12,30 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
       sizeError,
       setSizeError,
       isTitle = true,
+      subcategoryName,
     },
     ref,
   ) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const selectedSizeRef = useRef<HTMLButtonElement | null>(null);
-    const [reorderedSizes, setReorderedSizes] = useState<string[]>(sizes);
+    
+    // Get all sizes for the subcategory, fallback to provided sizes if no subcategory
+    const allSizes = subcategoryName 
+      ? getAllSizesForSubcategory(subcategoryName)
+      : sizes;
+    
+    const [reorderedSizes, setReorderedSizes] = useState<string[]>(allSizes);
     const [isMobile] = useIsMobile();
     const [isScrolledAwayFromStart, setIsScrolledAwayFromStart] =
       useState(false);
 
     useEffect(() => {
-      setReorderedSizes(sizes); // Reset when size list changes
-    }, [sizes]);
+      // Update reordered sizes when subcategory or sizes change
+      const sizesToUse = subcategoryName 
+        ? getAllSizesForSubcategory(subcategoryName)
+        : sizes;
+      setReorderedSizes(sizesToUse);
+    }, [sizes, subcategoryName]);
 
     useEffect(() => {
       if (isMobile && selectedSizeRef.current) {
@@ -77,14 +89,24 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
     }, [isMobile, setSizeError]);
 
     const handleSizeClick = (size: string) => {
+      // Only allow selection if the size is available
+      const isAvailable = subcategoryName 
+        ? isSizeAvailable(size, sizes)
+        : true; // If no subcategory, assume all sizes are available
+      
+      if (!isAvailable) return;
+      
       setSelectedSize(size);
       if (isMobile && containerRef.current) {
         const scrollLeft = containerRef.current.scrollLeft;
         const scrolledAway = scrollLeft > 10;
 
         if (scrolledAway) {
-          // Move selected size to front
-          setReorderedSizes([size, ...sizes.filter((s) => s !== size)]);
+          // Move selected size to front, but keep all sizes in the reordered list
+          const sizesToUse = subcategoryName 
+            ? getAllSizesForSubcategory(subcategoryName)
+            : sizes;
+          setReorderedSizes([size, ...sizesToUse.filter((s) => s !== size)]);
 
           // Scroll to the start of the container
           containerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
@@ -112,22 +134,31 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
         {isTitle && <h2 className="text-lg font-semibold">Select Size</h2>}
 
         <div ref={containerRef} className={containerClassName}>
-          {reorderedSizes.map((size) => (
-            <div key={size} className="flex flex-col items-center">
-              <button
-                ref={selectedSize === size ? selectedSizeRef : null}
-                onClick={() => handleSizeClick(size)}
-                className={`flex h-10 w-14 cursor-pointer items-center justify-center rounded-md border text-center transition-colors duration-150 hover:border-black ${
-                  selectedSize === size
-                    ? 'bg-black text-white'
-                    : 'border-stone-400'
-                }`}
-                aria-label={`Select size ${size}`}
-              >
-                {size}
-              </button>
-            </div>
-          ))}
+          {reorderedSizes.map((size) => {
+            const isAvailable = subcategoryName 
+              ? isSizeAvailable(size, sizes)
+              : true; // If no subcategory, assume all sizes are available
+            
+            return (
+              <div key={size} className="flex flex-col items-center">
+                <button
+                  ref={selectedSize === size ? selectedSizeRef : null}
+                  onClick={() => handleSizeClick(size)}
+                  disabled={!isAvailable}
+                  className={`flex h-10 w-18 items-center justify-center rounded-md border text-center transition-colors duration-150 ${
+                    !isAvailable
+                      ? 'cursor-not-allowed border-gray-300 bg-gray-100 text-gray-400'
+                      : selectedSize === size
+                      ? 'cursor-pointer bg-black text-white hover:border-black'
+                      : 'cursor-pointer border-stone-300 hover:border-black'
+                  }`}
+                  aria-label={`${isAvailable ? 'Select' : 'Unavailable'} size ${size}`}
+                >
+                  {size}
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         {sizeError && (

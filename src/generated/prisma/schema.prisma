@@ -55,21 +55,27 @@ model Subcategory {
 }
 
 model Product {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  slug          String      @unique
-  description   String
-  price         Float
-  quantity      Int
-  images        String[]
-  sizes         String[]
-  colors        String[]
-  tags          Tag[]
-  reviews       Review[]
-  subcategoryId String      @db.ObjectId
-  subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
-  orderItems    OrderItem[]
-  wishLists     WishList[]  @relation("ProductToWishList")
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  slug            String      @unique
+  description     String
+  price           Float
+  quantity        Int
+  images          String[]
+  sizes           String[]
+  colors          String[]
+  tags            Tag[]
+  reviews         Review[]
+  subcategoryId   String      @db.ObjectId
+  subcategory     Subcategory @relation(fields: [subcategoryId], references: [id])
+  orderItems      OrderItem[]
+  wishLists       WishList[]  @relation("ProductToWishList")
+  popularityScore Float       @default(0)
+  lastScoreUpdate DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([popularityScore])
 }
 
 model Review {

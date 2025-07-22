@@ -1,4 +1,6 @@
+import Wrapper from '@/components/Navigation/Wrapper';
 import { Toaster } from '@/components/ui/sonner';
+import { Catalog } from '@/types/product';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
@@ -15,11 +17,16 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const res = await fetch('http://localhost:3000/api/products/catalogdata', {
+    cache: 'no-store',
+  });
+  const catalogs: Catalog[] = await res.json();
+
   return (
     <ClerkProvider>
       <html
@@ -32,7 +39,7 @@ export default function RootLayout({
         </head>
 
         <body>
-          <main>{children}</main>
+          <Wrapper catalogs={catalogs}>{children}</Wrapper>;
           <Toaster
             toastOptions={{ style: { pointerEvents: 'auto' } }}
             swipeDirections={['left', 'right']}

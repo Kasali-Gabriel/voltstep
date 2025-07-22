@@ -1,118 +1,115 @@
-import { SearchHistoryItem, ViewedProductItem } from '@/types/search';
+import {
+  BagState,
+  EmailState,
+  NavBarState,
+  ProductHeaderState,
+  SearchHistoryStore,
+  SearchState,
+  showFilterState,
+  SuccessDialogState,
+  ViewedProductStore,
+} from '@/types/store';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface EmailState {
-  email: string;
-  setEmail: (value: string) => void;
-}
+export const useNavBarStore = create<NavBarState>()((set) => ({
+  navbarHeight: 0,
+  setNavbarHeight: (height: number) => set({ navbarHeight: height }),
+  showNavBar: true,
+  setShowNavBar: (value: boolean) => set(() => ({ showNavBar: value })),
+  isFixed: false,
+  setIsFixed: (value: boolean) => set(() => ({ isFixed: value })),
+}));
 
-interface BagState {
-  isBagOpen: boolean;
-  setIsBagOpen: (open: boolean) => void;
-}
-
-interface SearchState {
-  isFocused: boolean;
-  setIsFocused: (open: boolean) => void;
-}
-
-interface SuccessDialogState {
-  showSuccessDialog: boolean;
-  setShowSuccessDialog: (open: boolean) => void;
-}
-
-interface ViewedProductStore {
-  viewedProducts: ViewedProductItem[];
-  addViewedProduct: (item: ViewedProductItem) => void;
-}
-
-interface SearchHistoryStore {
-  searchHistory: SearchHistoryItem[];
-  addSearchHistory: (item: SearchHistoryItem) => void;
-}
-
-export interface showFilterState {
-  showFilters: boolean;
-  setShowFilters: (value: boolean) => void;
-}
+export const useProductHeaderStore = create<ProductHeaderState>()((set) => ({
+  productHeaderHeight: 0,
+  setProductHeaderHeight: (height: number) =>
+    set({ productHeaderHeight: height }),
+  productHeaderStuck: false,
+  setProductHeaderStuck: (value: boolean) =>
+    set(() => ({ productHeaderStuck: value })),
+}));
 
 export const useEmailStore = create<EmailState>()(
   persist(
     (set) => ({
       email: '',
-      setEmail: (newEmail: string) => set({ email: newEmail }),
+      setEmail: (newEmail: string) => set(() => ({ email: newEmail })),
     }),
     {
       name: 'emailStorage',
+      partialize: (state) => ({ email: state.email }),
     },
   ),
 );
 
 export const useBagStore = create<BagState>()((set) => ({
   isBagOpen: false,
-  setIsBagOpen: (open: boolean) => set({ isBagOpen: open }),
+  setIsBagOpen: (open: boolean) => set(() => ({ isBagOpen: open })),
 }));
 
 export const useSearchFocus = create<SearchState>()((set) => ({
   isFocused: false,
-  setIsFocused: (open: boolean) => set({ isFocused: open }),
+  setIsFocused: (open: boolean) => set(() => ({ isFocused: open })),
 }));
 
 export const useWishlistSuccessDialogStore = create<SuccessDialogState>()(
   (set) => ({
     showSuccessDialog: false,
-    setShowSuccessDialog: (open: boolean) => set({ showSuccessDialog: open }),
+    setShowSuccessDialog: (open: boolean) =>
+      set(() => ({ showSuccessDialog: open })),
   }),
 );
 
 export const useSearchHistoryStore = create<SearchHistoryStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       searchHistory: [],
-      addSearchHistory: (item) => {
-        // Prevent duplicates, keep most recent at the top, max 10
-        set({
+      addSearchHistory: (item) =>
+        set((state) => ({
           searchHistory: [
             item,
-            ...get().searchHistory.filter((i) => i.query !== item.query),
+            ...state.searchHistory.filter((i) => i.query !== item.query),
           ].slice(0, 10),
-        });
-      },
+        })),
     }),
-    { name: 'searchHistoryStore' },
+    {
+      name: 'searchHistoryStore',
+      partialize: (state) => ({ searchHistory: state.searchHistory }),
+    },
   ),
 );
 
 export const useViewedProductStore = create<ViewedProductStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       viewedProducts: [],
-
-      addViewedProduct: (item) => {
-        set({
+      addViewedProduct: (item) =>
+        set((state) => ({
           viewedProducts: [
             item,
-            ...get().viewedProducts.filter(
+            ...state.viewedProducts.filter(
               (i) => i.product.slug !== item.product.slug,
             ),
           ].slice(0, 10),
-        });
-      },
+        })),
     }),
-    { name: 'viewedProductStore' },
+    {
+      name: 'viewedProductStore',
+      partialize: (state) => ({ viewedProducts: state.viewedProducts }),
+    },
   ),
 );
 
 export const useSideBarStore = create<showFilterState>()(
   persist(
     (set) => ({
-      showFilters: false,
-      setShowFilters: (showFilters: boolean) => set({ showFilters }),
+      showFilters: true,
+      setShowFilters: (showFilters: boolean) => set(() => ({ showFilters })),
     }),
-
     {
       name: 'sidebarStorage',
+      partialize: (state) => ({ showFilters: state.showFilters }),
     },
   ),
 );

@@ -294,6 +294,7 @@ var getColorSet = function (category, subcategory) {
 var getSizes = function (subcategory) {
   return sizeMap[subcategory] || [];
 };
+
 var generateReviews = function () {
   var numberOfReviews = Math.floor(Math.random() * 15) + 1; // 1 to 15 reviews
   return Array.from({ length: numberOfReviews }).map(function () {
@@ -306,6 +307,7 @@ var generateReviews = function () {
     };
   });
 };
+
 var updateProductsData = function () {
   var filePath = './public/products.json';
   console.log('Reading file:', filePath);

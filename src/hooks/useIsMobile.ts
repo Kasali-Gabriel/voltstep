@@ -9,18 +9,14 @@ import { useEffect, useState } from 'react';
 export function useIsMobile(
   maxWidth: number = 640,
 ): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
-  const [isMobile, setIsMobile] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-
-    if (
-      window.matchMedia('(min-width: 900px) and (orientation: landscape)')
-        .matches
-    )
-      return false;
-    return window.innerWidth < maxWidth;
-  });
+  // Always start with false to ensure SSR/client consistency
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Mark as client-side after mount
+    setIsClient(true);
+
     const checkIsMobile = () => {
       if (
         window.matchMedia('(min-width: 900px) and (orientation: landscape)')
@@ -39,5 +35,6 @@ export function useIsMobile(
     return () => window.removeEventListener('resize', checkIsMobile);
   }, [maxWidth]);
 
-  return [isMobile, setIsMobile];
+  // Return consistent state during SSR/hydration
+  return [isClient ? isMobile : false, setIsMobile];
 }

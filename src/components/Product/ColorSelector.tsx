@@ -80,11 +80,11 @@ export const ColorSelector = ({
         className={`flex gap-4 overflow-x-auto px-3 py-2 pt-2 sm:flex-wrap ${isScrolledAwayFromStart ? '-ml-4 w-screen' : 'w-full'}`}
       >
         {reorderedColors.map((color: string) => (
-          <div key={color} className="flex flex-col items-center">
+          <div key={color} className="flex w-14 flex-col items-center">
             <button
               ref={selectedColor === color ? selectedColorRef : null}
               onClick={() => handleColorClick(color)}
-              className={`h-12 w-12 cursor-pointer rounded-full border-2 ${
+              className={`size-12 cursor-pointer rounded-full border-2 ${
                 selectedColor === color
                   ? 'ring-ring/50 ring-4 ring-offset-4'
                   : ''
@@ -96,7 +96,7 @@ export const ColorSelector = ({
               }}
               aria-label={`Select color ${color}`}
             />
-            <p className="mt-2 text-sm text-gray-700">{color}</p>
+            <p className="mt-2 text-sm text-gray-700 text-center">{color}</p>
           </div>
         ))}
       </div>

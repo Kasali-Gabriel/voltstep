@@ -4,7 +4,7 @@ import { ChevronLeft, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Input } from '../ui/input';
 
-import { useSearch } from '@/hooks/useSearch';
+import { useSearch } from '@/hooks/search/useSearch';
 import { useShadowOnScroll } from '@/hooks/useShadowOnscroll';
 import { useSearchFocus } from '@/lib/state';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
@@ -83,7 +83,7 @@ export const SearchView = () => {
           </SheetHeader>
         </VisuallyHidden>
 
-        <div className="relative flex h-full w-full flex-col py-2 ">
+        <div className="relative flex h-full w-full flex-col py-2">
           <div
             className={`top-0 z-20 flex w-full items-center justify-between bg-white px-2 transition-shadow duration-75 sm:px-5 md:px-10 ${
               isScrolled ? 'pb-2 shadow-[0_10px_10px_-3px_rgba(0,0,0,0.3)]' : ''
@@ -187,7 +187,7 @@ export const SearchView = () => {
                 <>
                   {Array.from({ length: limit }).map((_, i) => (
                     <div key={i}>
-                      <ProductCardSkeleton />
+                      <ProductCardSkeleton query={query} />
                     </div>
                   ))}
                 </>
@@ -199,7 +199,6 @@ export const SearchView = () => {
                   {results.slice(0, limit).map((product) => (
                     <div key={product.id}>
                       <ProductCard
-                        loading={false}
                         SearchedProduct={product}
                         query={!!query}
                         setQuery={setQuery}

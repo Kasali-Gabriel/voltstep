@@ -6248,11 +6248,13 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     price: number | null
     quantity: number | null
+    popularityScore: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     price: number | null
     quantity: number | null
+    popularityScore: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -6263,6 +6265,10 @@ export namespace Prisma {
     price: number | null
     quantity: number | null
     subcategoryId: string | null
+    popularityScore: number | null
+    lastScoreUpdate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -6273,6 +6279,10 @@ export namespace Prisma {
     price: number | null
     quantity: number | null
     subcategoryId: string | null
+    popularityScore: number | null
+    lastScoreUpdate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -6287,6 +6297,10 @@ export namespace Prisma {
     colors: number
     tags: number
     subcategoryId: number
+    popularityScore: number
+    lastScoreUpdate: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -6294,11 +6308,13 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     price?: true
     quantity?: true
+    popularityScore?: true
   }
 
   export type ProductSumAggregateInputType = {
     price?: true
     quantity?: true
+    popularityScore?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -6309,6 +6325,10 @@ export namespace Prisma {
     price?: true
     quantity?: true
     subcategoryId?: true
+    popularityScore?: true
+    lastScoreUpdate?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -6319,6 +6339,10 @@ export namespace Prisma {
     price?: true
     quantity?: true
     subcategoryId?: true
+    popularityScore?: true
+    lastScoreUpdate?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -6333,6 +6357,10 @@ export namespace Prisma {
     colors?: true
     tags?: true
     subcategoryId?: true
+    popularityScore?: true
+    lastScoreUpdate?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6434,6 +6462,10 @@ export namespace Prisma {
     colors: string[]
     tags: $Enums.Tag[]
     subcategoryId: string
+    popularityScore: number
+    lastScoreUpdate: Date | null
+    createdAt: Date
+    updatedAt: Date
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -6467,6 +6499,10 @@ export namespace Prisma {
     colors?: boolean
     tags?: boolean
     subcategoryId?: boolean
+    popularityScore?: boolean
+    lastScoreUpdate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
     orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
@@ -6488,9 +6524,13 @@ export namespace Prisma {
     colors?: boolean
     tags?: boolean
     subcategoryId?: boolean
+    popularityScore?: boolean
+    lastScoreUpdate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "price" | "quantity" | "images" | "sizes" | "colors" | "tags" | "subcategoryId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "price" | "quantity" | "images" | "sizes" | "colors" | "tags" | "subcategoryId" | "popularityScore" | "lastScoreUpdate" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
@@ -6519,6 +6559,10 @@ export namespace Prisma {
       colors: string[]
       tags: $Enums.Tag[]
       subcategoryId: string
+      popularityScore: number
+      lastScoreUpdate: Date | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -6926,6 +6970,10 @@ export namespace Prisma {
     readonly colors: FieldRef<"Product", 'String[]'>
     readonly tags: FieldRef<"Product", 'Tag[]'>
     readonly subcategoryId: FieldRef<"Product", 'String'>
+    readonly popularityScore: FieldRef<"Product", 'Float'>
+    readonly lastScoreUpdate: FieldRef<"Product", 'DateTime'>
+    readonly createdAt: FieldRef<"Product", 'DateTime'>
+    readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
     
 
@@ -14392,7 +14440,11 @@ export namespace Prisma {
     sizes: 'sizes',
     colors: 'colors',
     tags: 'tags',
-    subcategoryId: 'subcategoryId'
+    subcategoryId: 'subcategoryId',
+    popularityScore: 'popularityScore',
+    lastScoreUpdate: 'lastScoreUpdate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -14841,6 +14893,10 @@ export namespace Prisma {
     colors?: StringNullableListFilter<"Product">
     tags?: EnumTagNullableListFilter<"Product">
     subcategoryId?: StringFilter<"Product"> | string
+    popularityScore?: FloatFilter<"Product"> | number
+    lastScoreUpdate?: DateTimeNullableFilter<"Product"> | Date | string | null
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
     reviews?: ReviewListRelationFilter
     subcategory?: XOR<SubcategoryScalarRelationFilter, SubcategoryWhereInput>
     orderItems?: OrderItemListRelationFilter
@@ -14859,6 +14915,10 @@ export namespace Prisma {
     colors?: SortOrder
     tags?: SortOrder
     subcategoryId?: SortOrder
+    popularityScore?: SortOrder
+    lastScoreUpdate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     reviews?: ReviewOrderByRelationAggregateInput
     subcategory?: SubcategoryOrderByWithRelationInput
     orderItems?: OrderItemOrderByRelationAggregateInput
@@ -14880,6 +14940,10 @@ export namespace Prisma {
     colors?: StringNullableListFilter<"Product">
     tags?: EnumTagNullableListFilter<"Product">
     subcategoryId?: StringFilter<"Product"> | string
+    popularityScore?: FloatFilter<"Product"> | number
+    lastScoreUpdate?: DateTimeNullableFilter<"Product"> | Date | string | null
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
     reviews?: ReviewListRelationFilter
     subcategory?: XOR<SubcategoryScalarRelationFilter, SubcategoryWhereInput>
     orderItems?: OrderItemListRelationFilter
@@ -14898,6 +14962,10 @@ export namespace Prisma {
     colors?: SortOrder
     tags?: SortOrder
     subcategoryId?: SortOrder
+    popularityScore?: SortOrder
+    lastScoreUpdate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -14920,6 +14988,10 @@ export namespace Prisma {
     colors?: StringNullableListFilter<"Product">
     tags?: EnumTagNullableListFilter<"Product">
     subcategoryId?: StringWithAggregatesFilter<"Product"> | string
+    popularityScore?: FloatWithAggregatesFilter<"Product"> | number
+    lastScoreUpdate?: DateTimeNullableWithAggregatesFilter<"Product"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
 
   export type ReviewWhereInput = {
@@ -15581,6 +15653,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewCreateNestedManyWithoutProductInput
     subcategory: SubcategoryCreateNestedOneWithoutProductsInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
@@ -15599,6 +15675,10 @@ export namespace Prisma {
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
     subcategoryId: string
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     wishLists?: WishListUncheckedCreateNestedManyWithoutProductInput
@@ -15614,6 +15694,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
@@ -15631,6 +15715,10 @@ export namespace Prisma {
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     wishLists?: WishListUncheckedUpdateManyWithoutProductNestedInput
@@ -15648,6 +15736,10 @@ export namespace Prisma {
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
     subcategoryId: string
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -15660,6 +15752,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductUncheckedUpdateManyInput = {
@@ -15673,6 +15769,10 @@ export namespace Prisma {
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewCreateInput = {
@@ -16354,6 +16454,18 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    isSet?: boolean
+  }
+
   export type SubcategoryScalarRelationFilter = {
     is?: SubcategoryWhereInput
     isNot?: SubcategoryWhereInput
@@ -16381,11 +16493,16 @@ export namespace Prisma {
     colors?: SortOrder
     tags?: SortOrder
     subcategoryId?: SortOrder
+    popularityScore?: SortOrder
+    lastScoreUpdate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
     price?: SortOrder
     quantity?: SortOrder
+    popularityScore?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -16396,6 +16513,10 @@ export namespace Prisma {
     price?: SortOrder
     quantity?: SortOrder
     subcategoryId?: SortOrder
+    popularityScore?: SortOrder
+    lastScoreUpdate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -16406,11 +16527,16 @@ export namespace Prisma {
     price?: SortOrder
     quantity?: SortOrder
     subcategoryId?: SortOrder
+    popularityScore?: SortOrder
+    lastScoreUpdate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
     price?: SortOrder
     quantity?: SortOrder
+    popularityScore?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -16443,6 +16569,21 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -17180,6 +17321,11 @@ export namespace Prisma {
     push?: $Enums.Tag | $Enums.Tag[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+    unset?: boolean
+  }
+
   export type ReviewUpdateManyWithoutProductNestedInput = {
     create?: XOR<ReviewCreateWithoutProductInput, ReviewUncheckedCreateWithoutProductInput> | ReviewCreateWithoutProductInput[] | ReviewUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutProductInput | ReviewCreateOrConnectWithoutProductInput[]
@@ -17567,6 +17713,18 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    isSet?: boolean
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -17597,6 +17755,21 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -18055,6 +18228,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewCreateNestedManyWithoutProductInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
     wishLists?: WishListCreateNestedManyWithoutProductInput
@@ -18071,6 +18248,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     wishLists?: WishListUncheckedCreateNestedManyWithoutProductInput
@@ -18141,6 +18322,10 @@ export namespace Prisma {
     colors?: StringNullableListFilter<"Product">
     tags?: EnumTagNullableListFilter<"Product">
     subcategoryId?: StringFilter<"Product"> | string
+    popularityScore?: FloatFilter<"Product"> | number
+    lastScoreUpdate?: DateTimeNullableFilter<"Product"> | Date | string | null
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
   }
 
   export type ReviewCreateWithoutProductInput = {
@@ -18368,6 +18553,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     subcategory: SubcategoryCreateNestedOneWithoutProductsInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
     wishLists?: WishListCreateNestedManyWithoutProductInput
@@ -18385,6 +18574,10 @@ export namespace Prisma {
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
     subcategoryId: string
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     wishLists?: WishListUncheckedCreateNestedManyWithoutProductInput
   }
@@ -18454,6 +18647,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
     wishLists?: WishListUpdateManyWithoutProductNestedInput
@@ -18470,6 +18667,10 @@ export namespace Prisma {
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     wishLists?: WishListUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -18615,6 +18816,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewCreateNestedManyWithoutProductInput
     subcategory: SubcategoryCreateNestedOneWithoutProductsInput
     wishLists?: WishListCreateNestedManyWithoutProductInput
@@ -18632,6 +18837,10 @@ export namespace Prisma {
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
     subcategoryId: string
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
     wishLists?: WishListUncheckedCreateNestedManyWithoutProductInput
   }
@@ -18685,6 +18894,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
     wishLists?: WishListUpdateManyWithoutProductNestedInput
@@ -18701,6 +18914,10 @@ export namespace Prisma {
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
     wishLists?: WishListUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -18751,6 +18968,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewCreateNestedManyWithoutProductInput
     subcategory: SubcategoryCreateNestedOneWithoutProductsInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
@@ -18768,6 +18989,10 @@ export namespace Prisma {
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
     subcategoryId: string
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
   }
@@ -18837,6 +19062,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
@@ -18853,6 +19082,10 @@ export namespace Prisma {
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
   }
@@ -19205,6 +19438,10 @@ export namespace Prisma {
     sizes?: ProductCreatesizesInput | string[]
     colors?: ProductCreatecolorsInput | string[]
     tags?: ProductCreatetagsInput | $Enums.Tag[]
+    popularityScore?: number
+    lastScoreUpdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductUpdateWithoutSubcategoryInput = {
@@ -19217,6 +19454,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
     wishLists?: WishListUpdateManyWithoutProductNestedInput
@@ -19232,6 +19473,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     wishLists?: WishListUncheckedUpdateManyWithoutProductNestedInput
@@ -19247,6 +19492,10 @@ export namespace Prisma {
     sizes?: ProductUpdatesizesInput | string[]
     colors?: ProductUpdatecolorsInput | string[]
     tags?: ProductUpdatetagsInput | $Enums.Tag[]
+    popularityScore?: FloatFieldUpdateOperationsInput | number
+    lastScoreUpdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewCreateManyProductInput = {

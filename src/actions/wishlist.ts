@@ -1,5 +1,5 @@
 import prisma from '@/lib/prismaDb';
-import { WishListItem } from '@/types/auth';
+import { WishListItem } from '@/types/wishlist';
 
 // Add a product to the user's wishlist
 export async function addToWishlist(userId: string, item: WishListItem) {
@@ -35,7 +35,21 @@ export async function getWishlist(userId: string, productId?: string) {
 
   return prisma.wishList.findMany({
     where,
-    include: { product: true },
+    include: {
+      product: {
+        include: {
+          subcategory: {
+            include: {
+              category: {
+                include: {
+                  catalog: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     orderBy: { createdAt: 'desc' },
   });
 }

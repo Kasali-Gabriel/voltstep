@@ -13,7 +13,6 @@ html,
 body,
 :root {
   width: 100%;
-  overflow-x: hidden;
   max-width: 100vw;
   font-family: var(--font-inter);
   margin: 0;
@@ -151,5 +150,4 @@ h6 {
   );
   background-size: 200% 100%;
   animation: shimmer 2.8s infinite;
-  border-radius: 8px;
 }

@@ -1,9 +1,12 @@
 import { fetchProduct } from '@/actions/products';
 import { NextResponse } from 'next/server';
 
-export async function GET(context: { params: { slug: string } }) {
+export async function GET(
+  request: Request,
+  context: { params: { slug: string } },
+) {
   try {
-    const { slug } = context.params;
+    const { slug } = await context.params;
     const product = await fetchProduct(slug);
     if (!product) {
       return NextResponse.json(

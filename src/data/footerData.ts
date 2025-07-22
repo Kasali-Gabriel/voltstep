@@ -1,25 +1,42 @@
 export const footerData = [
   {
     title: 'Resources',
-    items: ['Find a Store', 'Membership', 'Journal', 'Site Feedback'],
+    items: [
+      { label: 'Find a Store', link: '/' },
+      { label: 'Membership', link: '/' },
+      { label: 'Journal', link: '/' },
+      { label: 'Site Feedback', link: '/' },
+    ],
   },
   {
     title: 'Help',
     items: [
-      'Get Help',
-      'Order Status',
-      'Shipping and Delivery',
-      'Returns',
-      'Order Cancellation',
-      'Payment Options',
+      { label: 'Get Help', link: '/' },
+      { label: 'Order Status', link: '/' },
+      { label: 'Shipping and Delivery', link: '/' },
+      { label: 'Returns', link: '/' },
+      { label: 'Order Cancellation', link: '/' },
+      { label: 'Payment Options', link: '/' },
     ],
   },
   {
     title: 'Company',
-    items: ['About Voltstep', 'News', 'Careers', 'Investors', 'Sustainability'],
+    items: [
+      { label: 'About Voltstep', link: '/' },
+      { label: 'News', link: '/' },
+      { label: 'Careers', link: '/' },
+      { label: 'Investors', link: '/' },
+      { label: 'Sustainability', link: '/' },
+      { label: 'Admin', link: '/admin' },
+    ],
   },
   {
     title: 'Promotions & Discounts',
-    items: ['Student', 'Military', 'Teacher', 'Birthday'],
+    items: [
+      { label: 'Student', link: '/' },
+      { label: 'Military', link: '/' },
+      { label: 'Teacher', link: '/' },
+      { label: 'Birthday', link: '/' },
+    ],
   },
 ];

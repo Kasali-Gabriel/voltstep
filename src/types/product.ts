@@ -15,7 +15,7 @@ export interface Category {
   parentCategory?: string;
   subcategories: Subcategory[];
   catalogId: string;
-  catalog: Catalog;
+  catalog?: Catalog;
 }
 
 export interface Subcategory {
@@ -24,7 +24,7 @@ export interface Subcategory {
   slug: string;
   parentCategory?: string;
   categoryId: string;
-  category: Category;
+  category?: Category;
   products: Product[];
 }
 
@@ -38,10 +38,14 @@ export interface Product {
   images: string[];
   sizes: string[];
   colors: string[];
+  createdAt: Date;
+  updatedAt: Date;
   tags: Tag[];
   reviews: Review[];
   subcategoryId: string;
-  subcategory: Subcategory;
+  subcategory?: Subcategory;
+  popularityScore?: number;
+  lastScoreUpdate?: Date;
 }
 
 export enum Tag {
@@ -58,6 +62,7 @@ export interface SizeSelectorProps {
   sizeError?: boolean;
   setSizeError?: (error: boolean) => void;
   isTitle?: boolean;
+  subcategoryName?: string;
 }
 
 export interface ColorSelectorProps {
@@ -75,15 +80,51 @@ export interface ProductCardFlexibleProps {
   query?: boolean;
   product?: ProductCardProps['product'];
   SearchedProduct?: SearchedProduct;
-  loading: boolean;
   setQuery?: (q: string) => void;
   recordViewedProduct?: (product: SearchedProduct) => void;
   isPage?: boolean;
+  slug?: string[];
+  notSubcategory?: boolean;
 }
 
 export interface ProductListProps {
   query?: string;
+  slug?: string[];
   products?: Product[];
+  unfilteredProducts?: Product[];
+  unfilteredSearch?: SearchedProduct[];
+  searchResults?: SearchedProduct[];
+  totalCount?: number;
+  loading?: boolean;
+  hasMore?: boolean;
+  loadMore?: () => void;
+}
+
+export interface ProductFilterProps {
+  atProductListEnd?: boolean;
+  filterBottomOffset?: number;
+  isSearchResults?: boolean;
+  slug?: string[];
+  unfilteredResults?: SearchedProduct[];
+  loading?: boolean;
+}
+
+export interface ProductListHeaderProps {
+  query?: string;
+  slug?: string[];
+  isMobile: boolean;
+  loading?: boolean;
+  totalCount?: number;
+}
+
+export interface SortProductsProps {
+  isMobile?: boolean;
+  isSearchResults?: boolean;
+  loading?: boolean;
+}
+
+export interface FilterProductsProps {
+  products?: SearchedProduct[];
   slug?: string[];
   loading?: boolean;
 }

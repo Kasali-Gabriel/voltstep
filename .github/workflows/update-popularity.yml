@@ -1,0 +1,16 @@
+name: Daily Popularity Update
+
+on:
+  schedule:
+    # Runs every day at 2 AM UTC
+    - cron: '0 2 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-popularity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Product Popularity Scores
+        run: |
+          curl -X GET "${{ vars.APP_URL }}/api/cron/update-popularity"

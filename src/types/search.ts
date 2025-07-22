@@ -48,5 +48,11 @@ export type SearchedProduct = {
   catalog: string;
   catSubcat?: string;
   avgRating?: number | null;
-  availableColors?: number | string;
+  colors: string[];
+  sizes: string[];
+  dateAdded: Date;
+  availableColors: number | string;
+  popularity: number;
+  tags: string[];
+  quantity?: number;
 };

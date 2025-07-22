@@ -1,33 +1,43 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
 const ProductCardSkeleton = ({
-  isPage,
+  notSubcategory,
+  query,
 }: {
-  isPage?: boolean;
+  notSubcategory?: boolean;
+  query?: string;
 }) => {
   return (
     <div className="flex w-full flex-col">
       {/* Image skeleton */}
-      <Skeleton className="aspect-[1000/1024] h-auto w-full border object-cover" />
+      <Skeleton className="aspect-[1000/1024] h-auto w-full rounded-xl border object-cover" />
 
-      {/* Title and rating skeleton */}
+      {/* Title skeleton */}
       <div className="mt-2 flex w-full items-start justify-between">
         <div className="flex items-center">
-          <Skeleton className="h-4 w-40" />
+          {/* Title skeleton */}
+          <Skeleton className="h-4 w-32 rounded-xl sm:w-40" />
         </div>
 
-        <Skeleton className="ml-2 h-4 w-10" />
+        {/* rating */}
+        <Skeleton className="ml-2 hidden h-4 w-8 rounded-xl sm:block" />
       </div>
 
-      {/* Category/subcategory or colors skeleton */}
-      {!isPage ? (
-        <Skeleton className="mt-2 h-4 w-32" /> // subcategory for searched product
-      ) : (
-        <Skeleton className="mt-1 h-4 w-20" /> // colors for full product
+      {/* Category/subcategory */}
+      {(notSubcategory || query) && (
+        <Skeleton className="mt-2 h-4 w-36 rounded-xl sm:w-44" />
       )}
 
+      <div className="flex items-center justify-between sm:justify-start">
+        {/* available colors  */}
+        <Skeleton className="mt-1 h-4 w-20 rounded-xl" />
+
+        {/* rating */}
+        <Skeleton className="ml-2 h-4 w-8 rounded-xl sm:hidden" />
+      </div>
+
       {/* Price skeleton */}
-      <Skeleton className="mt-3 h-5 w-16" />
+      <Skeleton className="mt-3 h-5 w-16 rounded-xl" />
     </div>
   );
 };

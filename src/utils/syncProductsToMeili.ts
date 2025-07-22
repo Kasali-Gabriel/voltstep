@@ -78,29 +78,53 @@ export async function syncProducts() {
       name: p.name,
       image: p.images?.[0] || '',
       slug: p.slug,
-      price: p.price,
+      price: typeof p.price === 'number' ? p.price : Number(p.price) || 0,
       description: p.description,
       subcategory,
       category,
       catalog,
       catSubcat,
       avgRating,
+      quantity: p.quantity || 0,
+      tags: p.tags || [],
+      popularity:
+        typeof p.popularityScore === 'number'
+          ? p.popularityScore
+          : Number(p.popularityScore) || 0,
+      colors: p.colors || [],
+      sizes: p.sizes || [],
+      dateAdded: p.createdAt
+        ? new Date(p.createdAt).toISOString()
+        : new Date().toISOString(),
       availableColors:
         Array.isArray(p.colors) && p.colors.length === 1
           ? p.colors[0]
           : p.colors.length || 0,
-      //TODO dateAdded: p.createdAt
-      //   ? new Date(p.createdAt).toISOString().slice(0, 10)
-      //   : null,
     };
   });
 
   const index = meiliClient.index('products');
 
   await index.updateSettings({
-    searchableAttributes: ['name', 'subcategory', 'category', 'catalog'],
-    filterableAttributes: ['catalog', 'category', 'subcategory'],
-    sortableAttributes: ['price', 'avgRating'],
+    searchableAttributes: [
+      'name',
+      'subcategory',
+      'category',
+      'catalog',
+      'colors',
+    ],
+    filterableAttributes: [
+      'catalog',
+      'category',
+      'subcategory',
+      'colors',
+      'sizes',
+      'price',
+      'avgRating',
+      'tags',
+      'quantity',
+    ],
+    sortableAttributes: ['price', 'popularity', 'dateAdded'],
     synonyms,
     prefixSearch: 'indexingTime',
     typoTolerance: {
@@ -110,22 +134,15 @@ export async function syncProducts() {
         twoTypos: 6,
       },
     },
+    rankingRules: [
+      'sort',
+      'exactness',
+      'words',
+      'proximity',
+      'typo',
+      'attribute',
+    ],
   });
 
   await index.addDocuments(formatted);
-
-  // Write search suggestions to searchSuggestions.json
-  // const suggestionsPath = path.join(
-  //   __dirname,
-  //   '../data/searchSuggestions.json',
-  // );
-  // writeSuggestionsToFile(
-  //   products.map((p) => ({
-  //     catalog: p.subcategory?.category?.catalog?.name || '',
-  //     category: p.subcategory?.category?.name || '',
-  //     subcategory: p.subcategory?.name || '',
-  //     name: p.name,
-  //   })),
-  //   suggestionsPath,
-  // );
 }

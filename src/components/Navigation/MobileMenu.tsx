@@ -11,7 +11,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Sheet,
   SheetClose,
@@ -27,13 +27,32 @@ const MobileMenu = ({ catalogs }: { catalogs: Catalog[] }) => {
   const [open, setOpen] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
 
+  // Close sheet on large screens or landscape orientation
+  useEffect(() => {
+    const handleResize = () => {
+      const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+      const isLg = window.innerWidth >= 1024;
+      if (isLg && isLandscape && sheetOpen) {
+        setSheetOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, [sheetOpen]);
+
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger className="cursor-pointer">
         <Menu size={30} strokeWidth={1.25} />
       </SheetTrigger>
 
-      <SheetContent side="left" className="h-full w-full">
+      <SheetContent side="left" className="h-full w-full sm:max-w-sm">
         <SheetHeader>
           <VisuallyHidden>
             <SheetTitle></SheetTitle>

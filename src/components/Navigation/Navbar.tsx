@@ -1,10 +1,15 @@
 'use client';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import bigLogo from '../../../public/logo.png';
 import smallLogo from '../../../public/logoIcon.png';
 
+import {
+  useNavBarStore,
+  useProductHeaderStore,
+  useWishlistSuccessDialogStore,
+} from '@/lib/state';
 import { Catalog } from '@/types/product';
 import {
   GoogleOneTap,
@@ -25,90 +30,202 @@ import NavMenu from './NavMenu';
 
 const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
   const [isClient, setIsClient] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  const lastScrollY = useRef(0);
+  const navbarRef = useRef<HTMLElement>(null);
+  const {
+    navbarHeight,
+    showNavBar,
+    setShowNavBar,
+    setNavbarHeight,
+    isFixed,
+    setIsFixed,
+  } = useNavBarStore();
+  const { productHeaderStuck } = useProductHeaderStore();
+
+  const { showSuccessDialog } = useWishlistSuccessDialogStore();
+
+  // Set initial visibility and client flags
+  useEffect(() => {
+    setShowNavBar(true);
+  }, [setShowNavBar]);
 
   useEffect(() => {
     setIsClient(true);
+    const timer = setTimeout(() => setReady(true), 50); // Smoother hydration
+    return () => clearTimeout(timer);
   }, []);
 
+  // Track navbar height after render
+  useEffect(() => {
+    if (navbarRef.current) {
+      const height = navbarRef.current.offsetHeight;
+      setNavbarHeight(height);
+    }
+  }, [setNavbarHeight]);
+
+  // Handle scroll behavior for fixed and hide/show navbar
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const navbarEl = navbarRef.current;
+
+          if (!navbarEl) {
+            ticking = false;
+            return;
+          }
+
+          const height = navbarHeight || navbarEl.offsetHeight;
+          const scrollingUp = currentScrollY < lastScrollY.current;
+
+          // Fix and show navbar if it's scrolled past and user scrolls up
+          if (!isFixed && currentScrollY > height && scrollingUp) {
+            setIsFixed(true);
+            setShowNavBar(true);
+          }
+
+          // If already fixed, toggle visibility based on scroll direction
+          if (isFixed) {
+            if (scrollingUp && !showNavBar) {
+              setShowNavBar(true);
+            } else if (!scrollingUp && showNavBar) {
+              setShowNavBar(false);
+            }
+
+            // Unfix if user scrolls near top again
+            if (currentScrollY <= height) {
+              setIsFixed(false);
+              setShowNavBar(true);
+            }
+          }
+
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isFixed, showNavBar, navbarHeight, setIsFixed, setShowNavBar]);
+
   return (
-    <nav className="relative flex h-16 flex-col items-center justify-center px-5 sm:px-10 xl:px-12">
-      {isClient && (
-        <>
-          <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
-          <div
-            id="clerk-captcha"
-            data-cl-theme="dark"
-            data-cl-size="flexible"
-            className="absolute top-52"
-          />
-        </>
-      )}
+    <>
+      {isFixed && <div style={{ height: navbarHeight }} />}
 
-      <div className="flex w-full items-center justify-between">
-        <div className="flex items-center justify-center space-x-4 md:hidden">
-          <MobileMenu catalogs={catalogs} />
+      <nav
+        ref={navbarRef}
+        id="navbar"
+        className={`flex h-16 w-full flex-col items-center justify-center bg-white px-5 transition-transform ease-in-out sm:px-10 xl:px-12 ${showSuccessDialog ? 'z-60' : 'z-50'} ${
+          isFixed ? `fixed top-0 left-0` : 'relative'
+        } ${showNavBar ? 'translate-y-0' : '-translate-y-full'} ${productHeaderStuck ? 'duration-0' : 'duration-300'}`}
+      >
+        {isClient && (
+          <>
+            <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
+            <div
+              id="clerk-captcha"
+              data-cl-theme="dark"
+              data-cl-size="flexible"
+              className="absolute top-52"
+            />
+          </>
+        )}
 
-          <SearchView />
-        </div>
+        <div className="flex w-full items-center justify-between">
+          <div className="flex items-center justify-center space-x-4 lg:landscape:hidden">
+            <MobileMenu catalogs={catalogs} />
 
-        <div className="flex items-center space-x-10">
-          <Link href="/" className="flex items-center">
             <Image
               src={bigLogo}
               height={35}
               alt="logo"
-              className="hidden lg:block"
+              className="hidden md:block lg:landscape:hidden"
             />
 
-            <Image
-              src={smallLogo}
-              height={55}
-              alt="logo"
-              className="ml-8 md:ml-0 lg:hidden"
-            />
-          </Link>
-
-          <div className="hidden md:flex">
-            <NavMenu catalogs={catalogs} />
-          </div>
-        </div>
-
-        <div className="hidden items-center justify-center xl:flex">
-          <SearchBar />
-        </div>
-
-        <div className="flex items-center justify-center space-x-4">
-          <div className="mt-2 hidden md:block xl:hidden">
-            <SearchView />
+            <div className="flex md:hidden">
+              <SearchView />
+            </div>
           </div>
 
-          <Bag />
+          <div className="flex items-center space-x-10">
+            <Link href="/" className="flex items-center">
+              <Image
+                src={bigLogo}
+                height={35}
+                alt="logo"
+                className="hidden lg:landscape:block"
+              />
 
-          <ViewWishlist isNavBar />
+              <Image
+                src={smallLogo}
+                height={55}
+                alt="logo"
+                className="ml-8 md:hidden"
+              />
+            </Link>
 
-          {isClient && (
-            <>
-              <SignedOut>
-                <SignInButton>
-                  <Avatar className="cursor-pointer md:h-8 md:w-8">
+            <div className="hidden lg:landscape:flex">
+              <NavMenu catalogs={catalogs} />
+            </div>
+          </div>
+
+          <div className="hidden items-center justify-center xl:flex">
+            <SearchBar />
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <div className="mt-2 hidden md:block xl:hidden">
+              <SearchView />
+            </div>
+
+            <Bag />
+
+            <ViewWishlist isNavBar />
+
+            <div className="relative size-8">
+              {/* Placeholder icon during SSR/hydration */}
+              {!isClient || !ready ? (
+                <div className="absolute inset-0 flex animate-pulse items-center justify-center opacity-100">
+                  <Avatar className="cursor-pointer">
                     <AvatarFallback>
                       <User size={20} strokeWidth={1.25} />
                     </AvatarFallback>
                   </Avatar>
-                </SignInButton>
-              </SignedOut>
-
-              <SignedIn>
-                {/* TODO cutom drop down menu wit clerks accout profile signout, then manage orders */}
-                <div className="mt-1 cursor-pointer md:size-8">
-                  <UserButton />
                 </div>
-              </SignedIn>
-            </>
-          )}
+              ) : (
+                <div className="animate-in absolute inset-0 size-8">
+                  <SignedOut>
+                    <SignInButton>
+                      <Avatar className="cursor-pointer transition-all duration-300">
+                        <AvatarFallback>
+                          <User size={20} strokeWidth={1.25} />
+                        </AvatarFallback>
+                      </Avatar>
+                    </SignInButton>
+                  </SignedOut>
+
+                  <SignedIn>
+                    <div className="cursor-pointer transition-all duration-300">
+                      <UserButton />
+                    </div>
+                  </SignedIn>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 
