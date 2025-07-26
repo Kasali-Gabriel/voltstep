@@ -3,7 +3,7 @@ import { fetchInitialProducts } from '@/utils/Product/fetchData';
 import { parseFiltersFromURL } from '@/utils/Product/productFilters';
 
 export default async function ProductsPage(props: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<{ [key: string]: string | string[] }>;
   params: Promise<{ slug?: string[] }>;
 }) {
   const [searchParams, params] = await Promise.all([
