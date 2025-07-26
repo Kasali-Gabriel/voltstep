@@ -12,7 +12,7 @@ import {
   useWishlistSuccessDialogStore,
 } from '@/lib/state';
 import { Catalog } from '@/types/product';
-import { GoogleOneTap, SignedOut, SignInButton } from '@clerk/nextjs';
+import { GoogleOneTap, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import { User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -205,19 +205,17 @@ const Navbar = ({ catalogs, user }: NavbarProps) => {
                 </div>
               ) : (
                 <div className="animate-in absolute inset-0 size-8">
-                  {user ? (
-                    <UserProfile user={user} />
-                  ) : (
-                    <SignedOut>
-                      <SignInButton>
-                        <Avatar className="cursor-pointer transition-all duration-300">
-                          <AvatarFallback>
-                            <User size={20} strokeWidth={1.25} />
-                          </AvatarFallback>
-                        </Avatar>
-                      </SignInButton>
-                    </SignedOut>
-                  )}
+                  <SignedIn>{user && <UserProfile user={user} />}</SignedIn>
+
+                  <SignedOut>
+                    <SignInButton>
+                      <Avatar className="cursor-pointer transition-all duration-300">
+                        <AvatarFallback>
+                          <User size={20} strokeWidth={1.25} />
+                        </AvatarFallback>
+                      </Avatar>
+                    </SignInButton>
+                  </SignedOut>
                 </div>
               )}
             </div>
