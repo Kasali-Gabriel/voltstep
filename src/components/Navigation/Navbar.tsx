@@ -205,7 +205,9 @@ const Navbar = ({ catalogs, user }: NavbarProps) => {
                 </div>
               ) : (
                 <div className="animate-in absolute inset-0 size-8">
-                  <SignedIn>{user && <UserProfile user={user} />}</SignedIn>
+                  <SignedIn>
+                    {user && <UserProfile user={user} />}
+                  </SignedIn>
 
                   <SignedOut>
                     <SignInButton>
