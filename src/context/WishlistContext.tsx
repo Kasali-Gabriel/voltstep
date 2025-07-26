@@ -7,7 +7,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useUser } from './UserContext';
 
 interface WishlistContextType {
   wishlist: WishListItem[];
@@ -27,10 +26,11 @@ const WishlistContext = createContext<WishlistContextType>({
 
 export const WishlistProvider = ({
   children,
+  userId,
 }: {
   children: React.ReactNode;
+  userId?: string;
 }) => {
-  const { userId } = useUser();
   const [wishlist, setWishlist] = useState<WishListItem[]>([]);
   const [loading, setLoading] = useState(false);
 

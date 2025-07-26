@@ -1,10 +1,11 @@
+import { Prisma } from '@/generated/prisma';
 import prisma from '@/lib/prismaDb';
 import {
   buildCatalogWhere,
   buildFiltersWhere,
   getOrderBy,
   ProductFilters,
-} from '@/utils/parseCatalogFilters';
+} from '@/utils/Product/parseCatalogFilters';
 
 // --- Shared Selects ---
 const baseProductFields = {
@@ -93,16 +94,17 @@ export const fetchCatalogData = () =>
     },
   });
 
-// --- Product Fetchers ---
-
+// single product fetch for product detail page
 export const fetchProduct = (slug: string) =>
   prisma.product.findUnique({ where: { slug }, select: productDetailSelect });
 
+// product list fetch
 export async function fetchProducts(
   filters: ProductFilters,
   limit?: number,
   offset?: number,
   sort?: string,
+  unfiltered?: boolean,
 ) {
   // Compose where clause using helpers
   const baseWhere = {
@@ -111,110 +113,68 @@ export async function fetchProducts(
   };
 
   // Determine orderBy
-  const orderBy = getOrderBy(sort);
+  const orderBy = getOrderBy(sort ?? 'popular');
 
-  let ratedProductIds: string[] | null = null;
+  // Helper to fetch products and count
+  async function getProducts(where: Prisma.ProductWhereInput) {
+    if (unfiltered) {
+      const products = await prisma.product.findMany({
+        where: buildCatalogWhere(filters),
+        select: productPreviewSelect,
+      });
+
+      return {
+        products,
+        totalCount: products.length,
+        hasMore: false,
+      };
+    } else {
+      const productsPromise = prisma.product.findMany({
+        where,
+        select: productPreviewSelect,
+        take: limit,
+        skip: offset,
+        ...(orderBy ? { orderBy } : {}),
+      });
+
+      const totalCountPromise = prisma.product.count({ where });
+
+      const [products, totalCount] = await Promise.all([
+        productsPromise,
+        totalCountPromise,
+      ]);
+
+      const hasMore =
+        typeof offset === 'number' && typeof limit === 'number'
+          ? offset + products.length < totalCount
+          : products.length === limit;
+
+      return { products, totalCount, hasMore };
+    }
+  }
 
   // If rating filter is applied, fetch matching product IDs first
   if (filters.rating && filters.rating > 0) {
     const ratedProducts = await prisma.review.groupBy({
       by: ['productId'],
-      _avg: {
-        rating: true,
-      },
+      _avg: { rating: true },
       having: {
-        rating: {
-          _avg: {
-            gte: filters.rating,
-          },
-        },
+        rating: { _avg: { gte: filters.rating } },
       },
     });
 
-    ratedProductIds = ratedProducts.map((r) => r.productId);
+    const ratedProductIds = ratedProducts.map((r) => r.productId);
 
-    // No matches, early return
     if (ratedProductIds.length === 0) {
-      return {
-        products: [],
-        unfilteredProducts: [],
-        totalCount: 0,
-        hasMore: false,
-      };
+      return { products: [], totalCount: 0, hasMore: false };
     }
+
+    const finalWhere = { id: { in: ratedProductIds }, ...baseWhere };
+
+    return getProducts(finalWhere);
   }
 
-  // Apply rating-based filtering to main where clause
-  const finalWhere = {
-    ...(ratedProductIds ? { id: { in: ratedProductIds } } : {}),
-    ...baseWhere,
-  };
-
-  // Fetch filtered products
-  const productsPromise = prisma.product.findMany({
-    where: finalWhere,
-    select: productPreviewSelect,
-    take: limit,
-    skip: offset,
-    ...(orderBy ? { orderBy } : {}),
-  });
-
-  // Fetch all unfiltered products for UI filter options
-  const unfilteredProductsPromise = prisma.product.findMany({
-    where: buildCatalogWhere(filters), // No extra filters (e.g. sizes/colors)
-    select: productPreviewSelect,
-  });
-
-  // Get total count of filtered products
-  const totalCountPromise = prisma.product.count({
-    where: finalWhere,
-  });
-
-  // Await all in parallel
-  const [products, unfilteredProducts, totalCount] = await Promise.all([
-    productsPromise,
-    unfilteredProductsPromise,
-    totalCountPromise,
-  ]);
-
-  // Compute hasMore
-  const hasMore =
-    typeof offset === 'number' && typeof limit === 'number'
-      ? offset + products.length < totalCount
-      : products.length === limit;
-
-  return {
-    products,
-    unfilteredProducts,
-    totalCount,
-    hasMore,
-  };
+  // If no rating filter is applied, fetch products normally
+  const finalWhere = { ...baseWhere };
+  return getProducts(finalWhere);
 }
-
-export const fetchAllProducts = (
-  filters: ProductFilters = {},
-  limit?: number,
-  offset?: number,
-  sort?: string,
-) => fetchProducts(filters, limit, offset, sort);
-
-export const fetchCatalogProducts = (
-  filters: ProductFilters,
-  limit?: number,
-  offset?: number,
-  sort?: string,
-) => fetchProducts(filters, limit, offset, sort);
-
-export const fetchCategoryProducts = (
-  filters: ProductFilters,
-  limit?: number,
-  offset?: number,
-  sort?: string,
-) => fetchProducts(filters, limit, offset, sort);
-
-export const fetchSubCategoryProducts = (
-  filters: ProductFilters,
-  limit?: number,
-  offset?: number,
-  sort?: string,
-) => fetchProducts(filters, limit, offset, sort);

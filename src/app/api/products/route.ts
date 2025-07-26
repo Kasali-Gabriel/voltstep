@@ -1,5 +1,5 @@
-import { fetchAllProducts } from '@/actions/products';
-import { parseCatalogFilters } from '@/utils/parseCatalogFilters';
+import { fetchProducts } from '@/actions/products';
+import { parseCatalogFilters } from '@/utils/Product/parseCatalogFilters';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -10,11 +10,10 @@ export async function GET(request: Request) {
   const limit = Number(searchParams.get('limit')) || 18;
   const sort = searchParams.get('sort') || undefined;
 
-  const result = await fetchAllProducts(filters, limit, offset, sort);
+  const result = await fetchProducts(filters, limit, offset, sort);
 
   return NextResponse.json({
     products: result.products,
-    unfilteredProducts: result.unfilteredProducts,
     totalCount: result.totalCount,
     hasMore: result.hasMore,
   });

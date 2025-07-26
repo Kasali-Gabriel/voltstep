@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from '../ui/select';
 
-import { SortOption } from '@/utils/sortProducts';
+import { SortOption } from '@/utils/Product/sortProducts';
 import { useState } from 'react';
 
 const SortProducts = ({
@@ -63,7 +63,7 @@ const SortProducts = ({
       disabled={loading}
     >
       <SelectTrigger
-        className={`w-auto cursor-pointer border-0 p-0 pt-0.5 text-base font-medium shadow-none hover:shadow-none focus-visible:border-0 focus-visible:ring-0 data-[placeholder]:text-black data-[size=default]:h-auto data-[size=sm]:h-auto ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
+        className={`w-auto border-0 p-0 pt-0.5 text-base font-medium shadow-none hover:shadow-none focus-visible:border-0 focus-visible:ring-0 data-[placeholder]:text-black data-[size=default]:h-auto data-[size=sm]:h-auto ${loading ? 'pointer-events-none opacity-50' : 'cursor-pointer opacity-100'}`}
         iconClassName="size-6 text-black mt-1"
         disabled={loading}
       >

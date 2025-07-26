@@ -4,13 +4,13 @@ import { ChevronLeft, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Input } from '../ui/input';
 
-import { useSearch } from '@/hooks/search/useSearch';
+import smallLogo from '@/assets/logoIcon.png';
+import { useSearch } from '@/hooks/useSearch';
 import { useShadowOnScroll } from '@/hooks/useShadowOnscroll';
 import { useSearchFocus } from '@/lib/state';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../../../public/logoIcon.png';
 import ProductCard from '../Product/ProductCard';
 import ProductCardSkeleton from '../Skeletons/ProductCardSkeleton';
 import {
@@ -90,7 +90,7 @@ export const SearchView = () => {
             }`}
           >
             <Image
-              src={logo}
+              src={smallLogo}
               alt="logo"
               height={65}
               className="hidden lg:block"

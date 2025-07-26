@@ -7,16 +7,16 @@ import {
   useSideBarStore,
 } from '@/lib/state';
 import { ProductListHeaderProps } from '@/types/product';
-import { getSubcat } from '@/utils/getSubcat';
+import { getSubcat } from '@/utils/Product/getSubcat';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import SortProducts from './SortProducts';
 
 const ProductListHeader = ({
+  loading,
   query,
   slug,
   isMobile,
-  loading,
   totalCount = 0,
 }: ProductListHeaderProps) => {
   const { showFilters, setShowFilters } = useSideBarStore();
@@ -106,7 +106,7 @@ const ProductListHeader = ({
         <div className="px-5 sm:px-10 xl:px-12">
           {/* Search query header - mobile */}
           {query && isMobile && (
-            <div className="flex items-center space-x-2">
+            <div className="mb-4 flex items-center space-x-2">
               <p className="text-sm text-neutral-700 sm:text-base">
                 Search results for
               </p>
@@ -117,7 +117,7 @@ const ProductListHeader = ({
           )}
 
           {/* Subcategory label for mobile */}
-          {isMobile && (
+          {isMobile && !query && (
             <p className="mt-2 font-semibold capitalize">
               {slug && Array.isArray(slug) && slug.length > 0
                 ? getSubcat(slug)
@@ -169,11 +169,11 @@ const ProductListHeader = ({
                     type="button"
                     onClick={toggleSideBar}
                     disabled={loading}
-                    className={`flex items-center font-medium transition-colors ${
+                    className={`flex items-center font-medium transition-colors ${loading ? 'pointer-events-none opacity-50' : 'cursor-pointer opacity-100'} ${
                       isMobile
                         ? 'rounded-4xl border border-stone-300 px-4 py-1 hover:border-stone-600'
                         : 'w-fit pt-0.5'
-                    } ${loading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                    } `}
                   >
                     {isMobile
                       ? 'Filter'
@@ -187,6 +187,7 @@ const ProductListHeader = ({
                       className="mt-0.5 ml-2"
                     />
                   </button>
+
                   {/* Desktop: Sort button */}
                   {!isMobile && (
                     <SortProducts isSearchResults={!!query} loading={loading} />

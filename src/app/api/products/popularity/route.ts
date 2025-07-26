@@ -1,7 +1,7 @@
 import {
   updateAllProductPopularityScores,
   updateProductPopularityScore,
-} from '@/utils/popularityScore';
+} from '@/utils/Product/popularityScore';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {

@@ -1,54 +1,39 @@
-'use client';
-
 import ProductsList from '@/components/ProductList/ProductsList';
-import { useCatalogPagination } from '@/hooks/useCatalogPagination';
-import { useSortProducts } from '@/hooks/useSortProducts';
-import { parseFiltersFromURL } from '@/utils/productFilters';
-import { useSearchParams } from 'next/navigation';
-import { use, useMemo } from 'react';
+import { fetchInitialProducts } from '@/utils/Product/fetchData';
+import { parseFiltersFromURL } from '@/utils/Product/productFilters';
 
-interface ProductsPageProps {
+export default async function ProductsPage(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
   params: Promise<{ slug?: string[] }>;
-}
+}) {
+  const [searchParams, params] = await Promise.all([
+    props.searchParams,
+    props.params,
+  ]);
 
-const Page = (props: ProductsPageProps) => {
-  const searchParams = useSearchParams();
+  const slug = params.slug || [];
 
-  const { slug } = use(props.params);
+  const filters = parseFiltersFromURL(
+    new URLSearchParams(
+      Object.entries(searchParams).map(([k, v]) => [
+        k,
+        Array.isArray(v) ? v[0] : v || '',
+      ]),
+    ),
+  ) as Record<string, string>;
 
-  const { currentSort } = useSortProducts();
-
-  const filters = useMemo(
-    () => parseFiltersFromURL(searchParams),
-    [searchParams],
-  );
-
-  const {
-    products,
-    loading,
-    hasMore,
-    loadMore,
-    totalCount,
-    unfilteredProducts,
-  } = useCatalogPagination({
-    slug,
-    sort: currentSort,
-    filters,
-  });
+  const { initialProducts, initialTotalCount, initialHasMore } =
+    await fetchInitialProducts({ slug });
 
   return (
     <div>
       <ProductsList
-        products={products}
-        unfilteredProducts={unfilteredProducts}
+        filters={filters}
         slug={slug}
-        loading={loading}
-        hasMore={hasMore}
-        loadMore={loadMore}
-        totalCount={totalCount}
+        initialProducts={initialProducts}
+        initialTotalCount={initialTotalCount}
+        initialHasMore={initialHasMore}
       />
     </div>
   );
-};
-
-export default Page;
+}

@@ -1,3 +1,4 @@
+import { ProductFilters } from '@/utils/Product/productFilters';
 import { Review } from './review';
 import { SearchedProduct } from './search';
 
@@ -72,32 +73,23 @@ export interface ColorSelectorProps {
 }
 
 export interface ProductCardProps {
-  product: Product;
-  setQuery?: (q: string) => void;
-}
-
-export interface ProductCardFlexibleProps {
   query?: boolean;
-  product?: ProductCardProps['product'];
   SearchedProduct?: SearchedProduct;
   setQuery?: (q: string) => void;
   recordViewedProduct?: (product: SearchedProduct) => void;
   isPage?: boolean;
   slug?: string[];
+  loading?: boolean;
   notSubcategory?: boolean;
 }
 
-export interface ProductListProps {
+export interface ProductsListProps {
   query?: string;
   slug?: string[];
-  products?: Product[];
-  unfilteredProducts?: Product[];
-  unfilteredSearch?: SearchedProduct[];
-  searchResults?: SearchedProduct[];
-  totalCount?: number;
-  loading?: boolean;
-  hasMore?: boolean;
-  loadMore?: () => void;
+  filters?: Record<string, string>;
+  initialProducts?: Product[] | SearchedProduct[];
+  initialTotalCount?: number;
+  initialHasMore?: boolean;
 }
 
 export interface ProductFilterProps {
@@ -106,7 +98,6 @@ export interface ProductFilterProps {
   isSearchResults?: boolean;
   slug?: string[];
   unfilteredResults?: SearchedProduct[];
-  loading?: boolean;
 }
 
 export interface ProductListHeaderProps {
@@ -127,4 +118,15 @@ export interface FilterProductsProps {
   products?: SearchedProduct[];
   slug?: string[];
   loading?: boolean;
+}
+
+export interface CatalogPagination {
+  isSearch?: boolean;
+  slug?: string[];
+  sort?: string;
+  filters?: ProductFilters;
+  initialProducts?: Product[];
+  initialTotalCount?: number;
+  initialHasMore?: boolean;
+  skipInitialFetch?: boolean;
 }

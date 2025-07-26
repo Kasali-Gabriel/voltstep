@@ -27,7 +27,6 @@ const Filters = ({
   isSearchResults = false,
   slug,
   unfilteredResults,
-  loading = false,
 }: ProductFilterProps) => {
   const { showFilters, setShowFilters } = useSideBarStore();
   const { navbarHeight, showNavBar, isFixed } = useNavBarStore();
@@ -135,13 +134,11 @@ const Filters = ({
                 <SortProducts
                   isMobile
                   isSearchResults={isSearchResults}
-                  loading={loading}
                 />
 
                 <FilterProducts
                   products={unfilteredResults}
                   slug={slug}
-                  loading={loading}
                 />
               </div>
             </SheetContent>
@@ -165,7 +162,6 @@ const Filters = ({
               <FilterProducts
                 products={unfilteredResults}
                 slug={slug}
-                loading={loading}
               />
             </div>
           </aside>

@@ -5,7 +5,7 @@ import {
   filtersToURLParams,
   parseFiltersFromURL,
   ProductFilters,
-} from '@/utils/productFilters';
+} from '@/utils/Product/productFilters';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { AvailabilityFilter } from './AvailabilityFilter';

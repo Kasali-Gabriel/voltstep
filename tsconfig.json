@@ -28,7 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "scripts/seed.js",
-    "src/utils/syncProductsToMeili.ts"
+    "src/utils/Search/syncProductsToMeili.ts"
   ],
   "exclude": ["node_modules"]
 }

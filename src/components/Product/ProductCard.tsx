@@ -1,6 +1,6 @@
 import { useSearchFocus } from '@/lib/state';
-import { ProductCardFlexibleProps } from '@/types/product';
-import { getSubcat, singularize } from '@/utils/getSubcat';
+import { ProductCardProps } from '@/types/product';
+import { getSubcat, singularize } from '@/utils/Product/getSubcat';
 import { StarIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +13,8 @@ const ProductCard = ({
   slug,
   query,
   notSubcategory,
-}: ProductCardFlexibleProps) => {
+  loading,
+}: ProductCardProps) => {
   const { setIsFocused } = useSearchFocus();
 
   const word = getSubcat(
@@ -33,7 +34,9 @@ const ProductCard = ({
   };
 
   return (
-    <div className="flex w-full flex-col">
+    <div
+      className={`flex w-full flex-col transition-opacity duration-300 ${loading ? 'pointer-events-none opacity-50' : 'opacity-100'}`}
+    >
       <Link
         href={`/product/${SearchedProduct?.slug}`}
         onClick={handleLink}
@@ -42,8 +45,8 @@ const ProductCard = ({
         <Image
           src={SearchedProduct?.image || '/placeholder.png'}
           alt="item-image"
-          width={isPage ? 1024 : 900}
-          height={1024}
+          width={600}
+          height={600}
           className="h-auto w-full cursor-pointer border object-cover"
         />
       </Link>

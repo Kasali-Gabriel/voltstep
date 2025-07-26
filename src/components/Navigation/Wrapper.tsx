@@ -1,8 +1,9 @@
 'use client';
 
-import { UserProvider } from '@/context/UserContext';
+import { UserContextType, UserProvider } from '@/context/UserContext';
 import { WishlistProvider } from '@/context/WishlistContext';
 import { Catalog } from '@/types/product';
+
 import { usePathname } from 'next/navigation';
 import FlashNews from './FlashNews';
 import Footer from './Footer';
@@ -11,28 +12,34 @@ import Navbar from './Navbar';
 export type WrapperProps = Readonly<{
   children: React.ReactNode;
   catalogs: Catalog[];
+  user: UserContextType;
 }>;
 
-export default function Wrapper({ children, catalogs }: WrapperProps) {
+export default function Wrapper({ children, catalogs, user }: WrapperProps) {
   const pathname = usePathname();
-
   const isAuth = pathname === '/sign-in' || pathname === '/sign-up';
-
   const isHomePage = pathname === '/';
 
+  console.log('catalogs:', catalogs);
+  // If on auth page, don't provide user context
+  if (isAuth) {
+    return (
+      <div className="w-full">
+        <main>{children}</main>
+      </div>
+    );
+  }
+
   return (
-    <UserProvider>
-      <WishlistProvider>
+    <UserProvider user={user}>
+      <WishlistProvider userId={user!.id}>
         <div className="w-full">
           <div id="header-stack">
-            {!isAuth && <Navbar catalogs={catalogs} />}
-
-            {!isAuth && !isHomePage && <FlashNews />}
+            <Navbar catalogs={catalogs} user={user!} />
+            {!isHomePage && <FlashNews />}
           </div>
-
           <main>{children}</main>
-
-          {!isAuth && <Footer />}
+          <Footer />
         </div>
       </WishlistProvider>
     </UserProvider>

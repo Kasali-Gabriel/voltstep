@@ -1,3 +1,5 @@
+import { ProductFilters } from '@/utils/Product/productFilters';
+
 export interface SearchHistoryItem {
   id: string;
   query: string;
@@ -56,3 +58,16 @@ export type SearchedProduct = {
   tags: string[];
   quantity?: number;
 };
+
+export interface SearchParams {
+  userId?: string;
+  slug?: string[];
+  query: string;
+  sort?: string;
+  filters?: ProductFilters;
+  initialResults?: SearchedProduct[];
+  initialUnfilteredResults?: SearchedProduct[];
+  initialTotalCount?: number;
+  initialHasMore?: boolean;
+  skipInitialFetch?: boolean;
+}

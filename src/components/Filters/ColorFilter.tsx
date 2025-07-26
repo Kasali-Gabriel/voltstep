@@ -59,9 +59,9 @@ export function ColorFilter({
   toggleSection,
 }: {
   topColors: string[];
-  filters: import('@/utils/productFilters').ProductFilters;
+  filters: import('@/utils/Product/productFilters').ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/productFilters').ProductFilters>,
+    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;
@@ -90,7 +90,7 @@ export function ColorFilter({
 
       <CollapsibleContent className="border-b border-stone-200 pt-2 pb-10">
         <div
-          className={`grid gap-5 grid-cols-3 sm:grid-cols-5 sm:gap-8 lg:grid-cols-3 lg:gap-3 sm:landscape:gap-5 ${isMobile ? 'sm:landscape:grid-cols-5' : 'sm:landscape:grid-cols-3'}`}
+          className={`grid grid-cols-3 gap-5 sm:grid-cols-5 sm:gap-8 lg:grid-cols-3 lg:gap-3 sm:landscape:gap-5 ${isMobile ? 'sm:landscape:grid-cols-5' : 'sm:landscape:grid-cols-3'}`}
         >
           {availableColors.map((color) => {
             const isSelected = (filters.colors ?? []).includes(color);

@@ -1,0 +1,507 @@
+[
+  {
+    "id": "68237b9043fe121add84d5bd",
+    "name": "Men",
+    "slug": "men",
+    "categories": [
+      {
+        "id": "68237b9043fe121add84d5be",
+        "name": "Tops",
+        "slug": "tops",
+        "parentCategory": "1",
+        "catalogId": "68237b9043fe121add84d5bd",
+        "subcategories": [
+          {
+            "id": "68237b9143fe121add84d5bf",
+            "name": "T-Shirts",
+            "slug": "t-shirts",
+            "parentCategory": "101",
+            "categoryId": "68237b9043fe121add84d5be"
+          },
+          {
+            "id": "68237b9d43fe121add84d612",
+            "name": "Tank Tops",
+            "slug": "tank-tops",
+            "parentCategory": "101",
+            "categoryId": "68237b9043fe121add84d5be"
+          },
+          {
+            "id": "68237ba843fe121add84d65e",
+            "name": "Long Sleeve Shirts",
+            "slug": "long-sleeve-shirts",
+            "parentCategory": "101",
+            "categoryId": "68237b9043fe121add84d5be"
+          },
+          {
+            "id": "68237bb243fe121add84d691",
+            "name": "Compression Tops",
+            "slug": "compression-tops",
+            "parentCategory": "101",
+            "categoryId": "68237b9043fe121add84d5be"
+          }
+        ]
+      },
+      {
+        "id": "68237bbd43fe121add84d6f9",
+        "name": "Bottoms",
+        "slug": "bottoms",
+        "parentCategory": "1",
+        "catalogId": "68237b9043fe121add84d5bd",
+        "subcategories": [
+          {
+            "id": "68237bbd43fe121add84d6fa",
+            "name": "Shorts",
+            "slug": "shorts",
+            "parentCategory": "102",
+            "categoryId": "68237bbd43fe121add84d6f9"
+          },
+          {
+            "id": "68237bc943fe121add84d74e",
+            "name": "Joggers",
+            "slug": "joggers",
+            "parentCategory": "102",
+            "categoryId": "68237bbd43fe121add84d6f9"
+          },
+       
+          {
+            "id": "68237be443fe121add84d80b",
+            "name": "Sweatpants",
+            "slug": "sweatpants",
+            "parentCategory": "102",
+            "categoryId": "68237bbd43fe121add84d6f9"
+          }
+        ]
+      },
+      {
+        "id": "68237bf243fe121add84d882",
+        "name": "Outerwear",
+        "slug": "outerwear",
+        "parentCategory": "1",
+        "catalogId": "68237b9043fe121add84d5bd",
+        "subcategories": [
+          {
+            "id": "68237bf343fe121add84d883",
+            "name": "Hoodies & Sweatshirts",
+            "slug": "hoodies-sweatshirts",
+            "parentCategory": "103",
+            "categoryId": "68237bf243fe121add84d882"
+          },
+          {
+            "id": "68237c0443fe121add84d8eb",
+            "name": "Jackets",
+            "slug": "jackets",
+            "parentCategory": "103",
+            "categoryId": "68237bf243fe121add84d882"
+          },
+          {
+            "id": "68237c0e43fe121add84d943",
+            "name": "Windbreakers",
+            "slug": "windbreakers",
+            "parentCategory": "103",
+            "categoryId": "68237bf243fe121add84d882"
+          }
+        ]
+      },
+      {
+        "id": "68237c1943fe121add84d993",
+        "name": "Footwear",
+        "slug": "footwear",
+        "parentCategory": "1",
+        "catalogId": "68237b9043fe121add84d5bd",
+        "subcategories": [
+          {
+            "id": "68237c1943fe121add84d994",
+            "name": "Running Shoes",
+            "slug": "running-shoes",
+            "parentCategory": "104",
+            "categoryId": "68237c1943fe121add84d993"
+          },
+          {
+            "id": "68237c1f43fe121add84d9c1",
+            "name": "Training Shoes",
+            "slug": "training-shoes",
+            "parentCategory": "104",
+            "categoryId": "68237c1943fe121add84d993"
+          },
+          {
+            "id": "68237c2543fe121add84d9f1",
+            "name": "Casual Sneakers",
+            "slug": "casual-sneakers",
+            "parentCategory": "104",
+            "categoryId": "68237c1943fe121add84d993"
+          }
+        ]
+      },
+      {
+        "id": "68237c3043fe121add84da51",
+        "name": "Accessories",
+        "slug": "accessories",
+        "parentCategory": "1",
+        "catalogId": "68237b9043fe121add84d5bd",
+        "subcategories": [
+          {
+            "id": "68237c3043fe121add84da52",
+            "name": "Caps",
+            "slug": "caps",
+            "parentCategory": " 105",
+            "categoryId": "68237c3043fe121add84da51"
+          },
+          {
+            "id": "68237c3543fe121add84da9a",
+            "name": "Socks",
+            "slug": "socks",
+            "parentCategory": "105",
+            "categoryId": "68237c3043fe121add84da51"
+          },
+          {
+            "id": "68237c3b43fe121add84dae6",
+            "name": "Gym Bags",
+            "slug": "gym-bags",
+            "parentCategory": "105",
+            "categoryId": "68237c3043fe121add84da51"
+          },
+          {
+            "id": "68237c4043fe121add84db0b",
+            "name": "Gloves",
+            "slug": "gloves",
+            "parentCategory": "105",
+            "categoryId": "68237c3043fe121add84da51"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "68237c4643fe121add84db40",
+    "name": "Women",
+    "slug": "women",
+    "categories": [
+      {
+        "id": "68237c4643fe121add84db41",
+        "name": "Tops",
+        "slug": "tops",
+        "parentCategory": "2",
+        "catalogId": "68237c4643fe121add84db40",
+        "subcategories": [
+          {
+            "id": "68237c4743fe121add84db42",
+            "name": "Sports Bras",
+            "slug": "sports-bras",
+            "parentCategory": "201",
+            "categoryId": "68237c4643fe121add84db41"
+          },
+          {
+            "id": "68237c5143fe121add84db8a",
+            "name": "Crop Tops",
+            "slug": "crop-tops",
+            "parentCategory": "201",
+            "categoryId": "68237c4643fe121add84db41"
+          },
+          {
+            "id": "68237c5c43fe121add84dc02",
+            "name": "Tanks & Tees",
+            "slug": "tanks-tees",
+            "parentCategory": "201",
+            "categoryId": "68237c4643fe121add84db41"
+          },
+          {
+            "id": "68237c6643fe121add84dc62",
+            "name": "Long Sleeve Shirts",
+            "slug": "long-sleeve-shirts",
+            "parentCategory": "201",
+            "categoryId": "68237c4643fe121add84db41"
+          }
+        ]
+      },
+      {
+        "id": "68237c7143fe121add84dcb6",
+        "name": "Bottoms",
+        "slug": "bottoms",
+        "parentCategory": "2",
+        "catalogId": "68237c4643fe121add84db40",
+        "subcategories": [
+          {
+            "id": "68237c7243fe121add84dcb7",
+            "name": "Leggings",
+            "slug": "leggings",
+            "parentCategory": "202",
+            "categoryId": "68237c7143fe121add84dcb6"
+          },
+          {
+            "id": "68237c7c43fe121add84dd20",
+            "name": "Shorts",
+            "slug": "shorts",
+            "parentCategory": "202",
+            "categoryId": "68237c7143fe121add84dcb6"
+          },
+          {
+            "id": "68237c8643fe121add84dd80",
+            "name": "Joggers",
+            "slug": "joggers",
+            "parentCategory": "202",
+            "categoryId": "68237c7143fe121add84dcb6"
+          }
+        ]
+      },
+      {
+        "id": "68237c9143fe121add84ddda",
+        "name": "Outerwear",
+        "slug": "outerwear",
+        "parentCategory": "2",
+        "catalogId": "68237c4643fe121add84db40",
+        "subcategories": [
+          {
+            "id": "68237c9143fe121add84dddb",
+            "name": "Hoodies",
+            "slug": "hoodies",
+            "parentCategory": "203",
+            "categoryId": "68237c9143fe121add84ddda"
+          },
+          {
+            "id": "68237c9f43fe121add84de3c",
+            "name": "Jackets",
+            "slug": "jackets",
+            "parentCategory": "203",
+            "categoryId": "68237c9143fe121add84ddda"
+          },
+          {
+            "id": "68237cab43fe121add84de80",
+            "name": "Sweatshirts",
+            "slug": "sweatshirts",
+            "parentCategory": "203",
+            "categoryId": "68237c9143fe121add84ddda"
+          }
+        ]
+      },
+      {
+        "id": "68237cb843fe121add84ded2",
+        "name": "Footwear",
+        "slug": "footwear",
+        "parentCategory": "2",
+        "catalogId": "68237c4643fe121add84db40",
+        "subcategories": [
+          {
+            "id": "68237cb843fe121add84ded3",
+            "name": "Running Shoes",
+            "slug": "running-shoes",
+            "parentCategory": "204",
+            "categoryId": "68237cb843fe121add84ded2"
+          },
+          {
+            "id": "68237cbe43fe121add84df05",
+            "name": "Training Shoes",
+            "slug": "training-shoes",
+            "parentCategory": "204",
+            "categoryId": "68237cb843fe121add84ded2"
+          },
+          {
+            "id": "68237cc543fe121add84df34",
+            "name": "Lifestyle Sneakers",
+            "slug": "lifestyle-sneakers",
+            "parentCategory": "204",
+            "categoryId": "68237cb843fe121add84ded2"
+          }
+        ]
+      },
+      {
+        "id": "68237ccb43fe121add84df6c",
+        "name": "Accessories",
+        "slug": "accessories",
+        "parentCategory": "2",
+        "catalogId": "68237c4643fe121add84db40",
+        "subcategories": [
+          {
+            "id": "68237ccb43fe121add84df6d",
+            "name": "Hairbands & Scrunchies",
+            "slug": "hairbands-scrunchies",
+            "parentCategory": "205",
+            "categoryId": "68237ccb43fe121add84df6c"
+          },
+          {
+            "id": "68237cd243fe121add84df9b",
+            "name": "Water Bottles",
+            "slug": "water-bottles",
+            "parentCategory": "205",
+            "categoryId": "68237ccb43fe121add84df6c"
+          },
+          {
+            "id": "68237cd843fe121add84dfd7",
+            "name": "Gym Bags",
+            "slug": "gym-bags",
+            "parentCategory": "205",
+            "categoryId": "68237ccb43fe121add84df6c"
+          },
+          {
+            "id": "68237cde43fe121add84dff6",
+            "name": "Socks",
+            "slug": "socks",
+            "parentCategory": "205",
+            "categoryId": "68237ccb43fe121add84df6c"
+          }
+        ]
+      },
+      {
+        "id": "68237ce443fe121add84e012",
+        "name": "Collections",
+        "slug": "collections",
+        "parentCategory": "2",
+        "catalogId": "68237c4643fe121add84db40",
+        "subcategories": [
+          {
+            "id": "68237ce543fe121add84e013",
+            "name": "Matching Sets",
+            "slug": "matching-sets",
+            "parentCategory": "206",
+            "categoryId": "68237ce443fe121add84e012"
+          },
+          {
+            "id": "68237ceb43fe121add84e042",
+            "name": "Maternity Activewear",
+            "slug": "maternity-activewear",
+            "parentCategory": "206",
+            "categoryId": "68237ce443fe121add84e012"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "68237cf143fe121add84e065",
+    "name": "Kids",
+    "slug": "kids",
+    "categories": [
+      {
+        "id": "68237cf143fe121add84e066",
+        "name": "All clothings",
+        "slug": "all-clothings",
+        "parentCategory": null,
+        "catalogId": "68237cf143fe121add84e065",
+        "subcategories": [
+          {
+            "id": "68237cf243fe121add84e067",
+            "name": "Activewear Sets",
+            "slug": "activewear-sets",
+            "parentCategory": "301",
+            "categoryId": "68237cf143fe121add84e066"
+          },
+          {
+            "id": "68237cff43fe121add84e0be",
+            "name": "Sports-Specific Apparel",
+            "slug": "sports-specific-apparel",
+            "parentCategory": "302",
+            "categoryId": "68237cf143fe121add84e066"
+          },
+          {
+            "id": "68237d0b43fe121add84e119",
+            "name": "Athleisure / Lifestyle Gymwear",
+            "slug": "athleisure-lifestyle-gymwear",
+            "parentCategory": "302",
+            "categoryId": "68237cf143fe121add84e066"
+          },
+          {
+            "id": "68237d1743fe121add84e15e",
+            "name": "Swimwear & Rash Guards",
+            "slug": "swimwear-rash-guards",
+            "parentCategory": "304",
+            "categoryId": "68237cf143fe121add84e066"
+          },
+          {
+            "id": "68237d2343fe121add84e1c4",
+            "name": "Outerwear & Layering Essentials",
+            "slug": "outerwear-layering-essentials",
+            "parentCategory": "305",
+            "categoryId": "68237cf143fe121add84e066"
+          }
+        ]
+      },
+      {
+        "id": "68237d3043fe121add84e222",
+        "name": "Footwears",
+        "slug": "footwears",
+        "parentCategory": null,
+        "catalogId": "68237cf143fe121add84e065",
+        "subcategories": [
+          {
+            "id": "68237d3043fe121add84e223",
+            "name": "All-Terrain Trainers",
+            "slug": "all-terrain-trainers",
+            "parentCategory": "302",
+            "categoryId": "68237d3043fe121add84e222"
+          },
+          {
+            "id": "68237d3643fe121add84e251",
+            "name": "ProCourt Kicks",
+            "slug": "procourt-kicks",
+            "parentCategory": "302",
+            "categoryId": "68237d3043fe121add84e222"
+          },
+          {
+            "id": "68237d3c43fe121add84e289",
+            "name": "EasyGo Sneakers",
+            "slug": "easygo-sneakers",
+            "parentCategory": "302",
+            "categoryId": "68237d3043fe121add84e222"
+          },
+          {
+            "id": "68237d4243fe121add84e2b5",
+            "name": "CloudStep Slides",
+            "slug": "cloudstep-slides",
+            "parentCategory": "302",
+            "categoryId": "68237d3043fe121add84e222"
+          }
+        ]
+      },
+      {
+        "id": "68237d4843fe121add84e2ef",
+        "name": "Accessories",
+        "slug": "accessories",
+        "parentCategory": null,
+        "catalogId": "68237cf143fe121add84e065",
+        "subcategories": [
+          {
+            "id": "68237d4943fe121add84e2f0",
+            "name": "Backpacks",
+            "slug": "backpacks",
+            "parentCategory": "303",
+            "categoryId": "68237d4843fe121add84e2ef"
+          },
+          {
+            "id": "68237d4f43fe121add84e322",
+            "name": "Caps & Headbands",
+            "slug": "cap-headbands",
+            "parentCategory": "301",
+            "categoryId": "68237d4843fe121add84e2ef"
+          },
+          {
+            "id": "68237d5643fe121add84e34d",
+            "name": "Water Bottles",
+            "slug": "water-bottles",
+            "parentCategory": "301",
+            "categoryId": "68237d4843fe121add84e2ef"
+          },
+          {
+            "id": "68237d5c43fe121add84e382",
+            "name": "Socks & Compression Wear",
+            "slug": "socks-compression-wear",
+            "parentCategory": "301",
+            "categoryId": "68237d4843fe121add84e2ef"
+          },
+          {
+            "id": "68237d6243fe121add84e3ac",
+            "name": "Wristbands & Sweatbands",
+            "slug": "wristbands-sweatbands",
+            "parentCategory": "301",
+            "categoryId": "68237d4843fe121add84e2ef"
+          },
+          {
+            "id": "68237d6843fe121add84e3d5",
+            "name": "Gloves & Protective Gear",
+            "slug": "gloves-protective-gear",
+            "parentCategory": "301",
+            "categoryId": "68237d4843fe121add84e2ef"
+          }
+        ]
+      }
+    ]
+  }
+]

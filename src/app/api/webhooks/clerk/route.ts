@@ -4,7 +4,7 @@ import {
   getUserById,
   updateUser,
 } from '@/actions/user';
-import { User } from '@/types/product';
+import { User } from '@/types/auth';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
 import { Webhook } from 'svix';
@@ -52,21 +52,38 @@ export async function POST(req: Request) {
   if (eventType === 'user.created') {
     const { id, email_addresses, first_name, last_name, image_url } = evt.data;
 
-    if (!id || !email_addresses) {
-      return new Response('Error occures -- missing data', {
-        status: 400,
-      });
+    if (
+      !id ||
+      !email_addresses ||
+      !Array.isArray(email_addresses) ||
+      !email_addresses[0] ||
+      !email_addresses[0].email_address
+    ) {
+      return new Response(
+        'Error occures -- missing or malformed email_addresses',
+        {
+          status: 400,
+        },
+      );
     }
 
-    const user = {
-      clerkUserId: id,
+    const now = new Date();
+    const user: User = {
+      id: '',
       email: email_addresses[0].email_address,
-      ...(first_name ? { firstName: first_name } : {}),
-      ...(last_name ? { lastName: last_name } : {}),
-      ...(image_url ? { imageUrl: image_url } : {}),
+      firstName: first_name || '',
+      lastName: last_name || '',
+      imageUrl: image_url,
+      createdAt: now,
+      updatedAt: now,
+      clerkUserId: id,
     };
 
-    await createUser(user as User);
+    await createUser({
+      ...user,
+      imageUrl: user.imageUrl === undefined ? null : user.imageUrl,
+      clerkUserId: user.clerkUserId === undefined ? null : user.clerkUserId,
+    });
 
     return new Response('', { status: 200 });
   }

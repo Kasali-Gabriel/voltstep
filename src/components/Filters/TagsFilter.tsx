@@ -13,9 +13,9 @@ export function TagsFilter({
   open,
   toggleSection,
 }: {
-  filters: import('@/utils/productFilters').ProductFilters;
+  filters: import('@/utils/Product/productFilters').ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/productFilters').ProductFilters>,
+    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;

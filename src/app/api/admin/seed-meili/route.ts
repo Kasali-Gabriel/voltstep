@@ -1,4 +1,4 @@
-import { syncProducts } from '@/utils/syncProductsToMeili';
+import { syncProducts } from '@/utils/Search/syncProductsToMeili';
 
 export async function POST() {
   try {

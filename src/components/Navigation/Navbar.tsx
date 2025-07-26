@@ -1,34 +1,35 @@
 'use client';
 
+import bigLogo from '@/assets/logo.png';
+import smallLogo from '@/assets/logoIcon.png';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useEffect, useRef, useState } from 'react';
-import bigLogo from '../../../public/logo.png';
-import smallLogo from '../../../public/logoIcon.png';
 
+import { UserContextType } from '@/context/UserContext';
 import {
   useNavBarStore,
   useProductHeaderStore,
   useWishlistSuccessDialogStore,
 } from '@/lib/state';
 import { Catalog } from '@/types/product';
-import {
-  GoogleOneTap,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from '@clerk/nextjs';
+import { GoogleOneTap, SignedOut, SignInButton } from '@clerk/nextjs';
 import { User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bag } from '../Bag/Bag';
 import SearchView from '../Search/Search';
 import SearchBar from '../Search/SearchBar';
+import UserProfile from '../User/UserProfile';
 import { ViewWishlist } from '../Wishlist/ViewWishlist';
 import MobileMenu from './MobileMenu';
 import NavMenu from './NavMenu';
 
-const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
+interface NavbarProps {
+  catalogs: Catalog[];
+  user?: UserContextType;
+}
+
+const Navbar = ({ catalogs, user }: NavbarProps) => {
   const [isClient, setIsClient] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -53,7 +54,7 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
 
   useEffect(() => {
     setIsClient(true);
-    const timer = setTimeout(() => setReady(true), 50); // Smoother hydration
+    const timer = setTimeout(() => setReady(true), 50);
     return () => clearTimeout(timer);
   }, []);
 
@@ -149,7 +150,7 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
               src={bigLogo}
               height={35}
               alt="logo"
-              className="hidden md:block lg:landscape:hidden"
+              className="ob hidden md:block lg:landscape:hidden"
             />
 
             <div className="flex md:hidden">
@@ -204,21 +205,19 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
                 </div>
               ) : (
                 <div className="animate-in absolute inset-0 size-8">
-                  <SignedOut>
-                    <SignInButton>
-                      <Avatar className="cursor-pointer transition-all duration-300">
-                        <AvatarFallback>
-                          <User size={20} strokeWidth={1.25} />
-                        </AvatarFallback>
-                      </Avatar>
-                    </SignInButton>
-                  </SignedOut>
-
-                  <SignedIn>
-                    <div className="cursor-pointer transition-all duration-300">
-                      <UserButton />
-                    </div>
-                  </SignedIn>
+                  {user ? (
+                    <UserProfile user={user} />
+                  ) : (
+                    <SignedOut>
+                      <SignInButton>
+                        <Avatar className="cursor-pointer transition-all duration-300">
+                          <AvatarFallback>
+                            <User size={20} strokeWidth={1.25} />
+                          </AvatarFallback>
+                        </Avatar>
+                      </SignInButton>
+                    </SignedOut>
+                  )}
                 </div>
               )}
             </div>

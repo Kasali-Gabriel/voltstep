@@ -10,64 +10,134 @@ import Loader from '@/components/ui/loader';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useSortProducts } from '@/hooks/useSortProducts';
 import { useSideBarStore } from '@/lib/state';
-import { ProductListProps } from '@/types/product';
 import { SearchedProduct } from '@/types/search';
-import { mapProductToSearchedProduct } from '@/utils/mapProducts';
+import { mapProductToSearchedProduct } from '@/utils/Product/mapProducts';
 import ProductCardSkeleton from '../Skeletons/ProductCardSkeleton';
+
+import { useCatalogPagination } from '@/hooks/useCatalogPagination';
+import { useSearch } from '@/hooks/useSearch';
+import { Product, ProductsListProps } from '@/types/product';
 
 const ProductsList = ({
   query,
-  products = [],
-  unfilteredProducts,
-  unfilteredSearch,
+  filters,
   slug,
-  loading,
-  hasMore,
-  loadMore,
-  totalCount = 0,
-  searchResults = [],
-}: ProductListProps) => {
+  initialProducts,
+  initialTotalCount,
+  initialHasMore,
+}: ProductsListProps) => {
   const [isMobile] = useIsMobile(900);
   const { showFilters } = useSideBarStore();
-  const [isInitialMount, setIsInitialMount] = useState(true);
-  // Get current sort, but not used directly here
-  useSortProducts(!!query);
 
+  const { currentSort: rawSort } = useSortProducts(!!query);
+  const currentSort = rawSort;
+
+  // State for products, unfilteredProducts, totalCount, hasMore, loading
+  const [products, setProducts] = useState<(Product | SearchedProduct)[]>(
+    initialProducts ?? [],
+  );
+  const [totalCount, setTotalCount] = useState<number>(initialTotalCount ?? 0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   // state to track if end of product list is in viewport
   const [atProductListEnd, setAtProductListEnd] = useState(false);
   // state for filter bottom offset
   const [filterBottomOffset, setFilterBottomOffset] = useState(0);
+  // Set isInitialMount to false if initialProducts are present (SSR/SSG)
+  const [isInitialMount, setIsInitialMount] = useState(
+    !(initialProducts && initialProducts.length > 0),
+  );
 
-  // refs
   const productListEndRef = useRef<HTMLDivElement>(null);
+
+  const isSearch = !!query;
+
+  const search = useSearch({
+    slug: isSearch ? [] : slug,
+    query: query ?? '',
+    sort: currentSort,
+    filters,
+    initialResults: initialProducts as SearchedProduct[],
+    initialTotalCount: initialTotalCount,
+    initialHasMore: initialHasMore,
+    skipInitialFetch: isInitialMount,
+  });
+
+  const catalogPagination = useCatalogPagination({
+    isSearch: isSearch,
+    slug: isSearch ? [] : slug,
+    sort: isSearch ? undefined : currentSort,
+    filters: isSearch ? {} : filters,
+    initialProducts: isSearch ? [] : (initialProducts as Product[]),
+
+    initialTotalCount: isSearch ? 0 : initialTotalCount,
+    initialHasMore: isSearch ? false : initialHasMore,
+    skipInitialFetch: isInitialMount,
+  });
 
   const notSubcategory = !slug || (Array.isArray(slug) && slug.length < 3);
 
+  // Sync state from the correct hook after initial mount and when filters/query/slug change
+  useEffect(() => {
+    if (!isInitialMount) {
+      if (isSearch) {
+        setProducts(search.results ?? []);
+        setTotalCount(search.totalCount ?? 0);
+        setHasMore(search.hasMore ?? true);
+        setLoading(search.loading ?? false);
+      } else {
+        setProducts(catalogPagination.products);
+        setTotalCount(catalogPagination.totalCount);
+        setHasMore(catalogPagination.hasMore);
+        setLoading(catalogPagination.loading);
+      }
+    }
+  }, [
+    isInitialMount,
+    isSearch,
+    search.results,
+    search.totalCount,
+    search.hasMore,
+    search.loading,
+    catalogPagination.products,
+    catalogPagination.totalCount,
+    catalogPagination.hasMore,
+    catalogPagination.loading,
+    filters,
+    query,
+    slug,
+  ]);
+
   // Reset initial mount state when we have data or finished loading
   useEffect(() => {
-    if (
-      products.length > 0 ||
-      (searchResults && searchResults.length > 0) ||
-      (!loading && !query)
-    ) {
+    const hasData = isSearch
+      ? search.results && search.results.length > 0
+      : products.length > 0;
+    if (hasData || (!loading && !query)) {
       setIsInitialMount(false);
     }
-  }, [products.length, searchResults, searchResults?.length, loading, query]);
+  }, [
+    products.length,
+    search.results,
+    search.results?.length,
+    loading,
+    query,
+    isSearch,
+  ]);
 
   // Prepare products to display (no client-side sorting)
-  const filteredResults: SearchedProduct[] =
-    products.length > 0
-      ? products.map(mapProductToSearchedProduct)
-      : query
-        ? searchResults || []
-        : [];
+  const filteredResults: SearchedProduct[] = isSearch
+    ? search.results || []
+    : products.length > 0 && 'images' in products[0]
+      ? (products as Product[]).map(mapProductToSearchedProduct)
+      : (products as SearchedProduct[]);
 
-  const unfilteredResults: SearchedProduct[] =
-    (unfilteredProducts?.length ?? 0) > 0
-      ? (unfilteredProducts?.map(mapProductToSearchedProduct) ?? [])
-      : query
-        ? (unfilteredSearch ?? [])
-        : [];
+  const unfilteredResults: SearchedProduct[] = (initialProducts ?? []).map(
+    (product) =>
+      'images' in product
+        ? mapProductToSearchedProduct(product as Product)
+        : (product as SearchedProduct),
+  );
 
   // Observe end of product list
   useEffect(() => {
@@ -139,16 +209,16 @@ const ProductsList = ({
         query={query}
         slug={slug}
         isMobile={isMobile}
-        loading={loading}
-        totalCount={totalCount}
+        loading={isSearch ? search.loading : loading}
+        totalCount={isSearch ? search.totalCount : totalCount}
       />
+
       <div className="flex w-full">
         <Filters
           atProductListEnd={atProductListEnd}
           filterBottomOffset={filterBottomOffset}
           slug={slug}
           unfilteredResults={unfilteredResults}
-          loading={loading}
         />
 
         {/* Product grid */}
@@ -158,7 +228,7 @@ const ProductsList = ({
           }`}
         >
           {/* ProductList Loading skeleton for initial load */}
-          {loading || isInitialMount ? (
+          {(isSearch ? search.loading : loading) && isInitialMount ? (
             <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:gap-y-16 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, i) => (
                 <ProductCardSkeleton key={i} notSubcategory={notSubcategory} />
@@ -166,11 +236,18 @@ const ProductsList = ({
             </div>
           ) : filteredResults.length > 0 ? (
             <>
-              {hasMore && loadMore ? (
+              {(isSearch ? search.hasMore : hasMore) &&
+              (isSearch
+                ? search.loadMoreResults
+                : catalogPagination.loadMore) ? (
                 <InfiniteScroll
                   dataLength={filteredResults.length}
-                  next={loadMore!}
-                  hasMore={hasMore!}
+                  next={
+                    isSearch
+                      ? search.loadMoreResults!
+                      : catalogPagination.loadMore!
+                  }
+                  hasMore={isSearch ? search.hasMore! : hasMore!}
                   loader={
                     <div className="col-span-2 flex items-center justify-center py-8 lg:col-span-3">
                       <Loader size={40} borderWidth="2px" color="#000000" />
@@ -187,6 +264,7 @@ const ProductsList = ({
                       isPage
                       query={!!query}
                       slug={slug}
+                      loading={loading}
                       notSubcategory={notSubcategory}
                     />
                   ))}
@@ -200,6 +278,7 @@ const ProductsList = ({
                       SearchedProduct={product}
                       query={!!query}
                       slug={slug}
+                      loading={loading}
                       isPage
                       notSubcategory={notSubcategory}
                     />

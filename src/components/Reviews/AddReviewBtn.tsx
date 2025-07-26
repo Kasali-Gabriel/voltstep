@@ -23,7 +23,9 @@ const AddReviewBtn = ({
   reviews = [],
   onReviewChange,
 }: AddReviewBtnPropsWithCallback) => {
-  const { userId } = useUser();
+  const { user } = useUser();
+  const userId = user?.id;
+
   const [showDialog, setShowDialog] = useState(false);
   const [reviewForm, showReviewForm] = useState(false);
 

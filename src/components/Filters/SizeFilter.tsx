@@ -215,9 +215,9 @@ export function SizeFilter({
   toggleSection,
 }: {
   availableSizes: string[];
-  filters: import('@/utils/productFilters').ProductFilters;
+  filters: import('@/utils/Product/productFilters').ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/productFilters').ProductFilters>,
+    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;
@@ -239,7 +239,9 @@ export function SizeFilter({
       </CollapsibleTrigger>
 
       <CollapsibleContent className="border-b border-stone-200 pt-2 pb-10">
-        <div className={`grid grid-cols-3 gap-5 sm:grid-cols-4 lg:grid-cols-3 lg:gap-3 sm:landscape:grid-cols-3  ${isMobile ? 'sm:landscape:grid-cols-4 sm:landscape:gap-5' : 'sm:landscape:grid-cols-3 sm:landscape:gap-3'}`}>
+        <div
+          className={`grid grid-cols-3 gap-5 sm:grid-cols-4 lg:grid-cols-3 lg:gap-3 sm:landscape:grid-cols-3 ${isMobile ? 'sm:landscape:grid-cols-4 sm:landscape:gap-5' : 'sm:landscape:grid-cols-3 sm:landscape:gap-3'}`}
+        >
           {availableSizes.map((size) => {
             const isSelected = (filters.sizes ?? []).includes(size);
             const isNumeric = /^\d+(\.\d+)?/.test(size);

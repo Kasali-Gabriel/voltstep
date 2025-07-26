@@ -1,5 +1,6 @@
 'use client';
 
+import privacyChoicesIcon from '@/assets/privacy-choices-icon.png';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,15 +12,14 @@ import {
   Youtube,
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
-import privacyChoicesIcon from '../../../public/privacy-choices-icon.png';
 import { footerData } from '../../data/footerData';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '../ui/collapsible';
-import Link from 'next/link';
 
 const socialIcons = [
   { Icon: () => <FontAwesomeIcon icon={faXTwitter} /> },
@@ -33,7 +33,7 @@ const Footer = () => {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <div className="mt-14 bg-white z-50 flex w-full flex-col px-5 sm:px-10 xl:px-12">
+    <div className="z-50 mt-14 flex w-full flex-col bg-white px-5 sm:px-10 xl:px-12">
       <div className="grid gap-2 border-neutral-200 pt-10 md:grid-cols-3 md:gap-14 md:border-t-2 xl:grid-cols-5">
         {footerData.map((data, index) => (
           <div key={index} className="hidden md:block">

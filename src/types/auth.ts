@@ -1,5 +1,3 @@
-import { Review } from './review';
-
 export interface User {
   id: string;
   email: string;
@@ -9,7 +7,6 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   clerkUserId?: string;
-  reviews: Review[];
 }
 
 export interface AuthHeaderProps {

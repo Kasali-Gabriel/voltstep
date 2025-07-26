@@ -1,9 +1,9 @@
 import { meiliClient } from '@/lib/meiliClient';
-import { parseFiltersFromURL } from '@/utils/productFilters';
+import { parseFiltersFromURL } from '@/utils/Product/productFilters';
 import {
   extractFilters,
   productFiltersToMeiliString,
-} from '@/utils/searchFilter';
+} from '@/utils/Search/searchFilter';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
 
   // Extract filters from query string (synonym-based)
   const { query, filters: queryFilters } = extractFilters(param);
-  
+
   // Extract filters from URL params (UI filters)
   const urlFilters = parseFiltersFromURL(searchParams);
 
@@ -53,6 +53,7 @@ export async function GET(req: Request) {
     .search(query, { filter: filterString, limit, offset, sort: meiliSort });
 
   const totalCount = results.estimatedTotalHits ?? results.hits.length;
+
   const hasMore = offset + results.hits.length < totalCount;
 
   return Response.json({

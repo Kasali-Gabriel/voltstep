@@ -1,24 +1,22 @@
 import axios from '@/lib/axios';
-import { Product } from '@/types/product';
+import { CatalogPagination, Product } from '@/types/product';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePagination } from './usePagination';
 
-import { ProductFilters } from '@/utils/productFilters';
-
 export function useCatalogPagination({
+  isSearch,
   slug,
   sort,
   filters = {},
-}: {
-  slug?: string[];
-  sort?: string;
-  filters?: ProductFilters;
-}) {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [unfilteredProducts, setUnfilteredProducts] = useState<Product[]>([]);
+  initialProducts = [],
+  initialTotalCount = 0,
+  initialHasMore = false,
+}: CatalogPagination) {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
   const [loading, setLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState<number>(0);
+  const [totalCount, setTotalCount] = useState<number>(initialTotalCount);
   const loadingRef = useRef(false);
+  const didInitial = useRef(false);
 
   const {
     offset,
@@ -31,30 +29,21 @@ export function useCatalogPagination({
     incrementOffset,
   } = usePagination({ limit: 18 });
 
-  // Build API URL based on slug
-  const buildUrl = useCallback((slug?: string[]) => {
-    let url = '/api/products';
-
-    if (Array.isArray(slug)) {
-      if (slug.length === 1) {
-        url = `/api/products/catalog?catalog=${slug[0]}`;
-      } else if (slug.length === 2) {
-        url = `/api/products/catalog/categories?catalog=${slug[0]}&category=${slug[1]}`;
-      } else if (slug.length === 3) {
-        url = `/api/products/catalog/categories/subcategories?catalog=${slug[0]}&category=${slug[1]}&subcategory=${slug[2]}`;
-      }
-    }
-
-    return url;
-  }, []);
-
   // Fetch products with pagination
   const fetchProducts = useCallback(
     async (offset: number, limit: number, isInitial = false) => {
       try {
-        const url = buildUrl(slug);
-        // Build params from filters
+        // Build params from filters and slug
         const params: Record<string, unknown> = { limit, offset, sort };
+        if (Array.isArray(slug) && slug.length > 0) {
+          params.catalog = slug[0];
+        }
+        if (Array.isArray(slug) && slug.length > 1) {
+          params.category = slug[1];
+        }
+        if (Array.isArray(slug) && slug.length > 2) {
+          params.subcategory = slug[2];
+        }
         if (filters) {
           if (filters.priceRange) {
             params.minPrice = filters.priceRange[0];
@@ -81,13 +70,17 @@ export function useCatalogPagination({
             params.inStock = 'true';
           }
         }
-        const { data } = await axios.get(url, {
-          params,
-        });
+
+        const data = isSearch
+          ? {
+              products: [],
+              totalCount: 0,
+              hasMore: false,
+            }
+          : (await axios.get('/api/products', { params })).data;
 
         // Handle API response with products and unfilteredProducts
         const responseProducts = data.products || [];
-        const responseUnfilteredProducts = data.unfilteredProducts || [];
         const responseTotalCount = data.totalCount || responseProducts.length;
         const responseHasMore = data.hasMore ?? false;
 
@@ -103,18 +96,8 @@ export function useCatalogPagination({
             }))
           : [];
 
-        const processedUnfilteredProducts = Array.isArray(
-          responseUnfilteredProducts,
-        )
-          ? responseUnfilteredProducts.map((product: Product) => ({
-              ...product,
-              reviews: product.reviews ?? [],
-            }))
-          : [];
-
         if (isInitial) {
           setProducts(processedProducts);
-          setUnfilteredProducts(processedUnfilteredProducts);
         } else {
           setProducts((prev) => {
             // Create a Set of existing IDs to avoid duplicates
@@ -130,7 +113,6 @@ export function useCatalogPagination({
 
         return {
           data: processedProducts,
-          unfilteredProducts: processedUnfilteredProducts,
           hasMore: responseHasMore,
         };
       } catch (error) {
@@ -138,16 +120,26 @@ export function useCatalogPagination({
         return { data: [], hasMore: false };
       }
     },
-    [slug, buildUrl, sort, filters],
+    [slug, sort, filters, isSearch],
   );
 
-  // Initial load
-  useEffect(() => {
-    if (!slug) return;
+  // Initial load & updates (only on filters/sort change)
+  const stringifiedFilters = JSON.stringify(filters);
 
-    const loadInitialProducts = async () => {
+  useEffect(() => {
+    if (isSearch) return;
+
+    if (!didInitial.current) {
+      didInitial.current = true;
+      setProducts(initialProducts);
+      setTotalCount(initialTotalCount);
+      setHasMore(initialHasMore);
+      incrementOffset();
+      return;
+    }
+
+    const loadFiltered = async () => {
       setLoading(true);
-      setTotalCount(0); 
       resetPagination();
 
       const result = await fetchProducts(0, limit, true);
@@ -156,18 +148,13 @@ export function useCatalogPagination({
       setLoading(false);
     };
 
-    loadInitialProducts();
-  }, [
-    slug,
-    fetchProducts,
-    limit,
-    resetPagination,
-    setHasMore,
-    incrementOffset,
-  ]);
+    loadFiltered();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stringifiedFilters, sort, isSearch]);
 
   // Load more function
   const loadMore = useCallback(async () => {
+    if (isSearch) return;
     if (paginationLoading || !hasMore || loadingRef.current) return;
 
     loadingRef.current = true;
@@ -185,6 +172,7 @@ export function useCatalogPagination({
       }, 100);
     }
   }, [
+    isSearch,
     fetchProducts,
     paginationLoading,
     hasMore,
@@ -197,7 +185,6 @@ export function useCatalogPagination({
 
   return {
     products,
-    unfilteredProducts,
     loading,
     hasMore,
     loadMore,

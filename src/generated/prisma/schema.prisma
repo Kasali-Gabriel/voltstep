@@ -4,9 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "mongodb"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model User {
@@ -147,12 +147,14 @@ model SearchHistory {
   @@index([userId, searchedAt])
 }
 
+// TODO add a search field to differentate products viewed from search results
 model ViewedProduct {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   userId   String   @db.ObjectId
   user     User     @relation("UserViewedProducts", fields: [userId], references: [id])
   viewedAt DateTime @default(now())
   product  Json
+  // fromSearch Boolean @default(false)
   slug     String
 
   @@unique([userId, slug])
