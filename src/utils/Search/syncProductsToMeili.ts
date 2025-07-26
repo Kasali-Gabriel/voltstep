@@ -126,7 +126,6 @@ export async function syncProducts() {
     ],
     sortableAttributes: ['price', 'popularity', 'dateAdded'],
     synonyms,
-    prefixSearch: 'indexingTime',
     typoTolerance: {
       enabled: true,
       minWordSizeForTypos: {
