@@ -77,7 +77,6 @@ export interface ProductCardProps {
   SearchedProduct?: SearchedProduct;
   setQuery?: (q: string) => void;
   recordViewedProduct?: (product: SearchedProduct) => void;
-  isPage?: boolean;
   slug?: string[];
   loading?: boolean;
   notSubcategory?: boolean;

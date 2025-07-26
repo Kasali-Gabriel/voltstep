@@ -6,11 +6,7 @@ import { Review } from '@/types/review';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-interface PageProps {
-  params: { slug: string };
-}
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const product = await fetchData<Product>(`/api/product/${params.slug}`);
 
   if (!product) return notFound();

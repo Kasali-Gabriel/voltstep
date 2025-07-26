@@ -261,7 +261,6 @@ const ProductsList = ({
                     <ProductCard
                       key={product.id}
                       SearchedProduct={product}
-                      isPage
                       query={!!query}
                       slug={slug}
                       loading={loading}
@@ -279,7 +278,6 @@ const ProductsList = ({
                       query={!!query}
                       slug={slug}
                       loading={loading}
-                      isPage
                       notSubcategory={notSubcategory}
                     />
                   ))}
