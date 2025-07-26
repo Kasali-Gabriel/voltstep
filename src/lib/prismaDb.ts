@@ -1,7 +1,5 @@
-// import { PrismaClient } from '@/generated/prisma/edge';
+import { PrismaClient } from '@prisma/client';
 // import { withAccelerate } from '@prisma/extension-accelerate';
-
-import { PrismaClient } from "@/generated/prisma";
 
 // const prisma = new PrismaClient().$extends(withAccelerate());
 
@@ -10,7 +8,6 @@ import { PrismaClient } from "@/generated/prisma";
 // if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 // export default prisma;
-
 
 // db.ts or prismaClient.ts
 

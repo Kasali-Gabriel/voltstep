@@ -28,7 +28,7 @@ export const AddToWishList = ({
   const { showSuccessDialog, setShowSuccessDialog } =
     useWishlistSuccessDialogStore();
 
-  const { user } = useUser();
+  const user  = useUser();
   const userId = user?.id;
 
   const { wishlist, addToWishlist, removeFromWishlist, loading } =

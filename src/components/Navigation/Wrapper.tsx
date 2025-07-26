@@ -20,7 +20,6 @@ export default function Wrapper({ children, catalogs, user }: WrapperProps) {
   const isAuth = pathname === '/sign-in' || pathname === '/sign-up';
   const isHomePage = pathname === '/';
 
-  console.log('catalogs:', catalogs);
   // If on auth page, don't provide user context
   if (isAuth) {
     return (

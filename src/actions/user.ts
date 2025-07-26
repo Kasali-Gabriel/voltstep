@@ -1,4 +1,4 @@
-import { User } from '@/generated/prisma';
+import { User } from '@/types/auth';
 import prisma from '../lib/prismaDb';
 
 export async function createUser(data: User) {

@@ -1,4 +1,3 @@
-import { Prisma } from '@/generated/prisma';
 import prisma from '@/lib/prismaDb';
 import {
   buildCatalogWhere,
@@ -6,6 +5,7 @@ import {
   getOrderBy,
   ProductFilters,
 } from '@/utils/Product/parseCatalogFilters';
+import { Prisma } from '@prisma/client';
 
 // --- Shared Selects ---
 const baseProductFields = {

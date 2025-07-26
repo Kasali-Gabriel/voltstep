@@ -1,20 +1,34 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
 
-export const fetchData = async <T>(endpoint: string): Promise<T | null> => {
+type FetchOptions = {
+  noStore?: boolean;
+  revalidate?: number;
+};
+
+export const fetchData = async <T>(
+  endpoint: string,
+  options: FetchOptions = {},
+): Promise<T | null> => {
   try {
     const fullUrl = `${API_BASE_URL}${endpoint}`;
 
-    const res = await fetch(fullUrl, {
-      cache: 'no-store',
-    });
+    const fetchOptions: RequestInit & {
+      next?: { revalidate?: number };
+    } = {};
 
-    if (!res.ok) {
-      return null;
+    if (options.noStore) {
+      fetchOptions.cache = 'no-store';
+    } else if (options.revalidate !== undefined) {
+      fetchOptions.next = { revalidate: options.revalidate };
     }
-    const json = await res.json();
-    return json;
+
+    const res = await fetch(fullUrl, fetchOptions);
+
+    if (!res.ok) return null;
+
+    return await res.json();
   } catch (err) {
-    console.log('fetchData SSR/SSG error:', err);
+    console.error('fetchData SSR/SSG error:', err);
     return null;
   }
 };

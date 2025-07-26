@@ -12,12 +12,15 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await fetchData<Product>(`/api/product/${slug}`);
+
+  const product = await fetchData<Product>(`/api/product/${slug}`, {
+    revalidate: 3600,
+  });
 
   if (!product) return notFound();
 
   const reviews =
-    (await fetchData<Review[]>(`/api/review?productId=${product.id}`)) ?? [];
+    (await fetchData<Review[]>(`/api/review?productId=${product.id}`, {revalidate: 60})) ?? [];
 
   return (
     <Suspense fallback={<ProductPageSkeleton />}>

@@ -11,7 +11,7 @@ export const MoveToWishList = ({
   selectedColor,
   setActiveTab,
 }: AddToWishListProps) => {
-  const { user } = useUser();
+  const user = useUser();
   const userId = user?.id;
 
   const { wishlist, addToWishlist, removeFromWishlist, loading } =

@@ -10,11 +10,11 @@ export default async function Page({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { slug } = await params;
-  const query = await searchParams;
+  const searchParamsObj = await searchParams;
 
   const filters = parseFiltersFromURL(
     new URLSearchParams(
-      Object.entries(query).map(([k, v]) => [
+      Object.entries(searchParamsObj).map(([k, v]) => [
         k,
         Array.isArray(v) ? v[0] : v || '',
       ]),

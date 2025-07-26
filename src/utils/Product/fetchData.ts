@@ -41,6 +41,7 @@ export const fetchInitialProducts = async ({
     });
     const searchRes = await fetchData<SearchApiResponse>(
       `/api/search?${params.toString()}`,
+      { noStore: true },
     );
     if (searchRes) {
       initialProducts = searchRes.hits || [];
@@ -66,6 +67,7 @@ export const fetchInitialProducts = async ({
 
     const prodRes = await fetchData<ProductsApiResponse>(
       `/api/products?${params.toString()}`,
+      { noStore: true },
     );
 
     if (prodRes) {

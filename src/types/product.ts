@@ -26,7 +26,7 @@ export interface Subcategory {
   parentCategory?: string;
   categoryId: string;
   category?: Category;
-  products: Product[];
+  products?: Product[];
 }
 
 export interface Product {

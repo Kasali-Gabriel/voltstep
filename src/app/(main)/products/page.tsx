@@ -2,34 +2,21 @@ import ProductsList from '@/components/ProductList/ProductsList';
 import { fetchInitialProducts } from '@/utils/Product/fetchData';
 import { parseFiltersFromURL } from '@/utils/Product/productFilters';
 
-type ProductsPageProps = {
-  searchParams:
-    | Record<string, string | string[] | undefined>
-    | Promise<Record<string, string | string[] | undefined>>;
-};
-
-export default async function ProductsPage({
+export default async function Page({
   searchParams,
-}: ProductsPageProps) {
-  function isPromise<T>(value: T | Promise<T>): value is Promise<T> {
-    return typeof (value as Promise<T>).then === 'function';
-  }
-
-  const resolvedParams = isPromise(searchParams)
-    ? await searchParams
-    : searchParams;
-
-  const params = resolvedParams as Record<
-    string,
-    string | string[] | undefined
-  >;
-  const query = typeof params.q === 'string' ? params.q : '';
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const searchParamsObj = await searchParams;
+  const query = Array.isArray(searchParamsObj.query)
+    ? searchParamsObj.query[0] || ''
+    : searchParamsObj.query || '';
 
   const filters = parseFiltersFromURL(
     new URLSearchParams(
-      Object.entries(resolvedParams).map(([key, value]) => [
-        key,
-        Array.isArray(value) ? value[0] : (value ?? ''),
+      Object.entries(searchParamsObj).map(([k, v]) => [
+        k,
+        Array.isArray(v) ? v[0] : v || '',
       ]),
     ),
   ) as Record<string, string>;

@@ -81,8 +81,8 @@ export async function POST(req: Request) {
 
     await createUser({
       ...user,
-      imageUrl: user.imageUrl === undefined ? null : user.imageUrl,
-      clerkUserId: user.clerkUserId === undefined ? null : user.clerkUserId,
+      imageUrl: user.imageUrl,
+      clerkUserId: user.clerkUserId,
     });
 
     return new Response('', { status: 200 });

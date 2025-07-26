@@ -14,6 +14,7 @@ import { Reviews } from '@/components/Reviews/reviews';
 import { AddToWishList } from '@/components/Wishlist/AddToWishList';
 import { images } from '@/data/images';
 import { useCartStore } from '@/hooks/use-cart';
+import { fetchData } from '@/lib/fetch';
 import { useBagStore } from '@/lib/state';
 import { CartItem } from '@/types/cart';
 import { Product } from '@/types/product';
@@ -113,9 +114,11 @@ const ProductClient = ({
   const refreshReviews = async () => {
     if (!product) return;
 
-    const response = await fetch(`/api/review?productId=${product.id}`);
+    const response = await fetchData(`/api/review?productId=${product.id}`, {
+      revalidate: 60,
+    });
 
-    const data = await response.json();
+    const data = await (response as Response).json();
     setReviews(data ?? []);
   };
 
