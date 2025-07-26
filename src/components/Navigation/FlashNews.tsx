@@ -33,7 +33,7 @@ export default function FlashNews() {
 
   return (
     <div
-      className={`relative flex h-12 justify-end overflow-hidden bg-neutral-200 text-center text-sm font-semibold md:text-base ${pathName === '/' ? 'hidden' : ''}`}
+      className={`relative flex h-12 justify-end overflow-hidden bg-neutral-200 text-center text-sm font-semibold text-black md:text-base ${pathName === '/' ? 'hidden' : ''}`}
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -43,7 +43,7 @@ export default function FlashNews() {
           animate="animate"
           exit="exit"
           transition={{ duration: 0.5 }}
-          className="absolute top-1/2 w-full -translate-y-1/2"
+          className="absolute top-1/2 w-full -translate-y-1/2 text-black"
         >
           {messages[index]}
         </motion.div>
@@ -54,12 +54,17 @@ export default function FlashNews() {
         className="z-20 flex cursor-pointer items-center justify-end px-3 sm:px-10 xl:px-12"
       >
         {isPaused ? (
-          <Play size={20} className="scale-90 fill-black sm:scale-100" />
+          <Play
+            size={20}
+            className="scale-90 fill-black text-black sm:scale-100"
+            color="black"
+          />
         ) : (
           <Pause
             size={20}
             strokeWidth={1}
-            className="scale-90 fill-black sm:scale-100"
+            color="black"
+            className="scale-90 fill-black text-black sm:scale-100"
           />
         )}
       </button>

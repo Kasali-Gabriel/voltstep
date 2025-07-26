@@ -24,14 +24,10 @@ import 'swiper/css';
 
 interface ProductClientProps {
   product: Product;
-  reviews: Review[];
 }
 
-const ProductClient = ({
-  product,
-  reviews: initialReviews,
-}: ProductClientProps) => {
-  const [reviews, setReviews] = useState<Review[]>(initialReviews);
+const ProductClient = ({ product }: ProductClientProps) => {
+  const [reviews, setReviews] = useState<Review[]>(product.reviews ?? []);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [cartItem, setCartItem] = useState<CartItem | null>(null);

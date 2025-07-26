@@ -2,7 +2,6 @@ import ProductClient from '@/components/Product/ProductClient';
 import ProductPageSkeleton from '@/components/Skeletons/ProductPageSkeleton';
 import { fetchData } from '@/lib/fetch';
 import { Product } from '@/types/product';
-import { Review } from '@/types/review';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -17,14 +16,13 @@ export default async function Page({
     revalidate: 3600,
   });
 
-  if (!product) return notFound();
+  console.log('Product:', product);
 
-  const reviews =
-    (await fetchData<Review[]>(`/api/review?productId=${product.id}`, {revalidate: 60})) ?? [];
+  if (!product) return notFound();
 
   return (
     <Suspense fallback={<ProductPageSkeleton />}>
-      <ProductClient product={product} reviews={reviews} />
+      <ProductClient product={product} />
     </Suspense>
   );
 }
