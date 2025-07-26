@@ -2,20 +2,18 @@ import ProductsList from '@/components/ProductList/ProductsList';
 import { fetchInitialProducts } from '@/utils/Product/fetchData';
 import { parseFiltersFromURL } from '@/utils/Product/productFilters';
 
-export default async function ProductsPage(props: {
-  searchParams: Promise<{ [key: string]: string | string[] }>;
-  params: Promise<{ slug?: string[] }>;
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string[] };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const [searchParams, params] = await Promise.all([
-    props.searchParams,
-    props.params,
-  ]);
-
-  const slug = params.slug || [];
+  const { slug } = params;
 
   const filters = parseFiltersFromURL(
     new URLSearchParams(
-      Object.entries(searchParams).map(([k, v]) => [
+      Object.entries(searchParams || {}).map(([k, v]) => [
         k,
         Array.isArray(v) ? v[0] : v || '',
       ]),
