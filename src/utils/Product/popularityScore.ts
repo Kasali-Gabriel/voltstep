@@ -22,7 +22,7 @@ const WEIGHTS = {
 /**
  * Calculate popularity score for a product
  */
-export function calculatePopularityScore(data: PopularityScoreData): number {
+function calculatePopularityScore(data: PopularityScoreData): number {
   const {
     reviewCount,
     averageRating,
