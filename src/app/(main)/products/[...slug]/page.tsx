@@ -7,14 +7,14 @@ export default async function Page({
   searchParams,
 }: {
   params: Promise<{ slug: string[] }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { slug } = await params;
   const query = await searchParams;
 
   const filters = parseFiltersFromURL(
     new URLSearchParams(
-      Object.entries(query || {}).map(([k, v]) => [
+      Object.entries(query).map(([k, v]) => [
         k,
         Array.isArray(v) ? v[0] : v || '',
       ]),
