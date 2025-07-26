@@ -6,6 +6,8 @@ import { Review } from '@/types/review';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const product = await fetchData<Product>(`/api/product/${params.slug}`);
 
