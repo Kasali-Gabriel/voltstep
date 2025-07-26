@@ -1,4 +1,7 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
+const API_BASE_URL =
+  typeof window === 'undefined'
+    ? process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+    : '';
 
 type FetchOptions = {
   noStore?: boolean;
