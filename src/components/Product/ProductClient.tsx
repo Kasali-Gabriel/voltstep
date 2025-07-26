@@ -35,6 +35,8 @@ const ProductClient = ({ product }: ProductClientProps) => {
   const [showSticky, setShowSticky] = useState(false);
   const [sizeError, setSizeError] = useState(false);
 
+  console.log('Product:', product);
+
   const mainBtnRef = useRef<HTMLButtonElement>(null);
   const sizeSelectorRef = useRef<HTMLDivElement>(null);
 

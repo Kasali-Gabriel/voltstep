@@ -16,7 +16,6 @@ export default async function Page({
     revalidate: 3600,
   });
 
-  console.log('Product:', product);
 
   if (!product) return notFound();
 
