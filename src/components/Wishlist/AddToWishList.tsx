@@ -1,4 +1,4 @@
-import { useUser } from '@/context/UserContext';
+import { useUserId } from '@/context/UserContext';
 import { useWishlistContext } from '@/context/WishlistContext';
 import { useWishlistSuccessDialogStore } from '@/lib/state';
 import { AddToWishListProps } from '@/types/wishlist';
@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { NotSignedInDialog } from '../Authentication/NotSignedInDialog';
+import { NotSignedInDialog } from '../Dialogs/NotSignedInDialog';
 import {
   Dialog,
   DialogClose,
@@ -28,8 +28,7 @@ export const AddToWishList = ({
   const { showSuccessDialog, setShowSuccessDialog } =
     useWishlistSuccessDialogStore();
 
-  const user  = useUser();
-  const userId = user?.id;
+  const userId = useUserId();
 
   const { wishlist, addToWishlist, removeFromWishlist, loading } =
     useWishlistContext();

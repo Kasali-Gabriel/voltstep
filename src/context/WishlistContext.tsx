@@ -1,4 +1,4 @@
-import axios from '@/lib/axios';
+
 import { WishListItem } from '@/types/wishlist';
 import React, {
   createContext,
@@ -7,6 +7,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { useUserId } from './UserContext';
+import axios from 'axios';
 
 interface WishlistContextType {
   wishlist: WishListItem[];
@@ -26,13 +28,12 @@ const WishlistContext = createContext<WishlistContextType>({
 
 export const WishlistProvider = ({
   children,
-  userId,
 }: {
   children: React.ReactNode;
-  userId?: string;
 }) => {
   const [wishlist, setWishlist] = useState<WishListItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const userId = useUserId();
 
   const fetchWishlist = useCallback(async () => {
     if (!userId) return;

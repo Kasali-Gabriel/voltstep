@@ -1,6 +1,5 @@
 import { meiliClient } from '@/lib/meiliClient';
 import prisma from '@/lib/prismaDb';
-import { SearchedProduct } from '@/types/search';
 import { Filter } from 'bad-words';
 
 export async function getPopularSearches(limit = 8) {
@@ -84,38 +83,4 @@ export async function getRecentSearchHistory(userId: string, limit = 10) {
     orderBy: { searchedAt: 'desc' },
     take: limit,
   });
-}
-
-export async function addViewedProduct(
-  userId: string,
-  SearchedProduct: SearchedProduct,
-) {
-  if (!userId || !SearchedProduct) return null;
-  return prisma.viewedProduct.upsert({
-    where: {
-      userId_slug: {
-        userId: userId,
-        slug: SearchedProduct.slug,
-      },
-    },
-    update: {
-      viewedAt: new Date(),
-      product: SearchedProduct,
-    },
-    create: {
-      userId,
-      slug: SearchedProduct.slug,
-      product: SearchedProduct,
-    },
-  });
-}
-
-export async function getRecentViewedProducts(userId: string, limit = 10) {
-  if (!userId) return [];
-  const viewed = await prisma.viewedProduct.findMany({
-    where: { userId },
-    orderBy: { viewedAt: 'desc' },
-    take: limit,
-  });
-  return viewed.map((v) => v.product);
 }

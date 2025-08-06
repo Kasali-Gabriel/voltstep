@@ -14,13 +14,17 @@ import { Reviews } from '@/components/Reviews/reviews';
 import { AddToWishList } from '@/components/Wishlist/AddToWishList';
 import { images } from '@/data/images';
 import { useCartStore } from '@/hooks/use-cart';
+import { useViewedProduct } from '@/hooks/useViewedProduct';
 import { fetchData } from '@/lib/fetch';
-import { useBagStore } from '@/lib/state';
+import { useBagStore, useViewedProductStore } from '@/lib/state';
 import { CartItem } from '@/types/cart';
 import { Product } from '@/types/product';
 import { Review } from '@/types/review';
+import { SearchedProduct } from '@/types/search';
 import { useEffect, useRef, useState } from 'react';
 import 'swiper/css';
+import RecentlyViewedProducts from '../ProductList/RecentlyViewedProducts';
+import ProductCardSkeleton from '../Skeletons/ProductCardSkeleton';
 
 interface ProductClientProps {
   product: Product;
@@ -28,20 +32,35 @@ interface ProductClientProps {
 
 const ProductClient = ({ product }: ProductClientProps) => {
   const [reviews, setReviews] = useState<Review[]>(product.reviews ?? []);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string>('');
+  const [selectedSize, setSelectedSize] = useState<string | undefined>(
+    undefined,
+  );
   const [cartItem, setCartItem] = useState<CartItem | null>(null);
   const [LgScreeen, setLgScreen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
   const [sizeError, setSizeError] = useState(false);
-
-  console.log('Product:', product);
+  const [recentViewed, setRecentViewed] = useState<SearchedProduct[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const mainBtnRef = useRef<HTMLButtonElement>(null);
   const sizeSelectorRef = useRef<HTMLDivElement>(null);
 
   const { addItem } = useCartStore();
   const { setIsBagOpen } = useBagStore();
+  const { fetchRecentViewed } = useViewedProduct();
+
+  const guestViewedProducts = useViewedProductStore((s) => s.viewedProducts);
+
+  useEffect(() => {
+    const fetchViewed = async () => {
+      setLoading(true);
+      const viewed = await fetchRecentViewed(guestViewedProducts);
+      setRecentViewed(viewed);
+      setLoading(false);
+    };
+    fetchViewed();
+  }, [fetchRecentViewed, guestViewedProducts]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,10 +96,13 @@ const ProductClient = ({ product }: ProductClientProps) => {
 
   useEffect(() => {
     if (product) {
-      const defaultColor = (product.colors && product.colors[0]) || null;
-
+      // Get all unique colors from product.colors
+      const allColors = Array.from(
+        new Set((product.colors || []).map((c) => c.color)),
+      );
+      const defaultColor = allColors.length > 0 ? allColors[0] : '';
       setSelectedColor(defaultColor);
-
+      setSelectedSize(undefined); // No default size
       setCartItem({
         id: product.id,
         name: product.name,
@@ -89,19 +111,34 @@ const ProductClient = ({ product }: ProductClientProps) => {
         quantity: 1,
         image: product.images?.[0] || '',
         selectedSize: undefined,
-        selectedColor: defaultColor || undefined,
+        selectedColor: defaultColor,
       });
     }
   }, [product]);
 
+  // When selectedColor changes, clear selectedSize if it's not available for that color
   useEffect(() => {
-    if (selectedColor !== null || selectedSize !== null) {
+    if (!product || !selectedColor) return;
+    // Find the color object
+    const colorObj = (product.colors || []).find(
+      (c) => c.color === selectedColor,
+    );
+    const validSizes = colorObj
+      ? Array.from(new Set((colorObj.variants || []).map((v) => v.size)))
+      : [];
+    if (!validSizes.includes(selectedSize || '')) {
+      setSelectedSize(undefined);
+    }
+  }, [selectedColor, selectedSize, product]);
+
+  useEffect(() => {
+    if (selectedColor !== '' || selectedSize !== undefined) {
       setCartItem((prev) =>
         prev
           ? {
               ...prev,
-              selectedColor: selectedColor || undefined,
-              selectedSize: selectedSize || undefined,
+              selectedColor: selectedColor,
+              selectedSize: selectedSize,
             }
           : prev,
       );
@@ -112,23 +149,30 @@ const ProductClient = ({ product }: ProductClientProps) => {
   const refreshReviews = async () => {
     if (!product) return;
 
-    const response = await fetchData(`/api/review?productId=${product.id}`, {
-      revalidate: 60,
-    });
+    const data = await fetchData<Review[]>(
+      `/api/review?productId=${product.id}`,
+      {
+        revalidate: 60,
+      },
+    );
 
-    const data = await (response as Response).json();
     setReviews(data ?? []);
   };
 
   const onAddToCart = () => {
-    if (product?.sizes && product.sizes.length > 0 && !selectedSize) {
+    // Derive all available sizes from product.colors/variants
+    const allSizes = Array.from(
+      new Set(
+        (product.colors || []).flatMap((colorObj) =>
+          (colorObj.variants || []).map((v) => v.size),
+        ),
+      ),
+    );
+    if (allSizes.length > 0 && !selectedSize) {
       setSizeError(true);
-
       if (sizeSelectorRef.current) {
         const rect = sizeSelectorRef.current.getBoundingClientRect();
-
         const isInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
-
         if (!isInView) {
           sizeSelectorRef.current.scrollIntoView({
             behavior: 'smooth',
@@ -139,13 +183,29 @@ const ProductClient = ({ product }: ProductClientProps) => {
       return;
     }
     setSizeError(false);
-
     if (!cartItem) return;
-
-    addItem({ ...cartItem, selectedSize: selectedSize ?? undefined });
-
+    addItem({ ...cartItem, selectedSize: selectedSize });
     setIsBagOpen(true);
   };
+
+  // --- Place allColors and filteredSizes here, before return ---
+  // These must be outside of JSX and before return
+  // Get all unique colors from product.colors
+  const allColors = Array.from(
+    new Set((product.colors || []).map((c) => c.color)),
+  );
+  // When a color is selected, get all unique sizes for that color from variants
+  const filteredSizes = selectedColor
+    ? (() => {
+        const colorObj = (product.colors || []).find(
+          (c) => c.color === selectedColor,
+        );
+        return colorObj
+          ? Array.from(new Set((colorObj.variants || []).map((v) => v.size)))
+          : [];
+      })()
+    : [];
+  // --- End of logic, return JSX below ---
 
   return (
     <div className="relative flex min-h-[100vh] w-full flex-col px-5 sm:px-10 xl:px-12">
@@ -192,27 +252,30 @@ const ProductClient = ({ product }: ProductClientProps) => {
 
             <div className="flex flex-col">
               <p className="text-gray-700">{product.description}</p>
-
-              {(product.colors ?? []).length > 0 && (
-                <ColorSelector
-                  colors={product.colors ?? []}
-                  selectedColor={selectedColor}
-                  setSelectedColor={setSelectedColor}
-                />
-              )}
-
-              {(product.sizes ?? []).length > 0 && (
-                <SizeSelector
-                  ref={sizeSelectorRef}
-                  sizes={product.sizes ?? []}
-                  selectedSize={selectedSize}
-                  setSelectedSize={(size: string) => {
-                    setSelectedSize(size);
-                    setSizeError(false);
-                  }}
-                  sizeError={sizeError}
-                  subcategoryName={product.subcategory?.name}
-                />
+              {/* Color and Size selectors */}
+              {allColors.length > 0 && (
+                <>
+                  <ColorSelector
+                    colors={allColors}
+                    selectedColor={selectedColor || allColors[0]}
+                    setSelectedColor={setSelectedColor}
+                  />
+                  {selectedColor && filteredSizes.length > 0 && (
+                    <SizeSelector
+                      ref={sizeSelectorRef}
+                      sizes={filteredSizes}
+                      selectedSize={selectedSize}
+                      selectedColor={selectedColor}
+                      productColors={product.colors}
+                      setSelectedSize={(size: string) => {
+                        setSelectedSize(size);
+                        setSizeError(false);
+                      }}
+                      sizeError={sizeError}
+                      subcategoryName={product.subcategory?.name ?? ''}
+                    />
+                  )}
+                </>
               )}
             </div>
 
@@ -294,7 +357,19 @@ const ProductClient = ({ product }: ProductClientProps) => {
           <Reviews reviews={reviews} />
         </section>
 
-        {/* TODO RECENTLY VIEWED section */}
+        {/* Recently viewed products */}
+        {recentViewed ? (
+          <RecentlyViewedProducts
+            recentViewed={recentViewed}
+            loading={loading}
+          />
+        ) : (
+          <div className="flex w-full flex-row gap-4 overflow-x-auto pb-2">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <ProductCardSkeleton key={i} notSubcategory={true} />
+            ))}
+          </div>
+        )}
 
         <div
           className={`fixed right-0 bottom-0 left-0 z-40 bg-black p-4 text-white transition-transform duration-300 lg:hidden ${

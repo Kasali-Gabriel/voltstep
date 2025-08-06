@@ -1,9 +1,9 @@
-import { Product } from './product';
+import { Product, ProductColor } from './product';
 
 export interface WishListItem {
   productId: string;
   selectedSize?: string;
-  selectedColor?: string;
+  selectedColor: string;
   createdAt?: Date;
   product?: Product;
 }
@@ -14,14 +14,14 @@ export interface AddToWishListProps {
   productPrice?: number;
   productId: string;
   selectedSize?: string;
-  selectedColor?: string;
+  selectedColor: string;
   setActiveTab?: (tab: "wishlist" | "bag") => void;
 }
 
 export interface UseWishlistItemProps {
   productId?: string;
   selectedSize?: string;
-  selectedColor?: string;
+  selectedColor: string;
 }
 
 export interface WishListItemCardProps {
@@ -48,6 +48,8 @@ export interface WishListSizeSelectorProps {
   setShowSizeDialog?: (open: boolean) => void;
   sizes: string[];
   selectedSize: string;
+  selectedColor: string;
+  productColors: ProductColor[];
   setSelectedSize: (size: string) => void;
   sizeError: boolean;
   setSizeError: (err: boolean) => void;

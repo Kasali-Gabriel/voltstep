@@ -20,7 +20,19 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
   const [showSizeDialog, setShowSizeDialog] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
 
-  const sizes = item.product?.sizes || [];
+  const selectedColor = item.selectedColor;
+
+  const productColors = item.product?.colors || [];
+
+  // Use the same logic as ProductClient for consistency
+  const sizes = selectedColor
+    ? (() => {
+        const colorObj = productColors.find((c) => c.color === selectedColor);
+        return colorObj
+          ? Array.from(new Set((colorObj.variants || []).map((v) => v.size)))
+          : [];
+      })()
+    : [];
 
   const handleRemoveFromWishlist = async () => {
     setIsRemoving(true);
@@ -58,11 +70,6 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
 
   const handleAddToBag = () => {
     if (!item.product) return;
-
-    if (sizes.length > 0 && !selectedSize) {
-      setSizeError(true);
-      return;
-    }
 
     addItem({
       id: item.product.id,
@@ -170,6 +177,8 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
             setShowSizeDialog={setShowSizeDialog}
             sizes={sizes}
             selectedSize={selectedSize}
+            selectedColor={selectedColor ?? ''}
+            productColors={productColors}
             setSelectedSize={setSelectedSize}
             sizeError={sizeError}
             setSizeError={setSizeError}
@@ -186,7 +195,15 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
                 : 'flex w-full flex-1 items-end justify-between space-x-2'
             }
           >
-            <AddToBagButton onClick={handleAddToBag} />
+            <AddToBagButton
+              onClick={() => {
+                if (!selectedSize) {
+                  setSizeError(true);
+                  return;
+                }
+                handleAddToBag();
+              }}
+            />
 
             <RemoveFromWishlistButton
               onClick={handleRemoveFromWishlist}

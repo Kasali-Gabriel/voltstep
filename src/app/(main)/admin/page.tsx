@@ -1,6 +1,6 @@
 import { removeRole, setRole } from '@/actions/admin';
 import { SearchUsers } from '@/components/Admin/SearchUsers';
-import { checkRole } from '@/utils/roles';
+import { checkRole } from '@/utils/User/roles';
 import { clerkClient } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 

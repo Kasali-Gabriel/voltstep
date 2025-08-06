@@ -8,17 +8,18 @@ import {
   SearchParams,
 } from '@/types/search';
 
-import { useUser } from '@/context/UserContext';
+import { useUserId } from '@/context/UserContext';
 import { buildSearchParams } from '@/utils/Search/buildSearchParam';
 import {
   fetchPopularSearches,
   fetchRecentSearches,
-  fetchRecentViewed,
   savePopularSearch,
   saveSearchHistory,
   searchProducts,
 } from '@/utils/Search/searchApis';
+import { useRouter } from 'next/navigation';
 import { usePagination } from './usePagination';
+import { useViewedProduct } from './useViewedProduct';
 
 export function useSearch({
   slug,
@@ -30,8 +31,7 @@ export function useSearch({
   initialHasMore = false,
   skipInitialFetch = false,
 }: SearchParams) {
-  const user = useUser();
-  const userId = user?.id;
+  const userId = useUserId();
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const saveDebounceRef = useRef<NodeJS.Timeout | null>(null);
@@ -50,28 +50,30 @@ export function useSearch({
   const [recentSearches, setRecentSearches] = useState<SearchHistoryItem[]>([]);
   const [recentViewed, setRecentViewed] = useState<SearchedProduct[]>([]);
 
+  const router = useRouter();
+
   const addGuestSearchHistory = useSearchHistoryStore(
     (s) => s.addSearchHistory,
-  );
-
-  const addGuestViewedProduct = useViewedProductStore(
-    (s) => s.addViewedProduct,
   );
 
   const guestSearchHistory = useSearchHistoryStore((s) => s.searchHistory);
   const guestViewedProducts = useViewedProductStore((s) => s.viewedProducts);
 
+  const { fetchRecentViewed, recordViewedProduct } = useViewedProduct();
+
   useEffect(() => {
     async function fetchMetaData() {
       const popular = await fetchPopularSearches();
-      const recent = await fetchRecentSearches(userId, guestSearchHistory);
-      const viewed = await fetchRecentViewed(userId, guestViewedProducts);
       setPopularSearches(popular);
+
+      const recent = await fetchRecentSearches(userId, guestSearchHistory);
       setRecentSearches(recent);
+
+      const viewed = await fetchRecentViewed(guestViewedProducts, true);
       setRecentViewed(viewed);
     }
     fetchMetaData();
-  }, [userId, guestSearchHistory, guestViewedProducts]);
+  }, [userId, guestSearchHistory, guestViewedProducts, fetchRecentViewed]);
 
   const {
     hasMore,
@@ -172,6 +174,7 @@ export function useSearch({
 
         saveDebounceRef.current = setTimeout(async () => {
           if (userId) {
+            console.log('Saving search history for user:', userId);
             await saveSearchHistory(userId, trimmedQuery);
             await savePopularSearch(trimmedQuery);
           } else {
@@ -184,9 +187,11 @@ export function useSearch({
             });
           }
           // Refresh after save
-          await fetchPopularSearches();
-          await fetchRecentSearches(userId, guestSearchHistory);
-        }, 600);
+          const popular = await fetchPopularSearches();
+          const recent = await fetchRecentSearches(userId, guestSearchHistory);
+          setPopularSearches(popular);
+          setRecentSearches(recent);
+        });
       }
     }, 250);
 
@@ -199,6 +204,7 @@ export function useSearch({
     userId,
     query,
     slug,
+    router,
     sort,
     limit,
     filters,
@@ -248,29 +254,16 @@ export function useSearch({
     }
   }, [query, loadMore, sort, filters, slug]);
 
-  const recordViewedProduct = useCallback(
+  const recordViewedSearchProduct = useCallback(
     async (product: SearchedProduct) => {
-      if (userId && product?.id) {
-        await fetch('/api/search/viewedproduct', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userId, SearchedProduct: product }),
-        });
-      } else if (!userId && product?.slug) {
-        addGuestViewedProduct({
-          id: Date.now().toString(),
-          viewedAt: new Date().toISOString(),
-          product,
-        });
-
-        setRecentViewed((prev) => {
-          const exists = prev.find((p) => p.id === product.id);
-          if (exists) return prev;
-          return [product, ...prev].slice(0, 10);
-        });
-      }
+      await recordViewedProduct(true, query, product);
+      setRecentViewed((prev) => {
+        const existingIds = new Set(prev.map((p) => p.id));
+        if (existingIds.has(product.id)) return prev;
+        return [product, ...prev.slice(0, 7)];
+      });
     },
-    [userId, addGuestViewedProduct],
+    [recordViewedProduct, query],
   );
 
   return {
@@ -282,6 +275,6 @@ export function useSearch({
     popularSearches,
     recentSearches,
     recentViewed,
-    recordViewedProduct,
+    recordViewedSearchProduct,
   };
 }

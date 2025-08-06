@@ -5,7 +5,7 @@ import {
 } from '@/components/ui/collapsible';
 import { colorHexCodes } from '@/data/colorData';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { Product } from '@/types/product';
+import { Product, ProductSizeVariant } from '@/types/product';
 import { SearchedProduct } from '@/types/search';
 import { Check, ChevronDown } from 'lucide-react';
 
@@ -16,9 +16,54 @@ export const getTopColors = (products?: Product[] | SearchedProduct[]) => {
 
     products.forEach((product) => {
       if (product.colors) {
-        product.colors.forEach((color: string) => {
-          colorFrequency[color] = (colorFrequency[color] || 0) + 1;
-        });
+        // Handle SearchedProduct (colors is string array)
+        if (
+          Array.isArray(product.colors) &&
+          typeof product.colors[0] === 'string'
+        ) {
+          (product.colors as string[]).forEach((color: string) => {
+            // For SearchedProduct, check if there are variants with this color and quantity > 0
+            if ('variants' in product && Array.isArray(product.variants)) {
+              const hasStock = product.variants.some(
+                (variant) => variant.color === color && variant.quantity > 0,
+              );
+              if (hasStock) {
+                colorFrequency[color] = (colorFrequency[color] || 0) + 1;
+              }
+            } else {
+              // Fallback if no variants info (assume in stock)
+              colorFrequency[color] = (colorFrequency[color] || 0) + 1;
+            }
+          });
+        }
+        // Handle Product (colors is ProductColor array with color property)
+        else if (
+          Array.isArray(product.colors) &&
+          product.colors.length > 0 &&
+          typeof product.colors[0] === 'object' &&
+          'color' in product.colors[0]
+        ) {
+          product.colors.forEach((colorObj) => {
+            if (
+              typeof colorObj === 'object' &&
+              colorObj &&
+              'color' in colorObj
+            ) {
+              // Check if this color has any variants with quantity > 0
+              const hasStock =
+                'variants' in colorObj &&
+                Array.isArray(colorObj.variants) &&
+                (colorObj.variants as ProductSizeVariant[]).some(
+                  (variant) => variant.quantity > 0,
+                );
+
+              if (hasStock) {
+                const color = (colorObj as { color: string }).color;
+                colorFrequency[color] = (colorFrequency[color] || 0) + 1;
+              }
+            }
+          });
+        }
       }
     });
 

@@ -23,6 +23,10 @@ export const subcategorySizeMapping: Record<string, string[]> = {
   Caps: ['S/M', 'L/XL'],
   'Caps & Headbands': ['XS/S', 'M/L', 'One Size'],
   'Casual Sneakers': [
+    '5',
+    '5.5',
+    '6',
+    '6.5',
     '7',
     '7.5',
     '8',
@@ -67,7 +71,6 @@ export const subcategorySizeMapping: Record<string, string[]> = {
   'Hairbands & Scrunchies': ['One Size'],
   Hoodies: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
   'Hoodies & Sweatshirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-  Jackets: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
   Joggers: [
     '0',
     '2',
@@ -91,7 +94,7 @@ export const subcategorySizeMapping: Record<string, string[]> = {
     'XL',
     'XXL',
   ],
-  'Kids Sneakers': [
+  Sneakers: [
     '1Y',
     '2Y',
     '3Y',
@@ -109,7 +112,7 @@ export const subcategorySizeMapping: Record<string, string[]> = {
     '12C',
     '13C',
   ],
-  'Kids Trainers': [
+  Trainers: [
     '1Y',
     '2Y',
     '3Y',
@@ -127,7 +130,6 @@ export const subcategorySizeMapping: Record<string, string[]> = {
     '12C',
     '13C',
   ],
-  'Kids Water Bottles': ['8oz', '12oz', '16oz', '20oz'],
   Leggings: [
     '0',
     '2',
@@ -148,7 +150,7 @@ export const subcategorySizeMapping: Record<string, string[]> = {
   'Long Sleeve Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Matching Sets': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
   'Maternity Activewear': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  'Men Jackets': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  Jackets: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Outerwear & Layering Essentials': [
     '2T',
     '3T',
@@ -249,23 +251,7 @@ export const subcategorySizeMapping: Record<string, string[]> = {
     '12C',
     '13C',
   ],
-  Sneakers: [
-    '5',
-    '5.5',
-    '6',
-    '6.5',
-    '7',
-    '7.5',
-    '8',
-    '8.5',
-    '9',
-    '9.5',
-    '10',
-    '10.5',
-    '11',
-    '11.5',
-    '12',
-  ],
+
   Socks: [
     '5-7',
     '6-8',
@@ -379,6 +365,7 @@ export const subcategorySizeMapping: Record<string, string[]> = {
     'XL',
   ],
   'T-Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  'T-Shirts & Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Tank Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Training Shoes': [
     '5',
@@ -402,20 +389,8 @@ export const subcategorySizeMapping: Record<string, string[]> = {
     '15',
   ],
   'Tshirts & Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  'Water Bottles': ['12oz', '16oz', '20oz', '24oz', '32oz', '40oz'],
+  'Water Bottles': ['8oz', '12oz', '16oz', '20oz', '24oz', '32oz', '40oz'],
   Windbreakers: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Wristbands & Sweatbands': ['One Size', 'Small', 'Medium'],
 };
 
-export const getAllSizesForSubcategory = (
-  subcategoryName: string,
-): string[] => {
-  return subcategorySizeMapping[subcategoryName] || ['One Size'];
-};
-
-export const isSizeAvailable = (
-  size: string,
-  availableSizes: string[],
-): boolean => {
-  return availableSizes.includes(size);
-};

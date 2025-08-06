@@ -1,4 +1,5 @@
-import { SearchHistoryItem, ViewedProductItem } from './search';
+import { ViewedProductItem } from './product';
+import { SearchHistoryItem } from './search';
 
 export interface EmailState {
   email: string;

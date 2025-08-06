@@ -1,3 +1,4 @@
+import { useViewedProduct } from '@/hooks/useViewedProduct';
 import { useSearchFocus } from '@/lib/state';
 import { ProductCardProps } from '@/types/product';
 import { getSubcat, singularize } from '@/utils/Product/getSubcat';
@@ -8,13 +9,14 @@ import Link from 'next/link';
 const ProductCard = ({
   SearchedProduct,
   setQuery,
-  recordViewedProduct,
   slug,
   query,
   notSubcategory,
   loading,
+  recordViewedSearchProduct,
 }: ProductCardProps) => {
   const { setIsFocused } = useSearchFocus();
+  const { recordViewedProduct } = useViewedProduct();
 
   const word = getSubcat(
     slug ?? [],
@@ -24,12 +26,22 @@ const ProductCard = ({
 
   const subcat = singularize(word || SearchedProduct?.catSubcat || '');
 
+  const fromSearch = !!query;
+
   const handleLink = () => {
-    setIsFocused(false);
-    if (query && SearchedProduct && recordViewedProduct) {
-      recordViewedProduct(SearchedProduct);
+    if (fromSearch) {
+      setIsFocused(false);
     }
-    setQuery?.('');
+
+    if (fromSearch && SearchedProduct && recordViewedSearchProduct) {
+      recordViewedSearchProduct(SearchedProduct);
+    } else if (!fromSearch && SearchedProduct && recordViewedProduct) {
+      recordViewedProduct(false, '', SearchedProduct);
+    }
+
+    if (setQuery) {
+      setQuery('');
+    }
   };
 
   return (
@@ -69,7 +81,7 @@ const ProductCard = ({
       </div>
 
       {/* product parent catalog and subcategory */}
-      {(query || notSubcategory) && (
+      {(fromSearch || notSubcategory) && (
         <p className="text-sm font-medium text-neutral-500 capitalize md:text-base">
           {subcat ?? ''}
         </p>

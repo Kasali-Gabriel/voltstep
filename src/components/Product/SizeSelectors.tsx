@@ -1,6 +1,6 @@
+import { subcategorySizeMapping } from '@/data/sizeData';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { SizeSelectorProps } from '@/types/product';
-import { getAllSizesForSubcategory, isSizeAvailable } from '@/data/sizeData';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
@@ -8,6 +8,8 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
     {
       sizes,
       selectedSize,
+      selectedColor,
+      productColors,
       setSelectedSize,
       sizeError,
       setSizeError,
@@ -18,22 +20,35 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
   ) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const selectedSizeRef = useRef<HTMLButtonElement | null>(null);
-    
-    // Get all sizes for the subcategory, fallback to provided sizes if no subcategory
-    const allSizes = subcategoryName 
-      ? getAllSizesForSubcategory(subcategoryName)
-      : sizes;
-    
+
+    // Get all sizes for the subcategory
+    const allSizes = subcategorySizeMapping[subcategoryName];
+
+    console.log('SizeSelector initialized with sizes:', sizes);
+    console.log('All sizes:', allSizes);
+    console.log('subcategoryName:', subcategoryName);
+
     const [reorderedSizes, setReorderedSizes] = useState<string[]>(allSizes);
     const [isMobile] = useIsMobile();
     const [isScrolledAwayFromStart, setIsScrolledAwayFromStart] =
       useState(false);
 
+    const isSizeAvailable = (size: string): boolean => {
+      if (!selectedColor || !productColors) return false;
+
+      const colorObj = productColors.find((c) => c.color === selectedColor);
+
+      if (!colorObj) return false;
+
+      const variant = colorObj.variants.find((v) => v.size === size);
+
+      return !!variant && variant.quantity > 0;
+    };
+
     useEffect(() => {
       // Update reordered sizes when subcategory or sizes change
-      const sizesToUse = subcategoryName 
-        ? getAllSizesForSubcategory(subcategoryName)
-        : sizes;
+      const sizesToUse = subcategorySizeMapping[subcategoryName];
+
       setReorderedSizes(sizesToUse);
     }, [sizes, subcategoryName]);
 
@@ -89,23 +104,15 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
     }, [isMobile, setSizeError]);
 
     const handleSizeClick = (size: string) => {
-      // Only allow selection if the size is available
-      const isAvailable = subcategoryName 
-        ? isSizeAvailable(size, sizes)
-        : true; // If no subcategory, assume all sizes are available
-      
-      if (!isAvailable) return;
-      
       setSelectedSize(size);
+
       if (isMobile && containerRef.current) {
         const scrollLeft = containerRef.current.scrollLeft;
         const scrolledAway = scrollLeft > 10;
 
         if (scrolledAway) {
           // Move selected size to front, but keep all sizes in the reordered list
-          const sizesToUse = subcategoryName 
-            ? getAllSizesForSubcategory(subcategoryName)
-            : sizes;
+          const sizesToUse = subcategorySizeMapping[subcategoryName];
           setReorderedSizes([size, ...sizesToUse.filter((s) => s !== size)]);
 
           // Scroll to the start of the container
@@ -116,11 +123,8 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
 
     // Compose className only once to avoid duplicate attributes
     const containerClassName = [
-      'mt-2 flex gap-2 rounded-md border py-1',
-      sizeError ? 'border-red-500 px-1' : 'border-transparent',
-      isMobile && !isTitle
-        ? 'overflow-x-auto border-transparent py-2'
-        : 'flex-wrap',
+      'mt-2 flex gap-2 rounded-md py-1',
+      isMobile && !isTitle ? 'overflow-x-auto  py-2' : 'flex-wrap',
       isScrolledAwayFromStart
         ? '-ml-4 w-[90vw] pr-4 transition-all duration-20'
         : 'w-fit max-w-full transition-all duration-20',
@@ -135,10 +139,7 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
 
         <div ref={containerRef} className={containerClassName}>
           {reorderedSizes.map((size) => {
-            const isAvailable = subcategoryName 
-              ? isSizeAvailable(size, sizes)
-              : true; // If no subcategory, assume all sizes are available
-            
+            const isAvailable = isSizeAvailable(size);
             return (
               <div key={size} className="flex flex-col items-center">
                 <button
@@ -149,8 +150,8 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
                     !isAvailable
                       ? 'cursor-not-allowed border-gray-300 bg-gray-100 text-gray-400'
                       : selectedSize === size
-                      ? 'cursor-pointer bg-black text-white hover:border-black'
-                      : 'cursor-pointer border-stone-300 hover:border-black'
+                        ? 'cursor-pointer bg-black text-white hover:border-black'
+                        : 'cursor-pointer border-stone-300 hover:border-black'
                   }`}
                   aria-label={`${isAvailable ? 'Select' : 'Unavailable'} size ${size}`}
                 >

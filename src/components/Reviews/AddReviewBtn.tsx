@@ -1,9 +1,10 @@
-import { useUser } from '@/context/UserContext';
+import { useUserId } from '@/context/UserContext';
 import { AddReviewBtnProps } from '@/types/review';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { NotSignedInDialog } from '../Authentication/NotSignedInDialog';
+import { NotSignedInDialog } from '../Dialogs/NotSignedInDialog';
+import ReviewForm from '../Forms/ReviewForm';
 import {
   Dialog,
   DialogClose,
@@ -12,7 +13,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import ReviewForm from './ReviewForm';
 
 interface AddReviewBtnPropsWithCallback extends AddReviewBtnProps {
   onReviewChange?: () => void;
@@ -23,8 +23,7 @@ const AddReviewBtn = ({
   reviews = [],
   onReviewChange,
 }: AddReviewBtnPropsWithCallback) => {
-  const user = useUser();
-  const userId = user?.id;
+  const userId = useUserId();
 
   const [showDialog, setShowDialog] = useState(false);
   const [reviewForm, showReviewForm] = useState(false);

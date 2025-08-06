@@ -1,6 +1,6 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import SignedOut from '../Authentication/signedOut';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
-import SignedOut from './signedOut';
 
 export const NotSignedInDialog = ({
   showDialog,

@@ -8,9 +8,9 @@ export default async function Page({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const searchParamsObj = await searchParams;
-  const query = Array.isArray(searchParamsObj.query)
-    ? searchParamsObj.query[0] || ''
-    : searchParamsObj.query || '';
+  const query = Array.isArray(searchParamsObj.q)
+    ? searchParamsObj.q[0] || ''
+    : searchParamsObj.q || '';
 
   const filters = parseFiltersFromURL(
     new URLSearchParams(

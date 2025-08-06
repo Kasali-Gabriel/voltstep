@@ -40,6 +40,8 @@ const WishListSizeSelector = ({
   item,
   handleAddToBag,
   handleProductLinkClick,
+  selectedColor,
+  productColors,
 }: WishListSizeSelectorProps) => {
   // orientation state
   const [isPortrait, setIsPortrait] = useState(true);
@@ -69,6 +71,17 @@ const WishListSizeSelector = ({
 
   // Non-page view: dropdown
   if (!isPage && sizes.length > 0 && !item.selectedSize) {
+    // Only show available sizes for selectedColor - use same logic as ProductClient
+    const availableSizes = selectedColor
+      ? (() => {
+          const colorObj = productColors?.find(
+            (c) => c.color === selectedColor,
+          );
+          return colorObj
+            ? Array.from(new Set((colorObj.variants || []).map((v) => v.size)))
+            : [];
+        })()
+      : sizes;
     return (
       <div className="mt-2">
         <Select
@@ -85,7 +98,7 @@ const WishListSizeSelector = ({
           </SelectTrigger>
 
           <SelectContent className="z-60">
-            {sizes.map((size: string) => (
+            {availableSizes.map((size: string) => (
               <SelectItem
                 className="pl-4 text-base hover:bg-neutral-300"
                 key={size}
@@ -206,6 +219,8 @@ const WishListSizeSelector = ({
               <SizeSelector
                 sizes={sizes}
                 selectedSize={selectedSize}
+                selectedColor={selectedColor}
+                productColors={productColors}
                 setSelectedSize={(size: string) => {
                   setSelectedSize(size);
                   setSizeError(false);
@@ -213,7 +228,7 @@ const WishListSizeSelector = ({
                 sizeError={sizeError}
                 setSizeError={setSizeError}
                 isTitle={false}
-                subcategoryName={item.product?.subcategory?.name}
+                subcategoryName={item.product?.subcategory?.name ?? ''}
               />
 
               <div className="flex w-full flex-1 items-end">

@@ -103,6 +103,23 @@
   {
     "catalog": "men",
     "type": "subcategory",
+    "key": "hoodies & sweatshirts",
+    "synonyms": [
+      "hoodie",
+      "hoodies",
+      "sweatshirt",
+      "sweatshirts",
+      "hooded sweatshirt",
+      "hooded sweatshirts",
+      "pullover",
+      "pullovers",
+      "zip up",
+      "zip ups"
+    ]
+  },
+  {
+    "catalog": "men",
+    "type": "subcategory",
     "key": "compression tops",
     "synonyms": [
       "compression top",

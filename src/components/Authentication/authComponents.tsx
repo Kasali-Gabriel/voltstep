@@ -10,7 +10,7 @@ import {
   AuthContinueBtnProps,
   AuthHeaderProps,
   AuthOptionProps,
-} from '@/types/auth';
+} from '@/types/user';
 import { CircleAlert, Eye, EyeOff, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -265,7 +265,7 @@ export const ResendOTP = ({ isSignUp = false }: { isSignUp?: boolean }) => {
       <ActionComponent
         asChild
         resend
-        fallback={({ resendableAfter }) => (
+        fallback={({ resendableAfter }: { resendableAfter: number }) => (
           <button className="text-sm font-medium text-neutral-500" disabled>
             Resend code in (
             <span className="tabular-nums">{resendableAfter}s</span>)
@@ -281,7 +281,7 @@ export const ResendOTP = ({ isSignUp = false }: { isSignUp?: boolean }) => {
 };
 
 export const authLayoutClassName =
-  'flex w-[80vw] flex-col items-center justify-center sm:px-7 sm:w-[400px] lg:w-[450px]';
+  'flex w-[80vw] flex-col items-center h-full justify-center sm:px-7 sm:w-[400px] lg:w-[450px]';
 
 export const authInputClassName =
   'w-full rounded-md border px-4 py-2 text-sm data-[invalid]:border-destructive data-[invalid]:ring-destructive';

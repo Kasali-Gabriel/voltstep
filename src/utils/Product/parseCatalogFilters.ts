@@ -114,12 +114,49 @@ export function buildFiltersWhere(filters: ProductFilters) {
     }));
   }
 
+  // Ultra-fast filtering approach - minimize nested queries
   if (filters.sizes && filters.sizes.length > 0) {
-    where['sizes'] = { hasSome: filters.sizes };
+    // Simple size filtering - just check if any variant has the size with stock
+    where['colors'] = {
+      some: {
+        variants: {
+          some: {
+            size: { in: filters.sizes },
+            quantity: { gt: 0 },
+          },
+        },
+      },
+    };
   }
 
+  // If we also have color filters, add them as an additional constraint
   if (filters.colors && filters.colors.length > 0) {
-    where['colors'] = { hasSome: filters.colors };
+    if (where['colors']) {
+      // Both size and color - rebuild the entire condition properly
+      where['colors'] = {
+        some: {
+          color: { in: filters.colors },
+          variants: {
+            some: {
+              size: { in: filters.sizes || [] },
+              quantity: { gt: 0 },
+            },
+          },
+        },
+      };
+    } else {
+      // Only color filter
+      where['colors'] = {
+        some: {
+          color: { in: filters.colors },
+          variants: {
+            some: {
+              quantity: { gt: 0 },
+            },
+          },
+        },
+      };
+    }
   }
 
   if (filters.tags && filters.tags.length > 0) {

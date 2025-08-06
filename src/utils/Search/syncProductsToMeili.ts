@@ -15,6 +15,11 @@ export async function syncProducts() {
         },
       },
       reviews: true,
+      colors: {
+        include: {
+          variants: true,
+        },
+      },
     },
   });
 
@@ -73,6 +78,39 @@ export async function syncProducts() {
     const catSubcat =
       `${catalog}${catalog === 'kids' ? "'" : "'s"} ${subcategory}`.trim();
 
+    // Extract unique colors and flatten variants from new structure
+    const colors: string[] = [];
+    const sizes: string[] = [];
+    const variants: { color: string; size: string; quantity: number }[] = [];
+    if (p.colors && Array.isArray(p.colors)) {
+      for (const colorObj of p.colors) {
+        // Only add color if it has variants with quantity > 0
+        const hasStock =
+          colorObj.variants &&
+          Array.isArray(colorObj.variants) &&
+          colorObj.variants.some((variant) => variant.quantity > 0);
+
+        if (hasStock && !colors.includes(colorObj.color)) {
+          colors.push(colorObj.color);
+        }
+
+        if (colorObj.variants && Array.isArray(colorObj.variants)) {
+          for (const variant of colorObj.variants) {
+            // Only add size if quantity > 0
+            if (variant.quantity > 0 && !sizes.includes(variant.size)) {
+              sizes.push(variant.size);
+            }
+            variants.push({
+              color: colorObj.color,
+              size: variant.size,
+              quantity: variant.quantity,
+            });
+          }
+        }
+      }
+    }
+    const availableColors = colors.length === 1 ? colors[0] : colors.length;
+
     return {
       id: p.id,
       name: p.name,
@@ -91,15 +129,13 @@ export async function syncProducts() {
         typeof p.popularityScore === 'number'
           ? p.popularityScore
           : Number(p.popularityScore) || 0,
-      colors: p.colors || [],
-      sizes: p.sizes || [],
+      variants,
+      colors,
+      sizes,
       dateAdded: p.createdAt
         ? new Date(p.createdAt).toISOString()
         : new Date().toISOString(),
-      availableColors:
-        Array.isArray(p.colors) && p.colors.length === 1
-          ? p.colors[0]
-          : p.colors.length || 0,
+      availableColors,
     };
   });
 

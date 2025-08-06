@@ -34,7 +34,7 @@ export const SearchView = () => {
     popularSearches,
     recentViewed,
     recentSearches,
-    recordViewedProduct,
+    recordViewedSearchProduct,
   } = useSearch({ query });
   const { isScrolled, setIsScrolled, scrollRef } = useShadowOnScroll();
   const { isFocused, setIsFocused } = useSearchFocus();
@@ -147,7 +147,6 @@ export const SearchView = () => {
                   recentSearches={recentSearches}
                   recentViewed={recentViewed}
                   setQuery={setQuery}
-                  recordViewedProduct={recordViewedProduct}
                   loading={loading}
                 />
               </div>
@@ -174,7 +173,6 @@ export const SearchView = () => {
                   recentSearches={recentSearches}
                   recentViewed={recentViewed}
                   setQuery={setQuery}
-                  recordViewedProduct={recordViewedProduct}
                   loading={loading}
                 />
               </div>
@@ -200,9 +198,9 @@ export const SearchView = () => {
                     <div key={product.id}>
                       <ProductCard
                         SearchedProduct={product}
-                        query={!!query}
+                        query={query}
                         setQuery={setQuery}
-                        recordViewedProduct={recordViewedProduct}
+                        recordViewedSearchProduct={recordViewedSearchProduct}
                       />
                     </div>
                   ))}

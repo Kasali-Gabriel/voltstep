@@ -1,8 +1,4 @@
-import type {
-  PopularSearchItem,
-  SearchedProduct,
-  SearchHistoryItem,
-} from '@/types/search';
+import type { PopularSearchItem, SearchHistoryItem } from '@/types/search';
 import axios from 'axios';
 
 export async function searchProducts(
@@ -22,7 +18,6 @@ export async function fetchPopularSearches(): Promise<PopularSearchItem[]> {
   }
 }
 
-
 export async function fetchRecentSearches(
   userId: string | undefined,
   guestSearchHistory: SearchHistoryItem[],
@@ -38,23 +33,6 @@ export async function fetchRecentSearches(
   }
 }
 
-export async function fetchRecentViewed(
-  userId: string | undefined,
-  guestViewedProducts: { product: SearchedProduct }[],
-): Promise<SearchedProduct[]> {
-  if (!userId) {
-    return guestViewedProducts.map((item) => item.product);
-  }
-  try {
-    const res = await axios.get('/api/search/viewedproduct', {
-      params: { userId },
-    });
-    return res.data || [];
-  } catch {
-    return [];
-  }
-}
-
 export async function saveSearchHistory(userId: string, query: string) {
   await axios.post('/api/search/history', { userId, query });
 }
@@ -62,4 +40,3 @@ export async function saveSearchHistory(userId: string, query: string) {
 export async function savePopularSearch(query: string) {
   await axios.post('/api/search/popular', { query });
 }
-

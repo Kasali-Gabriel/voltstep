@@ -1,13 +1,12 @@
-import { User } from '@/types/auth';
+import { CreateUserInput, User } from '@/types/user';
 import prisma from '../lib/prismaDb';
 
-export async function createUser(data: User) {
+export async function createUser(data: CreateUserInput) {
   try {
-    const user = await prisma.user.create({
-      data,
-    });
+    const user = await prisma.user.create({ data });
     return { user };
   } catch (error) {
+    console.error('Error in createUser:', error); // ← ADD THIS
     return { error };
   }
 }

@@ -5,7 +5,7 @@ import {
 } from '@/components/ui/collapsible';
 import { subcategorySizeMapping } from '@/data/sizeData';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { Product } from '@/types/product';
+import { Product, ProductColor } from '@/types/product';
 import { SearchedProduct } from '@/types/search';
 import { ChevronDown } from 'lucide-react';
 
@@ -109,8 +109,25 @@ export const getSmartSizes = (
   if (searchResults && searchResults.length > 0) {
     const uniqueSizes = new Set<string>();
     searchResults.forEach((product) => {
-      if (product.sizes && product.sizes.length > 0) {
-        product.sizes.forEach((size: string) => uniqueSizes.add(size));
+      // Handle SearchedProduct (has variants array directly)
+      if ('variants' in product && product.variants) {
+        product.variants.forEach((variant) => {
+          if (variant.size && variant.quantity > 0) {
+            uniqueSizes.add(variant.size);
+          }
+        });
+      }
+      // Handle Product (has colors with variants)
+      else if ('colors' in product && product.colors) {
+        (product.colors as ProductColor[]).forEach((colorObj) => {
+          if (colorObj.variants) {
+            colorObj.variants.forEach((variant) => {
+              if (variant.size && variant.quantity > 0) {
+                uniqueSizes.add(variant.size);
+              }
+            });
+          }
+        });
       }
     });
     availableSizes = Array.from(uniqueSizes);

@@ -26,7 +26,7 @@ const Page = () => {
   const { email, setEmail } = useEmailStore();
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex h-screen w-full items-center justify-center">
       <SignIn.Root>
         <Clerk.Loading>
           {(isGlobalLoading) => (

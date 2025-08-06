@@ -5,14 +5,13 @@ import smallLogo from '@/assets/logoIcon.png';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useEffect, useRef, useState } from 'react';
 
-import { UserContextType } from '@/context/UserContext';
 import {
   useNavBarStore,
   useProductHeaderStore,
   useWishlistSuccessDialogStore,
 } from '@/lib/state';
 import { Catalog } from '@/types/product';
-import { GoogleOneTap, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import { User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -24,12 +23,7 @@ import { ViewWishlist } from '../Wishlist/ViewWishlist';
 import MobileMenu from './MobileMenu';
 import NavMenu from './NavMenu';
 
-interface NavbarProps {
-  catalogs: Catalog[];
-  user?: UserContextType;
-}
-
-const Navbar = ({ catalogs, user }: NavbarProps) => {
+const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
   const [isClient, setIsClient] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -130,18 +124,6 @@ const Navbar = ({ catalogs, user }: NavbarProps) => {
           isFixed ? `fixed top-0 left-0` : 'relative'
         } ${showNavBar ? 'translate-y-0' : '-translate-y-full'} ${productHeaderStuck ? 'duration-0' : 'duration-300'}`}
       >
-        {isClient && (
-          <>
-            <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
-            <div
-              id="clerk-captcha"
-              data-cl-theme="dark"
-              data-cl-size="flexible"
-              className="absolute top-52"
-            />
-          </>
-        )}
-
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center justify-center space-x-4 lg:landscape:hidden">
             <MobileMenu catalogs={catalogs} />
@@ -193,25 +175,25 @@ const Navbar = ({ catalogs, user }: NavbarProps) => {
 
             <ViewWishlist isNavBar />
 
-            <div className="relative size-8">
+            <div className="relative size-7">
               {/* Placeholder icon during SSR/hydration */}
               {!isClient || !ready ? (
                 <div className="absolute inset-0 flex animate-pulse items-center justify-center opacity-100">
-                  <Avatar className="cursor-pointer">
+                  <Avatar className="size-7 cursor-pointer">
                     <AvatarFallback>
                       <User size={20} strokeWidth={1.25} />
                     </AvatarFallback>
                   </Avatar>
                 </div>
               ) : (
-                <div className="animate-in absolute inset-0 size-8">
+                <div className="animate-in absolute inset-0 flex size-7 items-center">
                   <SignedIn>
-                    {user && <UserProfile user={user} />}
+                    <UserProfile />
                   </SignedIn>
 
                   <SignedOut>
                     <SignInButton>
-                      <Avatar className="cursor-pointer transition-all duration-300">
+                      <Avatar className="size-7 cursor-pointer transition-all duration-300">
                         <AvatarFallback>
                           <User size={20} strokeWidth={1.25} />
                         </AvatarFallback>

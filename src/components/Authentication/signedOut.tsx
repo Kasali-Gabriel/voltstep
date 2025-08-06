@@ -1,4 +1,4 @@
-import { SignedOutProp } from '@/types/auth';
+import { SignedOutProp } from '@/types/user';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import { X } from 'lucide-react';
 import { DialogClose } from '../ui/dialog';

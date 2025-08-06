@@ -20,7 +20,17 @@ export async function addToWishlist(userId: string, item: WishListItem) {
       selectedSize: item.selectedSize,
       selectedColor: item.selectedColor,
     },
-    include: { product: true },
+    include: {
+      product: {
+        include: {
+          colors: {
+            include: {
+              variants: true,
+            },
+          },
+        },
+      },
+    },
   });
   return wishListEntry;
 }
@@ -38,6 +48,11 @@ export async function getWishlist(userId: string, productId?: string) {
     include: {
       product: {
         include: {
+          colors: {
+            include: {
+              variants: true,
+            },
+          },
           subcategory: {
             include: {
               category: {

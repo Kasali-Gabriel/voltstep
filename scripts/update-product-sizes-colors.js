@@ -1,131 +1,305 @@
-import { PrismaClient } from '../src/generated/prisma/index.js';
-
+// ✅ Import Prisma Client
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-// Comprehensive standard size and color mappings for each subcategory
-const subcategorySizeMapping = {
-  // MEN - Tops
-  'T-Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-  'Tank Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-  'Long Sleeve Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-  'Compression Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-
-  // MEN - Bottoms
-  Shorts: [
-    '28',
-    '30',
-    '32',
-    '34',
-    '36',
-    '38',
+export const subcategorySizeMapping = {
+  'Activewear Sets': [
+    '2T',
+    '3T',
+    '4T',
+    '4',
+    '5T',
+    '5',
+    '6',
+    '7',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
     'XS',
     'S',
     'M',
     'L',
     'XL',
-    'XXL',
   ],
-  Joggers: [
-    '28',
-    '30',
-    '32',
-    '34',
-    '36',
-    '38',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    'XXL',
-  ],
-  Sweatpants: [
-    '28',
-    '30',
-    '32',
-    '34',
-    '36',
-    '38',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    'XXL',
-  ],
-
-  // MEN - Outerwears
-  'Hoodies & Sweatshirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-  Jackets: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-  Windbreakers: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-
-  // MEN - Footwears
-  'Running Shoes': [
-    '7',
-    '7.5',
-    '8',
-    '8.5',
-    '9',
-    '9.5',
-    '10',
-    '10.5',
-    '11',
-    '11.5',
-    '12',
-    '12.5',
-    '13',
-    '14',
-    '15',
-  ],
-  'Training Shoes': [
-    '7',
-    '7.5',
-    '8',
-    '8.5',
-    '9',
-    '9.5',
-    '10',
-    '10.5',
-    '11',
-    '11.5',
-    '12',
-    '12.5',
-    '13',
-    '14',
-    '15',
-  ],
-  'Casual Sneakers': [
-    '7',
-    '7.5',
-    '8',
-    '8.5',
-    '9',
-    '9.5',
-    '10',
-    '10.5',
-    '11',
-    '11.5',
-    '12',
-    '12.5',
-    '13',
-    '14',
-    '15',
-  ],
-
-  // MEN - Accessories
+  Backpacks: ['Small', 'Medium', 'Large'],
   Caps: ['S/M', 'L/XL'],
-  Socks: ['S', 'M', 'L', 'XL', '6-8', '8-10', '10-12', '12-14'],
-  'Gym Bags': ['Small', 'Medium', 'Large'],
+  'Caps & Headbands': ['XS/S', 'M/L', 'One Size'],
+  'Casual Sneakers': [
+    '5',
+    '5.5',
+    '6',
+    '6.5',
+    '7',
+    '7.5',
+    '8',
+    '8.5',
+    '9',
+    '9.5',
+    '10',
+    '10.5',
+    '11',
+    '11.5',
+    '12',
+    '12.5',
+    '13',
+    '14',
+    '15',
+  ],
+  'Compression Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  'Crop Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
   Gloves: ['XS', 'S', 'M', 'L', 'XL'],
-
-  // WOMEN - Tops
-  'Sports Bras': [
+  'Gloves & Protective Gear': ['XS', 'S', 'M', 'L'],
+  'Gym Bags': ['Small', 'Medium', 'Large'],
+  Gymwear: [
+    '2T',
+    '3T',
+    '4T',
+    '4',
+    '5T',
+    '5',
+    '6',
+    '7',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+  ],
+  'Hairbands & Scrunchies': ['One Size'],
+  Hoodies: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  'Hoodies & Sweatshirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  Joggers: [
+    '0',
+    '2',
+    '4',
+    '6',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    '28',
+    '30',
+    '32',
+    '34',
+    '36',
+    '38',
     'XS',
     'S',
     'M',
     'L',
     'XL',
     'XXL',
+  ],
+  Sneakers: [
+    '1Y',
+    '2Y',
+    '3Y',
+    '4Y',
+    '5C',
+    '5Y',
+    '6C',
+    '6Y',
+    '7C',
+    '7Y',
+    '8C',
+    '9C',
+    '10C',
+    '11C',
+    '12C',
+    '13C',
+  ],
+  Trainers: [
+    '1Y',
+    '2Y',
+    '3Y',
+    '4Y',
+    '5C',
+    '5Y',
+    '6C',
+    '6Y',
+    '7C',
+    '7Y',
+    '8C',
+    '9C',
+    '10C',
+    '11C',
+    '12C',
+    '13C',
+  ],
+  Leggings: [
+    '0',
+    '2',
+    '4',
+    '6',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+    'XXL',
+  ],
+  'Long Sleeve Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  'Matching Sets': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  'Maternity Activewear': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  Jackets: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  'Outerwear & Layering Essentials': [
+    '2T',
+    '3T',
+    '4T',
+    '4',
+    '5T',
+    '5',
+    '6',
+    '7',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+  ],
+  'ProCourt Kicks': [
+    '1Y',
+    '2Y',
+    '3Y',
+    '4Y',
+    '5C',
+    '5Y',
+    '6C',
+    '6Y',
+    '7C',
+    '7Y',
+    '8C',
+    '9C',
+    '10C',
+    '11C',
+    '12C',
+    '13C',
+  ],
+  'Running Shoes': [
+    '5',
+    '5.5',
+    '6',
+    '6.5',
+    '7',
+    '7.5',
+    '8',
+    '8.5',
+    '9',
+    '9.5',
+    '10',
+    '10.5',
+    '11',
+    '11.5',
+    '12',
+    '12.5',
+    '13',
+    '14',
+    '15',
+  ],
+  Shorts: [
+    '0',
+    '2',
+    '4',
+    '6',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    '28',
+    '30',
+    '32',
+    '34',
+    '36',
+    '38',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+    'XXL',
+  ],
+  Slides: [
+    '1Y',
+    '2Y',
+    '3Y',
+    '4Y',
+    '5C',
+    '5Y',
+    '6C',
+    '6Y',
+    '7C',
+    '7Y',
+    '8C',
+    '9C',
+    '10C',
+    '11C',
+    '12C',
+    '13C',
+  ],
+
+  Socks: [
+    '5-7',
+    '6-8',
+    '7-9',
+    '8-10',
+    '9-11',
+    '10-12',
+    '12-14',
+    'S',
+    'M',
+    'L',
+    'XL',
+  ],
+  'Socks & Compression Wear': [
+    '2-4',
+    '4-6',
+    '6-8',
+    '8-10',
+    'XS',
+    'S',
+    'M',
+    'L',
+  ],
+  'Sports Apparel': [
+    '2T',
+    '3T',
+    '4T',
+    '4',
+    '5T',
+    '5',
+    '6',
+    '7',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
+  ],
+  'Sports Bras': [
     '30A',
     '30B',
     '30C',
@@ -152,87 +326,51 @@ const subcategorySizeMapping = {
     '40A',
     '40B',
     '40C',
-  ],
-  'Crop Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  'Tshirts & Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  'Long Sleeve Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-
-  // WOMEN - Bottoms
-  Leggings: [
     'XS',
     'S',
     'M',
     'L',
     'XL',
     'XXL',
-    '0',
-    '2',
-    '4',
-    '6',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
   ],
-  Shorts: [
+  Sweatpants: [
+    '28',
+    '30',
+    '32',
+    '34',
+    '36',
+    '38',
     'XS',
     'S',
     'M',
     'L',
     'XL',
     'XXL',
-    '0',
-    '2',
-    '4',
-    '6',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
   ],
-  Joggers: [
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    'XXL',
-    '0',
-    '2',
-    '4',
-    '6',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
-  ],
-
-  // WOMEN - Outerwears
-  Hoodies: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  Jackets: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
   Sweatshirts: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-
-  // WOMEN - Footwears
-  'Running Shoes': [
+  'Swimwear & Rash Guards': [
+    '2T',
+    '3T',
+    '4T',
+    '4',
+    '5T',
     '5',
-    '5.5',
     '6',
-    '6.5',
     '7',
-    '7.5',
     '8',
-    '8.5',
-    '9',
-    '9.5',
     '10',
-    '10.5',
-    '11',
-    '11.5',
     '12',
+    '14',
+    '16',
+    'XS',
+    'S',
+    'M',
+    'L',
+    'XL',
   ],
+  'T-Shirts': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  'T-Shirts & Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+  'Tank Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Training Shoes': [
     '5',
     '5.5',
@@ -249,227 +387,15 @@ const subcategorySizeMapping = {
     '11',
     '11.5',
     '12',
-  ],
-  Sneakers: [
-    '5',
-    '5.5',
-    '6',
-    '6.5',
-    '7',
-    '7.5',
-    '8',
-    '8.5',
-    '9',
-    '9.5',
-    '10',
-    '10.5',
-    '11',
-    '11.5',
-    '12',
-  ],
-
-  // WOMEN - Accessories
-  'Hairbands & Scrunchies': ['One Size'],
-  'Water Bottles': ['12oz', '16oz', '20oz', '24oz', '32oz', '40oz'],
-  'Gym Bags': ['Small', 'Medium', 'Large'],
-  Socks: ['S', 'M', 'L', 'XL', '5-7', '7-9', '9-11'],
-
-  // WOMEN - Collections
-  'Matching Sets': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  'Maternity Activewear': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-
-  // KIDS - All clothings
-  'Activewear Sets': [
-    '2T',
-    '3T',
-    '4T',
-    '5T',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '10',
-    '12',
+    '12.5',
+    '13',
     '14',
-    '16',
+    '15',
   ],
-  'Sports Apparel': [
-    '2T',
-    '3T',
-    '4T',
-    '5T',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
-  ],
-  Gymwear: [
-    '2T',
-    '3T',
-    '4T',
-    '5T',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
-  ],
-  'Swimwear & Rash Guards': [
-    '2T',
-    '3T',
-    '4T',
-    '5T',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
-  ],
-  'Outerwear & Layering Essentials': [
-    '2T',
-    '3T',
-    '4T',
-    '5T',
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '10',
-    '12',
-    '14',
-    '16',
-  ],
-
-  // KIDS - Footwears
-  Trainers: [
-    '5C',
-    '6C',
-    '7C',
-    '8C',
-    '9C',
-    '10C',
-    '11C',
-    '12C',
-    '13C',
-    '1Y',
-    '2Y',
-    '3Y',
-    '4Y',
-    '5Y',
-    '6Y',
-    '7Y',
-  ],
-  'ProCourt Kicks': [
-    '5C',
-    '6C',
-    '7C',
-    '8C',
-    '9C',
-    '10C',
-    '11C',
-    '12C',
-    '13C',
-    '1Y',
-    '2Y',
-    '3Y',
-    '4Y',
-    '5Y',
-    '6Y',
-    '7Y',
-  ],
-  Sneakers: [
-    '5C',
-    '6C',
-    '7C',
-    '8C',
-    '9C',
-    '10C',
-    '11C',
-    '12C',
-    '13C',
-    '1Y',
-    '2Y',
-    '3Y',
-    '4Y',
-    '5Y',
-    '6Y',
-    '7Y',
-  ],
-  Slides: [
-    '5C',
-    '6C',
-    '7C',
-    '8C',
-    '9C',
-    '10C',
-    '11C',
-    '12C',
-    '13C',
-    '1Y',
-    '2Y',
-    '3Y',
-    '4Y',
-    '5Y',
-    '6Y',
-    '7Y',
-  ],
-
-  // KIDS - Accessories
-  Backpacks: ['Small', 'Medium', 'Large'],
-  'Caps & Headbands': ['XS/S', 'M/L', 'One Size'],
-  'Water Bottles': ['8oz', '12oz', '16oz', '20oz'],
-  'Socks & Compression Wear': [
-    'XS',
-    'S',
-    'M',
-    'L',
-    '2-4',
-    '4-6',
-    '6-8',
-    '8-10',
-  ],
+  'Tshirts & Tops': ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  'Water Bottles': ['8oz', '12oz', '16oz', '20oz', '24oz', '32oz', '40oz'],
+  Windbreakers: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
   'Wristbands & Sweatbands': ['One Size', 'Small', 'Medium'],
-  'Gloves & Protective Gear': ['XS', 'S', 'M', 'L'],
 };
 
 const subcategoryColorMapping = {
@@ -966,8 +892,6 @@ const subcategoryColorMapping = {
     'Sunshine Yellow',
     'Magenta',
     'Coral',
-    'Rainbow',
-    'Multi-Color',
   ],
   'Sports Apparel': [
     'Red',
@@ -1029,7 +953,7 @@ const subcategoryColorMapping = {
     'Green',
     'Pink',
     'Yellow',
-    'Multi-Color',
+
     'Orange',
     'Purple',
     'Bright Blue',
@@ -1056,7 +980,7 @@ const subcategoryColorMapping = {
     'Yellow',
     'Purple',
     'Orange',
-    'Multi-Color',
+
     'Bright Blue',
     'Lime Green',
     'Hot Pink',
@@ -1114,7 +1038,7 @@ const subcategoryColorMapping = {
     'Blue',
     'Green',
     'Pink',
-    'Multi-Color',
+
     'Yellow',
     'Purple',
     'Orange',
@@ -1145,59 +1069,51 @@ const subcategoryColorMapping = {
   ],
 };
 
-// Function to get sizes for a specific subcategory
+// 🎲 Get 40–100% of available sizes randomly, ensuring some variation between colors
 function getSizesForSubcategory(subcategoryName) {
-  const availableSizes = subcategorySizeMapping[subcategoryName] || [
-    'One Size',
-  ];
-
-  // For accessories with "One Size", return as is
-  if (availableSizes.includes('One Size') && availableSizes.length <= 3) {
-    return availableSizes;
-  }
-
-  // For clothing and footwear, select 1 to max available sizes
-  const maxSizes = availableSizes.length;
-  const numSizes = Math.floor(Math.random() * maxSizes) + 1; // 1 to max sizes
-  const shuffled = [...availableSizes].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, numSizes);
+  const sizes = subcategorySizeMapping[subcategoryName] || ['One Size'];
+  const max = sizes.length;
+  const min = Math.ceil(max * 0.4);
+  const num = Math.max(min, Math.floor(Math.random() * (max - min + 1)) + min);
+  return [...sizes].sort(() => 0.5 - Math.random()).slice(0, num);
 }
 
-// Function to get colors for a specific subcategory
+// 🎲 Get 1–10 random colors
 function getColorsForSubcategory(subcategoryName) {
-  const availableColors = subcategoryColorMapping[subcategoryName] || [
-    'Black',
-    'White',
-    'Grey',
-  ];
+  const colors = subcategoryColorMapping[subcategoryName] || ['Black', 'White'];
+  const maxColors = Math.min(colors.length, 10); // hard limit at 10
+  const num = rand(1, maxColors); // random between 1 and maxColors
 
-  // Randomly select 1-12 colors from available colors
-  const numColors = Math.floor(Math.random() * 12) + 1; // 1-12 colors
-  const shuffled = [...availableColors].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, Math.min(numColors, availableColors.length));
+  return [...colors].sort(() => 0.5 - Math.random()).slice(0, num);
 }
 
-// Main function to update product sizes and colors
-async function updateProductSizesAndColors() {
-  try {
-    console.log('🚀 Starting product sizes and colors update...');
+// 🎲 Utility random number generator
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-    // Get all subcategories with their products
+// 🎲 Get realistic total quantity with variant count influencing probability
+function getWeightedTotalQuantity(variantCount) {
+  const r = Math.random();
+
+  if (variantCount > 20 && r < 0.2) return rand(301, 500);
+  if (variantCount > 15 && r < 0.4) return rand(101, 300);
+  if (variantCount > 5 && r < 0.6) return rand(1, 100);
+  if (r < 0.1) return 0;
+  if (r < 0.3) return rand(1, 100);
+  if (r < 0.6) return rand(101, 300);
+  return rand(301, 500);
+}
+
+// 🚀 Main script to update products
+async function updateProductVariants() {
+  try {
+    console.log('🔄 Updating products with structured color-size variants...');
+
     const subcategories = await prisma.subcategory.findMany({
       include: {
-        products: {
-          select: {
-            id: true,
-            name: true,
-            sizes: true,
-            colors: true,
-          },
-        },
-        category: {
-          include: {
-            catalog: true,
-          },
-        },
+        products: { select: { id: true, name: true } },
+        category: { include: { catalog: true } },
       },
     });
 
@@ -1205,65 +1121,104 @@ async function updateProductSizesAndColors() {
     let updatedProducts = 0;
 
     for (const subcategory of subcategories) {
-      const catalogName = subcategory.category.catalog.name;
-      const categoryName = subcategory.category.name;
-      const subcategoryName = subcategory.name;
+      const { name: subcategoryName } = subcategory;
+      const { name: categoryName } = subcategory.category;
+      const { name: catalogName } = subcategory.category.catalog;
 
-      console.log(`\n� ${catalogName} > ${categoryName} > ${subcategoryName}`);
+      console.log(`\n📂 ${catalogName} > ${categoryName} > ${subcategoryName}`);
       console.log(`   Products: ${subcategory.products.length}`);
 
-      // Update products in batches
-      const batchSize = 20;
-      for (let i = 0; i < subcategory.products.length; i += batchSize) {
-        const batch = subcategory.products.slice(i, i + batchSize);
-
-        const updatePromises = batch.map(async (product) => {
-          totalProducts++;
-
-          // Generate unique random sizes and colors for each product
-          const productSizes = getSizesForSubcategory(subcategoryName);
-          const productColors = getColorsForSubcategory(subcategoryName);
-
-          // Update ALL products - overwrite existing sizes and colors
-          const updateData = {
-            sizes: productSizes,
-            colors: productColors,
-          };
-
-          await prisma.product.update({
-            where: { id: product.id },
-            data: updateData,
-          });
-
-          updatedProducts++;
-
-          console.log(
-            `     ✅ ${product.name} - Sizes: [${productSizes.join(', ')}] Colors: [${productColors.join(', ')}]`,
-          );
+      for (const product of subcategory.products) {
+        totalProducts++;
+        // Delete existing color records for this product
+        await prisma.productColor.deleteMany({
+          where: { productId: product.id },
         });
 
-        await Promise.all(updatePromises);
+        const baseSizes = getSizesForSubcategory(subcategoryName);
+        const colors = getColorsForSubcategory(subcategoryName);
 
-        // Small delay between batches
-        await new Promise((resolve) => setTimeout(resolve, 50));
+        if (!baseSizes.length || !colors.length) {
+          console.warn(`⚠️ Skipping ${product.name} due to no sizes/colors`);
+          continue;
+        }
+
+        const allVariants = [];
+
+        for (const color of colors) {
+          // Each color gets a slightly varied version of the baseSizes
+          const shuffledSizes = [...baseSizes].sort(() => 0.5 - Math.random());
+          const numSizes = rand(
+            Math.ceil(baseSizes.length * 0.4),
+            baseSizes.length,
+          );
+          const colorSizes = shuffledSizes.slice(0, numSizes);
+
+          for (const size of colorSizes) {
+            allVariants.push({ color, size, quantity: 0 });
+          }
+        }
+
+        const shuffled = [...allVariants].sort(() => 0.5 - Math.random());
+        let totalQuantity = getWeightedTotalQuantity(shuffled.length);
+        const originalTotal = totalQuantity;
+
+        for (let i = 0; i < shuffled.length && totalQuantity > 0; i++) {
+          const maxQty = Math.min(15, totalQuantity);
+          const qty = rand(0, maxQty);
+          shuffled[i].quantity = qty;
+          totalQuantity -= qty;
+        }
+
+        if (originalTotal > 0 && shuffled.every((v) => v.quantity === 0)) {
+          shuffled[Math.floor(Math.random() * shuffled.length)].quantity = 1;
+        }
+
+        const groupedByColor = {};
+        for (const variant of shuffled) {
+          if (!groupedByColor[variant.color]) {
+            groupedByColor[variant.color] = [];
+          }
+          groupedByColor[variant.color].push({
+            size: variant.size,
+            quantity: variant.quantity,
+          });
+        }
+
+        for (const [color, variants] of Object.entries(groupedByColor)) {
+          await prisma.productColor.create({
+            data: {
+              color,
+              productId: product.id,
+              variants: { create: variants },
+            },
+          });
+        }
+
+        const finalQty = shuffled.reduce((sum, v) => sum + v.quantity, 0);
+        await prisma.product.update({
+          where: { id: product.id },
+          data: { quantity: finalQty },
+        });
+
+        updatedProducts++;
+        console.log(
+          `   ✅ ${product.name}: ${Object.keys(groupedByColor).length} colors, ${shuffled.length} variants, Qty: ${finalQty}`,
+        );
       }
     }
 
-    console.log(`\n✅ Update complete!`);
-    console.log(`📊 Summary:`);
-    console.log(`   Total products processed: ${totalProducts}`);
-    console.log(`   Products updated: ${updatedProducts}`);
-    console.log(`   All products now have randomized sizes and colors!`);
-  } catch (error) {
-    console.error('❌ Error updating product sizes and colors:', error);
-    throw error;
+    console.log(`\n🎉 Done!`);
+    console.log(`📊 Processed: ${totalProducts}, Updated: ${updatedProducts}`);
+  } catch (err) {
+    console.error('❌ Error:', err);
   } finally {
     await prisma.$disconnect();
   }
 }
 
-// Run the script
-updateProductSizesAndColors().catch((e) => {
+// ▶️ Run the script
+updateProductVariants().catch((e) => {
   console.error(e);
   process.exit(1);
 });

@@ -29,6 +29,18 @@ export interface Subcategory {
   products?: Product[];
 }
 
+export interface ProductSizeVariant {
+  id: string;
+  size: string;
+  quantity: number;
+}
+
+export interface ProductColor {
+  id: string;
+  color: string;
+  variants: ProductSizeVariant[];
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -37,8 +49,7 @@ export interface Product {
   price: number;
   quantity: number;
   images: string[];
-  sizes: string[];
-  colors: string[];
+  colors: ProductColor[];
   createdAt: Date;
   updatedAt: Date;
   tags: Tag[];
@@ -58,28 +69,30 @@ export enum Tag {
 
 export interface SizeSelectorProps {
   sizes: string[];
-  selectedSize: string | null;
+  selectedSize: string | undefined;
+  selectedColor: string;
+  productColors: ProductColor[];
   setSelectedSize: (size: string) => void;
   sizeError?: boolean;
   setSizeError?: (error: boolean) => void;
   isTitle?: boolean;
-  subcategoryName?: string;
+  subcategoryName: string;
 }
 
 export interface ColorSelectorProps {
   colors: string[];
-  selectedColor: string | null;
+  selectedColor: string ;
   setSelectedColor: (color: string) => void;
 }
 
 export interface ProductCardProps {
-  query?: boolean;
+  query?: string;
   SearchedProduct?: SearchedProduct;
   setQuery?: (q: string) => void;
-  recordViewedProduct?: (product: SearchedProduct) => void;
   slug?: string[];
   loading?: boolean;
   notSubcategory?: boolean;
+  recordViewedSearchProduct?: (product: SearchedProduct) => void;
 }
 
 export interface ProductsListProps {
@@ -128,4 +141,12 @@ export interface CatalogPagination {
   initialTotalCount?: number;
   initialHasMore?: boolean;
   skipInitialFetch?: boolean;
+}
+
+export interface ViewedProductItem {
+  id: string;
+  viewedAt: string;
+  product: SearchedProduct;
+  fromSearch: boolean;
+  query: string;
 }

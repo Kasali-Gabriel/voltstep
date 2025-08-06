@@ -4,7 +4,7 @@ import {
   getUserById,
   updateUser,
 } from '@/actions/user';
-import { User } from '@/types/auth';
+import { CreateUserInput } from '@/types/user';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
 import { Webhook } from 'svix';
@@ -50,63 +50,88 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === 'user.created') {
-    const { id, email_addresses, first_name, last_name, image_url } = evt.data;
+    const {
+      id,
+      email_addresses,
+      external_accounts,
+      first_name,
+      last_name,
+      image_url,
+    } = evt.data;
 
-    if (
-      !id ||
-      !email_addresses ||
-      !Array.isArray(email_addresses) ||
-      !email_addresses[0] ||
-      !email_addresses[0].email_address
-    ) {
-      return new Response(
-        'Error occures -- missing or malformed email_addresses',
-        {
-          status: 400,
-        },
-      );
+    const email =
+      email_addresses?.[0]?.email_address ||
+      external_accounts?.[0]?.email_address ||
+      '';
+    const fallbackFirstName = external_accounts?.[0]?.first_name || '';
+    const fallbackLastName = external_accounts?.[0]?.last_name || '';
+    const fallbackImageUrl = external_accounts?.[0]?.image_url || '';
+
+    if (!id || !email) {
+      return new Response('Missing required user data', { status: 400 });
     }
 
     const now = new Date();
-    const user: User = {
-      id: '',
-      email: email_addresses[0].email_address,
-      firstName: first_name || '',
-      lastName: last_name || '',
-      imageUrl: image_url,
+
+    const user: CreateUserInput = {
+      email,
+      firstName: first_name || fallbackFirstName,
+      lastName: last_name || fallbackLastName,
+      imageUrl: image_url || fallbackImageUrl,
       createdAt: now,
       updatedAt: now,
       clerkUserId: id,
     };
 
-    await createUser({
-      ...user,
-      imageUrl: user.imageUrl,
-      clerkUserId: user.clerkUserId,
-    });
+    await createUser(user);
 
     return new Response('', { status: 200 });
   }
 
   if (eventType === 'user.updated') {
-    const { id, email_addresses, first_name, last_name, image_url } = evt.data;
-    if (!id || !email_addresses) {
-      return new Response('Error occures -- missing data', {
-        status: 400,
-      });
+    const {
+      id,
+      email_addresses,
+      external_accounts,
+      first_name,
+      last_name,
+      image_url,
+    } = evt.data;
+
+    if (!id) {
+      return new Response('Missing user ID', { status: 400 });
     }
+
+    const email =
+      email_addresses?.[0]?.email_address ||
+      external_accounts?.[0]?.email_address ||
+      '';
+    const fallbackFirstName = external_accounts?.[0]?.first_name || '';
+    const fallbackLastName = external_accounts?.[0]?.last_name || '';
+    const fallbackImageUrl = external_accounts?.[0]?.image_url || '';
+
     const userUpdate = {
-      email: email_addresses[0].email_address,
-      ...(first_name ? { firstName: first_name } : {}),
-      ...(last_name ? { lastName: last_name } : {}),
-      ...(image_url ? { imageUrl: image_url } : {}),
+      ...(email && { email }),
+      ...(first_name || fallbackFirstName
+        ? { firstName: first_name || fallbackFirstName }
+        : {}),
+      ...(last_name || fallbackLastName
+        ? { lastName: last_name || fallbackLastName }
+        : {}),
+      ...(image_url || fallbackImageUrl
+        ? { imageUrl: image_url || fallbackImageUrl }
+        : {}),
     };
+
     // Find user by clerkUserId
     const { user } = await getUserById({ id: '', clerkUserId: id });
+
     if (!user) {
       return new Response('User not found', { status: 404 });
     }
+
     await updateUser(user.id, userUpdate);
+
     return new Response('', { status: 200 });
   }
 

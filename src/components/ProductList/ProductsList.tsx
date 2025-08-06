@@ -9,14 +9,16 @@ import ProductListHeader from '@/components/ProductList/ProductListHeader';
 import Loader from '@/components/ui/loader';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useSortProducts } from '@/hooks/useSortProducts';
-import { useSideBarStore } from '@/lib/state';
+import { useSideBarStore, useViewedProductStore } from '@/lib/state';
 import { SearchedProduct } from '@/types/search';
 import { mapProductToSearchedProduct } from '@/utils/Product/mapProducts';
 import ProductCardSkeleton from '../Skeletons/ProductCardSkeleton';
 
 import { useCatalogPagination } from '@/hooks/useCatalogPagination';
 import { useSearch } from '@/hooks/useSearch';
+import { useViewedProduct } from '@/hooks/useViewedProduct';
 import { Product, ProductsListProps } from '@/types/product';
+import RecentlyViewedProducts from './RecentlyViewedProducts';
 
 const ProductsList = ({
   query,
@@ -31,6 +33,10 @@ const ProductsList = ({
 
   const { currentSort: rawSort } = useSortProducts(!!query);
   const currentSort = rawSort;
+
+  const { fetchRecentViewed } = useViewedProduct();
+
+  const guestViewedProducts = useViewedProductStore((s) => s.viewedProducts);
 
   // State for products, unfilteredProducts, totalCount, hasMore, loading
   const [products, setProducts] = useState<(Product | SearchedProduct)[]>(
@@ -47,6 +53,7 @@ const ProductsList = ({
   const [isInitialMount, setIsInitialMount] = useState(
     !(initialProducts && initialProducts.length > 0),
   );
+  const [recentViewed, setRecentViewed] = useState<SearchedProduct[]>([]);
 
   const productListEndRef = useRef<HTMLDivElement>(null);
 
@@ -107,6 +114,14 @@ const ProductsList = ({
     query,
     slug,
   ]);
+
+  useEffect(() => {
+    const fetchViewed = async () => {
+      const viewed = await fetchRecentViewed(guestViewedProducts);
+      setRecentViewed(viewed);
+    };
+    fetchViewed();
+  }, [fetchRecentViewed, guestViewedProducts]);
 
   // Reset initial mount state when we have data or finished loading
   useEffect(() => {
@@ -223,7 +238,7 @@ const ProductsList = ({
 
         {/* Product grid */}
         <div
-          className={`w-full px-5 transition-all duration-300 sm:px-10 xl:px-12 ${
+          className={`w-full overflow-x-hidden px-5 transition-all duration-300 sm:px-10 xl:px-12 ${
             isMobile ? 'ml-0' : showFilters ? '-ml-0' : '-ml-[17rem]'
           }`}
         >
@@ -261,7 +276,6 @@ const ProductsList = ({
                     <ProductCard
                       key={product.id}
                       SearchedProduct={product}
-                      query={!!query}
                       slug={slug}
                       loading={loading}
                       notSubcategory={notSubcategory}
@@ -275,7 +289,6 @@ const ProductsList = ({
                     <ProductCard
                       key={product.id}
                       SearchedProduct={product}
-                      query={!!query}
                       slug={slug}
                       loading={loading}
                       notSubcategory={notSubcategory}
@@ -286,8 +299,31 @@ const ProductsList = ({
             </>
           ) : (
             // No products found
-            <p className="text-center text-neutral-500">No products found.</p>
+            <p className="flex flex-col gap-1 font-medium">
+              <span className="sm:text-lg md:text-xl">
+                No results match your filters.
+              </span>
+              <span className="text-muted-foreground text-sm italic sm:text-base md:text-lg">
+                Try adjusting or resetting your filters to see more products.
+              </span>
+            </p>
           )}
+
+          {/* Recently viewed products */}
+          <div className="max-w-auto mt-28">
+            {recentViewed ? (
+              <RecentlyViewedProducts
+                recentViewed={recentViewed}
+                noPadding={true}
+              />
+            ) : (
+              <div className="flex w-full flex-row gap-4 overflow-x-auto pb-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <ProductCardSkeleton key={i} notSubcategory={true} />
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* End of product list marker */}
 

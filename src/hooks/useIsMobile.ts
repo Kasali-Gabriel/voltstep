@@ -38,3 +38,4 @@ export function useIsMobile(
   // Return consistent state during SSR/hydration
   return [isClient ? isMobile : false, setIsMobile];
 }
+

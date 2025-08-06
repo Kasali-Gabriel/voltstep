@@ -16,8 +16,6 @@ const baseProductFields = {
   price: true,
   quantity: true,
   images: true,
-  sizes: true,
-  colors: true,
   tags: true,
   createdAt: true,
   popularityScore: true,
@@ -46,12 +44,38 @@ const subcategorySelect = {
 
 const productPreviewSelect = {
   ...baseProductFields,
+  colors: {
+    select: {
+      id: true,
+      color: true,
+      variants: {
+        select: {
+          id: true,
+          size: true,
+          quantity: true,
+        },
+      },
+    },
+  },
   reviews: { select: { id: true, rating: true } },
   subcategory: { select: subcategorySelect },
 };
 
 const productDetailSelect = {
   ...baseProductFields,
+  colors: {
+    select: {
+      id: true,
+      color: true,
+      variants: {
+        select: {
+          id: true,
+          size: true,
+          quantity: true,
+        },
+      },
+    },
+  },
   reviews: {
     select: {
       id: true,
@@ -121,6 +145,7 @@ export async function fetchProducts(
       const products = await prisma.product.findMany({
         where: buildCatalogWhere(filters),
         select: productPreviewSelect,
+        take: 1000, // Reasonable limit for unfiltered queries
       });
 
       return {

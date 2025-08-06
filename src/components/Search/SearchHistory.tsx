@@ -1,13 +1,13 @@
 import { SearchHistoryProps } from '@/types/search';
-import ProductCard from '../Product/ProductCard';
+import RecentlyViewedProducts from '../ProductList/RecentlyViewedProducts';
 
 const SearchHistory = ({
   setQuery,
   recentSearches,
   recentViewed,
   loading,
-  recordViewedProduct,
 }: SearchHistoryProps) => {
+  console.log('SearchHistory', recentViewed);
   return (
     <div className="mt-5 flex flex-col space-y-10 overflow-x-hidden">
       {recentSearches.length > 0 && (
@@ -30,26 +30,11 @@ const SearchHistory = ({
         </div>
       )}
 
-      {recentViewed.length > 0 && (
-        <div className="flex max-w-screen flex-col">
-          <h2 className="mb-4 font-semibold text-black sm:text-lg md:text-xl">
-            Recently Viewed from Search
-          </h2>
-
-          <div className="flex w-full flex-row gap-4 overflow-x-auto pb-2">
-            {recentViewed.map((item) => (
-              <div key={item.id} className="w-44 flex-shrink-0 sm:w-48 md:w-56">
-                <ProductCard
-                  loading={loading}
-                  SearchedProduct={item}
-                  setQuery={setQuery}
-                  recordViewedProduct={recordViewedProduct}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      <RecentlyViewedProducts
+        recentViewed={recentViewed}
+        loading={loading}
+        isSearchResults={true}
+      />
     </div>
   );
 };

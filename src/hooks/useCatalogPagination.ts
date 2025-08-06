@@ -1,7 +1,8 @@
-import axios from '@/lib/axios';
+
 import { CatalogPagination, Product } from '@/types/product';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePagination } from './usePagination';
+import axios from 'axios';
 
 export function useCatalogPagination({
   isSearch,

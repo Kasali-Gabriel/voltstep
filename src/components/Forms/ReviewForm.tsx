@@ -8,13 +8,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import axios from '@/lib/axios';
 import { ReviewFormProps } from '@/types/review';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import RatingInput from './RatingInput';
+import RatingInput from '../Reviews/RatingInput';
 
 const reviewSchema = z.object({
   title: z

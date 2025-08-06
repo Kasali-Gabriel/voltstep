@@ -6,12 +6,6 @@ export interface SearchHistoryItem {
   searchedAt: string;
 }
 
-export interface ViewedProductItem {
-  id: string;
-  viewedAt: string;
-  product: SearchedProduct;
-}
-
 export interface PopularSearchItem {
   id: string;
   query: string;
@@ -34,9 +28,21 @@ export interface SearchHistoryProps {
   recentSearches: SearchHistoryItem[];
   recentViewed: SearchedProduct[];
   setQuery?: (query: string) => void;
-  recordViewedProduct: (product: SearchedProduct) => void;
   loading: boolean;
 }
+
+// For search results, variants are flattened for easier consumption
+export type ProductSizeVariant = {
+  id: string;
+  size: string;
+  quantity: number;
+};
+
+export type ProductColor = {
+  id: string;
+  color: string;
+  variants: ProductSizeVariant[];
+};
 
 export type SearchedProduct = {
   id: string;
@@ -50,9 +56,9 @@ export type SearchedProduct = {
   catalog: string;
   catSubcat?: string;
   avgRating?: number | null;
+  variants: { color: string; size: string; quantity: number }[];
   colors: string[];
-  sizes: string[];
-  dateAdded: Date;
+  dateAdded: Date | string;
   availableColors: number | string;
   popularity: number;
   tags: string[];
