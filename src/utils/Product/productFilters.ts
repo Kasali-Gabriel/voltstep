@@ -1,17 +1,4 @@
-import { Tag } from '@/types/product';
-
-export interface ProductFilters {
-  priceRange?: [number, number];
-  priceRanges?: Array<[number, number]>; // Multiple price ranges
-  sizes?: string[];
-  colors?: string[];
-  tags?: Tag[];
-  rating?: number;
-  inStock?: boolean;
-  subcategory?: string;
-  category?: string;
-  catalog?: string;
-}
+import { ProductFilters, Tag } from '@/types/product';
 
 /**
  * Parse URL search parameters into filter object

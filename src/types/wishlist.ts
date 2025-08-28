@@ -65,3 +65,11 @@ export interface WishlistContextType {
   removeFromWishlist: (productId: string) => Promise<void>;
   refreshWishlist: () => Promise<void>;
 }
+
+export interface WishlistContextType {
+  wishlist: WishListItem[];
+  loading: boolean;
+  addToWishlist: (item: Omit<WishListItem, 'id'>) => Promise<void>;
+  removeFromWishlist: (productId: string) => Promise<void>;
+  refreshWishlist: () => Promise<void>;
+}

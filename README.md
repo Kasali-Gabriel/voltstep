@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Github repos for countries.json file, I combined and formatted them
+https://github.com/dr5hn/countries-states-cities-database
+https://github.com/ariankoochak/regex-patterns-of-all-countries
+https://gist.github.com/jamesbar2/1c677c22df8f21e869cca7e439fc3f5b
+``

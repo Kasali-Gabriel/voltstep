@@ -1,4 +1,5 @@
-import { ProductFilters } from '../Product/productFilters';
+import { ProductFilters } from "@/types/product";
+
 
 export function buildSearchParams(
   query: string,

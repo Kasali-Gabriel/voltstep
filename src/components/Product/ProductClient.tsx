@@ -26,11 +26,7 @@ import 'swiper/css';
 import RecentlyViewedProducts from '../ProductList/RecentlyViewedProducts';
 import ProductCardSkeleton from '../Skeletons/ProductCardSkeleton';
 
-interface ProductClientProps {
-  product: Product;
-}
-
-const ProductClient = ({ product }: ProductClientProps) => {
+const ProductClient = ({ product }: { product: Product }) => {
   const [reviews, setReviews] = useState<Review[]>(product.reviews ?? []);
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string | undefined>(
@@ -112,6 +108,7 @@ const ProductClient = ({ product }: ProductClientProps) => {
         image: product.images?.[0] || '',
         selectedSize: undefined,
         selectedColor: defaultColor,
+        product: product,
       });
     }
   }, [product]);

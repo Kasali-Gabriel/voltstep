@@ -1,9 +1,9 @@
+import shoppingBag from '@/assets/shopping-bag-icon.svg';
 import { useCartStore } from '@/hooks/use-cart';
 import { useBagStore } from '@/lib/state';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import shoppingBag from '@/assets/shopping-bag-icon.svg';
 import { MoveToWishList } from '../Wishlist/MovetowishList';
 import ShippingProgress from './ShippingProgress';
 
@@ -20,11 +20,13 @@ export const BagContent = ({
     getSubTotal,
     getShippingFee,
     getTotal,
+    getTaxFee,
   } = useCartStore();
 
-  const subTotal = parseFloat(getSubTotal());
+  const subTotal = getSubTotal();
   const shipping = getShippingFee();
-  const total = parseFloat(getTotal());
+  const total = getTotal();
+  const taxFee = getTaxFee();
 
   const { setIsBagOpen } = useBagStore();
 
@@ -128,20 +130,25 @@ export const BagContent = ({
           </div>
 
           {/* Cart summary */}
-          <div className="mt-5 flex flex-col space-y-4 rounded-lg bg-neutral-100 p-4">
+          <div className="mt-5 flex flex-col space-y-2 rounded-lg bg-neutral-100 p-4">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>${subTotal.toFixed(2)}</span>
+              <span>${subTotal}</span>
             </div>
 
             <div className="flex justify-between">
               <span>Esimated Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? 'Free' : `$${shipping}`}</span>
+            </div>
+
+            <div className="flex justify-between">
+              <span>Tax fee</span>
+              <span>${taxFee}</span>
             </div>
 
             <div className="flex justify-between text-lg font-semibold">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>${total}</span>
             </div>
           </div>
         </div>

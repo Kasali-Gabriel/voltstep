@@ -5,7 +5,7 @@ import {
 } from '@/components/ui/collapsible';
 import { colorHexCodes } from '@/data/colorData';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { Product, ProductSizeVariant } from '@/types/product';
+import { Product, ProductFilters, ProductSizeVariant } from '@/types/product';
 import { SearchedProduct } from '@/types/search';
 import { Check, ChevronDown } from 'lucide-react';
 
@@ -104,9 +104,9 @@ export function ColorFilter({
   toggleSection,
 }: {
   topColors: string[];
-  filters: import('@/utils/Product/productFilters').ProductFilters;
+  filters: ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
+    f: Partial<ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;

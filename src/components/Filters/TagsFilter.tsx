@@ -4,7 +4,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { Tag } from '@/types/product';
+import { ProductFilters, Tag } from '@/types/product';
 import { ChevronDown } from 'lucide-react';
 
 export function TagsFilter({
@@ -13,10 +13,8 @@ export function TagsFilter({
   open,
   toggleSection,
 }: {
-  filters: import('@/utils/Product/productFilters').ProductFilters;
-  updateFilters: (
-    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
-  ) => void;
+  filters: ProductFilters;
+  updateFilters: (f: Partial<ProductFilters>) => void;
   open: boolean;
   toggleSection: () => void;
 }) {

@@ -15,6 +15,7 @@ import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import { User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Bag } from '../Bag/Bag';
 import SearchView from '../Search/Search';
 import SearchBar from '../Search/SearchBar';
@@ -38,6 +39,10 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
     setIsFixed,
   } = useNavBarStore();
   const { productHeaderStuck } = useProductHeaderStore();
+
+  const pathname = usePathname();
+
+  const isCheckOutPage = pathname.startsWith('/checkout');
 
   const { showSuccessDialog } = useWishlistSuccessDialogStore();
 
@@ -120,13 +125,13 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
       <nav
         ref={navbarRef}
         id="navbar"
-        className={`flex h-16 w-full flex-col items-center justify-center bg-white px-5 transition-transform ease-in-out sm:px-10 xl:px-12 ${showSuccessDialog ? 'z-60' : 'z-50'} ${
-          isFixed ? `fixed top-0 left-0` : 'relative'
-        } ${showNavBar ? 'translate-y-0' : '-translate-y-full'} ${productHeaderStuck ? 'duration-0' : 'duration-300'}`}
+        className={`flex h-16 w-full flex-col items-center justify-center bg-white px-5 transition-transform ease-in-out sm:px-10 xl:px-12 ${showSuccessDialog ? 'z-60' : 'z-50'} ${isFixed ? (isCheckOutPage ? 'relative' : 'fixed top-0 left-0') : isCheckOutPage ? 'relative' : ''} ${showNavBar ? 'translate-y-0' : '-translate-y-full'} ${productHeaderStuck ? 'duration-0' : 'duration-300'}`}
       >
-        <div className="flex w-full items-center justify-between">
+        <div
+          className={`flex w-full items-center ${isCheckOutPage ? 'justify-start' : 'justify-between'}`}
+        >
           <div className="flex items-center justify-center space-x-4 lg:landscape:hidden">
-            <MobileMenu catalogs={catalogs} />
+            {!isCheckOutPage && <MobileMenu catalogs={catalogs} />}
 
             <Image
               src={bigLogo}
@@ -135,9 +140,11 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
               className="ob hidden md:block lg:landscape:hidden"
             />
 
-            <div className="flex md:hidden">
-              <SearchView />
-            </div>
+            {!isCheckOutPage && (
+              <div className="flex md:hidden">
+                <SearchView />
+              </div>
+            )}
           </div>
 
           <div className="flex items-center space-x-10">
@@ -153,57 +160,63 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
                 src={smallLogo}
                 height={55}
                 alt="logo"
-                className="ml-8 md:hidden"
+                className={`md:hidden ${isCheckOutPage ? '' : 'ml-8'}`}
               />
             </Link>
 
-            <div className="hidden lg:landscape:flex">
-              <NavMenu catalogs={catalogs} />
-            </div>
+            {!isCheckOutPage && (
+              <div className="hidden lg:landscape:flex">
+                <NavMenu catalogs={catalogs} />
+              </div>
+            )}
           </div>
 
-          <div className="hidden items-center justify-center xl:flex">
-            <SearchBar />
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <div className="mt-2 hidden md:block xl:hidden">
-              <SearchView />
+          {!isCheckOutPage && (
+            <div className="hidden items-center justify-center xl:flex">
+              <SearchBar />
             </div>
+          )}
 
-            <Bag />
+          {!isCheckOutPage && (
+            <div className="flex items-center space-x-4">
+              <div className="mt-2 hidden md:block xl:hidden">
+                <SearchView />
+              </div>
 
-            <ViewWishlist isNavBar />
+              <Bag />
 
-            <div className="relative size-7">
-              {/* Placeholder icon during SSR/hydration */}
-              {!isClient || !ready ? (
-                <div className="absolute inset-0 flex animate-pulse items-center justify-center opacity-100">
-                  <Avatar className="size-7 cursor-pointer">
-                    <AvatarFallback>
-                      <User size={20} strokeWidth={1.25} />
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
-              ) : (
-                <div className="animate-in absolute inset-0 flex size-7 items-center">
-                  <SignedIn>
-                    <UserProfile />
-                  </SignedIn>
+              <ViewWishlist isNavBar />
 
-                  <SignedOut>
-                    <SignInButton>
-                      <Avatar className="size-7 cursor-pointer transition-all duration-300">
-                        <AvatarFallback>
-                          <User size={20} strokeWidth={1.25} />
-                        </AvatarFallback>
-                      </Avatar>
-                    </SignInButton>
-                  </SignedOut>
-                </div>
-              )}
+              <div className="relative size-7">
+                {/* Placeholder icon during SSR/hydration */}
+                {!isClient || !ready ? (
+                  <div className="absolute inset-0 flex animate-pulse items-center justify-center opacity-100">
+                    <Avatar className="size-7 cursor-pointer">
+                      <AvatarFallback>
+                        <User size={20} strokeWidth={1.25} />
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                ) : (
+                  <div className="animate-in absolute inset-0 flex size-7 items-center">
+                    <SignedIn>
+                      <UserProfile />
+                    </SignedIn>
+
+                    <SignedOut>
+                      <SignInButton>
+                        <Avatar className="size-7 cursor-pointer transition-all duration-300">
+                          <AvatarFallback>
+                            <User size={20} strokeWidth={1.25} />
+                          </AvatarFallback>
+                        </Avatar>
+                      </SignInButton>
+                    </SignedOut>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
     </>

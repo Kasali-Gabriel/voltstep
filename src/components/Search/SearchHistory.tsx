@@ -7,7 +7,6 @@ const SearchHistory = ({
   recentViewed,
   loading,
 }: SearchHistoryProps) => {
-  console.log('SearchHistory', recentViewed);
   return (
     <div className="mt-5 flex flex-col space-y-10 overflow-x-hidden">
       {recentSearches.length > 0 && (

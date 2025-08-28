@@ -66,7 +66,6 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
   useEffect(() => {
     if (page !== prevPage.current) {
       if (reviewsRef.current) {
-        console.log('Scrolling into view');
         reviewsRef.current.scrollIntoView({
           behavior: 'smooth',
           block: 'start',

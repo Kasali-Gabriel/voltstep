@@ -58,18 +58,11 @@ export default function ConnectedAccounts() {
     await createExternalAccount({
       strategy,
       redirectUrl: '/account',
-    })
-      .then((res) => {
-        if (res?.verification?.externalVerificationRedirectURL) {
-          router.push(res.verification.externalVerificationRedirectURL.href);
-        }
-      })
-      .catch((err) => {
-        console.log('ERROR', err);
-      })
-      .finally(() => {
-        console.log('Redirected user to oauth provider');
-      });
+    }).then((res) => {
+      if (res?.verification?.externalVerificationRedirectURL) {
+        router.push(res.verification.externalVerificationRedirectURL.href);
+      }
+    });
   };
 
   // Show a loading message until Clerk loads

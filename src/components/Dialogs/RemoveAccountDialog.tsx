@@ -38,14 +38,14 @@ export function RemoveAccountDialog({
 
         <div className="flex items-center justify-end space-x-3 pt-4">
           <DialogClose asChild>
-            <button className="cursor-pointer text-lg font-medium text-neutral-600 hover:text-neutral-800">
+            <button className="cursor-pointer text-lg font-medium text-black hover:text-neutral-800">
               Cancel
             </button>
           </DialogClose>
 
           <button
             onClick={() => onRemove(account)}
-            className="cursor-pointer rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-400"
+            className="cursor-pointer rounded-3xl bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-400"
           >
             Remove
           </button>

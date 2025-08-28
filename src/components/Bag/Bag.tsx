@@ -1,12 +1,16 @@
+import { useUserId } from '@/context/UserContext';
 import { useCartStore } from '@/hooks/use-cart';
+import { useOrderStore } from '@/hooks/useOrder';
 import { useShadowOnScroll } from '@/hooks/useShadowOnscroll';
 import { useBagStore } from '@/lib/state';
+import { OrderItem } from '@/types/order';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { ShieldCheck, ShoppingBag, X } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useRouter } from 'next/navigation';
 import { forwardRef, useEffect, useState } from 'react';
 import SignedOutComponent from '../Authentication/signedOut';
 import {
@@ -17,6 +21,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '../ui/drawer';
+import Loader from '../ui/loader';
 import {
   Sheet,
   SheetClose,
@@ -31,9 +36,40 @@ import { BagContent } from './BagContent';
 
 export const Bag = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const router = useRouter();
 
   const { isBagOpen, setIsBagOpen } = useBagStore();
-  const { items } = useCartStore();
+  const { items, getTotal, getShippingFee, getTaxFee } = useCartStore();
+  const userId = useUserId();
+
+  const { createOrFetchOrder, creatingOrder } = useOrderStore();
+
+  const orderItems: OrderItem[] = items
+    .filter((item) => item && (item.product?.id || item.id))
+    .map((item) => ({
+      productId: item.product?.id,
+      product: item.product,
+      quantity: item.quantity,
+      size: item.selectedSize,
+      color: item.selectedColor,
+      price: item.price,
+      orderId: '',
+      id: '',
+    }));
+
+  const handleCheckout = async () => {
+    if (createOrFetchOrder) {
+      await createOrFetchOrder({
+        items: orderItems,
+        userId: userId,
+        shippingCost: getShippingFee(),
+        taxAmount: getTaxFee(),
+        totalAmount: getTotal(),
+      });
+      setIsBagOpen(false);
+      router.push('/checkout');
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -154,14 +190,23 @@ export const Bag = () => {
           )}
         </div>
 
-        {/* TODO checkout page and stripe */}
         <div
           className={`z-20 px-4 sm:px-10 ${notAtBottom && isScrolled ? 'shadow-[0_-10px_10px_-3px_rgba(0,0,0,0.3)]' : ''}`}
         >
           {items.length > 0 && activeTab === 'bag' && (
-            <button className="mt-4 mb-6 flex w-full cursor-pointer justify-center space-x-3 rounded-4xl bg-black py-3 text-center font-bold text-white hover:bg-stone-900 md:py-4 xl:mb-2">
-              <ShieldCheck />
-              <span> CHECKOUT </span>
+            <button
+              onClick={handleCheckout}
+              className="mt-4 mb-6 flex w-full cursor-pointer justify-center rounded-4xl bg-black py-3 hover:bg-stone-900 disabled:opacity-50 disabled:hover:bg-black md:py-4 xl:mb-2"
+              disabled={creatingOrder}
+            >
+              {creatingOrder ? (
+                <Loader size={20} borderWidth="2px" color="white" />
+              ) : (
+                <div className="flex items-center justify-center space-x-3 font-bold text-white">
+                  <ShieldCheck />
+                  <span> CHECKOUT </span>
+                </div>
+              )}
             </button>
           )}
         </div>

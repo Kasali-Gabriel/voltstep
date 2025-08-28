@@ -9,19 +9,21 @@ datasource db {
 }
 
 model User {
-  id              String          @id @default(auto()) @map("_id") @db.ObjectId
-  email           String          @unique
-  firstName       String
-  lastName        String
-  imageUrl        String?
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  clerkUserId     String?
-  wishList        WishList[]      @relation("UserToWishList")
-  reviews         Review[]        @relation("UserReviews")
-  orders          Order[]
-  viewedProducts  ViewedProduct[] @relation("UserViewedProducts")
-  searchHistories SearchHistory[] @relation("UserSearchHistories")
+  id                String            @id @default(auto()) @map("_id") @db.ObjectId
+  email             String            @unique
+  firstName         String
+  lastName          String
+  imageUrl          String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  clerkUserId       String?
+  stripeCustomerId  String?
+  wishList          WishList[]        @relation("UserToWishList")
+  reviews           Review[]          @relation("UserReviews")
+  orders            Order[]
+  viewedProducts    ViewedProduct[]   @relation("UserViewedProducts")
+  searchHistories   SearchHistory[]   @relation("UserSearchHistories")
+  deliveryAddresses DeliveryAddress[] @relation("UserDeliveryAddresses")
 }
 
 model Catalog {
@@ -106,21 +108,72 @@ model Review {
 }
 
 model Order {
-  id        String      @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String?     @db.ObjectId
-  user      User?       @relation(fields: [userId], references: [id])
-  items     OrderItem[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  id                         String           @id @default(auto()) @map("_id") @db.ObjectId
+  userId                     String?          @db.ObjectId
+  user                       User?            @relation(fields: [userId], references: [id])
+  items                      OrderItem[]
+  status                     OrderStatus      @default(PENDING)
+  paymentStatus              PaymentStatus    @default(PENDING)
+  totalAmount                Float
+  stripePaymentId            String?
+  deliveryAddressId          String?          @db.ObjectId
+  deliveryAddress            DeliveryAddress? @relation(fields: [deliveryAddressId], references: [id])
+  stripePaymentMethodId      String?
+  stripePaymentMethodType    String?
+  stripePaymentMethodDetails Json?
+  shippingCost               Float            @default(0)
+  taxAmount                  Float            @default(0)
+  guestDeliveryAddress       String?
+  createdAt                  DateTime         @default(now())
+  updatedAt                  DateTime         @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+model DeliveryAddress {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String   @db.ObjectId
+  user         User     @relation("UserDeliveryAddresses", fields: [userId], references: [id], onDelete: Cascade)
+  email        String
+  firstName    String
+  lastName     String
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  state        String
+  zipCode      String
+  country      String
+  phone        String
+  isDefault    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  orders       Order[]
 }
 
 model OrderItem {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   orderId   String  @db.ObjectId
-  order     Order   @relation(fields: [orderId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String  @db.ObjectId
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int     @default(1)
+  size      String?
+  color     String
+  price     Float
 }
 
 model WishList {

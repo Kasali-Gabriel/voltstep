@@ -1,5 +1,5 @@
-
-import { WishListItem } from '@/types/wishlist';
+import { WishlistContextType, WishListItem } from '@/types/wishlist';
+import axios from 'axios';
 import React, {
   createContext,
   useCallback,
@@ -8,15 +8,6 @@ import React, {
   useState,
 } from 'react';
 import { useUserId } from './UserContext';
-import axios from 'axios';
-
-interface WishlistContextType {
-  wishlist: WishListItem[];
-  loading: boolean;
-  addToWishlist: (item: Omit<WishListItem, 'id'>) => Promise<void>;
-  removeFromWishlist: (productId: string) => Promise<void>;
-  refreshWishlist: () => Promise<void>;
-}
 
 const WishlistContext = createContext<WishlistContextType>({
   wishlist: [],

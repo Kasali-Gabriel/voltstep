@@ -5,10 +5,10 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-  imageUrl?: string;
+  imageUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
-  clerkUserId?: string;
+  clerkUserId: string | null;
 }
 
 export type CreateUserInput = {
@@ -19,6 +19,7 @@ export type CreateUserInput = {
   createdAt: Date;
   updatedAt: Date;
   clerkUserId: string;
+  stripeCustomerId?: string | null;
 };
 
 export interface AuthHeaderProps {
@@ -81,4 +82,18 @@ export interface EmailVerificationDialogRef {
   setError: (message: string) => void;
   clearInput: () => void;
   markSuccessful: () => void;
+}
+
+export interface PasswordFormProps {
+  isLoading: boolean;
+  serverErrors?: {
+    newPassword?: string;
+  };
+  onSubmit: (newPassword: string) => void;
+  onFieldChange?: (field: 'newPassword') => void;
+}
+
+export interface PasswordDialogProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }

@@ -174,7 +174,7 @@ export function useSearch({
 
         saveDebounceRef.current = setTimeout(async () => {
           if (userId) {
-            console.log('Saving search history for user:', userId);
+           
             await saveSearchHistory(userId, trimmedQuery);
             await savePopularSearch(trimmedQuery);
           } else {

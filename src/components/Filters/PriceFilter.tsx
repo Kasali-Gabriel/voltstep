@@ -4,7 +4,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { Product } from '@/types/product';
+import { Product, ProductFilters } from '@/types/product';
 import { SearchedProduct } from '@/types/search';
 import { ChevronDown } from 'lucide-react';
 
@@ -49,9 +49,9 @@ export function PriceFilter({
   toggleSection,
   priceRanges,
 }: {
-  filters: import('@/utils/Product/productFilters').ProductFilters;
+  filters: ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
+    f: Partial<ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;

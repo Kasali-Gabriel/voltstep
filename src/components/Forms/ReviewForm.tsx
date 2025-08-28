@@ -1,13 +1,12 @@
+import { FloatingLabelInputField } from '@/components/ui/floating-input';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { reviewSchema } from '@/lib/schema';
 import { ReviewFormProps } from '@/types/review';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
@@ -15,16 +14,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import RatingInput from '../Reviews/RatingInput';
-
-const reviewSchema = z.object({
-  title: z
-    .string()
-    .min(2, { message: 'Review Title must be at least 10 characters.' }),
-  details: z
-    .string()
-    .min(10, { message: 'Review Description must be at least 50 characters.' }),
-  rating: z.number().min(1, { message: 'Please provide a rating.' }).max(5),
-});
 
 const ReviewForm = ({
   reviewerId,
@@ -100,43 +89,18 @@ const ReviewForm = ({
         </div>
 
         <div className="mt-10 flex flex-col space-y-6">
-          <FormField
-            control={form.control}
+          <FloatingLabelInputField
+            form={form}
             name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Review Title</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Give your review a headline"
-                    {...field}
-                    className="rounded-lg border-stone-300"
-                    disabled={loading}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Review Title"
+            type="text"
           />
 
-          <FormField
-            control={form.control}
+          <FloatingLabelInputField
+            form={form}
             name="details"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Review Description</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Tell us more about your experience."
-                    rows={5}
-                    {...field}
-                    className="scrollbar-thin h-40 overflow-y-auto rounded-lg border-stone-300 p-4"
-                    disabled={loading}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Review Description"
+            fieldType="textarea"
           />
         </div>
 

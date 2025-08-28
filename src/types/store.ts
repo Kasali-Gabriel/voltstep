@@ -1,3 +1,5 @@
+import { CreateDeliveryAddressInput } from './address';
+import { OrderItem } from './order';
 import { ViewedProductItem } from './product';
 import { SearchHistoryItem } from './search';
 
@@ -51,3 +53,34 @@ export interface ProductHeaderState {
   productHeaderStuck: boolean;
   setProductHeaderStuck: (value: boolean) => void;
 }
+
+export interface AddressState {
+  isFormValid: boolean;
+  setIsFormValid: (val: boolean) => void;
+}
+
+export interface OrderState {
+  orderId: string | null;
+  clientSecret: string | null;
+  creatingOrder: boolean;
+  isGuest: boolean;
+
+  setOrderId: (id: string | null) => void;
+  setClientSecret: (secret: string | null) => void;
+  setCreatingOrder: (val: boolean) => void;
+  setIsGuest: (val: boolean) => void;
+  resetOrder: () => void;
+
+  createOrFetchOrder: (params: {
+    items: OrderItem[];
+    deliveryAddress?: {
+      deliveryAddressId?: string | null;
+      guestDeliveryAddress?: CreateDeliveryAddressInput;
+    };
+    userId?: string | null;
+    totalAmount?: number;
+    shippingCost?: number;
+    taxAmount?: number;
+  }) => Promise<void>;
+}
+

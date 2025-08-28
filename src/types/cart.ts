@@ -1,3 +1,5 @@
+import { Product } from './product';
+
 export interface CartItem {
   id: string;
   name: string;
@@ -7,6 +9,7 @@ export interface CartItem {
   selectedSize?: string;
   selectedColor: string;
   slug: string;
+  product: Product;
 }
 
 export interface CartState {
@@ -15,9 +18,11 @@ export interface CartState {
   removeItem: (item: CartItem) => void;
   increaseQuantity: (item: CartItem) => void;
   decreaseQuantity: (item: CartItem) => void;
-  getSubTotal: () => string;
+  clearCart: () => void;
+  getSubTotal: () => number;
   getShippingFee: () => number;
-  getTotal: () => string;
+  getTaxFee: () => number;
+  getTotal: () => number;
 }
 
 export interface AddToBagButtonProps {

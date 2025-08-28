@@ -24,9 +24,7 @@ export const SizeSelector = forwardRef<HTMLDivElement, SizeSelectorProps>(
     // Get all sizes for the subcategory
     const allSizes = subcategorySizeMapping[subcategoryName];
 
-    console.log('SizeSelector initialized with sizes:', sizes);
-    console.log('All sizes:', allSizes);
-    console.log('subcategoryName:', subcategoryName);
+ 
 
     const [reorderedSizes, setReorderedSizes] = useState<string[]>(allSizes);
     const [isMobile] = useIsMobile();

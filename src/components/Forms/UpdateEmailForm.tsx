@@ -78,6 +78,7 @@ const UpdateEmailForm = ({ user }: { user: UserResource }) => {
           <button
             className="hidden cursor-pointer text-sm font-medium underline decoration-2 underline-offset-[6px] hover:text-neutral-600 sm:block sm:text-base md:text-lg"
             type="submit"
+            disabled={!emailform.formState.isDirty}
           >
             Update
           </button>

@@ -7,7 +7,12 @@ import {
 import { CreateUserInput } from '@/types/user';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
+import Stripe from 'stripe';
 import { Webhook } from 'svix';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2025-07-30.basil',
+});
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
@@ -73,6 +78,12 @@ export async function POST(req: Request) {
 
     const now = new Date();
 
+    const customer = await stripe.customers.create({
+      name:
+        first_name || fallbackFirstName + ' ' + last_name || fallbackLastName,
+      email: email,
+    });
+
     const user: CreateUserInput = {
       email,
       firstName: first_name || fallbackFirstName,
@@ -81,6 +92,7 @@ export async function POST(req: Request) {
       createdAt: now,
       updatedAt: now,
       clerkUserId: id,
+      stripeCustomerId: customer.id,
     };
 
     await createUser(user);
@@ -150,4 +162,7 @@ export async function POST(req: Request) {
     await deleteUser(user.id);
     return new Response('', { status: 200 });
   }
+
+  // Return a generic success for unhandled event types to avoid returning undefined
+  return new Response('', { status: 200 });
 }

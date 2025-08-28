@@ -13,7 +13,7 @@ const getColor = (value: number) => {
 
 const ShippingProgress = () => {
   const { getSubTotal } = useCartStore();
-  const subTotal = parseFloat(getSubTotal());
+  const subTotal = getSubTotal();
   const progress = Math.min((subTotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const amountLeft = Math.max(FREE_SHIPPING_THRESHOLD - subTotal, 0);
 

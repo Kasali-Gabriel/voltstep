@@ -5,6 +5,7 @@ import {
 } from '@/components/ui/collapsible';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ProductFilters } from '@/types/product';
 import { ChevronDown, Star } from 'lucide-react';
 
 export function RatingFilter({
@@ -13,9 +14,9 @@ export function RatingFilter({
   open,
   toggleSection,
 }: {
-  filters: import('@/utils/Product/productFilters').ProductFilters;
+  filters: ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
+    f: Partial<ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;

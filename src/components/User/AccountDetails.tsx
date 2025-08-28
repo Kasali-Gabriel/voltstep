@@ -14,7 +14,7 @@ const AccountDetails = () => {
   const [isPasswordDialogOpen, setIsPasswordDialogOpen] = useState(false);
 
   return (
-    <div className="flex w-full flex-col space-y-7 sm:w-4/5 xl:w-2/3">
+    <div className="flex w-full flex-col space-y-7 sm:w-4/5 sm:pl-20 xl:w-2/3 xl:pl-36">
       <h2 className="mb-4 text-2xl sm:text-3xl">Account Details</h2>
 
       {/* Profile */}

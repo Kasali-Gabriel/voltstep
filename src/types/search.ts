@@ -1,4 +1,5 @@
-import { ProductFilters } from '@/utils/Product/productFilters';
+import { ProductFilters } from "./product";
+
 
 export interface SearchHistoryItem {
   id: string;

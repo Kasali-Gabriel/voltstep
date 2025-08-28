@@ -108,7 +108,7 @@ const DeleteAccountDialog = () => {
                 setConfirmText(e.target.value);
                 setError('');
               }}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-red-500 focus:outline-none"
+              className="w-full rounded-3xl border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-red-500 focus:outline-none"
               placeholder="DELETE"
               disabled={isDeleting}
             />
@@ -125,7 +125,7 @@ const DeleteAccountDialog = () => {
           <button
             onClick={handleDeleteAccount}
             disabled={isDeleting || confirmText !== 'DELETE'}
-            className="h-10 min-w-36 cursor-pointer rounded-2xl bg-red-600 px-4 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-10 min-w-36 cursor-pointer rounded-3xl bg-red-600 px-4 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isDeleting ? (
               <Loader size={24} borderWidth="3px" color="white" />

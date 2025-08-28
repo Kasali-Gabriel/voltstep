@@ -34,6 +34,7 @@ export type UpdateReviewParams = {
 export interface AddReviewBtnProps {
   productId: string;
   reviews?: Review[];
+  onReviewChange?: () => void;
 }
 
 export interface ReviewFiltersProps {

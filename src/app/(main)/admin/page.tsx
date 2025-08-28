@@ -1,62 +1,14 @@
-import { removeRole, setRole } from '@/actions/admin';
-import { SearchUsers } from '@/components/Admin/SearchUsers';
+import AdminPageContent from '@/components/Admin/AdminPageContent';
 import { checkRole } from '@/utils/User/roles';
-import { clerkClient } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
-// TODO use shadcn to style this component
-export default async function AdminDashboard(params: {
-  searchParams: Promise<{ search?: string }>;
-}) {
-  if (!checkRole('admin')) {
+export default async function AdminPage() {
+  // Check if user has admin role on the server side
+  const hasAdminRole = await checkRole('admin');
+
+  if (!hasAdminRole) {
     redirect('/');
   }
 
-  const query = (await params.searchParams).search;
-
-  const client = await clerkClient();
-
-  const users = query ? (await client.users.getUserList({ query })).data : [];
-
-  return (
-    <>
-      <p>
-        This is the protected admin dashboard restricted to users with the
-        `admin` role.
-      </p>
-
-      <SearchUsers />
-
-      {users.map((user) => {
-        return (
-          <div key={user.id}>
-            <div>
-              {user.firstName} {user.lastName}
-            </div>
-
-            <div>
-              {
-                user.emailAddresses.find(
-                  (email) => email.id === user.primaryEmailAddressId,
-                )?.emailAddress
-              }
-            </div>
-
-            <div>{user.publicMetadata.role as string}</div>
-
-            <form action={setRole}>
-              <input type="hidden" value={user.id} name="id" />
-              <input type="hidden" value="admin" name="role" />
-              <button type="submit">Make Admin</button>
-            </form>
-
-            <form action={removeRole}>
-              <input type="hidden" value={user.id} name="id" />
-              <button type="submit">Remove Role</button>
-            </form>
-          </div>
-        );
-      })}
-    </>
-  );
+  return <AdminPageContent />;
 }

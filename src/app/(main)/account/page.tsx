@@ -9,8 +9,9 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import AccountDetails from '@/components/User/AccountDetails';
-import DeliveryAddresses from '@/components/User/DeliveryAddresses';
-import PaymentMethods from '@/components/User/PaymentMethods';
+import DeliveryAddresses from '@/components/User/DeliveryAddresses/DeliveryAddresses';
+import PaymentMethod from '@/components/User/PaymentMethod';
+// import PaymentMethods from '@/components/User/PaymentMethods/PaymentMethods';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useNavBarStore } from '@/lib/state';
 import { useUser } from '@clerk/nextjs';
@@ -51,7 +52,7 @@ const Page = () => {
       id: 'payment-methods' as ActiveSection,
       label: 'Payment Methods',
       icon: CreditCard,
-      component: PaymentMethods,
+      component: PaymentMethod,
     },
     {
       id: 'delivery-addresses' as ActiveSection,
@@ -79,6 +80,19 @@ const Page = () => {
   useEffect(() => {
     setIsSheetOpen(false);
   }, [isMobile]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get('section') as ActiveSection | null;
+
+    if (section) {
+      setActiveSection(section);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeSection]);
 
   const ButtonOptions = () => (
     <div className="space-y-2">
@@ -153,13 +167,11 @@ const Page = () => {
       </div>
 
       {/* Main Content */}
-      <div
-        className={`flex-1 p-5 pt-56 ${isLoaded ? 'sm:pl-20 xl:pl-36' : ''}`}
-      >
+      <div className="flex-1 p-5 pt-56">
         {isLoaded ? (
           <ActiveComponent />
         ) : (
-          <Loader color="black" size={50} borderWidth="3px" />
+          <Loader color="black" size={44} borderWidth="2px" />
         )}
       </div>
     </div>

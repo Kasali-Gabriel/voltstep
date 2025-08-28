@@ -80,6 +80,7 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
       image: item.product.images?.[0] || '',
       selectedSize: selectedSize,
       selectedColor: item.selectedColor,
+      product: item.product,
     });
 
     setIsBagOpen(true);

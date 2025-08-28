@@ -1,4 +1,5 @@
-import { ProductFilters } from '../Product/productFilters';
+
+import { ProductFilters } from '@/types/product';
 import { synonymMap } from './synonyms';
 /**
  * Converts ProductFilters (from URL params) to a Meilisearch filter string.

@@ -12,30 +12,41 @@ export const useCartStore = create<CartState>()(
         a.selectedColor === b.selectedColor;
 
       const getSubTotal = () => {
-        return get()
-          .items.reduce(
-            (sum, item) => sum + item.price * (item.quantity || 1),
-            0,
-          )
-          .toFixed(2);
+        return parseFloat(
+          get()
+        .items.reduce(
+          (sum, item) => sum + item.price * (item.quantity || 1),
+          0,
+        )
+        .toFixed(2),
+        );
       };
 
       const getShippingFee = () => {
-        const subTotal = parseFloat(getSubTotal());
+        const subTotal = getSubTotal();
         const itemCount = get().items.reduce(
           (sum, item) => sum + (item.quantity || 1),
           0,
         );
-        if (subTotal >= 100) return 0;
-        if (itemCount === 1) return 7;
-        if (itemCount === 2) return 10;
-        return 12.5;
+        let fee = 0;
+        if (subTotal >= 100) fee = 0;
+        else if (itemCount === 1) fee = 7;
+        else if (itemCount === 2) fee = 10;
+        else fee = 12.5;
+        return parseFloat(fee.toFixed(2));
+      };
+
+      const getTaxFee = () => {
+        const subTotal = getSubTotal();
+        const taxRate = 0.07;
+        return parseFloat((subTotal * taxRate).toFixed(2));
       };
 
       const getTotal = () => {
-        const subTotal = parseFloat(getSubTotal());
+        const subTotal = getSubTotal();
         const shipping = getShippingFee();
-        return (subTotal + shipping).toFixed(2);
+        const tax = getTaxFee();
+        return parseFloat((subTotal + shipping + tax).toFixed(2));
       };
 
       return {
@@ -78,7 +89,7 @@ export const useCartStore = create<CartState>()(
                       at max (10) .
                     </p>
                   ),
-                });
+                }, );
                 return { items: state.items };
               }
             }
@@ -165,8 +176,18 @@ export const useCartStore = create<CartState>()(
 
             return { items: updatedItems };
           }),
+
+        // Clear all items from cart
+        clearCart: () =>
+          set(() => {
+            toast('Cart cleared', {
+              description: 'All items removed from your cart.',
+            });
+            return { items: [] };
+          }),
         getSubTotal,
         getShippingFee,
+        getTaxFee,
         getTotal,
       };
     },

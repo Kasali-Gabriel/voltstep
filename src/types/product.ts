@@ -1,4 +1,4 @@
-import { ProductFilters } from '@/utils/Product/productFilters';
+import { Tag as PrismaTag } from '@prisma/client';
 import { Review } from './review';
 import { SearchedProduct } from './search';
 
@@ -52,20 +52,16 @@ export interface Product {
   colors: ProductColor[];
   createdAt: Date;
   updatedAt: Date;
-  tags: Tag[];
+  tags: PrismaTag[];
   reviews: Review[];
   subcategoryId: string;
   subcategory?: Subcategory;
-  popularityScore?: number;
-  lastScoreUpdate?: Date;
+  popularityScore: number;
+  lastScoreUpdate: Date | null;
 }
 
-export enum Tag {
-  NEW_ARRIVAL = 'NEW_ARRIVAL',
-  BESTSELLER = 'BESTSELLER',
-  FLASH_SALE = 'FLASH_SALE',
-  BACK_IN_STOCK = 'BACK_IN_STOCK',
-}
+export const Tag = PrismaTag;
+export type Tag = PrismaTag;
 
 export interface SizeSelectorProps {
   sizes: string[];
@@ -81,7 +77,7 @@ export interface SizeSelectorProps {
 
 export interface ColorSelectorProps {
   colors: string[];
-  selectedColor: string ;
+  selectedColor: string;
   setSelectedColor: (color: string) => void;
 }
 
@@ -149,4 +145,17 @@ export interface ViewedProductItem {
   product: SearchedProduct;
   fromSearch: boolean;
   query: string;
+}
+
+export interface ProductFilters {
+  priceRange?: [number, number];
+  priceRanges?: Array<[number, number]>;
+  sizes?: string[];
+  colors?: string[];
+  tags?: Tag[];
+  rating?: number;
+  inStock?: boolean;
+  subcategory?: string;
+  category?: string;
+  catalog?: string;
 }

@@ -6,20 +6,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
+import { FloatingLabelInputField } from '../ui/floating-input';
+import { Form } from '../ui/form';
 
 const UpdateProfileForm = ({
   firstName,
   lastName,
-  isLoading,
   onSubmit,
   onValuesChange,
 }: UpdateProfileFormProps) => {
@@ -58,42 +50,18 @@ const UpdateProfileForm = ({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="flex w-full items-center space-x-3"
       >
-        <FormField
-          control={form.control}
+        <FloatingLabelInputField
+          form={form}
           name="firstName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>First Name</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Enter your first name"
-                  {...field}
-                  className="rounded-md border-neutral-300"
-                  disabled={isLoading}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="First Name"
+          type="text"
         />
 
-        <FormField
-          control={form.control}
+        <FloatingLabelInputField
+          form={form}
           name="lastName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Last Name</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Enter your last name"
-                  {...field}
-                  className="rounded-md border-neutral-300"
-                  disabled={isLoading}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Last Name"
+          type="text"
         />
       </form>
     </Form>

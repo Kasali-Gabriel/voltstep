@@ -14,15 +14,11 @@ import {
   DialogTitle,
 } from '../ui/dialog';
 
-interface AddReviewBtnPropsWithCallback extends AddReviewBtnProps {
-  onReviewChange?: () => void;
-}
-
 const AddReviewBtn = ({
   productId,
   reviews = [],
   onReviewChange,
-}: AddReviewBtnPropsWithCallback) => {
+}: AddReviewBtnProps) => {
   const userId = useUserId();
 
   const [showDialog, setShowDialog] = useState(false);

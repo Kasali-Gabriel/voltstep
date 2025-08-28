@@ -4,6 +4,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import { ProductFilters } from '@/types/product';
 import { ChevronDown } from 'lucide-react';
 
 export function AvailabilityFilter({
@@ -12,9 +13,9 @@ export function AvailabilityFilter({
   open,
   toggleSection,
 }: {
-  filters: import('@/utils/Product/productFilters').ProductFilters;
+  filters: ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
+    f: Partial<ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;

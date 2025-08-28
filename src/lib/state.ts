@@ -1,4 +1,5 @@
 import {
+  AddressState,
   BagState,
   EmailState,
   NavBarState,
@@ -113,3 +114,8 @@ export const useSideBarStore = create<showFilterState>()(
     },
   ),
 );
+
+export const useAddressStore = create<AddressState>((set) => ({
+  isFormValid: false,
+  setIsFormValid: (val: boolean) => set({ isFormValid: val }),
+}));

@@ -1,29 +1,20 @@
 'use client';
 
 import { PasswordSchema } from '@/lib/schema';
+import { PasswordFormProps } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { FloatingLabelInput } from '../ui/floating-input';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Input } from '../ui/input';
-
-interface PasswordFormProps {
-  isLoading: boolean;
-  serverErrors?: {
-    newPassword?: string;
-  };
-  onSubmit: (newPassword: string) => void;
-  onFieldChange?: (field: 'newPassword') => void;
-}
 
 const PasswordForm = ({
   isLoading,
@@ -70,12 +61,11 @@ const PasswordForm = ({
           name="newPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New Password</FormLabel>
               <FormControl>
                 <div className="relative">
-                  <Input
+                  <FloatingLabelInput
                     type={showNewPassword ? 'text' : 'password'}
-                    placeholder="Enter your new password"
+                    label="New Password"
                     {...field}
                     className="rounded-md border-neutral-300 pr-10"
                     disabled={isLoading}
@@ -104,12 +94,11 @@ const PasswordForm = ({
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm New Password</FormLabel>
               <FormControl>
                 <div className="relative">
-                  <Input
+                  <FloatingLabelInput
                     type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="Confirm your new password"
+                    label="Confirm New Password"
                     {...field}
                     className="rounded-md border-neutral-300 pr-10"
                     disabled={isLoading}

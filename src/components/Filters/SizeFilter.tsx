@@ -5,7 +5,7 @@ import {
 } from '@/components/ui/collapsible';
 import { subcategorySizeMapping } from '@/data/sizeData';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { Product, ProductColor } from '@/types/product';
+import { Product, ProductColor, ProductFilters } from '@/types/product';
 import { SearchedProduct } from '@/types/search';
 import { ChevronDown } from 'lucide-react';
 
@@ -232,9 +232,9 @@ export function SizeFilter({
   toggleSection,
 }: {
   availableSizes: string[];
-  filters: import('@/utils/Product/productFilters').ProductFilters;
+  filters: ProductFilters;
   updateFilters: (
-    f: Partial<import('@/utils/Product/productFilters').ProductFilters>,
+    f: Partial<ProductFilters>,
   ) => void;
   open: boolean;
   toggleSection: () => void;

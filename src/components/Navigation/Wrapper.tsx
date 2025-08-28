@@ -41,7 +41,7 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
   return (
     <UserProvider>
       <WishlistProvider>
-        <div className="w-full">
+        <div className="flex h-full min-h-screen w-full flex-col">
           {isClient && (
             <>
               <GoogleOneTap fedCmSupport={true} cancelOnTapOutside={false} />
@@ -70,11 +70,14 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
             </>
           )}
 
-          <div id="header-stack">
+          <div id="header-stack" className="relative z-50">
             <Navbar catalogs={catalogs} />
-            {(isProductPage || isProductsListPage) && <FlashNews />}
           </div>
-          <main>{children}</main>
+          
+          {(isProductPage || isProductsListPage) && <FlashNews />}
+
+          <main className="flex-1">{children}</main>
+
           <Footer />
         </div>
       </WishlistProvider>

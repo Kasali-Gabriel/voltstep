@@ -214,7 +214,7 @@ const UpdateProfileDialog = ({
               type="submit"
               form="update-profile-form"
               disabled={isLoading || !!imageError || !hasChanges}
-              className="flex h-8 w-20 cursor-pointer items-center justify-center rounded-md bg-neutral-700 text-white hover:bg-neutral-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-neutral-700"
+              className="flex h-8 w-20 cursor-pointer items-center justify-center rounded-3xl bg-black text-white hover:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-neutral-700"
             >
               {isLoading ? (
                 <Loader size={24} borderWidth="3px" color="white" />

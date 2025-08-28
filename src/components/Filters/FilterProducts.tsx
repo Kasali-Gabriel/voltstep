@@ -4,7 +4,6 @@ import { SearchedProduct } from '@/types/search';
 import {
   filtersToURLParams,
   parseFiltersFromURL,
-  ProductFilters,
 } from '@/utils/Product/productFilters';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
@@ -14,6 +13,7 @@ import { getSmartPriceRanges, PriceFilter } from './PriceFilter';
 import { RatingFilter } from './RatingFilter';
 import { getSmartSizes, SizeFilter } from './SizeFilter';
 import { TagsFilter } from './TagsFilter';
+import { ProductFilters } from '@/types/product';
 
 export const FilterProducts = ({
   products = [],

@@ -1,5 +1,6 @@
 'use client';
 
+import { PasswordDialogProps } from '@/types/user';
 import { useReverification, useUser } from '@clerk/nextjs';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
@@ -8,11 +9,6 @@ import { toast } from 'sonner';
 import PasswordForm from '../Forms/PasswordForm';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
 import Loader from '../ui/loader';
-
-interface PasswordDialogProps {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}
 
 const PasswordDialog = ({ isOpen, setIsOpen }: PasswordDialogProps) => {
   const { user } = useUser();
@@ -122,8 +118,8 @@ const PasswordDialog = ({ isOpen, setIsOpen }: PasswordDialogProps) => {
   };
 
   return (
-    <Dialog open={isOpen}  onOpenChange={setIsOpen}>
-      <DialogContent showCloseButton={false} className="sm:max-w-md">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent  showCloseButton={false} className="sm:max-w-md">
         <VisuallyHidden>
           <DialogHeader>
             <DialogTitle>
@@ -172,7 +168,7 @@ const PasswordDialog = ({ isOpen, setIsOpen }: PasswordDialogProps) => {
               type="button"
               onClick={handleCancel}
               disabled={isLoading}
-              className="cursor-pointer font-medium text-neutral-600 hover:text-neutral-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="cursor-pointer font-medium text-black hover:text-neutral-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Cancel
             </button>
@@ -181,7 +177,7 @@ const PasswordDialog = ({ isOpen, setIsOpen }: PasswordDialogProps) => {
               type="submit"
               form="password-form"
               disabled={isLoading}
-              className="flex h-9 w-20 cursor-pointer items-center justify-center rounded-md bg-neutral-700 text-white hover:bg-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-neutral-700"
+              className="flex h-9 w-20 cursor-pointer items-center justify-center rounded-3xl bg-black text-white hover:bg-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-black"
             >
               {isLoading ? (
                 <Loader size={20} borderWidth="2px" color="white" />
