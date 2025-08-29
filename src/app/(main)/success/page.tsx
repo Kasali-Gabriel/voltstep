@@ -6,9 +6,9 @@ import { useUserContext } from '@/context/UserContext';
 import { useCartStore } from '@/hooks/use-cart';
 import { ArrowRight } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
-export default function SuccessPage() {
+function SuccessPageContent() {
   const router = useRouter();
   const { clearCart } = useCartStore();
   const { firstName, userId, loading } = useUserContext();
@@ -55,12 +55,26 @@ export default function SuccessPage() {
         {userId && orderId && (
           <button
             onClick={() => router.push(`/orders/${orderId}`)}
-            className="cursor-pointer rounded-4xl border border-neutral-400 px-10 py-3 font-medium text-gray-700 transition hover:border-black hover:text-gray-900"
+            className="cursor-pointer rounded-4xl border border-neutral-300 px-10 py-3 font-medium text-gray-700 transition hover:border-black hover:text-gray-900"
           >
             Track Order
           </button>
         )}
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mt-28 h-full w-full justify-items-center">
+          <Loader size={52} borderWidth="2px" color="black" />
+        </div>
+      }
+    >
+      <SuccessPageContent />
+    </Suspense>
   );
 }
