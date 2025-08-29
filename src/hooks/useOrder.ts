@@ -28,6 +28,8 @@ export const useOrderStore = create<OrderState>()(
       createOrFetchOrder: async ({
         deliveryAddress,
         userId,
+        stripeCustomerId,
+        email,
         totalAmount,
         taxAmount,
         shippingCost,
@@ -128,10 +130,14 @@ export const useOrderStore = create<OrderState>()(
 
           if (!orderId) throw new Error('Failed to resolve orderId');
 
+          const guestEmail = deliveryAddress?.guestDeliveryAddress?.email;
+
           const stripeRes = await axios.post('/api/stripe', {
-            orderId,
             amount: Math.round((totalAmount ?? 0) * 100),
             currency: 'usd',
+            orderId,
+            customerid: stripeCustomerId,
+            email: email || guestEmail,
           });
 
           const clientSecret = stripeRes.data?.clientSecret ?? null;

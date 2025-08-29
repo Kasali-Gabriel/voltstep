@@ -169,7 +169,6 @@ export default function AddressFields({
           className="h-full w-full"
         />
 
-        {/* TODO phone input with automatic phone code */}
         <FloatingLabelInputField
           form={form}
           name={getFieldName('zipCode')}

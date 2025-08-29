@@ -49,7 +49,7 @@ const Footer = () => {
                 {data.items.map((item, idx) => (
                   <Link
                     href={item.link}
-                    className="cursor-pointer text-sm font-semibold text-stone-500 hover:text-stone-600 hover:underline hover:underline-offset-4"
+                    className="w-fit cursor-pointer text-sm font-semibold text-stone-500 hover:text-stone-600 hover:underline hover:underline-offset-4"
                     key={idx}
                   >
                     {item.label}
@@ -82,7 +82,7 @@ const Footer = () => {
                     {data.items.map((item, idx) => (
                       <Link
                         href={item.link}
-                        className="text-sm font-semibold text-stone-500"
+                        className="w-fit text-sm font-semibold text-stone-500"
                         key={idx}
                       >
                         {item.label}
@@ -121,7 +121,7 @@ const Footer = () => {
               Follow Us
             </h3>
 
-            <div className="flex flex-wrap justify-center gap-5 py-5 md:mt-5 md:justify-start md:gap-4 md:py-0">
+            <div className="flex justify-center gap-5 py-5 md:mt-5 md:grid md:grid-cols-3 md:gap-4 md:py-0">
               {socialIcons.map(({ Icon }, index) => (
                 <div
                   key={index}

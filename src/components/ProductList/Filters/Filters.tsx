@@ -10,7 +10,6 @@ import { ProductFilterProps } from '@/types/product';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import SortProducts from '../ProductList/SortProducts';
 import {
   Sheet,
   SheetClose,
@@ -18,7 +17,8 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from '../ui/sheet';
+} from '../../ui/sheet';
+import SortProducts from '../SortProducts';
 import { FilterProducts } from './FilterProducts';
 
 const Filters = ({
@@ -131,15 +131,9 @@ const Filters = ({
               </div>
 
               <div className="scrollbar-thin flex flex-col overflow-y-auto pr-3 sm:pr-5">
-                <SortProducts
-                  isMobile
-                  isSearchResults={isSearchResults}
-                />
+                <SortProducts isMobile isSearchResults={isSearchResults} />
 
-                <FilterProducts
-                  products={unfilteredResults}
-                  slug={slug}
-                />
+                <FilterProducts products={unfilteredResults} slug={slug} />
               </div>
             </SheetContent>
           </Sheet>
@@ -159,10 +153,7 @@ const Filters = ({
                 showFilters ? 'translate-x-0' : '-translate-x-full'
               }`}
             >
-              <FilterProducts
-                products={unfilteredResults}
-                slug={slug}
-              />
+              <FilterProducts products={unfilteredResults} slug={slug} />
             </div>
           </aside>
         ))}

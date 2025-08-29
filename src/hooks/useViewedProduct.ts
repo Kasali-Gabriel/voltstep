@@ -1,11 +1,11 @@
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { useViewedProductStore } from '@/lib/state';
 import { SearchedProduct } from '@/types/search';
 import axios from 'axios';
 import { useCallback } from 'react';
 
 export function useViewedProduct() {
-  const userId = useUserId();
+  const {userId} = useUserContext();
   const addGuestViewedProduct = useViewedProductStore(
     (s) => s.addViewedProduct,
   );

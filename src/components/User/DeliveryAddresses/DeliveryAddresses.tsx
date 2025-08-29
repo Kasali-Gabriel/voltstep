@@ -2,13 +2,13 @@
 
 import AddressDialog from '@/components/Dialogs/AddressDialog';
 import Loader from '@/components/ui/loader';
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { useDeliveryAddresses } from '@/hooks/useDeliveryAddresses';
 import { useState } from 'react';
 import { AddressDisplay } from './AddressDisplay';
 
 const DeliveryAddresses = () => {
-  const userId = useUserId();
+  const { userId, loading } = useUserContext();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const {
     addresses,
@@ -25,7 +25,7 @@ const DeliveryAddresses = () => {
     setEditingAddress,
   } = useDeliveryAddresses(userId);
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loader color="black" size={44} borderWidth="2px" />;
   }
 

@@ -50,7 +50,7 @@ export function useCheckout() {
 
       const addressResult = await fetchData<{
         deliveryAddresses: DeliveryAddress[];
-      }>('/api/delivery-addresses');
+      }>('/api/user/delivery-addresses');
 
       if (addressResult?.deliveryAddresses) {
         setDeliveryAddresses(addressResult.deliveryAddresses);

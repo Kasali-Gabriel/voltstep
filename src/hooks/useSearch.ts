@@ -8,7 +8,7 @@ import {
   SearchParams,
 } from '@/types/search';
 
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { buildSearchParams } from '@/utils/Search/buildSearchParam';
 import {
   fetchPopularSearches,
@@ -31,7 +31,7 @@ export function useSearch({
   initialHasMore = false,
   skipInitialFetch = false,
 }: SearchParams) {
-  const userId = useUserId();
+  const { userId } = useUserContext();
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const saveDebounceRef = useRef<NodeJS.Timeout | null>(null);
@@ -174,7 +174,6 @@ export function useSearch({
 
         saveDebounceRef.current = setTimeout(async () => {
           if (userId) {
-           
             await saveSearchHistory(userId, trimmedQuery);
             await savePopularSearch(trimmedQuery);
           } else {

@@ -1,4 +1,4 @@
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { useCartStore } from '@/hooks/use-cart';
 import { useOrderStore } from '@/hooks/useOrder';
 import { useShadowOnScroll } from '@/hooks/useShadowOnscroll';
@@ -40,7 +40,7 @@ export const Bag = () => {
 
   const { isBagOpen, setIsBagOpen } = useBagStore();
   const { items, getTotal, getShippingFee, getTaxFee } = useCartStore();
-  const userId = useUserId();
+  const { userId, stripeCustomerId, email } = useUserContext();
 
   const { createOrFetchOrder, creatingOrder } = useOrderStore();
 
@@ -62,6 +62,8 @@ export const Bag = () => {
       await createOrFetchOrder({
         items: orderItems,
         userId: userId,
+        stripeCustomerId: stripeCustomerId,
+        email: email,
         shippingCost: getShippingFee(),
         taxAmount: getTaxFee(),
         totalAmount: getTotal(),

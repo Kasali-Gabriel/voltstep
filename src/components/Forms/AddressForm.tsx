@@ -3,7 +3,7 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormField, FormItem } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { createAddressFormSchema } from '@/lib/schema';
 import { useAddressStore } from '@/lib/state';
 import { AddressFormProps } from '@/types/address';
@@ -26,7 +26,7 @@ export default function AddressForm({
   const addressFormSchema = useMemo(() => createAddressFormSchema(), []);
   const { setIsFormValid } = useAddressStore();
 
-  const userId = useUserId();
+  const { userId } = useUserContext();
 
   const form = useForm<z.infer<typeof addressFormSchema>>({
     resolver: zodResolver(addressFormSchema),

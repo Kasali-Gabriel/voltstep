@@ -5,32 +5,65 @@ import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-export const UserContext = createContext<string | undefined>(undefined);
+type UserContextType = {
+  userId?: string;
+  stripeCustomerId?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  img?: string;
+  loading: boolean;
+};
+
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { user, isLoaded } = useUser();
-  const [userId, setUserId] = useState<string | undefined>(undefined);
+  const [state, setState] = useState<UserContextType>({
+    loading: true,
+  });
 
   useEffect(() => {
-    const fetchDatabaseUserId = async () => {
-      if (!isLoaded || !user) {
-        setUserId(undefined);
+    const fetchUser = async () => {
+      if (!isLoaded) {
+        setState((prev) => ({ ...prev, loading: true }));
+        return;
+      }
+
+      if (!user) {
+        setState({ loading: false });
         return;
       }
 
       try {
         const response = await axios.get('/api/user');
-        setUserId(response.data.user?.id);
+        const dbUser = response.data.user;
+
+        setState({
+          userId: dbUser?.id,
+          stripeCustomerId: dbUser?.stripeCustomerId,
+          firstName: user.firstName || undefined,
+          lastName: user.lastName || undefined,
+          email: user.primaryEmailAddress?.emailAddress || undefined,
+          img: user.imageUrl || undefined,
+          loading: false,
+        });
       } catch (error) {
-        console.error('Failed to fetch database user ID:', error);
-        setUserId(undefined);
+        console.error('❌ Failed to fetch database user:', error);
+        setState({ loading: false });
       }
     };
 
-    fetchDatabaseUserId();
+    fetchUser();
   }, [user, isLoaded]);
 
-  return <UserContext.Provider value={userId}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={state}>{children}</UserContext.Provider>;
 }
 
-export const useUserId = () => useContext(UserContext);
+export const useUserContext = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUserContext must be used within a UserProvider');
+  }
+  return context;
+};

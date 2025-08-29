@@ -6,9 +6,20 @@ import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import WishListItemCard from './WishListItemCard';
+import Loader from '../ui/loader';
 
 export const WishList = ({ isPage }: { isPage: boolean }) => {
-  const { wishlist } = useWishlistContext();
+  const { wishlist, loading } = useWishlistContext();
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex min-h-96 items-center justify-center">
+          <Loader size={52} borderWidth="2px" color="black" />
+        </div>
+      </div>
+    );
+  }
 
   if (!wishlist || wishlist.length === 0) {
     return (

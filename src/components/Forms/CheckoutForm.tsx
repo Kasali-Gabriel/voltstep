@@ -6,23 +6,22 @@ import {
 } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 
-import { useUserId } from '@/context/UserContext';
 import { useUser } from '@clerk/nextjs';
 import Loader from '../ui/loader';
 
 const CheckoutForm = ({
   orderId,
   disabled,
+  guestName,
 }: {
   orderId: string;
+  guestName?: string;
   disabled: boolean;
 }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
-  const userId = useUserId();
 
   const user = useUser();
 
@@ -35,16 +34,10 @@ const CheckoutForm = ({
     if (!stripe || !elements) return;
     setLoading(true);
 
-    let returnUrl = window.location.origin + '/';
-
-    if (userId) {
-      returnUrl = window.location.origin + `/orders/${orderId}`;
-    }
-
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: returnUrl,
+        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?orderId=${orderId}&guest-name=${guestName}`,
       },
     });
 

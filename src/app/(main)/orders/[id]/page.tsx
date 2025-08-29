@@ -3,6 +3,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Loader from '@/components/ui/loader';
 import { Separator } from '@/components/ui/separator';
 import { useCartStore } from '@/hooks/use-cart';
 import { fetchData } from '@/lib/fetch';
@@ -14,13 +15,16 @@ import {
   ArrowLeft,
   Calendar,
   CheckCircle,
-  Clock,
+  Home,
+  Hourglass,
   MapPin,
   Package,
+  RotateCcw,
   Truck,
   XCircle,
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -35,13 +39,13 @@ const statusColors = {
 };
 
 const statusIcons = {
-  PENDING: Clock,
+  PENDING: Hourglass,
   CONFIRMED: CheckCircle,
   PROCESSING: Package,
   SHIPPED: Truck,
-  DELIVERED: CheckCircle,
+  DELIVERED: Home,
   CANCELLED: XCircle,
-  REFUNDED: XCircle,
+  REFUNDED: RotateCcw,
 };
 
 export default function OrderDetailsPage() {
@@ -93,7 +97,7 @@ export default function OrderDetailsPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex min-h-96 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-black"></div>
+          <Loader size={52} borderWidth="2px" color="black" />
         </div>
       </div>
     );
@@ -116,15 +120,13 @@ export default function OrderDetailsPage() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 flex items-center gap-4">
-        <Button
-          variant="ghost"
-          size="sm"
+        <button
           onClick={() => router.push('/orders')}
-          className="flex items-center gap-2"
+          className="flex cursor-pointer items-center gap-2 rounded-4xl border border-neutral-300 px-4 py-2 hover:border-black"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft size={16} />
           Back to Orders
-        </Button>
+        </button>
       </div>
 
       {/* Order Header */}
@@ -135,20 +137,17 @@ export default function OrderDetailsPage() {
               <Package className="h-6 w-6" />
               Order #{order.id.slice(-8).toUpperCase()}
             </CardTitle>
+
             <Badge className={statusColors[order.status]}>
               <StatusIcon className="mr-1 h-4 w-4" />
               {order.status.toLowerCase().replace('_', ' ')}
             </Badge>
           </div>
-          <div className="flex items-center gap-4 text-gray-600">
+
+          <div className="flex items-center gap-4 pl-8 text-gray-600">
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               Placed on {formatDate(order.createdAt)}
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="font-medium">
-                ${order.totalAmount.toFixed(2)}
-              </span>
             </div>
           </div>
         </CardHeader>
@@ -161,6 +160,7 @@ export default function OrderDetailsPage() {
             <CardHeader>
               <CardTitle>Order Items</CardTitle>
             </CardHeader>
+
             <CardContent>
               <div className="space-y-4">
                 {order.items.map((item) => (
@@ -172,18 +172,27 @@ export default function OrderDetailsPage() {
                       height={80}
                       className="h-20 w-20 rounded-lg object-cover"
                     />
+
                     <div className="flex-1">
-                      <h4 className="font-medium">{item.product.name}</h4>
-                      <p className="mb-1 text-sm text-gray-500">
+                      <Link href={`/product/${item.product.slug}`}>
+                        <h4 className="font-medium hover:underline hover:underline-offset-4">
+                          {item.product.name}
+                        </h4>
+                      </Link>
+
+                      <p className="text-sm text-gray-500">
                         {item.color} {item.size && `• ${item.size}`}
                       </p>
+
                       <p className="text-sm text-gray-500">
                         Quantity: {item.quantity}
                       </p>
+
                       <p className="text-sm text-gray-500">
                         Price: ${item.price.toFixed(2)} each
                       </p>
                     </div>
+
                     <div className="text-right">
                       <p className="text-lg font-medium">
                         ${(item.price * item.quantity).toFixed(2)}
@@ -224,9 +233,7 @@ export default function OrderDetailsPage() {
                   </div>
                 )}
 
-                {['PROCESSING', 'SHIPPED', 'DELIVERED'].includes(
-                  order.status,
-                ) && (
+                {order.status === 'PROCESSING' && (
                   <div className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-green-500"></div>
                     <div>
@@ -238,7 +245,7 @@ export default function OrderDetailsPage() {
                   </div>
                 )}
 
-                {['SHIPPED', 'DELIVERED'].includes(order.status) && (
+                {order.status === 'SHIPPED' && (
                   <div className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-green-500"></div>
                     <div>
@@ -309,26 +316,40 @@ export default function OrderDetailsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MapPin className="h-5 w-5" />
-                  Delivery Address
+                  {order.status === 'DELIVERED'
+                    ? 'Delivered To'
+                    : 'Delivery Address'}
                 </CardTitle>
               </CardHeader>
+
               <CardContent>
                 <div className="text-sm">
-                  <p className="font-medium">
-                    {order.deliveryAddress.firstName}{' '}
-                    {order.deliveryAddress.lastName}
-                  </p>
-                  <p>{order.deliveryAddress.addressLine1}</p>
-                  {order.deliveryAddress.addressLine2 && (
-                    <p>{order.deliveryAddress.addressLine2}</p>
-                  )}
-                  <p>
-                    {order.deliveryAddress.city}, {order.deliveryAddress.state}{' '}
-                    {order.deliveryAddress.zipCode}
-                  </p>
-                  <p>{order.deliveryAddress.country}</p>
-                  {order.deliveryAddress.phone && (
-                    <p>Phone: {order.deliveryAddress.phone}</p>
+                  {order.deliveryAddress && (
+                    <>
+                      <p>
+                        {order.deliveryAddress.firstName}{' '}
+                        {order.deliveryAddress.lastName}
+                      </p>
+
+                      <p className="font-medium">
+                        {order.deliveryAddress.addressLine1}
+                      </p>
+                      {order.deliveryAddress.addressLine2 && (
+                        <p>{order.deliveryAddress.addressLine2}</p>
+                      )}
+
+                      <p className="text-neutral-600">
+                        {order.deliveryAddress.city},{' '}
+                        {order.deliveryAddress.state}{' '}
+                        {order.deliveryAddress.zipCode}
+                      </p>
+
+                      <p className="text-neutral-600">
+                        {order.deliveryAddress.country}
+                      </p>
+
+                      <p>{order.deliveryAddress.phone}</p>
+                    </>
                   )}
                 </div>
               </CardContent>

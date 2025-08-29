@@ -4,7 +4,7 @@ import CheckoutDeliverySection from '@/components/Checkout/CheckoutDeliverySecti
 import CheckoutOrderSummary from '@/components/Checkout/CheckoutOrderSummary';
 import CheckoutForm from '@/components/Forms/CheckoutForm';
 import Loader from '@/components/ui/loader';
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { useCartStore } from '@/hooks/use-cart';
 import { useCheckout } from '@/hooks/useCheckout';
 import { useOrderStore } from '@/hooks/useOrder';
@@ -15,7 +15,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useEffect, useMemo } from 'react';
 
 export default function CheckoutPage() {
-  const userId = useUserId();
+  const { userId, loading } = useUserContext();
   const { items } = useCartStore();
   const {
     deliveryAddresses,
@@ -89,8 +89,10 @@ export default function CheckoutPage() {
         loader: 'auto' as const,
       }
     : undefined;
+  
+  const guestName = guestDeliveryData.firstName
 
-  if (isInitializing || isLoading) {
+  if (isInitializing || isLoading || loading) {
     return (
       <div className="mt-28 h-full w-full justify-items-center">
         <Loader size={52} borderWidth="2px" color="black" />
@@ -127,6 +129,7 @@ export default function CheckoutPage() {
             <Elements stripe={stripePromise} options={options}>
               <CheckoutForm
                 orderId={orderId}
+                guestName={guestName}
                 disabled={userId ? !selectedDeliveryAddress : !isFormValid}
               />
             </Elements>

@@ -4,6 +4,7 @@ import HeartAnimationData from '@/assets/Heart.json';
 import logoutAnimationData from '@/assets/Logout.json';
 import ordersAnimationData from '@/assets/OrderHistory.json';
 import settingsAnimationData from '@/assets/setting.json';
+import SuccessAnimationData from '@/assets/Success.json';
 import Lottie, { LottieRef, LottieRefCurrentProps } from 'lottie-react';
 import { forwardRef } from 'react';
 
@@ -70,3 +71,16 @@ export const Heart = forwardRef<LottieRefCurrentProps>((props, ref) => {
 });
 
 Heart.displayName = 'Heart';
+
+export const Success = () => {
+  return (
+    <div className="size-52">
+      <Lottie
+        animationData={SuccessAnimationData}
+        className="flex items-center justify-center"
+        autoplay={true}
+        loop={true}
+      />
+    </div>
+  );
+};

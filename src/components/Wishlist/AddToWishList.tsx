@@ -1,4 +1,4 @@
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { useWishlistContext } from '@/context/WishlistContext';
 import { useWishlistSuccessDialogStore } from '@/lib/state';
 import { AddToWishListProps } from '@/types/wishlist';
@@ -28,7 +28,7 @@ export const AddToWishList = ({
   const { showSuccessDialog, setShowSuccessDialog } =
     useWishlistSuccessDialogStore();
 
-  const userId = useUserId();
+  const { userId } = useUserContext();
 
   const { wishlist, addToWishlist, removeFromWishlist, loading } =
     useWishlistContext();

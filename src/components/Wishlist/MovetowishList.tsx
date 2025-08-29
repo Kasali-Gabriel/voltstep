@@ -1,5 +1,4 @@
-
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { useWishlistContext } from '@/context/WishlistContext';
 import { AddToWishListProps } from '@/types/wishlist';
 import { Heart } from 'lucide-react';
@@ -12,7 +11,7 @@ export const MoveToWishList = ({
   selectedColor,
   setActiveTab,
 }: AddToWishListProps) => {
-  const userId = useUserId();
+  const {userId} = useUserContext();
 
   const { wishlist, addToWishlist, removeFromWishlist, loading } =
     useWishlistContext();

@@ -78,6 +78,8 @@ export interface OrderState {
       guestDeliveryAddress?: CreateDeliveryAddressInput;
     };
     userId?: string | null;
+    stripeCustomerId?: string | null;
+    email?: string | null,
     totalAmount?: number;
     shippingCost?: number;
     taxAmount?: number;

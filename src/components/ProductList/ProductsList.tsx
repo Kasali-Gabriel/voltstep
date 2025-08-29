@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import Filters from '@/components/Filters/Filters';
 import ProductCard from '@/components/Product/ProductCard';
+import Filters from '@/components/ProductList/Filters/Filters';
 import ProductListHeader from '@/components/ProductList/ProductListHeader';
 import Loader from '@/components/ui/loader';
 import { useIsMobile } from '@/hooks/useIsMobile';

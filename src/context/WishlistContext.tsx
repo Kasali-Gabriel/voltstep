@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useUserId } from './UserContext';
+import { useUserContext } from './UserContext';
 
 const WishlistContext = createContext<WishlistContextType>({
   wishlist: [],
@@ -23,8 +23,10 @@ export const WishlistProvider = ({
   children: React.ReactNode;
 }) => {
   const [wishlist, setWishlist] = useState<WishListItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const userId = useUserId();
+
+  const { userId, loading: isLoading } = useUserContext();
+
+  const [loading, setLoading] = useState(isLoading);
 
   const fetchWishlist = useCallback(async () => {
     if (!userId) return;

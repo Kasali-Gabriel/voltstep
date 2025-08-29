@@ -1,4 +1,4 @@
-import { useUserId } from '@/context/UserContext';
+import { useUserContext } from '@/context/UserContext';
 import { AddReviewBtnProps } from '@/types/review';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
@@ -19,7 +19,7 @@ const AddReviewBtn = ({
   reviews = [],
   onReviewChange,
 }: AddReviewBtnProps) => {
-  const userId = useUserId();
+  const { userId } = useUserContext();
 
   const [showDialog, setShowDialog] = useState(false);
   const [reviewForm, showReviewForm] = useState(false);

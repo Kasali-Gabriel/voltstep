@@ -114,8 +114,6 @@ export async function updateOrder(id: string, data: UpdateOrderInput) {
     const { items, guestDeliveryAddress, deliveryAddressId, ...orderData } =
       data;
 
-    console.log('Updating order with data:', data);
-
     // Build update payload but only include address fields when provided
     const updatePayload: Record<string, unknown> = { ...orderData };
 

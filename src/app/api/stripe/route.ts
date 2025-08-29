@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: NextRequest) {
   try {
-    const { amount, currency, orderId } = await req.json();
+    const { amount, currency, orderId, customerId, email } = await req.json();
 
     if (!amount || !currency) {
       return NextResponse.json(
@@ -24,10 +24,12 @@ export async function POST(req: NextRequest) {
     const paymentIntentData: Stripe.PaymentIntentCreateParams = {
       amount,
       currency,
+      customer: customerId,
       automatic_payment_methods: { enabled: true },
       metadata: {
         orderId: String(orderId),
       },
+      receipt_email: !customerId ? email : undefined,
     };
 
     const paymentIntent = await stripe.paymentIntents.create(paymentIntentData);

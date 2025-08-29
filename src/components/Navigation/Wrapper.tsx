@@ -24,17 +24,28 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
   const isAdmin = pathname === '/admin';
   const isProductPage = pathname.startsWith('/product/');
   const isProductsListPage = pathname.startsWith('/products');
+  const isSuccessPage = pathname.startsWith('/success');
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // If on auth page, don't provide user context
+  // If on auth or admin page, don't provide user context
   if (isAuth || isAdmin) {
     return (
       <div className="w-full">
         <main>{children}</main>
       </div>
+    );
+  }
+
+  if (isSuccessPage) {
+    return (
+      <UserProvider>
+        <div className="w-full">
+          <main>{children}</main>
+        </div>
+      </UserProvider>
     );
   }
 
@@ -73,7 +84,7 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
           <div id="header-stack" className="relative z-50">
             <Navbar catalogs={catalogs} />
           </div>
-          
+
           {(isProductPage || isProductsListPage) && <FlashNews />}
 
           <main className="flex-1">{children}</main>
