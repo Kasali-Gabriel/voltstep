@@ -14,14 +14,14 @@ import {
   SelectValue,
 } from '../ui/select';
 
-export function ReviewFilters({
+export const ReviewFilters = ({
   rating,
   setRating,
   verifiedOnly,
   setVerifiedOnly,
   sortOrder,
   setSortOrder,
-}: ReviewFiltersProps) {
+}: ReviewFiltersProps) => {
   return (
     <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
       <Popover>
@@ -103,9 +103,9 @@ export function ReviewFilters({
       </Select>
     </div>
   );
-}
+};
 
-export function SelectedFilters({
+export const SelectedFilters = ({
   rating,
   setRating,
   verifiedOnly,
@@ -115,7 +115,7 @@ export function SelectedFilters({
   setRating: (r: string) => void;
   verifiedOnly: boolean;
   setVerifiedOnly: (v: boolean) => void;
-}) {
+}) => {
   if (!rating && !verifiedOnly) return null;
   return (
     <div className="flex items-center gap-2">
@@ -147,4 +147,4 @@ export function SelectedFilters({
       )}
     </div>
   );
-}
+};

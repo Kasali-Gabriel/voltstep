@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { images } from '@/data/images';
 import { WishListSizeSelectorProps } from '@/types/wishlist';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
@@ -42,6 +41,7 @@ const WishListSizeSelector = ({
   handleProductLinkClick,
   selectedColor,
   productColors,
+  productImages,
 }: WishListSizeSelectorProps) => {
   // orientation state
   const [isPortrait, setIsPortrait] = useState(true);
@@ -171,7 +171,7 @@ const WishListSizeSelector = ({
                   } as React.CSSProperties
                 }
               >
-                {images.map((image, index) => (
+                {productImages.map((image, index) => (
                   <SwiperSlide key={index} className="h-full w-full">
                     <div className="flex h-full w-full items-center justify-center">
                       <Image
@@ -179,7 +179,7 @@ const WishListSizeSelector = ({
                         alt={image.alt}
                         priority
                         fill
-                        className="object-cover"
+                        className="border object-contain shadow-md"
                       />
                     </div>
                   </SwiperSlide>

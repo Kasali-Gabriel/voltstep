@@ -7,7 +7,9 @@ export const mapProductToSearchedProduct = (
 ): SearchedProduct => {
   // Flatten all variants with color/size/quantity
   const variants: { color: string; size: string; quantity: number }[] = [];
+
   const colors: string[] = [];
+
   if (product.colors && Array.isArray(product.colors)) {
     for (const colorObj of product.colors as ProductColor[]) {
       if (!colors.includes(colorObj.color)) colors.push(colorObj.color);
@@ -22,11 +24,13 @@ export const mapProductToSearchedProduct = (
       }
     }
   }
+
   const availableColors = colors.length === 1 ? colors[0] : colors.length;
+
   return {
     id: product.id,
     name: product.name,
-    image: product.images[0] || '/placeholder.png',
+    image: product.images[0] || '',
     slug: product.slug,
     price: product.price,
     description: product.description,

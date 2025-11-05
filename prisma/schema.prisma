@@ -28,8 +28,9 @@ model User {
 
 model Catalog {
   id         String     @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  slug       String
+  name       String     @unique
+  slug       String     @unique
+  img        String?
   categories Category[] @relation("CatalogCategories")
 
   @@map("catalog")
@@ -39,20 +40,26 @@ model Category {
   id             String        @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   slug           String
+  img            String?
   parentCategory String?
   subcategories  Subcategory[] @relation("CategorySubcategories")
   catalogId      String        @db.ObjectId
-  catalog        Catalog       @relation("CatalogCategories", fields: [catalogId], references: [id])
+  catalog        Catalog       @relation("CatalogCategories", fields: [catalogId], references: [id], onDelete: Restrict)
+
+  @@unique([catalogId, slug])
 }
 
 model Subcategory {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   slug           String
+  img            String?
   parentCategory String?
   categoryId     String    @db.ObjectId
-  category       Category  @relation("CategorySubcategories", fields: [categoryId], references: [id])
+  category       Category  @relation("CategorySubcategories", fields: [categoryId], references: [id], onDelete: Restrict)
   products       Product[]
+
+  @@unique([categoryId, slug])
 }
 
 model ProductSizeVariant {
@@ -79,11 +86,11 @@ model Product {
   price           Float
   quantity        Int // sum of all size variant quantities
   images          String[]
-  colors          ProductColor[] // relation
+  colors          ProductColor[]
   tags            Tag[]
   reviews         Review[]
   subcategoryId   String         @db.ObjectId
-  subcategory     Subcategory    @relation(fields: [subcategoryId], references: [id])
+  subcategory     Subcategory    @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
   orderItems      OrderItem[]
   wishLists       WishList[]     @relation("ProductToWishList")
   popularityScore Float          @default(0)
@@ -97,13 +104,13 @@ model Product {
 model Review {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   reviewerId String   @db.ObjectId
-  reviewer   User     @relation("UserReviews", fields: [reviewerId], references: [id], onDelete: Cascade)
+  reviewer   User     @relation("UserReviews", fields: [reviewerId], references: [id])
   rating     Int
   title      String
   details    String
   date       DateTime
   productId  String   @db.ObjectId
-  product    Product  @relation(fields: [productId], references: [id])
+  product    Product? @relation(fields: [productId], references: [id])
   verified   Boolean  @default(false)
 }
 
@@ -124,6 +131,10 @@ model Order {
   shippingCost               Float            @default(0)
   taxAmount                  Float            @default(0)
   guestDeliveryAddress       String?
+  confirmedAt                DateTime?
+  shippedAt                  DateTime?
+  deliveredAt                DateTime?
+  cancelledAt                DateTime?
   createdAt                  DateTime         @default(now())
   updatedAt                  DateTime         @updatedAt
 }
@@ -141,7 +152,6 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
-  REFUNDED
 }
 
 model DeliveryAddress {
@@ -206,7 +216,7 @@ enum Tag {
 model SearchHistory {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   userId     String   @db.ObjectId
-  user       User     @relation("UserSearchHistories", fields: [userId], references: [id], onDelete: Cascade)
+  user       User     @relation("UserSearchHistories", fields: [userId], references: [id])
   query      String
   searchedAt DateTime @default(now())
 
@@ -217,7 +227,7 @@ model SearchHistory {
 model ViewedProduct {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   userId     String   @db.ObjectId
-  user       User     @relation("UserViewedProducts", fields: [userId], references: [id], onDelete: Cascade)
+  user       User     @relation("UserViewedProducts", fields: [userId], references: [id])
   viewedAt   DateTime @default(now())
   fromSearch Boolean  @default(false)
   product    Json

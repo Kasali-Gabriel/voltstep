@@ -1,10 +1,9 @@
-
 import { CatalogPagination, Product } from '@/types/product';
+import axios from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePagination } from './usePagination';
-import axios from 'axios';
 
-export function useCatalogPagination({
+export const useCatalogPagination = ({
   isSearch,
   slug,
   sort,
@@ -12,7 +11,7 @@ export function useCatalogPagination({
   initialProducts = [],
   initialTotalCount = 0,
   initialHasMore = false,
-}: CatalogPagination) {
+}: CatalogPagination) => {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(initialTotalCount);
@@ -192,4 +191,4 @@ export function useCatalogPagination({
     isLoadingMore: paginationLoading,
     totalCount,
   };
-}
+};

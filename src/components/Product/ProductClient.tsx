@@ -12,7 +12,6 @@ import { Ratings } from '@/components/Reviews/ratings';
 import { RatingsPreview } from '@/components/Reviews/ratingsPreview';
 import { Reviews } from '@/components/Reviews/reviews';
 import { AddToWishList } from '@/components/Wishlist/AddToWishList';
-import { images } from '@/data/images';
 import { useCartStore } from '@/hooks/use-cart';
 import { useViewedProduct } from '@/hooks/useViewedProduct';
 import { fetchData } from '@/lib/fetch';
@@ -205,7 +204,7 @@ const ProductClient = ({ product }: { product: Product }) => {
   // --- End of logic, return JSX below ---
 
   return (
-    <div className="relative flex min-h-[100vh] w-full flex-col px-5 sm:px-10 xl:px-12">
+    <div className="relative container mx-auto flex w-full max-w-[1440px] flex-col px-5 sm:px-10 xl:px-12">
       <div className="flex w-full flex-col items-center justify-center pt-4 md:pt-10">
         <section className="relative flex flex-col gap-6 xl:pl-14 lg:portrait:grid lg:portrait:grid-cols-2 md:landscape:grid md:landscape:grid-cols-2">
           <div className="flex flex-col gap-2 lg:portrait:hidden md:landscape:hidden">
@@ -226,11 +225,21 @@ const ProductClient = ({ product }: { product: Product }) => {
 
           {/* Image swipers */}
           <div className="-mx-5 w-screen sm:-mx-10 lg:hidden xl:-mx-16 md:landscape:hidden">
-            <SmallScreenSwiper images={images} />
+            <SmallScreenSwiper
+              images={(product.images ?? []).map((img, idx) => ({
+                src: img,
+                alt: `${product.name} image ${idx + 1}`,
+              }))}
+            />
           </div>
 
           <div className="relative col-span-1 hidden lg:portrait:block md:landscape:block">
-            <LargeScreenSwiper images={images} />
+            <LargeScreenSwiper
+              images={(product.images ?? []).map((img, idx) => ({
+                src: img,
+                alt: `${product.name} image ${idx + 1}`,
+              }))}
+            />
           </div>
 
           {/* Details, selectors and buttons */}

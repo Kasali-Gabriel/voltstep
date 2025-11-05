@@ -1,4 +1,5 @@
-import { getOrderStats } from '@/actions/order';
+
+import { getOrderStats } from '@/actions/admin/orders';
 import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 

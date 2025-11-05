@@ -12,13 +12,13 @@ import { EllipsisIcon, PlusIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { RemoveAccountDialog } from '../Dialogs/RemoveAccountDialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import RemoveAccountDialog from '../Dialogs/RemoveAccountDialog';
 
 // Capitalize the first letter of the provider name
 // E.g. 'discord' -> 'Discord'
@@ -33,7 +33,7 @@ const normalizeProvider = (provider: string) => {
   return provider.split('_')[1];
 };
 
-export default function ConnectedAccounts() {
+const ConnectedAccounts = () => {
   const router = useRouter();
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
     {},
@@ -225,4 +225,6 @@ export default function ConnectedAccounts() {
       )}
     </div>
   );
-}
+};
+
+export default ConnectedAccounts;

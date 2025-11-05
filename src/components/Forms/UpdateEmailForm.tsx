@@ -12,12 +12,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useEmailUpdate } from '@/hooks/useEmailUpdate';
-import { EmailSchema } from '@/lib/schema';
 import { EmailVerificationDialogRef } from '@/types/user';
 import { UserResource } from '@clerk/types';
 import { useRef } from 'react';
 import EmailVerificationDialog from '../Dialogs/EmailVerificationDialog';
 import { Input } from '../ui/input';
+import { EmailSchema } from '@/schemas/authSchemas';
 
 const UpdateEmailForm = ({ user }: { user: UserResource }) => {
   const { isVerifying, startEmailUpdate, verifyEmailCode, cancelVerification } =

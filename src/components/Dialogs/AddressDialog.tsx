@@ -12,7 +12,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
 import AddressForm from '../Forms/AddressForm';
 
-export default function AddressDialog({
+const AddressDialog =({
   isOpen,
   onOpenChange,
   editingAddress,
@@ -21,7 +21,7 @@ export default function AddressDialog({
   isSubmitting,
   onSubmit,
   onCancel,
-}: AddressDialogProps) {
+}: AddressDialogProps) =>{
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent
@@ -64,3 +64,5 @@ export default function AddressDialog({
     </Dialog>
   );
 }
+
+export default AddressDialog;

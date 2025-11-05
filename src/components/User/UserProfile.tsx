@@ -5,19 +5,21 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SignOutButton, useUser } from '@clerk/nextjs';
 import { LottieRefCurrentProps } from 'lottie-react';
-import { User as USER } from 'lucide-react';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Heart, Logout, OrderHistory, Settings } from '../ui/lottie';
+import { AdminDashboardLottie, HeartLottie, LogoutLottie, OrderHistoryLottie, SettingsLottie } from '../ui/lottie';
 
 const UserProfile = () => {
   const settingsRef = useRef<LottieRefCurrentProps>(null);
   const ordersRef = useRef<LottieRefCurrentProps>(null);
   const logoutRef = useRef<LottieRefCurrentProps>(null);
   const heartRef = useRef<LottieRefCurrentProps>(null);
+  const adminRef = useRef<LottieRefCurrentProps>(null);
 
   const { user } = useUser();
+
+  const isAdmin = user?.publicMetadata.role === 'admin';
 
   const [open, setOpen] = useState(false);
   const handleClick = () => {
@@ -29,8 +31,10 @@ const UserProfile = () => {
       <DropdownMenuTrigger asChild>
         <Avatar className="group hover:animate-sheen relative size-9 cursor-pointer border-4 border-transparent transition-all duration-300 before:absolute before:inset-0 before:w-[60%] before:-translate-x-full before:-skew-x-45 before:bg-gradient-to-l before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-1000 before:ease-out hover:before:translate-x-[200%] data-[state=open]:border-neutral-300">
           <AvatarImage src={user?.imageUrl ?? ''} alt={user?.firstName ?? ''} />
+
           <AvatarFallback>
-            <USER size={20} strokeWidth={1.25} />
+            {user?.firstName?.[0]}
+            {user?.lastName?.[0]}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -44,22 +48,23 @@ const UserProfile = () => {
             />
 
             <AvatarFallback>
-              <USER size={20} strokeWidth={1.25} />
+              {user?.firstName?.[0]}
+              {user?.lastName?.[0]}
             </AvatarFallback>
           </Avatar>
 
           <div className="flex flex-col">
-            <h2 className="text-sm font-semibold sm:text-base">
-              {user?.firstName ?? ''} {user?.lastName ?? ''}
+            <h2 className="truncate text-sm font-semibold sm:text-base">
+              {user?.firstName} {user?.lastName}
             </h2>
 
-            <p className="text-muted-foreground text-xs md:text-sm">
-              {user?.primaryEmailAddress?.emailAddress ?? ''}
+            <p className="text-muted-foreground truncate text-xs md:text-sm">
+              {user?.primaryEmailAddress?.emailAddress}
             </p>
           </div>
         </div>
 
-        <div>
+        <>
           <div className="flex items-center border-y border-neutral-100 px-1 py-3">
             <Link
               href="/account"
@@ -68,7 +73,7 @@ const UserProfile = () => {
               onMouseLeave={() => settingsRef.current?.stop()}
               onClick={handleClick}
             >
-              <Settings ref={settingsRef} />
+              <SettingsLottie ref={settingsRef} />
               <p>Manage Account</p>
             </Link>
           </div>
@@ -81,7 +86,7 @@ const UserProfile = () => {
               onMouseLeave={() => heartRef.current?.stop()}
               onClick={handleClick}
             >
-              <Heart ref={heartRef} />
+              <HeartLottie ref={heartRef} />
               <p>Favorites</p>
             </Link>
           </div>
@@ -94,10 +99,25 @@ const UserProfile = () => {
               onMouseLeave={() => ordersRef.current?.stop()}
               onClick={handleClick}
             >
-              <OrderHistory ref={ordersRef} />
+              <OrderHistoryLottie ref={ordersRef} />
               <p>Orders</p>
             </Link>
           </div>
+
+          {isAdmin && (
+            <div className="flex items-center border-b border-neutral-100 px-1 py-3">
+              <Link
+                href="/admin"
+                className="flex items-center space-x-3 font-medium text-neutral-600 hover:text-black"
+                onMouseEnter={() => adminRef.current?.play()}
+                onMouseLeave={() => adminRef.current?.stop()}
+                onClick={handleClick}
+              >
+                <AdminDashboardLottie ref={adminRef} />
+                <p>Admin Dashboard</p>
+              </Link>
+            </div>
+          )}
 
           <div className="flex items-center px-1 py-3">
             <SignOutButton>
@@ -107,12 +127,12 @@ const UserProfile = () => {
                 onMouseLeave={() => logoutRef.current?.stop()}
                 onClick={handleClick}
               >
-                <Logout ref={logoutRef} />
+                <LogoutLottie ref={logoutRef} />
                 <p>Log Out</p>
               </button>
             </SignOutButton>
           </div>
-        </div>
+        </>
       </DropdownMenuContent>
     </DropdownMenu>
   );

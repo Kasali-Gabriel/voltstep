@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 /**
  * useIsTouchOnlyDevice - React hook to determine if the device supports only touch input (no mouse).
  * Uses pointer and hover media queries to detect input types.
  * @returns [isTouchOnly, setIsTouchOnly]
  */
-export function useIsTouchOnlyDevice(): [
+export const useIsTouchOnlyDevice = (): [
   boolean,
   React.Dispatch<React.SetStateAction<boolean>>,
-] {
+] => {
   const [isTouchOnly, setIsTouchOnly] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
 
@@ -30,4 +30,4 @@ export function useIsTouchOnlyDevice(): [
   }, []);
 
   return [isClient ? isTouchOnly : false, setIsTouchOnly];
-}
+};

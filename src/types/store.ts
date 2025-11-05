@@ -59,6 +59,16 @@ export interface AddressState {
   setIsFormValid: (val: boolean) => void;
 }
 
+export interface NotificationState {
+  activeTab: 'orders' | 'stock';
+  setActiveTab: (val: 'orders' | 'stock') => void;
+}
+
+export interface CustomerState {
+  activeTab: 'orders' | 'reviews';
+  setActiveTab: (val: 'orders' | 'reviews') => void;
+}
+
 export interface OrderState {
   orderId: string | null;
   clientSecret: string | null;
@@ -79,10 +89,20 @@ export interface OrderState {
     };
     userId?: string | null;
     stripeCustomerId?: string | null;
-    email?: string | null,
+    email?: string | null;
     totalAmount?: number;
     shippingCost?: number;
     taxAmount?: number;
   }) => Promise<void>;
 }
 
+export interface AdminSidebarState {
+  showSidebar: boolean;
+  setShowSideBar: (val: boolean) => void;
+  collapsibleStates: Record<string, boolean>;
+  setCollapsibleState: (label: string, open: boolean) => void;
+  showNotificationSidebar: boolean;
+  setShowNotificationSidebar: (val: boolean) => void;
+  previousShowSidebar: boolean;
+  setPreviousShowSidebar: (val: boolean) => void;
+}

@@ -33,14 +33,14 @@ interface CityInputProps {
   className?: string;
 }
 
-export function CityInput({
+export const CityInput = ({
   form,
   name,
   label,
   suggestions = [],
   disabled = false,
   className,
-}: CityInputProps) {
+}: CityInputProps) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isAutofilling, setIsAutofilling] = useState(false);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
@@ -232,4 +232,4 @@ export function CityInput({
       )}
     </div>
   );
-}
+};

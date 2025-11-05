@@ -224,7 +224,7 @@ export const getSmartSizes = (
   return smartSizeSort(defaultSizes);
 };
 
-export function SizeFilter({
+export const SizeFilter = ({
   availableSizes,
   filters,
   updateFilters,
@@ -233,12 +233,10 @@ export function SizeFilter({
 }: {
   availableSizes: string[];
   filters: ProductFilters;
-  updateFilters: (
-    f: Partial<ProductFilters>,
-  ) => void;
+  updateFilters: (f: Partial<ProductFilters>) => void;
   open: boolean;
   toggleSection: () => void;
-}) {
+}) => {
   const [isMobile] = useIsMobile(1024);
 
   return (
@@ -348,4 +346,4 @@ export function SizeFilter({
       </CollapsibleContent>
     </Collapsible>
   );
-}
+};

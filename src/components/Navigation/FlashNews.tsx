@@ -11,7 +11,7 @@ const messages = [
   '10% Off for First-Time Customers 🎉',
 ];
 
-export default function FlashNews() {
+const FlashNews =() => {
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -71,3 +71,5 @@ export default function FlashNews() {
     </div>
   );
 }
+
+export default FlashNews;

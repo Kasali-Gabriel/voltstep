@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ProductFilters } from '@/types/product';
 import { ChevronDown, Star } from 'lucide-react';
 
-export function RatingFilter({
+export const RatingFilter =({
   filters,
   updateFilters,
   open,
@@ -20,7 +20,7 @@ export function RatingFilter({
   ) => void;
   open: boolean;
   toggleSection: () => void;
-}) {
+}) => {
   return (
     <Collapsible open={open} onOpenChange={toggleSection}>
       <CollapsibleTrigger className="flex w-full items-center justify-between border-t border-stone-200 py-4">

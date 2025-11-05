@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.clerk.dev',
       },
+      {
+        protocol: 'https',
+        hostname: 'pub-b3a7fc47e6a0403f8ca6887c32b3ce9b.r2.dev',
+        pathname: '/**',
+      },
     ],
   },
 };

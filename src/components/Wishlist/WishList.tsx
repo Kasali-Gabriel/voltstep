@@ -5,11 +5,14 @@ import { WishListItem } from '@/types/wishlist';
 import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import WishListItemCard from './WishListItemCard';
+import { useRouter } from 'next/navigation';
 import Loader from '../ui/loader';
+import WishListItemCard from './WishListItemCard';
 
 export const WishList = ({ isPage }: { isPage: boolean }) => {
   const { wishlist, loading } = useWishlistContext();
+
+  const router = useRouter();
 
   if (loading) {
     return (
@@ -37,11 +40,21 @@ export const WishList = ({ isPage }: { isPage: boolean }) => {
             gear up, and hit the gym.
           </p>
 
-          <button className="mt-8 w-[80%] cursor-pointer rounded-3xl bg-black py-2.5 text-center leading-tight font-medium text-white hover:bg-neutral-900">
+          <button
+            onClick={() => {
+              router.push('/products/men');
+            }}
+            className="mt-8 w-[80%] cursor-pointer rounded-3xl bg-black py-2.5 text-center leading-tight font-medium text-white hover:bg-neutral-900"
+          >
             SHOP MENS
           </button>
 
-          <button className="mt-4 w-[80%] cursor-pointer rounded-3xl bg-gray-500 py-2.5 text-center leading-tight font-medium text-white hover:bg-gray-700">
+          <button
+            onClick={() => {
+              router.push('/products/women');
+            }}
+            className="mt-4 w-[80%] cursor-pointer rounded-3xl bg-gray-500 py-2.5 text-center leading-tight font-medium text-white hover:bg-gray-700"
+          >
             SHOP WOMENS
           </button>
         </div>

@@ -38,7 +38,7 @@ const Footer = () => {
   const isCheckOutPage = pathname.startsWith('/checkout');
 
   return (
-    <div className="mt-14 flex w-full flex-col bg-white px-5 sm:px-10 xl:px-12">
+    <footer className="mt-14 flex w-full flex-col bg-white px-5 sm:px-10 xl:px-12">
       {!isCheckOutPage && (
         <div className="grid gap-2 border-neutral-200 pt-10 md:grid-cols-3 md:gap-14 md:border-t-2 xl:grid-cols-5">
           {footerData.map((data, index) => (
@@ -158,7 +158,7 @@ const Footer = () => {
           <span className="cursor-pointer hover:text-black">Cookie Policy</span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

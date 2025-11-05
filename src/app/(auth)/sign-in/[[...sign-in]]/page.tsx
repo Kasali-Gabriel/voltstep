@@ -10,6 +10,7 @@ import {
   Header,
   Logo,
   OtpInput,
+  PasswordFieldError,
   PasswordInput,
   ResendOTP,
   Separator,
@@ -147,7 +148,7 @@ const Page = () => {
                     />
 
                     <div className="flex w-full justify-center">
-                      <Clerk.FieldError className={errorClassName} />
+                      <PasswordFieldError />
                     </div>
                   </Clerk.Field>
 
@@ -236,7 +237,7 @@ const Page = () => {
                     autoFocus={true}
                   />
 
-                  <Clerk.FieldError className={errorClassName} />
+                  <PasswordFieldError />
                 </Clerk.Field>
 
                 <Clerk.Field
@@ -249,7 +250,7 @@ const Page = () => {
 
                   <PasswordInput isGlobalLoading={isGlobalLoading} />
 
-                  <Clerk.FieldError className={errorClassName} />
+                  <PasswordFieldError />
                 </Clerk.Field>
 
                 <ContinueBtn

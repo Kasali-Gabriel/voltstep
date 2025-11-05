@@ -27,7 +27,6 @@ export const footerData = [
       { label: 'Careers', link: '/' },
       { label: 'Investors', link: '/' },
       { label: 'Sustainability', link: '/' },
-      { label: 'Admin', link: '/admin' },
     ],
   },
   {

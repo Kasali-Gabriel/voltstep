@@ -17,7 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Bag } from '../Bag/Bag';
-import SearchView from '../Search/Search';
+import SearchView from '../Search/SearchView';
 import SearchBar from '../Search/SearchBar';
 import UserProfile from '../User/UserProfile';
 import { ViewWishlist } from '../Wishlist/ViewWishlist';
@@ -119,7 +119,7 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
   }, [isFixed, showNavBar, navbarHeight, setIsFixed, setShowNavBar]);
 
   return (
-    <>
+    <header>
       {isFixed && <div style={{ height: navbarHeight }} />}
 
       <nav
@@ -137,7 +137,7 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
               src={bigLogo}
               height={35}
               alt="logo"
-              className="ob hidden md:block lg:landscape:hidden"
+              className="hidden md:block lg:landscape:hidden"
             />
 
             {!isCheckOutPage && (
@@ -219,7 +219,7 @@ const Navbar = ({ catalogs }: { catalogs: Catalog[] }) => {
           )}
         </div>
       </nav>
-    </>
+    </header>
   );
 };
 

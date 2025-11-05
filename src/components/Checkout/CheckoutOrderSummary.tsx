@@ -12,13 +12,13 @@ import { ChevronDown, ChevronUp, Package, Truck } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-export default function CheckoutOrderSummary({
+const CheckoutOrderSummary = ({
   items,
   subtotal,
   shippingCost,
   taxAmount,
   total,
-}: CheckoutOrderSummaryProps) {
+}: CheckoutOrderSummaryProps) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -180,3 +180,5 @@ export default function CheckoutOrderSummary({
     </div>
   );
 }
+
+export default CheckoutOrderSummary;

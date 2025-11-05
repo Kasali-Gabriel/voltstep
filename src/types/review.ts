@@ -12,6 +12,7 @@ export interface Review {
   productId: string;
   product: Product;
   verified?: boolean;
+  user: User;
 }
 
 export type AddReviewParams = {

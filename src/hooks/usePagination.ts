@@ -11,10 +11,10 @@ interface PaginationState {
   loading: boolean;
 }
 
-export function usePagination({
+export const usePagination = ({
   limit = 18,
   initialOffset = 0,
-}: UsePaginationProps = {}) {
+}: UsePaginationProps = {}) => {
   const [state, setState] = useState<PaginationState>({
     offset: initialOffset,
     hasMore: true,
@@ -94,4 +94,4 @@ export function usePagination({
     incrementOffset,
     loadMore,
   };
-}
+};

@@ -94,6 +94,7 @@ export async function getOrderById(id: string) {
           },
         },
         deliveryAddress: true,
+        user: true,
       },
     });
 
@@ -110,11 +111,9 @@ export async function getOrderById(id: string) {
 
 export async function updateOrder(id: string, data: UpdateOrderInput) {
   try {
-    // Separate items from other order data
     const { items, guestDeliveryAddress, deliveryAddressId, ...orderData } =
       data;
 
-    // Build update payload but only include address fields when provided
     const updatePayload: Record<string, unknown> = { ...orderData };
 
     type NestedItemsUpdate = {
@@ -129,7 +128,6 @@ export async function updateOrder(id: string, data: UpdateOrderInput) {
     };
 
     if (deliveryAddressId !== undefined) {
-      // allow explicit null (to clear) or a string id
       updatePayload.deliveryAddressId = deliveryAddressId || null;
     }
 
@@ -140,11 +138,10 @@ export async function updateOrder(id: string, data: UpdateOrderInput) {
     }
 
     if (items) {
-      // typed nested update for Prisma
       (updatePayload as Record<string, unknown>).items = {
         deleteMany: {},
         create: items
-          .filter((item) => item.productId && item.productId.trim() !== '')
+          .filter((item) => item.productId?.trim() !== '')
           .map((item) => ({
             product: { connect: { id: item.productId } },
             quantity: item.quantity,
@@ -153,6 +150,58 @@ export async function updateOrder(id: string, data: UpdateOrderInput) {
             price: item.price,
           })),
       } as NestedItemsUpdate;
+    }
+
+    // Fetch current order once
+    const currentOrder = await prisma.order.findUnique({
+      where: { id },
+      select: {
+        status: true,
+        confirmedAt: true,
+        shippedAt: true,
+        deliveredAt: true,
+      },
+    });
+
+    if (orderData.status && currentOrder) {
+      const newStatus = orderData.status;
+      const oldStatus = currentOrder.status;
+
+      // ConfirmedAt: status changed from PENDING → non-PENDING
+      if (
+        newStatus === 'CONFIRMED' &&
+        oldStatus === 'PENDING' &&
+        !currentOrder.confirmedAt
+      ) {
+        updatePayload.confirmedAt = new Date();
+      }
+
+      // ShippedAt: status changed to SHIPPED
+      if (
+        newStatus === 'SHIPPED' &&
+        oldStatus !== 'SHIPPED' &&
+        !currentOrder.shippedAt
+      ) {
+        updatePayload.shippedAt = new Date();
+      }
+
+      // DeliveredAt: status changed to DELIVERED
+      if (
+        newStatus === 'DELIVERED' &&
+        oldStatus !== 'DELIVERED' &&
+        !currentOrder.deliveredAt
+      ) {
+        updatePayload.deliveredAt = new Date();
+      }
+
+      // CancelledAt: status changed to CANCELLED
+      if (
+        newStatus === 'CANCELLED' &&
+        oldStatus !== 'CANCELLED' &&
+        !currentOrder.deliveredAt
+      ) {
+        updatePayload.cancelledAt = new Date();
+      }
     }
 
     const order = await prisma.order.update({
@@ -167,29 +216,6 @@ export async function updateOrder(id: string, data: UpdateOrderInput) {
   }
 }
 
-// Admin functions
-export async function getAllOrders() {
-  try {
-    const orders = await prisma.order.findMany({
-      include: {
-        items: {
-          include: {
-            product: true,
-          },
-        },
-        deliveryAddress: true,
-        user: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
-
-    return { orders };
-  } catch (error) {
-    console.error('Error fetching all orders:', error);
-    return { error: 'Failed to fetch orders' };
-  }
-}
-
 export async function getOrderStats() {
   try {
     const totalOrders = await prisma.order.count();
@@ -198,22 +224,18 @@ export async function getOrderStats() {
         totalAmount: true,
       },
     });
-
     const pendingOrders = await prisma.order.count({
       where: { status: 'PENDING' },
     });
-
     const deliveredOrders = await prisma.order.count({
       where: { status: 'DELIVERED' },
     });
 
     return {
-      stats: {
-        totalOrders,
-        totalRevenue: totalRevenue._sum.totalAmount || 0,
-        pendingOrders,
-        deliveredOrders,
-      },
+      totalOrders,
+      totalRevenue: totalRevenue._sum.totalAmount || 0,
+      pendingOrders,
+      deliveredOrders,
     };
   } catch (error) {
     console.error('Error fetching order stats:', error);

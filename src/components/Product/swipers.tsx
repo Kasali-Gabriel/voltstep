@@ -58,7 +58,7 @@ export const SmallScreenSwiper = ({
         loop={true}
         pagination={{ type: 'bullets', clickable: true }}
         modules={[Pagination]}
-        className="h-full w-full"
+        className="h-full w-full border shadow-md"
         style={
           {
             '--swiper-pagination-color': 'black',
@@ -74,7 +74,7 @@ export const SmallScreenSwiper = ({
               <Image
                 src={image.src}
                 alt={image.alt}
-                className="h-[90vh] w-screen border object-cover shadow-lg transition-transform duration-300"
+                className="h-[80vh] w-screen object-contain transition-transform duration-300"
                 width={600}
                 height={800}
               />
@@ -110,12 +110,12 @@ export const LargeScreenSwiper = ({
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Thumbs, Navigation]}
-        className="thumbs flex h-full w-[70px] items-center justify-center gap-2"
+        className="thumbs flex h-full w-[80px] items-center justify-center gap-2"
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <button
-              className={`h-full w-full transition-opacity ${
+              className={`relative block aspect-square h-full border shadow-xs transition-opacity ${
                 index === activeIndex ? 'opacity-100' : 'opacity-50'
               }`}
               onMouseEnter={() => {
@@ -131,7 +131,7 @@ export const LargeScreenSwiper = ({
               <Image
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full cursor-grab rounded object-cover lg:cursor-default"
+                className="h-full w-full cursor-grab object-contain lg:cursor-default"
                 width={600}
                 height={800}
               />
@@ -151,7 +151,7 @@ export const LargeScreenSwiper = ({
         }}
         allowTouchMove={isMobile}
         modules={[Navigation, Thumbs]}
-        className="relative h-full w-full rounded-md"
+        className="relative h-full w-full rounded-md border shadow-md"
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className="w-full">
@@ -162,7 +162,7 @@ export const LargeScreenSwiper = ({
                 priority
                 height={800}
                 width={600}
-                className="object-cover"
+                className="h-full w-full object-contain"
               />
             </div>
           </SwiperSlide>

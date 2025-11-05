@@ -1,8 +1,11 @@
 import {
   AddressState,
+  AdminSidebarState,
   BagState,
+  CustomerState,
   EmailState,
   NavBarState,
+  NotificationState,
   ProductHeaderState,
   SearchHistoryStore,
   SearchState,
@@ -115,7 +118,46 @@ export const useSideBarStore = create<showFilterState>()(
   ),
 );
 
+export const useCustomerTab = create<CustomerState>()((set) => ({
+  activeTab: 'orders',
+  setActiveTab: (val: 'orders' | 'reviews') => set({ activeTab: val }),
+}));
+
 export const useAddressStore = create<AddressState>((set) => ({
   isFormValid: false,
   setIsFormValid: (val: boolean) => set({ isFormValid: val }),
 }));
+
+export const useNotificationTabs = create<NotificationState>((set) => ({
+  activeTab: 'orders',
+  setActiveTab: (val: 'orders' | 'stock') => set({ activeTab: val }),
+}));
+
+export const useAdminSidebarStore = create<AdminSidebarState>()(
+  persist(
+    (set) => ({
+      showSidebar: true,
+      setShowSideBar: (showSidebar: boolean) => set(() => ({ showSidebar })),
+      collapsibleStates: {},
+      setCollapsibleState: (label: string, open: boolean) =>
+        set((state) => ({
+          collapsibleStates: { ...state.collapsibleStates, [label]: open },
+        })),
+      showNotificationSidebar: false,
+      setShowNotificationSidebar: (showNotificationSidebar: boolean) =>
+        set(() => ({ showNotificationSidebar })),
+      previousShowSidebar: true,
+      setPreviousShowSidebar: (previousShowSidebar: boolean) =>
+        set(() => ({ previousShowSidebar })),
+    }),
+    {
+      name: 'adminSidebarStore',
+      partialize: (state) => ({
+        showSidebar: state.showSidebar,
+        collapsibleStates: state.collapsibleStates,
+        showNotificationSidebar: state.showNotificationSidebar,
+        previousShowSidebar: state.previousShowSidebar,
+      }),
+    },
+  ),
+);

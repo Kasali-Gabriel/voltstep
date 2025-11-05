@@ -20,10 +20,10 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
-import { CodeSchema } from '@/lib/schema';
 import { EmailVerificationDialogProps } from '@/types/user';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import OTPInput from '../ui/otp-input';
+import { CodeSchema } from '@/schemas/authSchemas';
 
 const EmailVerificationDialog = ({
   isOpen,

@@ -15,7 +15,7 @@ export interface AddToWishListProps {
   productId: string;
   selectedSize?: string;
   selectedColor: string;
-  setActiveTab?: (tab: "wishlist" | "bag") => void;
+  setActiveTab?: (tab: 'wishlist' | 'bag') => void;
 }
 
 export interface UseWishlistItemProps {
@@ -28,8 +28,6 @@ export interface WishListItemCardProps {
   item: WishListItem;
   isPage?: boolean;
 }
-
-
 
 export interface RemoveFromWishlistButtonProps {
   onClick: () => void;
@@ -56,6 +54,7 @@ export interface WishListSizeSelectorProps {
   item: WishListItem;
   handleAddToBag: () => void;
   handleProductLinkClick: () => void;
+  productImages: { src: string; alt: string }[];
 }
 
 export interface WishlistContextType {

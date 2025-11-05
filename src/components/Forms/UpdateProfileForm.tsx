@@ -1,6 +1,5 @@
 'use client';
 
-import { ProfileSchema } from '@/lib/schema';
 import { UpdateProfileFormProps } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
@@ -8,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { FloatingLabelInputField } from '../ui/floating-input';
 import { Form } from '../ui/form';
+import { ProfileSchema } from '@/schemas/authSchemas';
 
 const UpdateProfileForm = ({
   firstName,

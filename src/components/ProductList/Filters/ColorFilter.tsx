@@ -96,7 +96,7 @@ export const getTopColors = (products?: Product[] | SearchedProduct[]) => {
   ];
 };
 
-export function ColorFilter({
+export const ColorFilter = ({
   topColors,
   filters,
   updateFilters,
@@ -105,12 +105,10 @@ export function ColorFilter({
 }: {
   topColors: string[];
   filters: ProductFilters;
-  updateFilters: (
-    f: Partial<ProductFilters>,
-  ) => void;
+  updateFilters: (f: Partial<ProductFilters>) => void;
   open: boolean;
   toggleSection: () => void;
-}) {
+}) => {
   // Only show colors that have hex codes defined
   const availableColors = topColors.filter(
     (color) => colorHexCodes[color as keyof typeof colorHexCodes],
@@ -236,4 +234,4 @@ export function ColorFilter({
       </CollapsibleContent>
     </Collapsible>
   ) : null;
-}
+};

@@ -4,6 +4,7 @@ import { useBagStore } from '@/lib/state';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { MoveToWishList } from '../Wishlist/MovetowishList';
 import ShippingProgress from './ShippingProgress';
 
@@ -30,6 +31,8 @@ export const BagContent = ({
 
   const { setIsBagOpen } = useBagStore();
 
+  const router = useRouter();
+
   return (
     <>
       {items.length > 0 ? (
@@ -51,10 +54,10 @@ export const BagContent = ({
                       onClick={() => setIsBagOpen(false)}
                     >
                       <Image
-                        src={item?.image?.[0] || '/placeholder-image.png'}
+                        src={item.image}
                         alt="item-image"
                         fill
-                        className="h-full w-full cursor-pointer border object-cover"
+                        className="h-full w-full cursor-pointer border object-contain shadow-xs"
                         sizes="256px"
                       />
                     </Link>
@@ -162,11 +165,21 @@ export const BagContent = ({
             No items yet. Start shopping to fill it up!
           </p>
 
-          <button className="mt-4 w-[55%] cursor-pointer rounded-3xl bg-black py-2.5 text-center leading-tight font-semibold text-white hover:bg-neutral-900">
+          <button
+            onClick={() => {
+              router.push('/products/men');
+            }}
+            className="mt-4 w-[55%] cursor-pointer rounded-3xl bg-black py-2.5 text-center leading-tight font-semibold text-white hover:bg-neutral-900"
+          >
             SHOP MENS
           </button>
 
-          <button className="mt-2 w-[55%] cursor-pointer rounded-3xl bg-black py-2.5 text-center font-semibold text-white hover:bg-neutral-900">
+          <button
+            onClick={() => {
+              router.push('/products/women');
+            }}
+            className="mt-2 w-[55%] cursor-pointer rounded-3xl bg-black py-2.5 text-center font-semibold text-white hover:bg-neutral-900"
+          >
             SHOP WOMENS
           </button>
         </div>

@@ -29,7 +29,11 @@ export const WishlistProvider = ({
   const [loading, setLoading] = useState(isLoading);
 
   const fetchWishlist = useCallback(async () => {
-    if (!userId) return;
+    if (!userId) {
+      setWishlist([]);
+      setLoading(false);
+      return;
+    }
 
     setLoading(true);
 

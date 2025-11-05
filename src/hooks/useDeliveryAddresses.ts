@@ -4,7 +4,7 @@ import axios, { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-export function useDeliveryAddresses(userId?: string | null) {
+export const useDeliveryAddresses = (userId?: string | null) => {
   const [addresses, setAddresses] = useState<DeliveryAddress[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -166,4 +166,4 @@ export function useDeliveryAddresses(userId?: string | null) {
     resetForm,
     setEditingAddress,
   };
-}
+};

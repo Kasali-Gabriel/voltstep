@@ -9,12 +9,12 @@ import {
   DialogTrigger,
 } from '../ui/dialog';
 
-export function RemoveAccountDialog({
+const RemoveAccountDialog =({
   account,
   onRemove,
   children,
   onOpenChange,
-}: RemoveAccountDialogProps) {
+}: RemoveAccountDialogProps) => {
   const capitalize = (provider: string) => {
     return `${provider.slice(0, 1).toUpperCase()}${provider.slice(1)}`;
   };
@@ -54,3 +54,4 @@ export function RemoveAccountDialog({
     </Dialog>
   );
 }
+export default RemoveAccountDialog;

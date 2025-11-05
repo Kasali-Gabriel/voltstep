@@ -111,7 +111,7 @@ const MobileMenu = ({ catalogs }: { catalogs: Catalog[] }) => {
                   />
                 </Link>
 
-                {catalog.categories.map((category: Category) => (
+                {catalog.categories?.map((category: Category) => (
                   <Collapsible
                     key={category.id}
                     open={open === category.id}

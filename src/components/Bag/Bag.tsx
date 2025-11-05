@@ -151,8 +151,11 @@ export const Bag = () => {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key as 'bag' | 'wishlist')}
-                className={`z-10 flex flex-1 cursor-pointer items-center justify-center transition-colors duration-200 ${
-                  activeTab === tab.key ? 'text-white' : 'text-black'
+                disabled={activeTab === tab.key}
+                className={`z-10 flex flex-1 items-center justify-center transition-colors duration-200 ${
+                  activeTab === tab.key
+                    ? 'cursor-default text-white'
+                    : 'cursor-pointer text-black'
                 }`}
               >
                 <FontAwesomeIcon icon={tab.icon} size="lg" />
@@ -234,12 +237,10 @@ export const Bag = () => {
               }
             }}
           >
-            <VisuallyHidden>
-              <DrawerHeader>
-                <DrawerTitle></DrawerTitle>
-                <DrawerDescription></DrawerDescription>
-              </DrawerHeader>
-            </VisuallyHidden>
+            <DrawerHeader>
+              <DrawerTitle></DrawerTitle>
+              <DrawerDescription></DrawerDescription>
+            </DrawerHeader>
 
             <Tab />
           </DrawerContent>

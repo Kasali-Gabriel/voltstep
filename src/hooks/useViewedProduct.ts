@@ -4,8 +4,8 @@ import { SearchedProduct } from '@/types/search';
 import axios from 'axios';
 import { useCallback } from 'react';
 
-export function useViewedProduct() {
-  const {userId} = useUserContext();
+export const useViewedProduct = () => {
+  const { userId } = useUserContext();
   const addGuestViewedProduct = useViewedProductStore(
     (s) => s.addViewedProduct,
   );
@@ -59,4 +59,4 @@ export function useViewedProduct() {
     fetchRecentViewed,
     recordViewedProduct,
   };
-}
+};

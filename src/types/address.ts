@@ -18,6 +18,24 @@ export interface DeliveryAddress {
   updatedAt: Date;
 }
 
+
+// Type for guest delivery address (partial of DeliveryAddress)
+export type GuestDeliveryAddress = Partial<
+  Pick<
+    DeliveryAddress,
+    | 'firstName'
+    | 'lastName'
+    | 'email'
+    | 'addressLine1'
+    | 'addressLine2'
+    | 'city'
+    | 'state'
+    | 'zipCode'
+    | 'country'
+    | 'phone'
+  >
+>;
+
 export interface CreateDeliveryAddressInput {
   email: string;
   firstName: string;

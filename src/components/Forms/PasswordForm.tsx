@@ -1,6 +1,5 @@
 'use client';
 
-import { PasswordSchema } from '@/lib/schema';
 import { PasswordFormProps } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff } from 'lucide-react';
@@ -15,6 +14,7 @@ import {
   FormItem,
   FormMessage,
 } from '../ui/form';
+import { PasswordSchema } from '@/schemas/authSchemas';
 
 const PasswordForm = ({
   isLoading,

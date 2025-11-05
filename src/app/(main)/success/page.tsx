@@ -1,14 +1,14 @@
 'use client';
 
 import Loader from '@/components/ui/loader';
-import { Success } from '@/components/ui/lottie';
+import { SuccessLottie } from '@/components/ui/lottie';
 import { useUserContext } from '@/context/UserContext';
 import { useCartStore } from '@/hooks/use-cart';
 import { ArrowRight } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect } from 'react';
 
-function SuccessPageContent() {
+const SuccessPageContent = () => {
   const router = useRouter();
   const { clearCart } = useCartStore();
   const { firstName, userId, loading } = useUserContext();
@@ -32,7 +32,7 @@ function SuccessPageContent() {
   return (
     <div className="flex flex-col items-center justify-center px-2 py-20 text-center sm:px-6">
       {/* ✅ Lottie animation */}
-      <Success />
+      <SuccessLottie />
 
       <h1 className="mb-4 text-3xl font-medium">
         {`Thanks, ${firstName || guestName}! 🎉`}
@@ -63,9 +63,9 @@ function SuccessPageContent() {
       </div>
     </div>
   );
-}
+};
 
-export default function SuccessPage() {
+const SuccessPage = () => {
   return (
     <Suspense
       fallback={
@@ -77,4 +77,6 @@ export default function SuccessPage() {
       <SuccessPageContent />
     </Suspense>
   );
-}
+};
+
+export default SuccessPage;

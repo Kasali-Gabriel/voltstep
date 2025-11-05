@@ -6,7 +6,6 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
-import { reviewSchema } from '@/lib/schema';
 import { ReviewFormProps } from '@/types/review';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
@@ -14,6 +13,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import RatingInput from '../Reviews/RatingInput';
+import { reviewSchema } from '@/schemas/productSchemas';
 
 const ReviewForm = ({
   reviewerId,

@@ -6,27 +6,37 @@ export interface Catalog {
   id: string;
   name: string;
   slug: string;
-  categories: Category[];
+  img: string | null;
+  categories?: Category[];
 }
 
 export interface Category {
   id: string;
   name: string;
   slug: string;
-  parentCategory?: string;
-  subcategories: Subcategory[];
+  img: string | null;
+  parentCategory?: string | null;
+  subcategories?: Subcategory[];
   catalogId: string;
   catalog?: Catalog;
+  catalogNames?: string[];
+  _count?: {
+    subcategories: number;
+  };
 }
 
 export interface Subcategory {
   id: string;
   name: string;
   slug: string;
-  parentCategory?: string;
+  img: string | null;
+  parentCategory?: string | null;
   categoryId: string;
   category?: Category;
   products?: Product[];
+  _count?: {
+    products: number;
+  };
 }
 
 export interface ProductSizeVariant {
@@ -158,4 +168,14 @@ export interface ProductFilters {
   subcategory?: string;
   category?: string;
   catalog?: string;
+}
+
+export interface ProductWithStats extends Omit<Product, 'reviews'> {
+  reviews: { rating: number }[];
+  avgRating: number;
+  stats: {
+    wishlistCount: number;
+    viewCount: number;
+    popularityHistory: Array<{ date: string; score: number }>;
+  };
 }

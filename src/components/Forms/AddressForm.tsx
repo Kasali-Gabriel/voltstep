@@ -4,7 +4,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormField, FormItem } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { useUserContext } from '@/context/UserContext';
-import { createAddressFormSchema } from '@/lib/schema';
 import { useAddressStore } from '@/lib/state';
 import { AddressFormProps } from '@/types/address';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,8 +12,9 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Loader from '../ui/loader';
 import AddressFields from '../User/DeliveryAddresses/AddressFields';
+import { AddressFormSchema } from '@/schemas/addressSchema';
 
-export default function AddressForm({
+const AddressForm = ({
   formData,
   setFormData,
   editingAddress,
@@ -22,8 +22,8 @@ export default function AddressForm({
   onSubmit,
   hideDefaultOption = false,
   maxHeight = false,
-}: AddressFormProps) {
-  const addressFormSchema = useMemo(() => createAddressFormSchema(), []);
+}: AddressFormProps) => {
+  const addressFormSchema = useMemo(() => AddressFormSchema(), []);
   const { setIsFormValid } = useAddressStore();
 
   const { userId } = useUserContext();
@@ -227,4 +227,6 @@ export default function AddressForm({
       </form>
     </Form>
   );
-}
+};
+
+export default AddressForm;

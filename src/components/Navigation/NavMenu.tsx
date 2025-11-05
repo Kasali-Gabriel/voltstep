@@ -25,7 +25,7 @@ const NavMenu = ({ catalogs }: { catalogs: Catalog[] }) => {
 
               <NavigationMenuContent>
                 <div className="grid w-[500px] grid-cols-3 gap-10 p-4 lg:w-[600px]">
-                  {catalog.categories.map((category: Category) => (
+                  {catalog.categories?.map((category: Category) => (
                     <div key={category.id} className="space-y-4 text-sm">
                       <h4 className="font-semibold uppercase">
                         <Link

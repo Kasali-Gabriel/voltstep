@@ -21,7 +21,7 @@ import { useRouter } from 'next/navigation';
 import { usePagination } from './usePagination';
 import { useViewedProduct } from './useViewedProduct';
 
-export function useSearch({
+export const useSearch = ({
   slug,
   query,
   sort,
@@ -30,7 +30,7 @@ export function useSearch({
   initialTotalCount = 0,
   initialHasMore = false,
   skipInitialFetch = false,
-}: SearchParams) {
+}: SearchParams) => {
   const { userId } = useUserContext();
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
@@ -276,4 +276,4 @@ export function useSearch({
     recentViewed,
     recordViewedSearchProduct,
   };
-}
+};

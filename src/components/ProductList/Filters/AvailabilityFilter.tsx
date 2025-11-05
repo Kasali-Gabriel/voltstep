@@ -7,7 +7,7 @@ import {
 import { ProductFilters } from '@/types/product';
 import { ChevronDown } from 'lucide-react';
 
-export function AvailabilityFilter({
+export const AvailabilityFilter =({
   filters,
   updateFilters,
   open,
@@ -19,7 +19,7 @@ export function AvailabilityFilter({
   ) => void;
   open: boolean;
   toggleSection: () => void;
-}) {
+}) => {
   return (
     <Collapsible open={open} onOpenChange={toggleSection}>
       <CollapsibleTrigger className="flex w-full items-center justify-between py-4">

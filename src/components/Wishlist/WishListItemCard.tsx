@@ -117,12 +117,12 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
           href={item.product?.slug ? `/product/${item.product.slug}` : '#'}
           tabIndex={item.product?.slug ? 0 : -1}
           onClick={handleProductLinkClick}
+          className="relative block aspect-square w-full"
         >
           <Image
-            src={item.product?.images[0] ?? '/placeholder.png'}
+            src={item.product?.images[0] ?? ''}
             alt="item-image"
-            width={1024}
-            height={1024}
+            fill
             className="h-auto w-full cursor-pointer border"
           />
         </Link>
@@ -134,7 +134,7 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
             onClick={handleProductLinkClick}
           >
             <Image
-              src={item.product?.images[0] ?? '/placeholder.png'}
+              src={item.product?.images[0] ?? ''}
               alt="item-image"
               fill
               className="h-full w-full cursor-pointer border object-cover"
@@ -173,6 +173,12 @@ const WishListItemCard = ({ item, isPage = false }: WishListItemCardProps) => {
 
           {/* Size dropdown or dialog to select size before adding to bag */}
           <WishListSizeSelector
+            productImages={(item.product?.images || []).map((img, idx) => ({
+              src: img,
+              alt: item.product?.name
+                ? `${item.product.name} image ${idx + 1}`
+                : `Product image ${idx + 1}`,
+            }))}
             isPage={isPage}
             showSizeDialog={showSizeDialog}
             setShowSizeDialog={setShowSizeDialog}

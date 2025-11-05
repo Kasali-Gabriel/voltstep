@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
+import { Catalog } from '@/types/product';
 
 export const metadata: Metadata = {
   title: 'Voltstep',
@@ -22,7 +23,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const catalogs = await fetchCatalogData();
+  const catalogs: Catalog[] = await fetchCatalogData();
 
   return (
     <ClerkProvider>

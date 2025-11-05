@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useShadowOnScroll() {
+export const useShadowOnScroll = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [notAtBottom, setNotAtBottom] = useState(false);
@@ -26,4 +26,4 @@ export function useShadowOnScroll() {
   }, [scrollRef, setIsScrolled]);
 
   return { isScrolled, setIsScrolled, scrollRef, notAtBottom, setNotAtBottom };
-}
+};

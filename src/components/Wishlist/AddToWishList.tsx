@@ -108,7 +108,7 @@ export const AddToWishList = ({
 
             <div className="flex items-center space-x-4 px-1">
               <Image
-                src={productImage ?? '/placeholder.png'}
+                src={productImage ?? ''}
                 alt="item-image"
                 width={100}
                 height={100}

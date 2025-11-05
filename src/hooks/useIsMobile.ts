@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
  * @param maxWidth - The maximum width (in px) to consider as mobile. Default is 640.
  * @returns [isMobile, setIsMobile]
  */
-export function useIsMobile(
+export const useIsMobile =(
   maxWidth: number = 640,
-): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
+): [boolean, React.Dispatch<React.SetStateAction<boolean>>]  => {
   // Always start with false to ensure SSR/client consistency
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);

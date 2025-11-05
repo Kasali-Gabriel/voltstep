@@ -2,10 +2,15 @@
 
 import { UserProvider } from '@/context/UserContext';
 import { WishlistProvider } from '@/context/WishlistContext';
+import { useAdminSidebarStore } from '@/lib/state';
 import { Catalog } from '@/types/product';
 import { GoogleOneTap } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import AdminNavbar from '../Admin/Navigation/Navbar';
+import AdminSideBar from '../Admin/Navigation/Sidebar';
+import NotificationSidebar from '../Admin/Notifications/NotificationSidebar';
+import { SidebarInset, SidebarProvider } from '../ui/sidebar';
 import FlashNews from './FlashNews';
 import Footer from './Footer';
 import Navbar from './Navbar';
@@ -15,13 +20,16 @@ export type WrapperProps = Readonly<{
   catalogs: Catalog[];
 }>;
 
-export default function Wrapper({ children, catalogs }: WrapperProps) {
+const Wrapper = ({ children, catalogs }: WrapperProps) => {
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
 
+  const { showSidebar, setShowSideBar, setShowNotificationSidebar } =
+    useAdminSidebarStore();
+
   const isAuth =
     pathname.startsWith('/sign-in') || pathname.startsWith('/sign-up');
-  const isAdmin = pathname === '/admin';
+  const isAdmin = pathname.startsWith('/admin');
   const isProductPage = pathname.startsWith('/product/');
   const isProductsListPage = pathname.startsWith('/products');
   const isSuccessPage = pathname.startsWith('/success');
@@ -30,8 +38,22 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
     setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1280) {
+        setShowNotificationSidebar(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [setShowNotificationSidebar]);
+
   // If on auth or admin page, don't provide user context
-  if (isAuth || isAdmin) {
+  if (isAuth) {
     return (
       <div className="w-full">
         <main>{children}</main>
@@ -46,6 +68,24 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
           <main>{children}</main>
         </div>
       </UserProvider>
+    );
+  }
+
+  if (isAdmin) {
+    return (
+      <SidebarProvider open={showSidebar} onOpenChange={setShowSideBar}>
+        <AdminSideBar />
+
+        <SidebarInset>
+          <AdminNavbar />
+
+          <main className="container mx-auto mt-5 flex w-full max-w-[1440px] min-w-0 flex-1 flex-col gap-4 p-4 px-4 py-8 pt-0 md:px-7">
+            {children}
+          </main>
+        </SidebarInset>
+
+        <NotificationSidebar />
+      </SidebarProvider>
     );
   }
 
@@ -94,4 +134,6 @@ export default function Wrapper({ children, catalogs }: WrapperProps) {
       </WishlistProvider>
     </UserProvider>
   );
-}
+};
+
+export default Wrapper;

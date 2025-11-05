@@ -14,7 +14,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { AddressDisplay } from '../User/DeliveryAddresses/AddressDisplay';
 import { AddressList } from './AddressList';
 
-export default function CheckoutDeliverySection({
+const CheckoutDeliverySection =({
   userId,
   deliveryAddresses,
   selectedDeliveryAddress,
@@ -23,7 +23,7 @@ export default function CheckoutDeliverySection({
   setGuestDeliveryData,
   handleGuestDeliverySubmit,
   refreshAddresses,
-}: checkoutDeliveryAddressProps) {
+}: checkoutDeliveryAddressProps) =>{
   const { handleSubmit, isSubmitting } = useDeliveryAddresses();
 
   // Submit logic for address add/edit
@@ -295,3 +295,5 @@ export default function CheckoutDeliverySection({
     </Card>
   );
 }
+
+export default CheckoutDeliverySection;

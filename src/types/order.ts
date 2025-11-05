@@ -22,14 +22,18 @@ export interface Order {
   stripePaymentId?: string | null;
   stripePaymentMethodId?: string | null;
   stripePaymentMethodType?: string | null;
-  stripePaymentMethodDetails?: Prisma.InputJsonValue;
+  stripePaymentMethodDetails?: Prisma.JsonValue;
   cardBrand?: string | null;
   cardLast4?: string | null;
   cardExpMonth?: number | null;
   cardExpYear?: number | null;
   shippingCost: number;
   taxAmount: number;
-  guestDeliveryAddress?: Prisma.InputJsonValue;
+  guestDeliveryAddress?: Prisma.JsonValue;
+  confirmedAt?: Date | null;
+  shippedAt?: Date | null;
+  deliveredAt?: Date | null;
+  cancelledAt?: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -101,4 +105,33 @@ export interface CheckoutOrderSummaryProps {
   shippingCost: number;
   taxAmount: number;
   total: number;
+}
+
+export interface OrderDeliveryAddressProps {
+  deliveryAddress: Order['deliveryAddress'];
+  status: string;
+}
+
+export interface OrdersFiltersProps {
+  status: string;
+  setStatus: (s: string) => void;
+  dateRange: string;
+  setDateRange: (d: string) => void;
+  minAmount: number;
+  maxAmount: number;
+  setMinAmount: (m: number) => void;
+  setMaxAmount: (m: number) => void;
+  sortOrder: string;
+  setSortOrder: (s: string) => void;
+}
+
+export interface SelectedOrdersFiltersProps {
+  status: string;
+  setStatus: (s: string) => void;
+  dateRange: string;
+  setDateRange: (d: string) => void;
+  minAmount: number;
+  maxAmount: number;
+  setMinAmount: (m: number) => void;
+  setMaxAmount: (m: number) => void;
 }

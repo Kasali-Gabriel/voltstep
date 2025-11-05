@@ -1,6 +1,6 @@
 'use client';
 
-import { ComboboxFormField } from '@/components/ui/combobox';
+import { ComboboxFormField } from '@/components/User/DeliveryAddresses/CountryCombobox';
 import { FloatingLabelInputField } from '@/components/ui/floating-input';
 import {
   countries,
@@ -15,11 +15,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { CityInput } from './CityInput';
 import { PhoneInput } from './PhoneInput';
 
-export default function AddressFields({
+const AddressFields = ({
   form,
   fieldPrefix = '',
   isSubmitting,
-}: AddressFieldsProps) {
+}: AddressFieldsProps) => {
   const getFieldName = (fieldName: string) =>
     fieldPrefix ? `${fieldPrefix}.${fieldName}` : fieldName;
 
@@ -187,4 +187,6 @@ export default function AddressFields({
       />
     </div>
   );
-}
+};
+
+export default AddressFields;

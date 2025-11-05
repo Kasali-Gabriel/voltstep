@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useCartStore } from './use-cart';
 
-export function useCheckout() {
+export const useCheckout = () => {
   const router = useRouter();
   const { user } = useUser();
   const { items } = useCartStore();
@@ -142,4 +142,4 @@ export function useCheckout() {
     refreshAddresses,
     getDeliveryAddressInput,
   };
-}
+};

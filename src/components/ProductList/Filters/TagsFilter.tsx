@@ -7,7 +7,7 @@ import {
 import { ProductFilters, Tag } from '@/types/product';
 import { ChevronDown } from 'lucide-react';
 
-export function TagsFilter({
+export const TagsFilter = ({
   filters,
   updateFilters,
   open,
@@ -17,7 +17,7 @@ export function TagsFilter({
   updateFilters: (f: Partial<ProductFilters>) => void;
   open: boolean;
   toggleSection: () => void;
-}) {
+}) => {
   return (
     <Collapsible open={open} onOpenChange={toggleSection}>
       <CollapsibleTrigger className="flex w-full items-center justify-between border-t border-stone-200 py-4">
@@ -58,4 +58,4 @@ export function TagsFilter({
       </CollapsibleContent>
     </Collapsible>
   );
-}
+};

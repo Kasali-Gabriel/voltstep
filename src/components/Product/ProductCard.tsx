@@ -52,13 +52,13 @@ const ProductCard = ({
         href={`/product/${SearchedProduct?.slug}`}
         onClick={handleLink}
         tabIndex={SearchedProduct?.slug ? 0 : -1}
+        className="relative block aspect-square w-full"
       >
         <Image
-          src={SearchedProduct?.image || '/placeholder.png'}
+          src={SearchedProduct?.image ?? ''}
           alt="item-image"
-          width={600}
-          height={600}
-          className="h-auto w-full cursor-pointer border object-cover"
+          fill
+          className="border object-contain shadow-md"
         />
       </Link>
 

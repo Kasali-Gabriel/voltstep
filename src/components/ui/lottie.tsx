@@ -1,19 +1,22 @@
 'use client';
 
 import HeartAnimationData from '@/assets/Heart.json';
-import logoutAnimationData from '@/assets/Logout.json';
-import ordersAnimationData from '@/assets/OrderHistory.json';
-import settingsAnimationData from '@/assets/setting.json';
+import LogoutAnimationData from '@/assets/Logout.json';
+import OrdersAnimationData from '@/assets/OrderHistory.json';
+import SearchAnimationData from '@/assets/Search.json';
+import SettingsAnimationData from '@/assets/setting.json';
+import AdminAnimationData from '@/assets/Shield.json';
 import SuccessAnimationData from '@/assets/Success.json';
+import BagAnimationData from '@/assets/Bag.json';
 import Lottie, { LottieRef, LottieRefCurrentProps } from 'lottie-react';
 import { forwardRef } from 'react';
 
-export const OrderHistory = forwardRef<LottieRefCurrentProps>((props, ref) => {
+export const OrderHistoryLottie = forwardRef<LottieRefCurrentProps>((props, ref) => {
   return (
     <div className="size-8">
       <Lottie
         lottieRef={ref as LottieRef}
-        animationData={ordersAnimationData}
+        animationData={OrdersAnimationData}
         className="flex items-center justify-center"
         autoplay={false}
         loop={true}
@@ -22,14 +25,32 @@ export const OrderHistory = forwardRef<LottieRefCurrentProps>((props, ref) => {
   );
 });
 
-OrderHistory.displayName = 'OrderHistory';
+OrderHistoryLottie.displayName = 'OrderHistoryLottie';
 
-export const Settings = forwardRef<LottieRefCurrentProps>((props, ref) => {
+export const AdminDashboardLottie = forwardRef<LottieRefCurrentProps>(
+  (props, ref) => {
+    return (
+      <div className="size-8">
+        <Lottie
+          lottieRef={ref as LottieRef}
+          animationData={AdminAnimationData}
+          className="flex items-center justify-center"
+          autoplay={false}
+          loop={true}
+        />
+      </div>
+    );
+  },
+);
+
+AdminDashboardLottie.displayName = 'AdminDashboardLottie';
+
+export const SearchLottie = forwardRef<LottieRefCurrentProps>((props, ref) => {
   return (
-    <div className="size-8">
+    <div className="size-7 cursor-pointer">
       <Lottie
         lottieRef={ref as LottieRef}
-        animationData={settingsAnimationData}
+        animationData={SearchAnimationData}
         className="flex items-center justify-center"
         autoplay={false}
         loop={true}
@@ -38,14 +59,14 @@ export const Settings = forwardRef<LottieRefCurrentProps>((props, ref) => {
   );
 });
 
-Settings.displayName = 'Settings';
+SearchLottie.displayName = 'SearchLottie';
 
-export const Logout = forwardRef<LottieRefCurrentProps>((props, ref) => {
+export const SettingsLottie = forwardRef<LottieRefCurrentProps>((props, ref) => {
   return (
     <div className="size-8">
       <Lottie
         lottieRef={ref as LottieRef}
-        animationData={logoutAnimationData}
+        animationData={SettingsAnimationData}
         className="flex items-center justify-center"
         autoplay={false}
         loop={true}
@@ -54,9 +75,25 @@ export const Logout = forwardRef<LottieRefCurrentProps>((props, ref) => {
   );
 });
 
-Logout.displayName = 'Logout';
+SettingsLottie.displayName = 'SettingsLottie';
 
-export const Heart = forwardRef<LottieRefCurrentProps>((props, ref) => {
+export const LogoutLottie = forwardRef<LottieRefCurrentProps>((props, ref) => {
+  return (
+    <div className="size-8">
+      <Lottie
+        lottieRef={ref as LottieRef}
+        animationData={LogoutAnimationData}
+        className="flex items-center justify-center"
+        autoplay={false}
+        loop={true}
+      />
+    </div>
+  );
+});
+
+LogoutLottie.displayName = 'LogoutLottie';
+
+export const HeartLottie = forwardRef<LottieRefCurrentProps>((props, ref) => {
   return (
     <div className="size-8">
       <Lottie
@@ -70,13 +107,26 @@ export const Heart = forwardRef<LottieRefCurrentProps>((props, ref) => {
   );
 });
 
-Heart.displayName = 'Heart';
+HeartLottie.displayName = 'HeartLottie';
 
-export const Success = () => {
+export const SuccessLottie = () => {
   return (
     <div className="size-52">
       <Lottie
         animationData={SuccessAnimationData}
+        className="flex items-center justify-center"
+        autoplay={true}
+        loop={true}
+      />
+    </div>
+  );
+};
+
+export const BagLottie = () => {
+  return (
+    <div className="size-36">
+      <Lottie
+        animationData={BagAnimationData}
         className="flex items-center justify-center"
         autoplay={true}
         loop={true}

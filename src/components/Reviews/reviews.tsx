@@ -1,19 +1,13 @@
 import { Review } from '@/types/review';
 import { isEqual } from 'lodash';
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  User,
-} from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { Pagination, usePagination } from '../Navigation/Pagination';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { ReviewFilters, SelectedFilters } from './ReviewFilters';
 import StarRating from './star-rating';
 
 export const Reviews = ({ reviews }: { reviews: Review[] }) => {
-  const [page, setPage] = useState(1);
   const [rating, setRating] = useState('');
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [sortOrder, setSortOrder] = useState('newest');
@@ -25,6 +19,10 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
     {},
   );
 
+  const getInitials = (firstName: string, lastName: string) => {
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+  };
+
   // Filter, sort, and paginate
   const filtered = reviews
     .filter((r) => (rating ? r.rating === Number(rating) : true))
@@ -35,11 +33,15 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
         : new Date(a.date).getTime() - new Date(b.date).getTime(),
     );
 
-  const totalReviews = filtered.length;
-  const totalPages = Math.ceil(totalReviews / reviewsPerPage);
-  const start = (page - 1) * reviewsPerPage;
-  const end = Math.min(start + reviewsPerPage, totalReviews);
-  const paginatedReviews = filtered.slice(start, end);
+  // Use pagination hook
+  const pagination = usePagination({
+    totalItems: filtered.length,
+    pageSize: reviewsPerPage,
+    initialPage: 1,
+    scrollRef: reviewsRef,
+  });
+
+  const paginatedReviews = filtered.slice(pagination.start, pagination.end);
 
   useEffect(() => {
     const checkClamped = () => {
@@ -61,23 +63,9 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
     return () => window.removeEventListener('resize', checkClamped);
   }, [paginatedReviews, expanded, clamped]);
 
-  const prevPage = useRef(page);
-
-  useEffect(() => {
-    if (page !== prevPage.current) {
-      if (reviewsRef.current) {
-        reviewsRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    }
-    prevPage.current = page;
-  }, [page]);
-
   // Compute empty message if no reviews after filtering
   let emptyMsg = '';
-  if (!totalReviews) {
+  if (!pagination.totalItems) {
     if (verifiedOnly) {
       emptyMsg = 'There are no reviews from verified buyers for this product.';
     } else if (rating) {
@@ -111,7 +99,7 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
       </div>
 
       {/* Show empty message if no reviews, else show reviews */}
-      {!totalReviews ? (
+      {!pagination.totalItems ? (
         <div className="py-8 text-center text-neutral-500">{emptyMsg}</div>
       ) : (
         paginatedReviews.map((review) => {
@@ -127,7 +115,10 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
                   <AvatarImage src={review.reviewer?.imageUrl ?? ''} />
 
                   <AvatarFallback>
-                    <User />
+                    {getInitials(
+                      review.reviewer.firstName,
+                      review.reviewer.lastName,
+                    )}
                   </AvatarFallback>
                 </Avatar>
 
@@ -200,50 +191,15 @@ export const Reviews = ({ reviews }: { reviews: Review[] }) => {
       )}
 
       {/* Pagination controls */}
-      {totalPages > 1 && (
-        <div className="mt-4 flex flex-col items-center justify-center gap-2">
-          {page === 1 ? (
-            <>
-              <button
-                className="mb-2 cursor-pointer rounded-full bg-black px-10 py-2 text-white hover:bg-neutral-900 disabled:opacity-50"
-                onClick={() => setPage(2)}
-                disabled={totalPages < 2}
-                aria-label="Show more reviews"
-              >
-                Load more
-              </button>
-
-              <span className="text-sm text-neutral-700">
-                {start + 1} - {end} of {totalReviews} reviews
-              </span>
-            </>
-          ) : (
-            <div className="flex items-center justify-center gap-4">
-              <button
-                className="cursor-pointer rounded-full bg-black p-2 text-white hover:bg-neutral-800 disabled:opacity-50"
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-                aria-label="Previous page"
-              >
-                <ChevronLeft />
-              </button>
-
-              <span className="text-sm text-neutral-700">
-                {start + 1} - {end} of {totalReviews} reviews
-              </span>
-
-              <button
-                className="cursor-pointer rounded-full bg-black p-2 text-white hover:bg-neutral-900 disabled:cursor-default disabled:opacity-50 disabled:hover:bg-black"
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-                aria-label="Next page"
-              >
-                <ChevronRight />
-              </button>
-            </div>
-          )}
-        </div>
-      )}
+      <Pagination
+        page={pagination.page}
+        setPage={pagination.setPage}
+        totalPages={pagination.totalPages}
+        start={pagination.start}
+        end={pagination.end}
+        totalItems={pagination.totalItems}
+        itemLabel="reviews"
+      />
     </div>
   );
 };

@@ -42,7 +42,7 @@ export const getSmartPriceRanges = (
   ].filter((price, index, arr) => index === 0 || price !== arr[index - 1]);
 };
 
-export function PriceFilter({
+export const PriceFilter =({
   filters,
   updateFilters,
   open,
@@ -56,7 +56,7 @@ export function PriceFilter({
   open: boolean;
   toggleSection: () => void;
   priceRanges: number[];
-}) {
+}) => {
   return (
     <Collapsible open={open} onOpenChange={toggleSection}>
       <CollapsibleTrigger className="flex w-full items-center justify-between border-t border-stone-200 py-4">

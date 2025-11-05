@@ -10,6 +10,7 @@ import {
   Header,
   Logo,
   OtpInput,
+  PasswordFieldError,
   PasswordInput,
   ResendOTP,
   Separator,
@@ -81,7 +82,7 @@ const Page = () => {
                     autoFocus={false}
                   />
 
-                  <Clerk.FieldError className={errorClassName} />
+                  <PasswordFieldError />
                 </Clerk.Field>
 
                 <div

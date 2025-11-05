@@ -211,41 +211,54 @@ export const PasswordInput = ({
   );
 };
 
-// FIXME fix the ui when otp is incorrect and the reset the otp input field
 export const OtpInput = ({ isGlobalLoading }: { isGlobalLoading: boolean }) => {
   return (
     <Clerk.Field
       name="code"
       className="mt-2 flex w-full flex-col items-center justify-center gap-2 sm:mt-4"
     >
-      <Clerk.Input
-        type="otp"
-        className="flex justify-center has-[:disabled]:opacity-50"
-        autoSubmit
-        disabled={isGlobalLoading}
-        autoFocus
-        render={({ value, status }) => {
+      <Clerk.FieldState>
+        {(fieldState) => {
+          const hasError = fieldState.state === 'error';
+          const isSuccess = fieldState.state === 'success';
+
           return (
-            <div
-              data-status={status}
-              className={cn(
-                'relative mx-1 flex size-10 items-center justify-center rounded-md border border-neutral-400 text-sm transition-all lg:size-12 lg:text-base',
-                {
-                  'ring-ring ring-offset-background z-10 ring-2':
-                    status === 'cursor' || status === 'selected',
-                },
-              )}
-            >
-              {value}
-              {status === 'cursor' && (
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                  <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
-                </div>
-              )}
-            </div>
+            <Clerk.Input
+              type="otp"
+              className="flex justify-center has-[:disabled]:opacity-50"
+              autoSubmit
+              disabled={isGlobalLoading}
+              autoFocus
+              render={({ value: inputValue, status }) => {
+                return (
+                  <div
+                    data-status={status}
+                    className={cn(
+                      'relative mx-1 flex size-10 items-center justify-center rounded-md border text-sm transition-all lg:size-12 lg:text-base',
+                      hasError
+                        ? 'border-red-300 ring-red-500 ring-offset-red-600 focus:border-red-400'
+                        : isSuccess
+                          ? 'border-green-300 ring-green-500 ring-offset-green-600 focus:border-green-400'
+                          : 'ring-offset-background ring-ring border-neutral-400',
+                      {
+                        'z-10 ring-2':
+                          status === 'cursor' || status === 'selected',
+                      },
+                    )}
+                  >
+                    {inputValue}
+                    {status === 'cursor' && (
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                        <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
+                      </div>
+                    )}
+                  </div>
+                );
+              }}
+            />
           );
         }}
-      />
+      </Clerk.FieldState>
 
       <Clerk.FieldError className="text-destructive block w-full items-center justify-center text-sm">
         <span className="flex w-full items-center justify-center gap-2">
@@ -266,17 +279,83 @@ export const ResendOTP = ({ isSignUp = false }: { isSignUp?: boolean }) => {
         asChild
         resend
         fallback={({ resendableAfter }: { resendableAfter: number }) => (
-          <button className="text-sm font-medium text-neutral-500" disabled>
+          <div className="text-sm font-medium text-neutral-500">
             Resend code in (
             <span className="tabular-nums">{resendableAfter}s</span>)
-          </button>
+          </div>
         )}
       >
-        <button className="cursor-pointer text-sm font-medium text-neutral-700 hover:text-black hover:underline">
+        <button
+          tabIndex={-1}
+          className="cursor-pointer text-sm font-medium text-neutral-700 hover:text-black hover:underline"
+        >
           Didn&apos;t receive a code? Resend
         </button>
       </ActionComponent>
     </div>
+  );
+};
+
+export const PasswordFieldError = () => {
+  return (
+    <Clerk.FieldError className={errorClassName}>
+      {(error) => {
+        if (!error) return null;
+        let errors: string[] = [];
+        if (Array.isArray(error)) {
+          errors = error;
+        } else if (
+          error &&
+          typeof error === 'object' &&
+          'errors' in error &&
+          Array.isArray(error.errors)
+        ) {
+          errors = error.errors as string[];
+        } else if (
+          error &&
+          typeof error === 'object' &&
+          'details' in error &&
+          Array.isArray(error.details)
+        ) {
+          errors = error.details as string[];
+        } else if (
+          error &&
+          typeof error === 'object' &&
+          'code' in error &&
+          typeof error.code === 'string'
+        ) {
+          errors = [error.code];
+        } else if (
+          error &&
+          typeof error === 'object' &&
+          'message' in error &&
+          typeof error.message === 'string'
+        ) {
+          errors = [error.message];
+        } else if (typeof error === 'string') {
+          errors = [error];
+        } else {
+          return <span>Invalid password</span>;
+        }
+        const message = errors
+          .map((code) => {
+            switch (code) {
+              case 'unstable__errors.zxcvbn.notEnough':
+                return 'Password is not strong enough.';
+              case 'unstable__errors.zxcvbn.suggestions.anotherWord':
+                return 'Try adding another word to make it stronger.';
+              case 'unstable__errors.zxcvbn.suggestions.repeated':
+                return 'Avoid repeating characters or patterns.';
+              case 'password-validation-error':
+                return 'Password does not meet requirements. Please use a stronger password with mixed characters.';
+              default:
+                return code; // fallback to the original code if unknown
+            }
+          })
+          .join(' ');
+        return <span>{message}</span>;
+      }}
+    </Clerk.FieldError>
   );
 };
 

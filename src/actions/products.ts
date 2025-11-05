@@ -104,14 +104,22 @@ export const fetchCatalogData = () =>
       id: true,
       name: true,
       slug: true,
+      img: true,
       categories: {
         select: {
           id: true,
           name: true,
           slug: true,
+          img: true,
           catalogId: true,
           subcategories: {
-            select: { id: true, name: true, slug: true, categoryId: true },
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              img: true,
+              categoryId: true,
+            },
           },
         },
       },
